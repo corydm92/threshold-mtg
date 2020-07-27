@@ -1,17 +1,17 @@
 import React, { useEffect } from 'react';
 
 const MainView = (props) => {
-  const { cards, fetchCardsData } = { ...props };
+  const { cards, fetchCards, isLoading } = { ...props };
   console.log(props);
 
   useEffect(() => {
-    console.log('here');
-    fetchCardsData();
-  }, [fetchCardsData]);
+    fetchCards();
+  }, [fetchCards]);
 
   return (
     <>
       <div>Main View</div>
+      <div>isLoading: {isLoading.toString()}</div>
       <div>cards reducer: {JSON.stringify(cards)}</div>
     </>
   );
