@@ -1,10 +1,10 @@
 let initState = [];
 
-const CardsReducer = (state = initState, action) => {
+const cardsReducer = (state = initState, action) => {
   switch (action.type) {
     default:
       return state;
   }
 };
 
-export default CardsReducer;
+export default cardsReducer;
