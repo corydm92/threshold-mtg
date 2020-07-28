@@ -9,6 +9,7 @@ import {
 } from './actionTypes';
 import axios from 'axios';
 import singleResultMock from '../js/constants/singleResultMock';
+import cardsNormalizr from '../normalizr/cardsNormalizr';
 
 const REACT_APP_BASE_API_URL = process.env.REACT_APP_BASE_API_URL;
 
@@ -24,22 +25,27 @@ export const fetchCards = (params) => (dispatch) => {
 };
 
 // Fetches all card data
-export const fetchCardsData = (params = '/?limit=10000') => (dispatch) => {
-  // axios
-  //   .get(REACT_APP_BASE_API_URL + params)
-  //   .then((res) => {
-  //     dispatch({
-  //       type: FETCH_CARDS_DATA_SUCCESSFUL,
-  //       payload: res.data.results,
-  //     });
-  //     dispatch(isLoading(false));
-  //   })
-  //   .catch((err) => {
-  //     dispatch({ type: FETCH_CARDS_DATA_FAILED, payload: err });
-  //     dispatch(isLoading(false));
-  //   });
+export const fetchCardsData = (params = '/?limit=10') => (dispatch) => {
+  axios
+    .get(REACT_APP_BASE_API_URL + params)
+    .then((res) => {
+      const normalizedResponse = cardsNormalizr({ cards: res.data.results });
+      console.log(normalizedResponse);
+      dispatch({
+        type: FETCH_CARDS_DATA_SUCCESSFUL,
+        payload: res.data.results,
+      });
+      dispatch(isLoading(false));
+    })
+    .catch((err) => {
+      dispatch({ type: FETCH_CARDS_DATA_FAILED, payload: err });
+      dispatch(isLoading(false));
+    });
 
-  dispatch({ type: FETCH_CARDS_DATA_SUCCESSFUL, payload: [singleResultMock] });
+  // const normalizedResponse = cardNormalizr(singleResultMock);
+  // console.log(normalizedResponse);
+
+  // dispatch({ type: FETCH_CARDS_DATA_SUCCESSFUL, payload: [singleResultMock] });
 };
 
 export const setSpecPricesSuccessful = (specPrices) => {
