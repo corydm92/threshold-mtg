@@ -12,7 +12,7 @@ const MainView = (props) => {
     <>
       <div>Main View</div>
       <div>isLoading: {isLoading.toString()}</div>
-      <div>cards reducer: {JSON.stringify(cards[15])}</div>
+      <div>cards reducer: {JSON.stringify(cards)}</div>
     </>
   );
 };

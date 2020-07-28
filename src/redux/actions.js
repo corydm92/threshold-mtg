@@ -4,6 +4,7 @@ import {
   IS_LOADING,
 } from './actionTypes';
 import axios from 'axios';
+import singleResultMock from '../js/constants/singleResultMock';
 
 const REACT_APP_BASE_API_URL = process.env.REACT_APP_BASE_API_URL;
 
@@ -19,14 +20,16 @@ export const fetchCards = (params) => (dispatch) => {
 
 // Fetches all card data
 export const fetchCardsData = (params = '/?limit=10000') => (dispatch) => {
-  axios
-    .get(REACT_APP_BASE_API_URL + params)
-    .then((res) => {
-      dispatch({ type: FETCH_CARD_DATA_SUCCESSFUL, payload: res.data.results });
-      dispatch(isLoading(false));
-    })
-    .catch((err) => {
-      dispatch({ type: FETCH_CARD_DATA_FAILED, payload: err });
-      dispatch(isLoading(false));
-    });
+  // axios
+  //   .get(REACT_APP_BASE_API_URL + params)
+  //   .then((res) => {
+  //     dispatch({ type: FETCH_CARD_DATA_SUCCESSFUL, payload: res.data.results });
+  //     dispatch(isLoading(false));
+  //   })
+  //   .catch((err) => {
+  //     dispatch({ type: FETCH_CARD_DATA_FAILED, payload: err });
+  //     dispatch(isLoading(false));
+  //   });
+
+  dispatch({ type: FETCH_CARD_DATA_SUCCESSFUL, payload: [singleResultMock] });
 };
