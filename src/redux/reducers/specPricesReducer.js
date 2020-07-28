@@ -3,7 +3,7 @@ import {
   SET_SPEC_PRICES_FAILED,
 } from '../actionTypes';
 
-const initState = [];
+const initState = {};
 
 const specPricesReducer = (state = initState, action) => {
   switch (action.type) {
