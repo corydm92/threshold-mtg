@@ -3,7 +3,9 @@ import {
   FETCH_CARDS_DATA_FAILED,
   IS_LOADING,
   SET_SPEC_PRICES_SUCCESSFUL,
+  SET_TCG_PRICES_SUCCESSFUL,
   SET_SPEC_PRICES_FAILED,
+  SET_TCG_PRICES_FAILED,
 } from './actionTypes';
 import axios from 'axios';
 
@@ -43,4 +45,12 @@ export const setSpecPricesSuccessful = (specPrices) => {
 
 export const setSpecPricesFailed = () => {
   return { type: SET_SPEC_PRICES_FAILED };
+};
+
+export const setTcgPricesSuccessful = (tcgPrices) => {
+  return { type: SET_TCG_PRICES_SUCCESSFUL, payload: tcgPrices };
+};
+
+export const setTcgPricesFailed = () => {
+  return { type: SET_TCG_PRICES_FAILED };
 };
