@@ -1,6 +1,6 @@
 import {
-  FETCH_CARD_DATA_SUCCESSFUL,
-  FETCH_CARD_DATA_FAILED,
+  FETCH_CARDS_DATA_SUCCESSFUL,
+  FETCH_CARDS_DATA_FAILED,
 } from '../actionTypes';
 
 let initState = [];
@@ -9,10 +9,10 @@ let initState = [];
 
 const cardsReducer = (state = initState, action) => {
   switch (action.type) {
-    case FETCH_CARD_DATA_SUCCESSFUL: {
+    case FETCH_CARDS_DATA_SUCCESSFUL: {
       return action.payload;
     }
-    case FETCH_CARD_DATA_FAILED:
+    case FETCH_CARDS_DATA_FAILED:
       return initState;
     default:
       return state;
