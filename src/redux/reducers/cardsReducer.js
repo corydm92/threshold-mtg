@@ -5,8 +5,6 @@ import {
 
 let initState = [];
 
-// testline
-
 const cardsReducer = (state = initState, action) => {
   switch (action.type) {
     case FETCH_CARDS_DATA_SUCCESSFUL: {
