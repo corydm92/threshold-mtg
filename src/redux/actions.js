@@ -29,11 +29,12 @@ export const fetchCardsData = (params = '/?limit=10') => (dispatch) => {
   axios
     .get(REACT_APP_BASE_API_URL + params)
     .then((res) => {
-      const normalizedResponse = cardsNormalizr({ cards: res.data.results });
-      console.log(normalizedResponse);
+      // Input JSON (or plain JS object) data that needs normalization.
+      const normalizedResponse = cardsNormalizr({ results: res.data.results });
+      // console.log(normalizedResponse);
       dispatch({
         type: FETCH_CARDS_DATA_SUCCESSFUL,
-        payload: res.data.results,
+        payload: normalizedResponse,
       });
       dispatch(isLoading(false));
     })
