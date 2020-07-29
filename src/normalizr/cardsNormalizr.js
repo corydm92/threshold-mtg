@@ -5,7 +5,7 @@ const card = new schema.Entity('cards');
 
 // This is what our result object will be (array if id's).
 // The key of the schema object must be the same as the key of the incoming payload
-const mySchema = { results: [card] };
+const mySchema = { cards: [card] };
 
 const cardsNormalizedData = (originalData) => normalize(originalData, mySchema);
 
