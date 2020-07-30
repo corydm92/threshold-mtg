@@ -11,6 +11,8 @@ const specPrices = new schema.Entity('card.spec_prices', {
   specPrices: card,
 });
 
+// This is what our result object will be (array of id's).
+// The key of the schema object must be the same as the key of the incoming payload
 const cards = new schema.Entity('cards', {
   card,
   tcg_price: tcgPrice,

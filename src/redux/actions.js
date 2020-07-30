@@ -26,12 +26,12 @@ export const fetchCards = (params) => (dispatch) => {
 };
 
 // Fetches all card data
-export const fetchCardsData = (params = '/?limit=10000') => (dispatch) => {
+export const fetchCardsData = (params = '/?limit=10') => (dispatch) => {
   axios
     .get(REACT_APP_BASE_API_URL + params)
     .then((res) => {
       // Input JSON (or plain JS object) data that needs normalization.
-      const normalizedResponse = cardsNormalizr({ cards: res.data.results });
+      const normalizedResponse = cardsNormalizr(res.data.results);
       dispatch({
         type: FETCH_CARDS_DATA_SUCCESSFUL,
         payload: normalizedResponse,
