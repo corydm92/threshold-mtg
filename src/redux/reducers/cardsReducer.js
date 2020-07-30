@@ -3,12 +3,15 @@ import {
   FETCH_CARDS_DATA_FAILED,
 } from '../actionTypes';
 
-let initState = [];
+let initState = {
+  entities: {},
+  results: {},
+};
 
 const cardsReducer = (state = initState, action) => {
   switch (action.type) {
     case FETCH_CARDS_DATA_SUCCESSFUL: {
-      return [action.payload];
+      return action.payload;
     }
     case FETCH_CARDS_DATA_FAILED:
       return initState;

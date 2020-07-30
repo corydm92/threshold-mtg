@@ -8,6 +8,9 @@ import {
   SET_TCG_PRICES_FAILED,
 } from './actionTypes';
 import axios from 'axios';
+import singleResultMock from '../js/constants/singleResultMock';
+import cardsNormalizr from '../normalizr/cardsNormalizr';
+import cardNormalizr from '../normalizr/cardNormalizr';
 
 const REACT_APP_BASE_API_URL = process.env.REACT_APP_BASE_API_URL;
 
@@ -27,9 +30,11 @@ export const fetchCardsData = (params = '/?limit=10000') => (dispatch) => {
   axios
     .get(REACT_APP_BASE_API_URL + params)
     .then((res) => {
+      // Input JSON (or plain JS object) data that needs normalization.
+      const normalizedResponse = cardsNormalizr({ cards: res.data.results });
       dispatch({
         type: FETCH_CARDS_DATA_SUCCESSFUL,
-        payload: res.data.results,
+        payload: normalizedResponse,
       });
       dispatch(isLoading(false));
     })
@@ -37,6 +42,15 @@ export const fetchCardsData = (params = '/?limit=10000') => (dispatch) => {
       dispatch({ type: FETCH_CARDS_DATA_FAILED, payload: err });
       dispatch(isLoading(false));
     });
+};
+
+export const setSingleCard = (id) => (dispatch, getState) => {
+  // Logic to check if we have entities for our cards, if not we need to make a fetch to get card data
+  // Actually, lets create an intermediary action that dispatches a SET or FETCH
+  //
+  // const normalizedResponse = cardNormalizr(singleResultMock);
+  // This needs its own action type
+  // dispatch({ type: FETCH_CARDS_DATA_SUCCESSFUL, payload: normalizedResponse });
 };
 
 export const setSpecPricesSuccessful = (specPrices) => {
