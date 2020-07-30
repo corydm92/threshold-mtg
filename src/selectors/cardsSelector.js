@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 
 const cards = (state) => state.cardsReducer.entities;
-const cardsResults = (state) => state.cardsReducer.result.cards;
+const cardsResults = (state) => state.cardsReducer.result;
 
 export const cardsSelector = createSelector(
   [cards, cardsResults],
