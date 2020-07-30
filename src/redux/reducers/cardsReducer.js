@@ -5,7 +5,7 @@ import {
 
 let initState = {
   entities: {},
-  results: {},
+  result: [],
 };
 
 const cardsReducer = (state = initState, action) => {
