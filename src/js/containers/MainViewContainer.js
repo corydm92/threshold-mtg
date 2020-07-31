@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import MainView from '../components/MainView';
-import { fetchCards, fetchCard } from '../../redux/actions';
+import { fetchCards } from '../../redux/actions';
 import { cardsSelector } from '../../selectors/cardsSelector';
 
 const mapStateToProps = (state) => {
@@ -13,7 +13,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchCards: (params) => dispatch(fetchCards(params)),
-    fetchCard: (params) => dispatch(fetchCard(params)),
   };
 };
 
