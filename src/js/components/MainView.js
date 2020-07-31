@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 
 const MainView = (props) => {
   const { cards, fetchCards, isLoading } = { ...props };
-  console.log(props);
 
   useEffect(() => {
     fetchCards();
