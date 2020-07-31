@@ -70,17 +70,18 @@ export const fetchSingleCard = (id) => (dispatch) => {
     .get(REACT_APP_BASE_API_URL + '/' + id + '/')
     .then((res) => {
       const normalizedResponse = cardNormalizr(res.data);
-      console.log(normalizedResponse);
       const result = normalizedResponse.result;
 
       const cardEntity = normalizedResponse.entities.card[result]; // Just the object, no need for a pointer
-      // const specPricesEntity = normalizedResponse.entities.spec_prices;
-      // const tcgPriceEntity = normalizedResponse.entities.tcg_price;
+      const specPricesEntity = normalizedResponse.entities.spec_prices;
+      const tcgPriceEntity = normalizedResponse.entities.tcg_price;
 
       dispatch({
         type: FETCH_CARD_DATA_SUCCESSFUL,
         payload: cardEntity,
       });
+      dispatch(setSpecPricesSuccessful(specPricesEntity));
+      dispatch(setTcgPricesSuccessful(tcgPriceEntity));
     })
     .catch((err) => {
       dispatch({ type: FETCH_CARD_DATA_FAILED, payload: err });
@@ -95,10 +96,12 @@ export const setSingleCard = (singleId) => (dispatch, getState) => {
     const result = normalizedResponse.result; // Get the id of the card
 
     const cardEntity = normalizedResponse.entities.card[result]; // Just the object, no need for a pointer
-    // const specPricesEntity = normalizedResponse.entities.spec_prices;
-    // const tcgPriceEntity = normalizedResponse.entities.tcg_price;
+    const specPricesEntity = normalizedResponse.entities.spec_prices;
+    const tcgPriceEntity = normalizedResponse.entities.tcg_price;
 
     dispatch({ type: SET_CARD_DATA_SUCCESSFUL, payload: cardEntity });
+    dispatch(setSpecPricesSuccessful(specPricesEntity));
+    dispatch(setTcgPricesSuccessful(tcgPriceEntity));
   } catch (error) {
     dispatch({ type: SET_CARD_DATA_FAILED, payload: error });
   }
@@ -108,14 +111,14 @@ export const setSpecPricesSuccessful = (specPrices) => {
   return { type: SET_SPEC_PRICES_SUCCESSFUL, payload: specPrices };
 };
 
+export const setTcgPricesSuccessful = (tcgPrices) => {
+  return { type: SET_TCG_PRICES_SUCCESSFUL, payload: tcgPrices };
+};
+
 // Might be useful in the future
 // export const setSpecPricesFailed = () => {
 //   return { type: SET_SPEC_PRICES_FAILED };
 // };
-
-export const setTcgPricesSuccessful = (tcgPrices) => {
-  return { type: SET_TCG_PRICES_SUCCESSFUL, payload: tcgPrices };
-};
 
 // Might be useful in the future
 // export const setTcgPricesFailed = () => {
