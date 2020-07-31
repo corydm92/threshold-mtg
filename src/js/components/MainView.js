@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 
 const MainView = (props) => {
-  const { cards, fetchCards, isLoading } = { ...props };
+  const { cards, fetchCards, fetchCard, isLoading } = { ...props };
   console.log(props);
 
   useEffect(() => {
-    fetchCards();
-  }, [fetchCards]);
+    // fetchCards();
+    fetchCard('1383');
+  }, [fetchCard, cards]);
 
   return (
     <>

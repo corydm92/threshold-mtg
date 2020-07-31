@@ -7,6 +7,9 @@ import {
   SET_SPEC_PRICES_FAILED,
   SET_TCG_PRICES_FAILED,
 } from './actionTypes';
+
+import { isEmpty } from 'lodash';
+
 import axios from 'axios';
 import singleResultMock from '../js/constants/singleResultMock';
 import cardsNormalizr from '../normalizr/cardsNormalizr';
@@ -42,6 +45,20 @@ export const fetchCardsData = (params = '/?limit=10') => (dispatch) => {
       dispatch({ type: FETCH_CARDS_DATA_FAILED, payload: err });
       dispatch(isLoading(false));
     });
+};
+
+// Intermediary action creator
+export const fetchCard = (id) => (dispatch, getState) => {
+  const { entities } = getState().cardsReducer;
+
+  if (isEmpty(entities)) {
+    // dispatch(fetchCardsData()); // Fetch all cards to populate main view
+    dispatch(fetchSingleCard(id));
+  }
+};
+
+export const fetchSingleCard = (id) => (dispatch) => {
+  axios.get(REACT_APP_BASE_API_URL + '/' + id).then((res) => {});
 };
 
 export const setSingleCard = (id) => (dispatch, getState) => {
