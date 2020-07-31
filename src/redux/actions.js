@@ -1,6 +1,10 @@
 import {
   FETCH_CARDS_DATA_SUCCESSFUL,
   FETCH_CARDS_DATA_FAILED,
+  FETCH_CARD_DATA_SUCCESSFUL,
+  FETCH_CARD_DATA_FAILED,
+  SET_CARD_DATA_SUCCESSFUL,
+  SET_CARD_DATA_FAILED,
   IS_LOADING,
   SET_SPEC_PRICES_SUCCESSFUL,
   SET_TCG_PRICES_SUCCESSFUL,
@@ -58,7 +62,16 @@ export const fetchCard = (id) => (dispatch, getState) => {
 };
 
 export const fetchSingleCard = (id) => (dispatch) => {
-  axios.get(REACT_APP_BASE_API_URL + '/' + id).then((res) => {});
+  axios.get(REACT_APP_BASE_API_URL + '/' + id + '/').then((res) => {
+    console.log(res.data);
+    // const normalizedResponse = cardNormalizr(res.data);
+    const normalizedResponse = cardNormalizr(singleResultMock);
+    dispatch({
+      type: FETCH_CARD_DATA_SUCCESSFUL,
+      payload: normalizedResponse.entities.card,
+    });
+    console.log(normalizedResponse);
+  });
 };
 
 export const setSingleCard = (id) => (dispatch, getState) => {

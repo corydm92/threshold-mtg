@@ -1,24 +1,18 @@
 import { normalize, schema } from 'normalizr';
 
-// Card schema
-const card = new schema.Entity('cards');
+// Shema for the tcg_price entity
+const tcgPrice = new schema.Entity('tcg_price');
 
-const tcgPrice = new schema.Entity('card.tcg_price', {
-  tcgPrice: card,
-});
+// Shema for the spec_prices entity
+const specPrices = new schema.Entity('spec_prices');
 
-const specPrices = new schema.Entity('card.spec_prices', {
-  specPrices: card,
-});
-
-// This is what our result object will be (array of id's).
-// The key of the schema object must be the same as the key of the incoming payload
-const cards = new schema.Entity('cards', {
-  card,
+// The keys of the schema object must be the same as the keys of the incoming payload
+// Whole card object schema, replacing tcg_price/spec_prices with the schema defined above
+const card = new schema.Entity('card', {
   tcg_price: tcgPrice,
   spec_prices: [specPrices],
 });
 
-const cardsNormalizedData = (originalData) => normalize(originalData, cards);
+const cardsNormalizedData = (originalData) => normalize(originalData, card);
 
 export default cardsNormalizedData;
