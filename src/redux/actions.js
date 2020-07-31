@@ -83,8 +83,8 @@ export const fetchSingleCard = (id) => (dispatch) => {
       dispatch(setSpecPricesSuccessful(specPricesEntity));
       dispatch(setTcgPricesSuccessful(tcgPriceEntity));
     })
-    .catch((err) => {
-      dispatch({ type: FETCH_CARD_DATA_FAILED, payload: err });
+    .catch((error) => {
+      dispatch({ type: FETCH_CARD_DATA_FAILED, payload: error });
       dispatch(isLoading(false));
     });
 };
