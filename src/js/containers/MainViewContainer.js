@@ -6,7 +6,7 @@ import { cardsSelector } from '../../selectors/cardsSelector';
 const mapStateToProps = (state) => {
   return {
     cards: cardsSelector(state),
-    isLoading: state.isLoadingReducer.cards,
+    isLoadingCards: state.isLoadingReducer.cards,
   };
 };
 

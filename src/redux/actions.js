@@ -61,7 +61,7 @@ export const fetchCardsData = (params = '/?limit=10') => (dispatch) => {
     })
     .catch((err) => {
       dispatch({ type: FETCH_CARDS_DATA_FAILED, payload: err });
-      dispatch(isLoadingCardsFalse);
+      dispatch(isLoadingCardsFalse());
     });
 };
 
@@ -99,7 +99,7 @@ export const fetchSingleCard = (id) => (dispatch) => {
     })
     .catch((error) => {
       dispatch({ type: FETCH_CARD_DATA_FAILED, payload: error });
-      dispatch(isLoadingCardFalse);
+      dispatch(isLoadingCardFalse());
     });
 };
 
