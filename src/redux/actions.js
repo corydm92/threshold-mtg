@@ -5,7 +5,10 @@ import {
   FETCH_CARD_DATA_FAILED,
   SET_CARD_DATA_SUCCESSFUL,
   SET_CARD_DATA_FAILED,
-  IS_LOADING,
+  IS_LOADING_CARDS_TRUE,
+  IS_LOADING_CARDS_FALSE,
+  IS_LOADING_CARD_TRUE,
+  IS_LOADING_CARD_FALSE,
   SET_SPEC_PRICES_SUCCESSFUL,
   SET_TCG_PRICES_SUCCESSFUL,
   // SET_SPEC_PRICES_FAILED,
@@ -21,14 +24,26 @@ import cardNormalizr from '../normalizr/cardNormalizr';
 
 const REACT_APP_BASE_API_URL = process.env.REACT_APP_BASE_API_URL;
 
-const isLoading = (isTrue) => {
-  return { type: IS_LOADING, payload: isTrue };
+export const isLoadingCardsTrue = () => {
+  return { type: IS_LOADING_CARDS_TRUE };
+};
+
+export const isLoadingCardsFalse = () => {
+  return { type: IS_LOADING_CARDS_FALSE };
+};
+
+export const isLoadingCardTrue = () => {
+  return { type: IS_LOADING_CARD_TRUE };
+};
+
+export const isLoadingCardFalse = () => {
+  return { type: IS_LOADING_CARD_FALSE };
 };
 
 // Intermediary action creator
 export const fetchCards = (params) => (dispatch) => {
   // Other operations here
-  dispatch(isLoading(true));
+  dispatch(isLoadingCardsTrue());
   dispatch(fetchCardsData(params));
 };
 
@@ -43,11 +58,10 @@ export const fetchCardsData = (params = '/?limit=10') => (dispatch) => {
         type: FETCH_CARDS_DATA_SUCCESSFUL,
         payload: normalizedResponse,
       });
-      dispatch(isLoading(false));
     })
     .catch((err) => {
       dispatch({ type: FETCH_CARDS_DATA_FAILED, payload: err });
-      dispatch(isLoading(false));
+      dispatch(isLoadingCardsFalse());
     });
 };
 
@@ -85,7 +99,7 @@ export const fetchSingleCard = (id) => (dispatch) => {
     })
     .catch((error) => {
       dispatch({ type: FETCH_CARD_DATA_FAILED, payload: error });
-      dispatch(isLoading(false));
+      dispatch(isLoadingCardFalse());
     });
 };
 

@@ -1,18 +1,19 @@
 import { connect } from 'react-redux';
 import MainView from '../components/MainView';
-import { fetchCards } from '../../redux/actions';
+import { fetchCards, isLoadingCardsFalse } from '../../redux/actions';
 import { cardsSelector } from '../../selectors/cardsSelector';
 
 const mapStateToProps = (state) => {
   return {
     cards: cardsSelector(state),
-    isLoading: state.isLoadingReducer,
+    isLoadingCards: state.isLoadingReducer.cards,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchCards: (params) => dispatch(fetchCards(params)),
+    isLoadingCardsFalse: () => dispatch(isLoadingCardsFalse()),
   };
 };
 
