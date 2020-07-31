@@ -1,11 +1,18 @@
 import React, { useEffect } from 'react';
+import { isEmpty } from 'lodash';
 
 const MainView = (props) => {
-  const { cards, fetchCards, isLoading } = { ...props };
+  const { cards, fetchCards, isLoading, isLoadingCardsFalse } = { ...props };
 
   useEffect(() => {
     fetchCards();
   }, [fetchCards]);
+
+  useEffect(() => {
+    if (!isEmpty(cards) && isLoading) {
+      isLoadingCardsFalse();
+    }
+  }, [cards, isLoading, isLoadingCardsFalse]);
 
   return (
     <>
