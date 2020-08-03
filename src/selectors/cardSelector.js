@@ -40,6 +40,7 @@ export const cardSelector = createSelector(
     // Do validation on Card schema
 
     return {
+      // Select parts from card object here
       ...card,
       spec_prices: specPrices,
       tcg_price: tcgPrice,
