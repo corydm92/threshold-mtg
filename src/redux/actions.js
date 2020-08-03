@@ -79,7 +79,8 @@ export const fetchCard = (id) => (dispatch, getState) => {
   }
 };
 
-export const fetchSingleCard = (id) => (dispatch) => {
+// Providing default ID, remove once component is built for displaying a single card.
+export const fetchSingleCard = (id = 1383) => (dispatch) => {
   axios
     .get(REACT_APP_BASE_API_URL + '/' + id + '/')
     .then((res) => {
