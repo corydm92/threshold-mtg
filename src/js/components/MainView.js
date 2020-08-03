@@ -1,22 +1,15 @@
 import React, { useEffect } from 'react';
 import { isEmpty } from 'lodash';
+import SingleCardViewContainer from '../containers/SingleCardViewContainer';
 
 const MainView = (props) => {
-  const {
-    cards,
-    fetchCards,
-    card,
-    fetchSingleCard,
-    isLoadingCards,
-    isLoadingCardsFalse,
-  } = {
+  const { cards, fetchCards, isLoadingCards, isLoadingCardsFalse } = {
     ...props,
   };
 
   useEffect(() => {
     fetchCards();
-    fetchSingleCard();
-  }, [fetchCards, fetchSingleCard]);
+  }, [fetchCards]);
 
   useEffect(() => {
     if (!isEmpty(cards) && isLoadingCards) {
@@ -26,9 +19,11 @@ const MainView = (props) => {
 
   return (
     <>
+      <SingleCardViewContainer />
+      <br />
       <div>Main View</div>
       <div>isLoading: {isLoadingCards.toString()}</div>
-      <div>card reducer: {JSON.stringify(card)}</div>
+      <div>cards reducer: {JSON.stringify(cards)}</div>
     </>
   );
 };
