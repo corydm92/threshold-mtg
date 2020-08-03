@@ -18,7 +18,7 @@ import {
 import { isEmpty } from 'lodash';
 
 import axios from 'axios';
-import singleResultMock from '../js/constants/singleResultMock';
+import singleResultMock from '../js/constants/singleResultMock'; // Constant mock of a single entity
 import cardsNormalizr from '../normalizr/cardsNormalizr';
 import cardNormalizr from '../normalizr/cardNormalizr';
 
@@ -66,20 +66,23 @@ export const fetchCardsData = (params = '/?limit=10') => (dispatch) => {
 };
 
 // Intermediary action creator
-export const fetchCard = (id) => (dispatch, getState) => {
+export const fetchSingleCard = (id) => (dispatch, getState) => {
   const { entities } = getState().cardsReducer;
   const singleCardId = getState().cardReducer.id; // Gets ID from card in cardReducer
 
+  dispatch(isLoadingCardTrue());
+
   if (isEmpty(entities)) {
     dispatch(fetchCardsData()); // Fetch all cards to populate main view, ie if user refreshes the page on single view we should fetch all cards for main view
-    dispatch(fetchSingleCard(id)); // Fetch the single card, for single view
+    dispatch(fetchSingleCardData(id)); // Fetch the single card, for single view
   } else if (toString(singleCardId) !== toString(id)) {
     // Set the single card if we do not have that card in memory
     dispatch(setSingleCard(id));
   }
 };
 
-export const fetchSingleCard = (id) => (dispatch) => {
+// Providing default ID, remove once component is built for displaying a single card.
+export const fetchSingleCardData = (id = 1383) => (dispatch) => {
   axios
     .get(REACT_APP_BASE_API_URL + '/' + id + '/')
     .then((res) => {
