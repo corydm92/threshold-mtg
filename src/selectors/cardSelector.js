@@ -4,13 +4,30 @@ const getCard = (state) => state.cardReducer;
 const getSpecPrices = (state) => state.specPricesReducer;
 const getTcgPrices = (state) => state.tcgPricesReducer;
 
-const specPricesSelector =
-  ([getCard, getSpecPrices],
+const specPricesSelector = createSelector(
+  [getCard, getSpecPrices],
   (card, specPrices) => {
-    card.specPrices.map((specPriceId) => {
-      return {
-        // Select parts from specPrices object here
-        ...specPrices[specPriceId],
-      };
-    });
-  });
+    try {
+      return card.spec_prices.map((specPriceId) => {
+        return {
+          // Select parts from specPrices object here
+          ...specPrices[specPriceId],
+        };
+      });
+    } catch {
+      return [];
+    }
+  }
+);
+
+export const cardSelector = createSelector(
+  [getCard, specPricesSelector],
+  (card, specPrices) => {
+    // Do validation on Card schema
+
+    return {
+      ...card,
+      spec_prices: specPrices,
+    };
+  }
+);

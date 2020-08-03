@@ -5,6 +5,7 @@ const MainView = (props) => {
   const {
     cards,
     fetchCards,
+    card,
     fetchSingleCard,
     isLoadingCards,
     isLoadingCardsFalse,
@@ -27,7 +28,7 @@ const MainView = (props) => {
     <>
       <div>Main View</div>
       <div>isLoading: {isLoadingCards.toString()}</div>
-      <div>cards reducer: {JSON.stringify(cards)}</div>
+      <div>card reducer: {JSON.stringify(card)}</div>
     </>
   );
 };
