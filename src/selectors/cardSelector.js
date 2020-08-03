@@ -39,8 +39,6 @@ export const cardSelector = createSelector(
   (card, specPrices, tcgPrice) => {
     // Do validation on Card schema
 
-    console.log(tcgPrice);
-
     return {
       ...card,
       spec_prices: specPrices,
