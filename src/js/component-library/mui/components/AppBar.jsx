@@ -9,7 +9,6 @@ import Container from './Container';
 // import MenuIcon from '@material-ui/icons/Menu';
 
 const useStyles = makeStyles((theme) => {
-  console.log(theme);
   return {
     root: {
       flexGrow: 1,
