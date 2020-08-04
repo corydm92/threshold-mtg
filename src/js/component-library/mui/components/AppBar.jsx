@@ -8,10 +8,10 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
 const useStyles = makeStyles((theme) => {
-  console.log(theme)
   return {
     root: {
       flexGrow: 1,
+      backgroundColor: theme.palette.primary.main,
     },
     menuButton: {
       marginRight: theme.spacing(1),
@@ -29,13 +29,13 @@ export default function ButtonAppBar(props) {
 
   return (
     <div className={classes.root}>
-      <AppBar position="fixed">
+      <AppBar position="fixed" className={classes.root}>
         <Toolbar>
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            {title}
+            {title} teest
           </Typography>
           {/* <Button color="inherit">Login</Button> */}
         </Toolbar>
