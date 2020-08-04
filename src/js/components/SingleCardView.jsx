@@ -17,11 +17,11 @@ const SingleCardView = (props) => {
   }, [card, isLoadingCard, isLoadingCardFalse]);
 
   return (
-    <>
+    <React.Fragment>
       <div>Single Card View</div>
       <div>isLoadingCard: {isLoadingCard.toString()}</div>
       <div>card reducer: {JSON.stringify(card)}</div>
-    </>
+    </React.Fragment>
   );
 };
 
