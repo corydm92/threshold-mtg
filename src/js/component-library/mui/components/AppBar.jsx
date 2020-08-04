@@ -31,11 +31,11 @@ export default function ButtonAppBar(props) {
     <div className={classes.root}>
       <AppBar position="fixed" className={classes.root}>
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+          {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
           <Typography variant="h6" className={classes.title}>
-            {title} teest
+            {title}
           </Typography>
           {/* <Button color="inherit">Login</Button> */}
         </Toolbar>

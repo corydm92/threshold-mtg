@@ -9,12 +9,11 @@ const MainView = (props) => {
 
   return (
     <React.Fragment>
-      <AppBar />
+      <AppBar title="MTG Management" />
       <ToolbarMixin> {/* Spacing for AppBar */}
         {/* Routing Goes Here */}
         <SingleCardViewContainer />
         <CardsTableContainer />
-
       </ToolbarMixin>
     </React.Fragment>
   );

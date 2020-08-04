@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => {
   return {
-    toolbar: theme.mixins.toolbar
+    offset: theme.mixins.toolbar
   }
 });
 
@@ -12,7 +12,7 @@ const ToolbarMixin = (props) => {
   const classes = useStyles();
   return (
     <React.Fragment>
-      <div className={classes.toolbar} />
+      <div className={classes.offset} />
       {props.children}
     </React.Fragment>
   )
