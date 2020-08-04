@@ -17,12 +17,11 @@ const CardsTable = (props) => {
   }, [cards, isLoadingCards, isLoadingCardsFalse]);
 
   return (
-    <>
-      <br />
+    <React.Fragment>
       <div>Cards Table</div>
       <div>isLoading: {isLoadingCards.toString()}</div>
       <div>cards reducer: {JSON.stringify(cards)}</div>
-    </>
+    </React.Fragment>
   );
 };
 
