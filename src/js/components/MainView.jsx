@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { isEmpty } from 'lodash';
 import SingleCardViewContainer from '../containers/SingleCardViewContainer';
+import AppBar from '../component-library/mui-components/AppBar'
 
 const MainView = (props) => {
   const { cards, fetchCards, isLoadingCards, isLoadingCardsFalse } = {
@@ -19,6 +20,7 @@ const MainView = (props) => {
 
   return (
     <>
+      <AppBar />
       <SingleCardViewContainer />
       <br />
       <div>Main View</div>
