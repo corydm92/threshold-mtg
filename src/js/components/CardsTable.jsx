@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { isEmpty } from 'lodash';
-import SingleCardViewContainer from '../containers/SingleCardViewContainer';
 
-const MainView = (props) => {
+const CardsTable = (props) => {
   const { cards, fetchCards, isLoadingCards, isLoadingCardsFalse } = {
     ...props,
   };
@@ -19,13 +18,12 @@ const MainView = (props) => {
 
   return (
     <>
-      <SingleCardViewContainer />
       <br />
-      <div>Main View</div>
+      <div>Cards Table</div>
       <div>isLoading: {isLoadingCards.toString()}</div>
       <div>cards reducer: {JSON.stringify(cards)}</div>
     </>
   );
 };
 
-export default MainView;
+export default CardsTable;
