@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
 import { isEmpty } from 'lodash';
-import SingleCardViewContainer from '../containers/SingleCardViewContainer';
-import AppBar from '../component-library/mui/components/AppBar'
 
 const CardsTable = (props) => {
   const { cards, fetchCards, isLoadingCards, isLoadingCardsFalse } = {
