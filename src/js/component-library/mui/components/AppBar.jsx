@@ -31,13 +31,17 @@ export default function ButtonAppBar(props) {
 
   return (
     <div className={classes.root}>
-      <AppBar position='fixed' className={classes.root}>
+      <AppBar position='fixed' className={classes.root} data-testid='appbar'>
         <Container>
           <Toolbar disableGutters={true}>
             {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton> */}
-            <Typography variant='h6' className={classes.title}>
+            <Typography
+              data-testid='appbar-title'
+              variant='h6'
+              className={classes.title}
+            >
               {title}
             </Typography>
             {/* <Button color="inherit">Login</Button> */}
