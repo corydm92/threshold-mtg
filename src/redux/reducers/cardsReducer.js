@@ -3,7 +3,8 @@ import {
   FETCH_CARDS_DATA_FAILED,
 } from '../actionTypes';
 
-let initState = {
+// Exporting for test purposes
+export const initState = {
   entities: {},
   result: [],
 };
