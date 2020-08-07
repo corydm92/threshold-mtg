@@ -2,15 +2,23 @@ import React, { useEffect } from 'react';
 import { isEmpty } from 'lodash';
 
 const SingleCardView = (props) => {
-  const { card, fetchSingleCard, isLoadingCard, isLoadingCardFalse } = {
+  const {
+    card,
+    fetchSingleCard,
+    isLoadingCard,
+    isLoadingCardFalse,
+    match: {
+      params: { id },
+    },
+  } = {
     ...props,
   };
 
   console.log(props);
 
   useEffect(() => {
-    fetchSingleCard('1679');
-  }, [fetchSingleCard]);
+    fetchSingleCard(id);
+  }, [fetchSingleCard, id]);
 
   useEffect(() => {
     if (!isEmpty(card) && isLoadingCard) {
