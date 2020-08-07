@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import AppBar from '../../js/component-library/mui/components/AppBar';
+import AppBar from '../../../js/component-library/mui/components/AppBar';
 
 describe('App Bar Component', () => {
   it('Renders AppBar without errors', () => {
