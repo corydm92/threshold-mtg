@@ -8,7 +8,8 @@ const Routes = (props) => {
     <Router>
       <Switch>
         <Route
-          path={RouteMapper.home.path}
+          exact
+          path={RouteMapper.cards.path}
           component={(routeProps) => <CardsTableContainer {...routeProps} />}
         />
       </Switch>
