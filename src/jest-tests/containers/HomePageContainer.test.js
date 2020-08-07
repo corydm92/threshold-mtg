@@ -6,8 +6,6 @@ import { fullState } from '../../js/constants/reduxStoreMock';
 
 const configureMockStore = configureStore();
 
-const initialState = {};
-
 const store = configureMockStore(fullState);
 
 describe('HomePageContainer tests', () => {
