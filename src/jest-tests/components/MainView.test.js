@@ -6,8 +6,8 @@ describe('MainView tests', () => {
   it('Renders the Component', () => {
     const component = shallow(<MainView />);
 
-    const mainview = component.find("[data-testid='mainview']");
+    const mainView = component.find("[data-testid='mainView']");
 
-    expect(mainview).toHaveLength(1); // Tests for existance
+    expect(mainView).toHaveLength(1); // Tests for existance
   });
 });

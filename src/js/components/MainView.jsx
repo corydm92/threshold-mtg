@@ -6,8 +6,9 @@ import Container from '../component-library/mui/components/Container';
 import Routes from '../routes/Routes';
 
 const MainView = (props) => {
+  console.log(props);
   return (
-    <div data-testid='mainview'>
+    <div data-testid='mainView'>
       <AppBar title='MTG Management' />
       <Container>
         <ToolbarMixin>

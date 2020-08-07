@@ -11,8 +11,8 @@ describe('CardsTable tests', () => {
     };
     const component = shallow(<CardsTable {...props} />);
 
-    const cardstable = component.find("[data-testid='cardstable']");
+    const cardsTable = component.find("[data-testid='cardsTable']");
 
-    expect(cardstable).toHaveLength(1); // Tests for existance
+    expect(cardsTable).toHaveLength(1); // Tests for existance
   });
 });

@@ -6,8 +6,10 @@ const SingleCardView = (props) => {
     ...props,
   };
 
+  console.log(props);
+
   useEffect(() => {
-    fetchSingleCard();
+    fetchSingleCard('1679');
   }, [fetchSingleCard]);
 
   useEffect(() => {
@@ -17,11 +19,11 @@ const SingleCardView = (props) => {
   }, [card, isLoadingCard, isLoadingCardFalse]);
 
   return (
-    <React.Fragment>
+    <div data-testid='singleCardView'>
       <div>Single Card View</div>
       <div>isLoadingCard: {isLoadingCard.toString()}</div>
       <div>card reducer: {JSON.stringify(card)}</div>
-    </React.Fragment>
+    </div>
   );
 };
 
