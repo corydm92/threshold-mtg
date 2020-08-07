@@ -7,14 +7,14 @@ import Routes from '../routes/Routes';
 
 const MainView = (props) => {
   return (
-    <React.Fragment>
+    <div data-testid='mainview'>
       <AppBar title='MTG Management' />
       <Container>
         <ToolbarMixin>
           <Routes />
         </ToolbarMixin>
       </Container>
-    </React.Fragment>
+    </div>
   );
 };
 
