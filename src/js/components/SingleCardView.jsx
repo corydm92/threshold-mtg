@@ -14,8 +14,6 @@ const SingleCardView = (props) => {
     ...props,
   };
 
-  console.log(props);
-
   useEffect(() => {
     fetchSingleCard(id);
   }, [fetchSingleCard, id]);
