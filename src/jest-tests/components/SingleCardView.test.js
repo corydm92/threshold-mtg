@@ -1,20 +1,30 @@
-import React from 'react';
-import { shallow } from 'enzyme';
+import React, { useEffect } from 'react';
+import { shallow, mount } from 'enzyme';
+import { findByTestAttr } from '../../utils/testUtils';
 import SingleCardView from '../../js/components/SingleCardView';
 import { fullState } from '../../js/constants/reduxStoreMock';
 import { cardSelector } from '../../selectors/cardSelector';
 
 describe('SingleCardView tests', () => {
-  it('Renders the Component', () => {
+  let wrapper;
+  const fetchSingleCard = jest.fn();
+
+  beforeEach(() => {
     const props = {
+      fetchSingleCard,
       card: cardSelector(fullState),
       isLoadingCard: fullState.isLoadingReducer.card,
       match: { params: { id: '1679' } }, // Brittle test, because we are mocking it does not break the action if we pass in a non valid ID
     };
-    const component = shallow(<SingleCardView {...props} />);
+    wrapper = mount(<SingleCardView {...props} />);
+  });
 
-    const singleCardView = component.find("[data-test='singleCardView']");
-
+  it('Renders the Component', () => {
+    const singleCardView = findByTestAttr(wrapper, 'singleCardView');
     expect(singleCardView).toHaveLength(1); // Tests for existance
+  });
+
+  it('Calls fetchSingleCard on Mount', () => {
+    expect(fetchSingleCard).toHaveBeenCalled();
   });
 });

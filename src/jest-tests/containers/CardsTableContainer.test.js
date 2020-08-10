@@ -1,22 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { shallow } from 'enzyme';
 import CardsTableContainer from '../../js/containers/CardsTableContainer';
-import configureStore from 'redux-mock-store';
+import { mockStore } from '../../utils/testUtils';
 import { fullState } from '../../js/constants/reduxStoreMock';
 
-const configureMockStore = configureStore();
-
-const store = configureMockStore(fullState);
-
 describe('HomePageContainer tests', () => {
+  const fetchCards = jest.fn();
+  let wrapper;
+
+  beforeEach(() => {
+    const store = mockStore(fullState);
+    wrapper = shallow(
+      <CardsTableContainer store={store} fetchCards={fetchCards} />
+    ).dive(); // Dive to access the container component, not the provider
+  });
+
   it('Renders the Component', () => {
-    const component = shallow(
-      <CardsTableContainer store={store} isLoadingCards={false} />
-    );
-
-    // console.log(component.props('cards'));
-
-    expect(component).toBeTruthy(); // Tests for existance
-    // expect(component.prop('isLoadingCards')).toEqual(false);
+    expect(wrapper).not.toBeNull();
   });
 });
