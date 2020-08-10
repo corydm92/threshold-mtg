@@ -14,7 +14,7 @@ describe('HomePageContainer tests', () => {
       <CardsTableContainer store={store} isLoadingCards={false} />
     );
 
-    console.log(component.props('cards'));
+    // console.log(component.props('cards'));
 
     expect(component).toBeTruthy(); // Tests for existance
     // expect(component.prop('isLoadingCards')).toEqual(false);
