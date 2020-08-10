@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => {
 const ToolbarMixin = (props) => {
   const classes = useStyles();
   return (
-    <div data-testid='toolbarMixin'>
+    <div data-test='toolbarMixin'>
       <div className={classes.offset} />
       {props.children}
     </div>

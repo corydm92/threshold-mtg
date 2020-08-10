@@ -6,7 +6,7 @@ describe('HomePage tests', () => {
   it('Renders the Component', () => {
     const component = shallow(<HomePage />);
 
-    const homePage = component.find("[data-testid='homePage']");
+    const homePage = component.find("[data-test='homePage']");
 
     expect(homePage).toHaveLength(1); // Tests for existance
   });

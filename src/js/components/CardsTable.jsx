@@ -17,7 +17,7 @@ const CardsTable = (props) => {
   }, [cards, isLoadingCards, isLoadingCardsFalse]);
 
   return (
-    <div data-testid='cardsTable'>
+    <div data-test='cardsTable'>
       <div>Cards Table</div>
       <div>isLoading: {isLoadingCards.toString()}</div>
       <div>cards reducer: {JSON.stringify(cards)}</div>

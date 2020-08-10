@@ -6,7 +6,7 @@ describe('Container Component', () => {
   it('Renders Container without errors', () => {
     const component = shallow(<ToolbarMixin />);
 
-    const container = component.find("[data-testid='toolbarMixin']");
+    const container = component.find("[data-test='toolbarMixin']");
     expect(container).toHaveLength(1); // Tests for existance
   });
 });

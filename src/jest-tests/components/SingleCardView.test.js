@@ -13,7 +13,7 @@ describe('SingleCardView tests', () => {
     };
     const component = shallow(<SingleCardView {...props} />);
 
-    const singleCardView = component.find("[data-testid='singleCardView']");
+    const singleCardView = component.find("[data-test='singleCardView']");
 
     expect(singleCardView).toHaveLength(1); // Tests for existance
   });

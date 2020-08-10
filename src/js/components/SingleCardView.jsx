@@ -25,7 +25,7 @@ const SingleCardView = (props) => {
   }, [card, isLoadingCard, isLoadingCardFalse]);
 
   return (
-    <div data-testid='singleCardView'>
+    <div data-test='singleCardView'>
       <div>Single Card View</div>
       <div>isLoadingCard: {isLoadingCard.toString()}</div>
       <div>card reducer: {JSON.stringify(card)}</div>

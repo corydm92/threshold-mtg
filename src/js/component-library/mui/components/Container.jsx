@@ -4,7 +4,7 @@ import { Container } from '@material-ui/core';
 const MuiContainer = (props) => {
   const { disableGutters = false } = props;
   return (
-    <Container data-testid='container' disableGutters={disableGutters}>
+    <Container data-test='container' disableGutters={disableGutters}>
       {props.children}
     </Container>
   );

@@ -7,8 +7,8 @@ describe('App Bar Component', () => {
     const component = shallow(<AppBar title={'test title'} />);
     // console.log(component.debug()); // Shows render tree
 
-    const appbar = component.find("[data-testid='appbar']");
-    const title = component.find("[data-testid='appbar-title']");
+    const appbar = component.find("[data-test='appbar']");
+    const title = component.find("[data-test='appbar-title']");
 
     expect(appbar).toHaveLength(1); // Tests for existance
     expect(title.text().includes('test title')).toBe(true); // Tests for value
