@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { shallow } from 'enzyme';
 import CardsTableContainer from '../../js/containers/CardsTableContainer';
 import { mockStore } from '../../utils/testUtils';
