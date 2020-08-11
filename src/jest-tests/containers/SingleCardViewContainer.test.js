@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import CardsTableContainer from '../../js/containers/CardsTableContainer';
+import SingleCardViewContainer from '../../js/containers/SingleCardViewContainer';
 import { mockStore } from '../../utils/testUtils';
 import { fullState } from '../../js/constants/reduxStoreMock';
 
-describe('HomePageContainer tests', () => {
+describe('SingleCardViewContainer tests', () => {
   let wrapper;
 
   beforeEach(() => {
@@ -12,7 +12,7 @@ describe('HomePageContainer tests', () => {
       store: mockStore(fullState),
     };
 
-    wrapper = shallow(<CardsTableContainer {...props} />).dive(); // Dive to access the container component, not the provider
+    wrapper = shallow(<SingleCardViewContainer {...props} />).dive(); // Dive to access the container component, not the provider
   });
 
   it('Renders the Component', () => {
@@ -21,11 +21,11 @@ describe('HomePageContainer tests', () => {
 
   it('Checks mapStateToProps', () => {
     expect(wrapper.props().cards).not.toBeNull();
-    expect(wrapper.props().isLoadingCards).not.toBeNull();
+    expect(wrapper.props().isLoadingCard).not.toBeNull();
   });
 
   it('Checks mapDispatchToProps', () => {
-    expect(wrapper.props().fetchCards()).not.toBeNull();
-    expect(wrapper.props().isLoadingCardsFalse()).not.toBeNull();
+    expect(wrapper.props().fetchSingleCard()).not.toBeNull();
+    expect(wrapper.props().isLoadingCardFalse()).not.toBeNull();
   });
 });

@@ -1,13 +1,18 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { findByTestAttr } from '../../utils/testUtils';
 import HomePage from '../../js/components/HomePage';
 
 describe('HomePage tests', () => {
+  let wrapper;
+
+  beforeEach(() => {
+    wrapper = shallow(<HomePage />);
+  });
+
   it('Renders the Component', () => {
-    const component = shallow(<HomePage />);
+    const homePage = findByTestAttr(wrapper, 'homePage');
 
-    const homePage = component.find("[data-test='homePage']");
-
-    expect(homePage).toHaveLength(1); // Tests for existance
+    expect(homePage).not.toBeNull();
   });
 });
