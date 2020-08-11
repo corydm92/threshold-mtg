@@ -9,13 +9,25 @@ describe('HomePageContainer tests', () => {
   let wrapper;
 
   beforeEach(() => {
-    const store = mockStore(fullState);
-    wrapper = shallow(
-      <CardsTableContainer store={store} fetchCards={fetchCards} />
-    ).dive(); // Dive to access the container component, not the provider
+    const props = {
+      store: mockStore(fullState),
+      fetchCards,
+    };
+
+    wrapper = shallow(<CardsTableContainer {...props} />).dive(); // Dive to access the container component, not the provider
   });
 
   it('Renders the Component', () => {
     expect(wrapper).not.toBeNull();
+  });
+
+  it('Checks mapStateToProps', () => {
+    expect(wrapper.props().cards).not.toBeNull();
+    expect(wrapper.props().isLoadingCards).not.toBeNull();
+  });
+
+  it('Checks mapDispatchToProps', () => {
+    expect(wrapper.props().fetchCards()).not.toBeNull();
+    expect(wrapper.props().isLoadingCardsFalse()).not.toBeNull();
   });
 });
