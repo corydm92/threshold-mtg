@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { mount } from 'enzyme';
 import { findByTestAttr } from '../../utils/testUtils';
 import SingleCardView from '../../js/components/SingleCardView';
