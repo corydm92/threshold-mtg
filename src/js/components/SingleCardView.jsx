@@ -2,13 +2,21 @@ import React, { useEffect } from 'react';
 import { isEmpty } from 'lodash';
 
 const SingleCardView = (props) => {
-  const { card, fetchSingleCard, isLoadingCard, isLoadingCardFalse } = {
+  const {
+    card,
+    fetchSingleCard,
+    isLoadingCard,
+    isLoadingCardFalse,
+    match: {
+      params: { id },
+    },
+  } = {
     ...props,
   };
 
   useEffect(() => {
-    fetchSingleCard();
-  }, [fetchSingleCard]);
+    fetchSingleCard(id);
+  }, [fetchSingleCard, id]);
 
   useEffect(() => {
     if (!isEmpty(card) && isLoadingCard) {
@@ -17,11 +25,11 @@ const SingleCardView = (props) => {
   }, [card, isLoadingCard, isLoadingCardFalse]);
 
   return (
-    <React.Fragment>
+    <div data-test='singleCardView'>
       <div>Single Card View</div>
       <div>isLoadingCard: {isLoadingCard.toString()}</div>
       <div>card reducer: {JSON.stringify(card)}</div>
-    </React.Fragment>
+    </div>
   );
 };
 

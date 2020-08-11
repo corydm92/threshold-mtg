@@ -1,18 +1,52 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import CardsTable from '../../js/components/CardsTable';
+import { findByTestAttr } from '../../utils/testUtils';
 import { fullState } from '../../js/constants/reduxStoreMock';
+import { cardsSelector } from '../../selectors/cardsSelector';
 
 describe('CardsTable tests', () => {
-  it('Renders the Component', () => {
-    const props = {
-      cards: fullState.cardsReducer.entities,
-      isLoadingCards: fullState.isLoadingReducer.cards,
-    };
-    const component = shallow(<CardsTable {...props} />);
+  let wrapper;
+  let fetchCards = jest.fn();
+  let isLoadingCardsFalse = jest.fn();
 
-    const cardstable = component.find("[data-testid='cardstable']");
+  describe('Without Data', () => {
+    beforeEach(() => {
+      const props = {
+        fetchCards,
+        isLoadingCardsFalse,
+        cards: {},
+        isLoadingCards: fullState.isLoadingReducer.cards,
+      };
 
-    expect(cardstable).toHaveLength(1); // Tests for existance
+      wrapper = mount(<CardsTable {...props} />);
+    });
+
+    it('Checks useEffect hooks on mount', () => {
+      expect(fetchCards).toHaveBeenCalled();
+    });
+  });
+
+  describe('With Data', () => {
+    beforeEach(() => {
+      const props = {
+        fetchCards,
+        isLoadingCardsFalse,
+        cards: cardsSelector(fullState),
+        isLoadingCards: true, // Force true to test isLoadingCardsFalse method
+      };
+
+      wrapper = mount(<CardsTable {...props} />);
+    });
+
+    it('Renders the Component', () => {
+      const cardsTable = findByTestAttr(wrapper, 'cardsTable');
+      expect(cardsTable).not.toBeNull();
+    });
+
+    it('Checks useEffect hooks on mount', () => {
+      expect(fetchCards).toHaveBeenCalled();
+      expect(isLoadingCardsFalse).toHaveBeenCalled();
+    });
   });
 });

@@ -7,7 +7,7 @@ import Routes from '../routes/Routes';
 
 const MainView = (props) => {
   return (
-    <div data-testid='mainview'>
+    <div data-test='mainView'>
       <AppBar title='MTG Management' />
       <Container>
         <ToolbarMixin>
