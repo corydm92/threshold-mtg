@@ -1,18 +1,30 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import CardsTable from '../../js/components/CardsTable';
+import { findByTestAttr } from '../../utils/testUtils';
 import { fullState } from '../../js/constants/reduxStoreMock';
+import { cardsSelector } from '../../selectors/cardsSelector';
 
 describe('CardsTable tests', () => {
-  it('Renders the Component', () => {
+  let wrapper;
+  let fetchCards = jest.fn();
+
+  beforeEach(() => {
     const props = {
-      cards: fullState.cardsReducer.entities,
+      fetchCards,
+      cards: cardsSelector(fullState),
       isLoadingCards: fullState.isLoadingReducer.cards,
     };
-    const component = shallow(<CardsTable {...props} />);
 
-    const cardsTable = component.find("[data-test='cardsTable']");
+    wrapper = mount(<CardsTable {...props} />);
+  });
 
-    expect(cardsTable).toHaveLength(1); // Tests for existance
+  it('Renders the Component', () => {
+    const cardsTable = findByTestAttr(wrapper, 'cardsTable');
+    expect(cardsTable).not.toBeNull();
+  });
+
+  it('Checks useEffect hooks on mount', () => {
+    expect(fetchCards).toHaveBeenCalled();
   });
 });

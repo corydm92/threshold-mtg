@@ -10,6 +10,6 @@ describe('HomePageContainer tests', () => {
 
     const component = shallow(<HomePageContainer store={store} />).dive();
 
-    expect(component).toBeTruthy(); // Tests for existance
+    expect(component).not.toBeNull();
   });
 });

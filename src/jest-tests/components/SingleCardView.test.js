@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import { findByTestAttr } from '../../utils/testUtils';
 import SingleCardView from '../../js/components/SingleCardView';
 import { fullState } from '../../js/constants/reduxStoreMock';
