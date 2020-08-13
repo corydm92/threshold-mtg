@@ -49,11 +49,12 @@ export const fetchCards = (params) => (dispatch) => {
 
 // Fetches all card data
 export const fetchCardsData = (params = '/?limit=10') => (dispatch) => {
-  axios
+  return axios
     .get(REACT_APP_BASE_API_URL + params)
     .then((res) => {
       // Input JSON (or plain JS object) data that needs normalization.
       const normalizedResponse = cardsNormalizr(res.data.results);
+
       dispatch({
         type: FETCH_CARDS_DATA_SUCCESSFUL,
         payload: normalizedResponse,
@@ -83,7 +84,7 @@ export const fetchSingleCard = (id) => (dispatch, getState) => {
 
 // Providing default ID, remove once component is built for displaying a single card.
 export const fetchSingleCardData = (id = 1383) => (dispatch) => {
-  axios
+  return axios
     .get(REACT_APP_BASE_API_URL + '/' + id + '/')
     .then((res) => {
       const normalizedResponse = cardNormalizr(res.data);
