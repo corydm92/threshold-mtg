@@ -18,7 +18,6 @@ import {
 import { isEmpty } from 'lodash';
 
 import axios from 'axios';
-import singleResultMock from '../js/constants/singleResultMock'; // Constant mock of a single entity
 import cardsNormalizr from '../normalizr/cardsNormalizr';
 import cardNormalizr from '../normalizr/cardNormalizr';
 
