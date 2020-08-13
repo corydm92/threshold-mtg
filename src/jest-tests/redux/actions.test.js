@@ -17,30 +17,32 @@ import {
 } from '../../redux/actionTypes';
 
 // ACTION CREATORS
-import { fetchCardsData } from '../../redux/actions';
+import { fetchCardsData, fetchSingleCardData } from '../../redux/actions';
 
 // UTILS
-import fetchMock from 'fetch-mock';
+import moxios from 'moxios';
 import { mockStore } from '../../utils/testUtils';
 
-import { fullState } from '../../js/constants/reduxStoreMock';
-import cardsGetMock from '../../js/constants/test-mocks/cardsGetMock';
-import cardsReducerAfterNormalize from '../../js/constants/test-mocks/cardsReducerAfterNormalize';
-
-const REACT_APP_BASE_API_URL = process.env.REACT_APP_BASE_API_URL;
+// CONSTANTS
+import cardsGetMock from '../../js/constants/test-mocks/fetchCardsData/cardsGetMock';
+import cardsReducerAfterNormalize from '../../js/constants/test-mocks/fetchCardsData/cardsReducerAfterNormalize';
+import cardGetMock from '../../js/constants/test-mocks/fetchCardData/cardGetMock';
+import cardReducerAfterNormalize from '../../js/constants/test-mocks/fetchCardData/cardReducerAfterNormalize';
+import specPricesReducerAfterNormalize from '../../js/constants/test-mocks/fetchCardData/specPricesReducerAfterNormalize';
+import tcgPricesReducerAfterNormalize from '../../js/constants/test-mocks/fetchCardData/tcgPricesReducerAfterNormalize';
 
 describe('Action Creator Tests', () => {
+  beforeEach(() => {
+    moxios.install();
+  });
+
+  afterEach(() => {
+    moxios.uninstall();
+  });
+
+  // FETCH CARDS DATA
   describe('fetchCardsData action', () => {
-    afterEach(() => {
-      fetchMock.restore();
-    });
-
     it('Fetches Cards Data', () => {
-      fetchMock.getOnce(REACT_APP_BASE_API_URL, {
-        body: cardsGetMock,
-        headers: { 'content-type': 'application/json' },
-      });
-
       const expectedActions = [
         {
           type: FETCH_CARDS_DATA_SUCCESSFUL,
@@ -48,10 +50,52 @@ describe('Action Creator Tests', () => {
         },
       ];
 
-      const store = mockStore(cardsGetMock);
+      const store = mockStore();
+
+      moxios.wait(() => {
+        const request = moxios.requests.mostRecent();
+        request.respondWith({
+          status: 200,
+          response: cardsGetMock,
+        });
+      });
 
       return store.dispatch(fetchCardsData()).then(() => {
-        expect(store.getActions()).toMatchObject(expectedActions);
+        expect(store.getActions()).toEqual(expectedActions);
+      });
+    });
+  });
+
+  // FETCH CARD DATA
+  describe('fetchCardData action', () => {
+    it('Fetches Card Data', () => {
+      const expectedActions = [
+        {
+          type: FETCH_CARD_DATA_SUCCESSFUL,
+          payload: cardReducerAfterNormalize,
+        },
+        {
+          type: SET_SPEC_PRICES_SUCCESSFUL,
+          payload: specPricesReducerAfterNormalize,
+        },
+        {
+          type: SET_TCG_PRICES_SUCCESSFUL,
+          payload: tcgPricesReducerAfterNormalize,
+        },
+      ];
+
+      const store = mockStore();
+
+      moxios.wait(() => {
+        const request = moxios.requests.mostRecent();
+        request.respondWith({
+          status: 200,
+          response: cardGetMock,
+        });
+      });
+
+      return store.dispatch(fetchSingleCardData()).then(() => {
+        expect(store.getActions()).toEqual(expectedActions);
       });
     });
   });
