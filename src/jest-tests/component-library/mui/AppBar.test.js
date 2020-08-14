@@ -3,6 +3,13 @@ import { shallow } from 'enzyme';
 import { findByTestAttr } from '../../../utils/testUtils';
 import AppBar from '../../../js/component-library/mui/components/AppBar';
 
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useLocation: () => ({
+    pathname: 'localhost:3000/',
+  }),
+}));
+
 describe('App Bar Component', () => {
   let wrapper;
 
