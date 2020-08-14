@@ -34,15 +34,15 @@ const pathMap = {
 const TabLinks = ({ location, ...props }) => {
   const classes = useStyles();
 
-  const [value, setValue] = React.useState(0);
-
-  useEffect(() => {
+  const getCurrentPath = () => {
     if (location.pathname.startsWith('/inventory')) {
-      setValue(pathMap.inventory.value);
+      return pathMap.inventory.value;
     } else {
-      setValue(pathMap.home.value);
+      return pathMap.home.value;
     }
-  }, [location]);
+  };
+
+  const [value, setValue] = React.useState(getCurrentPath);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

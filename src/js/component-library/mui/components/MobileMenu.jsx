@@ -23,13 +23,14 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-export const CustomMenuItem = ({ path, classes, label, onClick }) => {
+export const CustomMenuItem = ({ path, classes, label, onClick, ...props }) => {
   return (
     <MenuItem
       onClick={onClick}
       component={Link}
       to={path}
       classes={{ ...classes }}
+      {...props}
     >
       {label}
     </MenuItem>
@@ -51,10 +52,14 @@ const MuiMenuIcon = () => {
   return (
     <div data-test='mobile-menu' className={classes.root}>
       <IconButton edge={false} color='inherit' aria-label='menu'>
-        <MenuIcon onClick={handleClick} fontSize='large' />
+        <MenuIcon
+          onClick={handleClick}
+          fontSize='large'
+          data-test='mobile-menu-icon'
+        />
       </IconButton>
       <Menu
-        id='simple-menu'
+        data-test='mui-menu'
         anchorEl={anchorEl}
         keepMounted
         open={Boolean(anchorEl)}
@@ -65,12 +70,14 @@ const MuiMenuIcon = () => {
           path={RouteMapper.home.path}
           classes={{ root: classes.links }}
           label={RouteMapper.home.label}
+          data-test='home-link'
         />
         <CustomMenuItem
           onClick={handleClose}
           path={RouteMapper.inventory.cards.path}
           classes={{ root: classes.links }}
           label={RouteMapper.inventory.label}
+          data-test='inventory-link'
         />
       </Menu>
     </div>

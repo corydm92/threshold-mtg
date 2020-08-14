@@ -18,7 +18,6 @@ describe('App Bar Component', () => {
   });
 
   it('Renders AppBar without errors', () => {
-    console.log(wrapper.debug());
     const appbar = findByTestAttr(wrapper, 'appbar');
     const title = findByTestAttr(wrapper, 'appbar-title');
 
