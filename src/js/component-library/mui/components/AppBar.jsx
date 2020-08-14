@@ -39,7 +39,7 @@ export default function ButtonAppBar(props) {
           </IconButton> */}
             <Typography
               data-test='appbar-title'
-              variant='h6'
+              variant='h5'
               className={classes.title}
             >
               {title}

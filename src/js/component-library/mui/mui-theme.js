@@ -10,6 +10,9 @@ const theme = createMuiTheme({
     },
     text: { primary: '#000' },
   },
+  typography: {
+    fontFamily: ['Raleway, sans-serif', 'Roboto, sans-serif'],
+  },
 });
 
 export default theme;
