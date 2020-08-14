@@ -1,5 +1,8 @@
 import cardsReducer, { initState } from '../../../redux/reducers/cardsReducer';
-import { FETCH_CARDS_DATA_SUCCESSFUL } from '../../../redux/actionTypes';
+import {
+  FETCH_CARDS_DATA_SUCCESSFUL,
+  FETCH_CARDS_DATA_FAILED,
+} from '../../../redux/actionTypes';
 import multiResultsMock from '../../../js/constants/multiResultsMock';
 
 const mockCardsReducer = { ...multiResultsMock.cardsReducer };
@@ -19,5 +22,16 @@ describe('Cards Reducer Test', () => {
         }
       )
     ).toEqual(mockCardsReducer);
+  });
+
+  it('Should return init on failed fetch', () => {
+    expect(
+      cardsReducer(
+        {},
+        {
+          type: FETCH_CARDS_DATA_FAILED,
+        }
+      )
+    ).toEqual(initState);
   });
 });
