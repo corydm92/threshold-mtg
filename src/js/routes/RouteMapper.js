@@ -1,11 +1,18 @@
 export default {
   home: {
     path: '/',
+    label: 'Home',
+  },
+  inventory: {
+    path: '/inventory',
+    label: 'Inventory',
   },
   cards: {
-    path: '/cards',
+    path: '/inventory/cards',
+    label: 'Cards',
   },
   card: {
-    path: '/card/:id',
+    path: '/inventory/card/:id',
+    label: 'Single Card',
   },
 };

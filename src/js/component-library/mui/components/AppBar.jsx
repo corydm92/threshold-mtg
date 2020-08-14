@@ -4,7 +4,8 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Container from './Container';
-import MuiMenuIcon from './MenuIcon';
+import MobileMenu from './MenuIcon';
+import TabLinks from './TabLinks';
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -39,7 +40,8 @@ export default function ButtonAppBar(props) {
             >
               {title}
             </Typography>
-            <MuiMenuIcon />
+            <MobileMenu />
+            <TabLinks />
           </Toolbar>
         </Container>
       </AppBar>

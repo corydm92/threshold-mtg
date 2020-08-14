@@ -8,7 +8,8 @@ const theme = createMuiTheme({
       light: '#692A8D',
       contrastText: '#fff',
     },
-    text: { primary: '#000' },
+    indicator: { main: '#fff' },
+    text: { primary: '#fff' },
   },
   typography: {
     fontFamily: ['Raleway, sans-serif', 'Roboto, sans-serif'],

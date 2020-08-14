@@ -10,6 +10,7 @@ const useStyles = makeStyles((theme) => {
       [theme.breakpoints.down('md')]: {
         display: 'block',
       },
+      // down() works as a "greater than"
       [theme.breakpoints.up('md')]: {
         display: 'none',
       },
