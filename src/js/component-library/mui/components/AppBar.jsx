@@ -4,9 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Container from './Container';
-// import Button from '@material-ui/core/Button';
-// import IconButton from '@material-ui/core/IconButton';
-// import MenuIcon from '@material-ui/icons/Menu';
+import MuiMenuIcon from './MenuIcon';
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -16,7 +14,7 @@ const useStyles = makeStyles((theme) => {
       padding: '0px 8px',
     },
     menuButton: {
-      marginRight: theme.spacing(1),
+      // marginRight: theme.spacing(1),
     },
     title: {
       flexGrow: 1,
@@ -34,9 +32,6 @@ export default function ButtonAppBar(props) {
       <AppBar position='fixed' className={classes.root} data-test='appbar'>
         <Container>
           <Toolbar disableGutters={true}>
-            {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton> */}
             <Typography
               data-test='appbar-title'
               variant='h5'
@@ -44,7 +39,7 @@ export default function ButtonAppBar(props) {
             >
               {title}
             </Typography>
-            {/* <Button color="inherit">Login</Button> */}
+            <MuiMenuIcon />
           </Toolbar>
         </Container>
       </AppBar>
