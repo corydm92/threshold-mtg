@@ -5,12 +5,12 @@ import {
   IS_LOADING_CARD_FALSE,
 } from '../actionTypes';
 
-const initialState = {
+export const initState = {
   cards: false,
   card: false,
 };
 
-const isLoadingReducer = (state = initialState, action) => {
+const isLoadingReducer = (state = initState, action) => {
   switch (action.type) {
     case IS_LOADING_CARDS_TRUE: {
       return { ...state, cards: true };
