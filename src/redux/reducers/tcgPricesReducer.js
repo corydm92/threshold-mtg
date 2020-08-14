@@ -3,7 +3,7 @@ import {
   SET_TCG_PRICES_FAILED,
 } from '../actionTypes';
 
-const initState = {};
+export const initState = {};
 
 const tcgPricesReducer = (state = initState, action) => {
   switch (action.type) {
