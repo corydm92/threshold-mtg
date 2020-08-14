@@ -3,9 +3,10 @@ import {
   FETCH_CARDS_DATA_SUCCESSFUL,
   FETCH_CARDS_DATA_FAILED,
 } from '../../../redux/actionTypes';
-import multiResultsMock from '../../../js/constants/multiResultsMock';
 
-const mockCardsReducer = { ...multiResultsMock.cardsReducer };
+import { fullState } from '../../../js/constants/reduxStoreMock';
+
+const mockCardsReducer = { ...fullState.cardsReducer };
 
 describe('Cards Reducer Test', () => {
   it('should return the initial state', () => {
