@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -14,9 +14,6 @@ const useStyles = makeStyles((theme) => {
       flexGrow: 1,
       backgroundColor: theme.palette.primary.main,
       padding: '0px 8px',
-    },
-    menuButton: {
-      // marginRight: theme.spacing(1),
     },
     title: {
       flexGrow: 1,
