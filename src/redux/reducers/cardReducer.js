@@ -6,7 +6,7 @@ import {
 } from '../actionTypes';
 
 // Our init state for a single card should be an empty object, because we expect a single card entity
-const initState = {};
+export const initState = {};
 
 const cardReducer = (state = initState, action) => {
   switch (action.type) {
