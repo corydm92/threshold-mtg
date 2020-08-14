@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -23,8 +24,9 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-export default function ButtonAppBar(props) {
+const MuiAppBar = (props) => {
   const classes = useStyles();
+  const location = useLocation();
 
   const { title } = props;
 
@@ -41,10 +43,12 @@ export default function ButtonAppBar(props) {
               {title}
             </Typography>
             <MobileMenu />
-            <TabLinks />
+            <TabLinks location={location} />
           </Toolbar>
         </Container>
       </AppBar>
     </div>
   );
-}
+};
+
+export default MuiAppBar;

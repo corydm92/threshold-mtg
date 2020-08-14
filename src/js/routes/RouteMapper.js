@@ -4,15 +4,11 @@ export default {
     label: 'Home',
   },
   inventory: {
-    path: '/inventory',
     label: 'Inventory',
-  },
-  cards: {
-    path: '/inventory/cards',
-    label: 'Cards',
-  },
-  card: {
-    path: '/inventory/card/:id',
-    label: 'Single Card',
+    cards: {
+      path: '/inventory/cards',
+      label: 'Cards',
+    },
+    card: { path: '/inventory/card/:id', label: 'Single Card' },
   },
 };

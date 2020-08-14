@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { IconButton, Menu, MenuItem } from '@material-ui/core/';
 import MenuIcon from '@material-ui/icons/Menu';
+import { Link } from 'react-router-dom';
+import RouteMapper from '../../../routes/RouteMapper';
 
 const useStyles = makeStyles((theme) => {
+  console.log(theme);
   return {
     root: {
       // down() works as a "less than"
@@ -15,14 +18,14 @@ const useStyles = makeStyles((theme) => {
         display: 'none',
       },
     },
+    links: {
+      color: theme.palette.primary.main,
+    },
   };
 });
 
 const MuiMenuIcon = () => {
   const classes = useStyles();
-
-  console.log(classes);
-
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
@@ -45,9 +48,26 @@ const MuiMenuIcon = () => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <MenuItem
+          onClick={handleClose}
+          component={Link}
+          to={RouteMapper.home.path}
+          classes={{
+            root: classes.links,
+          }}
+        >
+          {RouteMapper.home.label}
+        </MenuItem>
+        <MenuItem
+          onClick={handleClose}
+          component={Link}
+          to={RouteMapper.inventory.cards.path}
+          classes={{
+            root: classes.links,
+          }}
+        >
+          {RouteMapper.inventory.label}
+        </MenuItem>
       </Menu>
     </div>
   );

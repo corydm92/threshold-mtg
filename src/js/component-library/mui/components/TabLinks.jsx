@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Tabs, Tab } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import RouteMapper from '../../../routes/RouteMapper';
@@ -20,10 +20,29 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const TabLinks = () => {
+const pathMap = {
+  inventory: {
+    path: '/inventory',
+    value: 0,
+  },
+  home: {
+    path: '/',
+    value: 1,
+  },
+};
+
+const TabLinks = ({ location, ...props }) => {
   const classes = useStyles();
-  // Set home to default (1)
-  const [value, setValue] = React.useState(1);
+
+  const [value, setValue] = React.useState(0);
+
+  useEffect(() => {
+    if (location.pathname.startsWith('/inventory')) {
+      setValue(pathMap.inventory.value);
+    } else {
+      setValue(pathMap.home.value);
+    }
+  }, [location]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -40,7 +59,7 @@ const TabLinks = () => {
         <Tab
           label={RouteMapper.inventory.label}
           component={Link}
-          to={RouteMapper.inventory.path}
+          to={RouteMapper.inventory.cards.path}
         />
         <Tab
           label={RouteMapper.home.label}

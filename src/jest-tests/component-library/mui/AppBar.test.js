@@ -3,6 +3,13 @@ import { shallow } from 'enzyme';
 import { findByTestAttr } from '../../../utils/testUtils';
 import AppBar from '../../../js/component-library/mui/components/AppBar';
 
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useLocation: () => ({
+    pathname: 'localhost:3000/',
+  }),
+}));
+
 describe('App Bar Component', () => {
   let wrapper;
 
@@ -11,6 +18,7 @@ describe('App Bar Component', () => {
   });
 
   it('Renders AppBar without errors', () => {
+    console.log(wrapper.debug());
     const appbar = findByTestAttr(wrapper, 'appbar');
     const title = findByTestAttr(wrapper, 'appbar-title');
 

@@ -16,13 +16,13 @@ const Routes = (props) => {
 
       <Route
         exact
-        path={RouteMapper.cards.path}
+        path={RouteMapper.inventory.cards.path}
         component={(routeProps) => <CardsTableContainer {...routeProps} />}
       />
 
       <Route
         exact
-        path={RouteMapper.card.path}
+        path={RouteMapper.inventory.card.path}
         component={(routeProps) => <SingleCardViewContainer {...routeProps} />}
       />
     </Switch>
