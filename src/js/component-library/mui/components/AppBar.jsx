@@ -5,7 +5,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Container from './Container';
-import MobileMenu from './MenuIcon';
+import MobileMenu from './MobileMenu';
 import TabLinks from './TabLinks';
 
 const useStyles = makeStyles((theme) => {

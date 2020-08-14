@@ -49,7 +49,7 @@ const TabLinks = ({ location, ...props }) => {
   };
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} data-test='tab-links'>
       <Tabs
         value={value}
         onChange={handleChange}
