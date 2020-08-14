@@ -5,7 +5,7 @@ import {
   IS_LOADING_CARD_FALSE,
 } from '../actionTypes';
 
-const initialState = {
+export const initialState = {
   cards: false,
   card: false,
 };
