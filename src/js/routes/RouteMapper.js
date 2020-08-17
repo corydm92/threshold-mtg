@@ -5,6 +5,7 @@ export default {
   },
   inventory: {
     label: 'Inventory',
+    path: '/inventory',
     cards: {
       path: '/inventory/cards',
       label: 'Cards',

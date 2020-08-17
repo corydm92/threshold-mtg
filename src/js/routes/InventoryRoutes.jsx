@@ -1,25 +1,12 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import RouteMapper from './RouteMapper';
-import HomePageContainer from '../containers/HomePageContainer';
-import InventoryContainer from '../containers/InventoryContainer';
 import CardsTableContainer from '../containers/CardsTableContainer';
 import SingleCardViewContainer from '../containers/SingleCardViewContainer';
 
-const Routes = (props) => {
+const InventoryRoutes = (props) => {
   return (
     <Switch>
-      <Route
-        exact
-        path={RouteMapper.home.path}
-        component={(routeProps) => <HomePageContainer {...routeProps} />}
-      />
-
-      <Route
-        path={RouteMapper.inventory.path}
-        component={(routeProps) => <InventoryContainer {...routeProps} />}
-      />
-
       <Route
         exact
         path={RouteMapper.inventory.cards.path}
@@ -35,4 +22,4 @@ const Routes = (props) => {
   );
 };
 
-export default Routes;
+export default InventoryRoutes;
