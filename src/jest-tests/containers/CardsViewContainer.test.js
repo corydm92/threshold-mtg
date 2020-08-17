@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import CardsTableContainer from '../../js/containers/CardsTableContainer';
+import CardsViewContainer from '../../js/containers/CardsViewContainer';
 import { mockStore } from '../../utils/testUtils';
 import { fullState } from '../../js/constants/reduxStoreMock';
 
-describe('HomePageContainer tests', () => {
+describe('CardsViewContainer tests', () => {
   let wrapper;
 
   beforeEach(() => {
@@ -12,10 +12,11 @@ describe('HomePageContainer tests', () => {
       store: mockStore(fullState),
     };
 
-    wrapper = shallow(<CardsTableContainer {...props} />).dive(); // Dive to access the container component, not the provider
+    wrapper = shallow(<CardsViewContainer {...props} />).dive(); // Dive to access the container component, not the provider
   });
 
   it('Renders the Component', () => {
+    console.log(wrapper.debug());
     expect(wrapper).not.toBeNull();
   });
 

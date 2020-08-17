@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import CardsTable from '../components/CardsTable';
+import CardsView from '../components/CardsView';
 import { fetchCards, isLoadingCardsFalse } from '../../redux/actions';
 import { cardsSelector } from '../../selectors/cardsSelector';
 
@@ -17,4 +17,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CardsTable);
+export default connect(mapStateToProps, mapDispatchToProps)(CardsView);

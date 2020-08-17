@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import RouteMapper from './RouteMapper';
-import CardsTableContainer from '../containers/CardsTableContainer';
+import CardsViewContainer from '../containers/CardsViewContainer';
 import SingleCardViewContainer from '../containers/SingleCardViewContainer';
 
 const InventoryRoutes = (props) => {
@@ -10,7 +10,7 @@ const InventoryRoutes = (props) => {
       <Route
         exact
         path={RouteMapper.inventory.cards.path}
-        component={(routeProps) => <CardsTableContainer {...routeProps} />}
+        component={(routeProps) => <CardsViewContainer {...routeProps} />}
       />
 
       <Route
