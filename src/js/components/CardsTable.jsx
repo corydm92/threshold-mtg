@@ -6,8 +6,6 @@ const CardsTable = (props) => {
     ...props,
   };
 
-  console.log(props);
-
   useEffect(() => {
     fetchCards();
   }, [fetchCards]);

@@ -3,8 +3,6 @@ import { Switch, Route } from 'react-router-dom';
 import RouteMapper from './RouteMapper';
 import HomePageContainer from '../containers/HomePageContainer';
 import InventoryContainer from '../containers/InventoryContainer';
-import CardsTableContainer from '../containers/CardsTableContainer';
-import SingleCardViewContainer from '../containers/SingleCardViewContainer';
 
 const Routes = (props) => {
   return (
@@ -18,18 +16,6 @@ const Routes = (props) => {
       <Route
         path={RouteMapper.inventory.path}
         component={(routeProps) => <InventoryContainer {...routeProps} />}
-      />
-
-      <Route
-        exact
-        path={RouteMapper.inventory.cards.path}
-        component={(routeProps) => <CardsTableContainer {...routeProps} />}
-      />
-
-      <Route
-        exact
-        path={RouteMapper.inventory.card.path}
-        component={(routeProps) => <SingleCardViewContainer {...routeProps} />}
       />
     </Switch>
   );
