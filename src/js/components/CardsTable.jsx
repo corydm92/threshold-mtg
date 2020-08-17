@@ -1,20 +1,9 @@
-import React, { useEffect } from 'react';
-import { isEmpty } from 'lodash';
+import React from 'react';
 
 const CardsTable = (props) => {
-  const { cards, fetchCards, isLoadingCards, isLoadingCardsFalse } = {
+  const { cards, isLoadingCards } = {
     ...props,
   };
-
-  useEffect(() => {
-    fetchCards();
-  }, [fetchCards]);
-
-  useEffect(() => {
-    if (!isEmpty(cards) && isLoadingCards) {
-      isLoadingCardsFalse();
-    }
-  }, [cards, isLoadingCards, isLoadingCardsFalse]);
 
   return (
     <div data-test='cardsTable'>
