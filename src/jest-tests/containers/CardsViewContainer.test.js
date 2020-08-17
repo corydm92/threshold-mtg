@@ -4,7 +4,7 @@ import CardsViewContainer from '../../js/containers/CardsViewContainer';
 import { mockStore } from '../../utils/testUtils';
 import { fullState } from '../../js/constants/reduxStoreMock';
 
-describe('HomePageContainer tests', () => {
+describe('CardsViewContainer tests', () => {
   let wrapper;
 
   beforeEach(() => {

@@ -7,14 +7,10 @@ import { cardsSelector } from '../../selectors/cardsSelector';
 
 describe('CardsTable tests', () => {
   let wrapper;
-  let fetchCards = jest.fn();
-  let isLoadingCardsFalse = jest.fn();
 
   describe('Without Data', () => {
     beforeEach(() => {
       const props = {
-        fetchCards,
-        isLoadingCardsFalse,
         cards: {},
         isLoadingCards: fullState.isLoadingReducer.cards,
       };
@@ -22,16 +18,16 @@ describe('CardsTable tests', () => {
       wrapper = mount(<CardsTable {...props} />);
     });
 
-    it('Checks useEffect hooks on mount', () => {
-      expect(fetchCards).toHaveBeenCalled();
+    it('Renders the Component', () => {
+      console.log(wrapper.debug());
+      const cardsTable = findByTestAttr(wrapper, 'cardsTable');
+      expect(cardsTable).toHaveLength(1);
     });
   });
 
   describe('With Data', () => {
     beforeEach(() => {
       const props = {
-        fetchCards,
-        isLoadingCardsFalse,
         cards: cardsSelector(fullState),
         isLoadingCards: true, // Force true to test isLoadingCardsFalse method
       };
@@ -41,12 +37,7 @@ describe('CardsTable tests', () => {
 
     it('Renders the Component', () => {
       const cardsTable = findByTestAttr(wrapper, 'cardsTable');
-      expect(cardsTable).not.toBeNull();
-    });
-
-    it('Checks useEffect hooks on mount', () => {
-      expect(fetchCards).toHaveBeenCalled();
-      expect(isLoadingCardsFalse).toHaveBeenCalled();
+      expect(cardsTable).toHaveLength(1);
     });
   });
 });
