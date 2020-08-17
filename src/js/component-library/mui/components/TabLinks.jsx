@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => {
       },
     },
     indicator: {
-      backgroundColor: theme.palette.text.primary,
+      backgroundColor: theme.palette.text.secondary,
     },
   };
 });

@@ -3,12 +3,15 @@ import { createMuiTheme } from '@material-ui/core/styles';
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: '#52216E',
+      main: 'rgba(82, 33, 110, 1)',
       dark: '#2F133F',
       light: '#692A8D',
       contrastText: '#fff',
     },
-    text: { primary: '#fff' },
+    text: { primary: '#000', secondary: '#fff' },
+    action: {
+      hover: 'rgba(82, 33, 110, .08)',
+    },
   },
   typography: {
     fontFamily: ['Raleway, sans-serif', 'Roboto, sans-serif'],
