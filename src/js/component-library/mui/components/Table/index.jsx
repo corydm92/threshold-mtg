@@ -98,6 +98,7 @@ const MuiTable = (props) => {
             rowsPerPageOptions={[10, 25, 100]}
             component='div'
             className={classes.pagination}
+            noBorder
             // count={rows.length}
             // rowsPerPage={rowsPerPage}
             // page={page}

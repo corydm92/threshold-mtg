@@ -2,11 +2,20 @@ import React from 'react';
 import TablePagination from '@material-ui/core/TablePagination';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles({
-  root: {
-    minWidth: '100%',
-    display: 'block',
-  },
+const useStyles = makeStyles((theme) => {
+  return {
+    root: {
+      minWidth: '100%',
+      // display: 'block',
+      display: 'flex',
+      justifyContent: 'flex-end',
+      padding: (props) => (props.padding ? theme.spacing(8) : 0),
+      margin: '8px 0',
+      alignItems: 'center',
+      height: '100%',
+      borderBottom: (props) => props.noBorder && '0px',
+    },
+  };
 });
 
 const MuiTablePagination = (props) => {

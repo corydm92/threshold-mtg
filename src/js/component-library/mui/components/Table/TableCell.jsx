@@ -12,9 +12,6 @@ const useStyles = makeStyles((theme) => {
       height: '100%',
       borderBottom: (props) => props.noBorder && '0px',
     },
-    container: {
-      maxHeight: 440,
-    },
   };
 });
 
