@@ -1,5 +1,5 @@
 import React from 'react';
-import MuiTable from '../component-library/mui/components/Table';
+import Table from '../component-library/mui/components/Table/';
 
 const CardsTable = (props) => {
   const { cards, isLoadingCards } = {
@@ -11,7 +11,7 @@ const CardsTable = (props) => {
       <div>Cards Table</div>
       <div>isLoading: {isLoadingCards.toString()}</div>
       {/* <div>cards reducer: {JSON.stringify(cards)}</div> */}
-      <MuiTable cards={cards} />
+      <Table cards={cards} />
     </div>
   );
 };
