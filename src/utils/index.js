@@ -17,7 +17,7 @@ export const getAvgPurchasePrice = (specPrices) => {
 
   for (let spec of specPrices) {
     totalPurchasePrice +=
-      parseFloat(spec?.total_cash) || parseFloat(spec.total_credit);
+      parseFloat(spec.total_cash) || parseFloat(spec.total_credit);
   }
 
   const averagePurchasePrice = roundTwoDecimals(

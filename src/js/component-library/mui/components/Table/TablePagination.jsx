@@ -6,7 +6,6 @@ const useStyles = makeStyles((theme) => {
   return {
     root: {
       minWidth: '100%',
-      // display: 'block',
       display: 'flex',
       justifyContent: 'flex-end',
       padding: (props) => (props.padding ? theme.spacing(8) : 0),
