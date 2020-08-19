@@ -26,3 +26,15 @@ export const getAvgPurchasePrice = (specPrices) => {
 
   return averagePurchasePrice;
 };
+
+export const getPriceCategory = (category) => {
+  console.log(category);
+  const categories = {
+    low_price: 'TCG Low Price',
+    mid_price: 'TCG Mid Price',
+    high_price: 'TCG High Price',
+    market_price: 'TCG Market Price',
+  };
+
+  return categories[category];
+};

@@ -21,7 +21,7 @@ export const cardsSelector = createSelector(
         setName: card.set_name,
         spread: '100%',
         quantity: getCardQuantity(card.spec_prices),
-        avgPurchasePrice: '$' + getAvgPurchasePrice(card.spec_prices),
+        avgPurchasePrice: getAvgPurchasePrice(card.spec_prices),
         tcgPrice: card.tcg_price[priceCategory],
       };
     });

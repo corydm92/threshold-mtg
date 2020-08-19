@@ -22,6 +22,8 @@ const tcgPriceCategory = (state = initState, action) => {
       return tcgPriceCategories[SET_PRICE_CATEGORY_MID];
     case SET_PRICE_CATEGORY_HIGH:
       return tcgPriceCategories[SET_PRICE_CATEGORY_HIGH];
+    case SET_PRICE_CATEGORY_MARKET:
+      return tcgPriceCategories[SET_PRICE_CATEGORY_MARKET];
     default:
       return state;
   }
