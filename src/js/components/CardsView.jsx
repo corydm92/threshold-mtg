@@ -6,11 +6,18 @@ import Grid from '@material-ui/core/Grid';
 
 const CardsView = (props) => {
   const {
+    // STORE
     cards,
-    fetchCards,
-    isLoadingCards,
-    isLoadingCardsFalse,
     priceCategory,
+    isLoadingCards,
+
+    // ACTIONS
+    fetchCards,
+    isLoadingCardsFalse,
+    setPriceCategoryLow,
+    setPriceCategoryMid,
+    setPriceCategoryHigh,
+    setPriceCategoryMarket,
   } = {
     ...props,
   };
@@ -29,7 +36,13 @@ const CardsView = (props) => {
     <div data-test='cardsView'>
       <Grid spacing={2} container>
         <Grid item xs={2}>
-          <SideBar priceCategory={priceCategory} />
+          <SideBar
+            priceCategory={priceCategory}
+            setPriceCategoryLow={setPriceCategoryLow}
+            setPriceCategoryMid={setPriceCategoryMid}
+            setPriceCategoryHigh={setPriceCategoryHigh}
+            setPriceCategoryMarket={setPriceCategoryMarket}
+          />
         </Grid>
         <Grid item xs={10}>
           <CardsTable

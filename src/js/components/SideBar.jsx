@@ -25,9 +25,15 @@ const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
   },
+  cardActions: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
   expand: {
     transform: 'rotate(0deg)',
-    marginLeft: 'auto',
+    // marginLeft: 'auto',
+    justifyContent: 'center',
+    alignItems: 'center',
     transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.shortest,
     }),
@@ -41,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
   formLabel: {
     color: theme.palette.text.primary,
     fontSize: '14px',
+    marginBottom: '16px',
   },
   formControlLabel: {
     display: 'flex',
@@ -49,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: '0',
   },
   radio: {
-    color: theme.palette.primary.light,
+    color: theme.palette.custom.darkGray,
     '&$checked': {
       color: theme.palette.primary.light,
     },
@@ -59,20 +66,47 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '14px',
   },
   card: {
-    boxShadow: '1px 1px 3px 0px rgba(0,0,0,0.4)',
+    // boxShadow: '1px 1px 3px 0px rgba(0,0,0,0.4)',
+    boxShadow: 'none',
+    border: '1px solid rgba(224, 224, 224, 1)',
   },
 }));
 
 const SideBar = (props) => {
+  // STORE
   const { priceCategory } = { ...props };
 
-  console.log(priceCategory);
+  // ACTIONS
+  const {
+    setPriceCategoryLow,
+    setPriceCategoryMid,
+    setPriceCategoryHigh,
+    setPriceCategoryMarket,
+  } = { ...props };
+
+  console.log(props);
 
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
+  };
+
+  const handleChange = (event) => {
+    switch (event.target.value) {
+      case tcgLow:
+        setPriceCategoryLow();
+        break;
+      case tcgMid:
+        return setPriceCategoryMid();
+      case tcgHigh:
+        return setPriceCategoryHigh();
+      case tcgMarket:
+        return setPriceCategoryMarket();
+      default:
+        break;
+    }
   };
 
   return (
@@ -88,13 +122,29 @@ const SideBar = (props) => {
           <FormLabel className={classes.formLabel} component='legend'>
             TCG Price Categories
           </FormLabel>
-          <br />
           <RadioGroup
             aria-label='tcgPriceCategories'
             name='tcgPriceCategories'
             value={priceCategory}
-            // onChange={handleChange}
+            onChange={(event) => handleChange(event)}
           >
+            <FormControlLabel
+              value={tcgMarket}
+              classes={{
+                label: classes.formControlLabel,
+                root: classes.formControlLabel,
+              }}
+              control={
+                <Radio
+                  classes={{
+                    root: classes.radio,
+                    checked: classes.checked,
+                  }}
+                />
+              }
+              label='TCG Market'
+              labelPlacement='start'
+            />
             <FormControlLabel
               value={tcgLow}
               classes={{
@@ -146,27 +196,15 @@ const SideBar = (props) => {
               label='TCG High'
               labelPlacement='start'
             />
-            <FormControlLabel
-              value={tcgMarket}
-              classes={{
-                label: classes.formControlLabel,
-                root: classes.formControlLabel,
-              }}
-              control={
-                <Radio
-                  classes={{
-                    root: classes.radio,
-                    checked: classes.checked,
-                  }}
-                />
-              }
-              label='TCG Market'
-              labelPlacement='start'
-            />
           </RadioGroup>
         </FormControl>
       </CardContent>
-      <CardActions disableSpacing>
+      <CardActions
+        classes={{
+          root: classes.cardActions,
+        }}
+        disableSpacing
+      >
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
