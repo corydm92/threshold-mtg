@@ -84,8 +84,6 @@ const SideBar = (props) => {
     setPriceCategoryMarket,
   } = { ...props };
 
-  console.log(props);
-
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
