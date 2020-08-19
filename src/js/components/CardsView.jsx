@@ -3,7 +3,13 @@ import { isEmpty } from 'lodash';
 import CardsTable from './CardsTable';
 
 const CardsView = (props) => {
-  const { cards, fetchCards, isLoadingCards, isLoadingCardsFalse } = {
+  const {
+    cards,
+    fetchCards,
+    isLoadingCards,
+    isLoadingCardsFalse,
+    priceCategory,
+  } = {
     ...props,
   };
 
@@ -20,7 +26,11 @@ const CardsView = (props) => {
   return (
     <div data-test='cardsView'>
       <div>Cards Container</div>
-      <CardsTable cards={cards} isLoadingCards={isLoadingCards} />
+      <CardsTable
+        cards={cards}
+        isLoadingCards={isLoadingCards}
+        priceCategory={priceCategory}
+      />
     </div>
   );
 };

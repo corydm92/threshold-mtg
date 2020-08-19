@@ -9,6 +9,7 @@ import TableCell from '../component-library/mui/components/Table/TableCell';
 import TablePagination from '../component-library/mui/components/Table/TablePagination';
 import Spinner from '../component-library/mui/components/Spinner';
 import Grid from '@material-ui/core/Grid';
+import { getPriceCategory } from '../../utils';
 
 const useStyles = makeStyles({
   root: {
@@ -19,13 +20,34 @@ const useStyles = makeStyles({
   },
 });
 
-const tableHeaders = [
-  { label: 'Card Name', colSpan: 6 },
-  { label: 'Spread', colSpan: 1 },
-  { label: 'Quantity', colSpan: 1 },
-  { label: 'Avg Purchase Price', colSpan: 2 },
-  { label: 'TCG Price', colSpan: 2 },
-];
+const MuiTableHeaders = (priceCategory) => {
+  const tableHeaders = [
+    { label: 'Card Name', colSpan: 5, centerText: false },
+    { label: 'Spread', colSpan: 1, centerText: true },
+    { label: 'Gain / Loss', colSpan: 1, centerText: true },
+    { label: 'Quantity', colSpan: 1, centerText: true },
+    { label: 'Avg Purchase Price', colSpan: 2, centerText: true },
+    { label: getPriceCategory(priceCategory), colSpan: 2, centerText: true },
+  ];
+
+  return (
+    <TableHead>
+      <TableRow>
+        <Grid container>
+          {tableHeaders.map((header) => {
+            return (
+              <Grid item xs={header.colSpan}>
+                <TableCell centerText={header.centerText}>
+                  {header.label}
+                </TableCell>
+              </Grid>
+            );
+          })}
+        </Grid>
+      </TableRow>
+    </TableHead>
+  );
+};
 
 const MuiTableBody = (cards) => {
   return (
@@ -34,7 +56,7 @@ const MuiTableBody = (cards) => {
         return (
           <TableRow>
             <Grid container>
-              <Grid item xs={6}>
+              <Grid item xs={5}>
                 <TableCell>
                   <div>
                     <div>{card.cardName}</div>
@@ -43,16 +65,25 @@ const MuiTableBody = (cards) => {
                 </TableCell>
               </Grid>
               <Grid item xs={1}>
-                <TableCell>{card.spread}</TableCell>
+                <TableCell centerText>{card.spread}</TableCell>
               </Grid>
               <Grid item xs={1}>
-                <TableCell>{card.quantity}</TableCell>
+                <TableCell centerText>{card.gainLoss}</TableCell>
+              </Grid>
+              <Grid item xs={1}>
+                <TableCell centerText>{card.quantity}</TableCell>
               </Grid>
               <Grid item xs={2}>
-                <TableCell>{card.avgPurchasePrice}</TableCell>
+                <TableCell centerText>
+                  {'$'}
+                  {card.avgPurchasePrice}
+                </TableCell>
               </Grid>
               <Grid item xs={2}>
-                <TableCell>{card.tcgPrice}</TableCell>
+                <TableCell centerText>
+                  {'$'}
+                  {card.tcgPrice}
+                </TableCell>
               </Grid>
             </Grid>
           </TableRow>
@@ -63,31 +94,19 @@ const MuiTableBody = (cards) => {
 };
 
 const MuiTable = (props) => {
+  const { cards, isLoadingCards, priceCategory } = { ...props };
   const classes = useStyles();
-
-  const { cards, isLoadingCards } = { ...props };
 
   return (
     <React.Fragment>
       <TableContainer>
         <Table stickyHeader>
-          <TableHead>
-            <TableRow>
-              <Grid container>
-                {tableHeaders.map((header) => {
-                  return (
-                    <Grid item xs={header.colSpan}>
-                      <TableCell>{header.label}</TableCell>
-                    </Grid>
-                  );
-                })}
-              </Grid>
-            </TableRow>
-          </TableHead>
+          {MuiTableHeaders(priceCategory)}
           {!isLoadingCards && MuiTableBody(cards)}
         </Table>
 
         {isLoadingCards ? (
+          // Must render as full table to center with no scroll bar
           <Table>
             <TableBody>
               <TableRow>

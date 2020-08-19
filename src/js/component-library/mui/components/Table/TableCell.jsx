@@ -9,6 +9,7 @@ const useStyles = makeStyles((theme) => {
       padding: (props) => (props.padding ? theme.spacing(8) : 0),
       margin: '8px 0',
       alignItems: 'center',
+      justifyContent: (props) => props.centerText && 'center',
       height: '100%',
       borderBottom: (props) => props.noBorder && '0px',
     },

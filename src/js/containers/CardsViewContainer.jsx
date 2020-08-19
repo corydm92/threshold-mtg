@@ -7,6 +7,7 @@ const mapStateToProps = (state) => {
   return {
     cards: cardsSelector(state),
     isLoadingCards: state.isLoadingReducer.cards,
+    priceCategory: state.tcgPriceCategory,
   };
 };
 
