@@ -106,6 +106,7 @@ const MuiTable = (props) => {
         </Table>
 
         {isLoadingCards ? (
+          // Must render as full table to center with no scroll bar
           <Table>
             <TableBody>
               <TableRow>
