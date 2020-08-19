@@ -5,11 +5,18 @@ import {
   SET_PRICE_CATEGORY_MARKET,
 } from '../actionTypes';
 
+import {
+  tcgLow,
+  tcgMid,
+  tcgHigh,
+  tcgMarket,
+} from '../../js/constants/tcgPriceCategories';
+
 export const tcgPriceCategories = {
-  SET_PRICE_CATEGORY_LOW: 'low_price',
-  SET_PRICE_CATEGORY_MID: 'mid_price',
-  SET_PRICE_CATEGORY_HIGH: 'high_price',
-  SET_PRICE_CATEGORY_MARKET: 'market_price',
+  SET_PRICE_CATEGORY_LOW: tcgLow,
+  SET_PRICE_CATEGORY_MID: tcgMid,
+  SET_PRICE_CATEGORY_HIGH: tcgHigh,
+  SET_PRICE_CATEGORY_MARKET: tcgMarket,
 };
 
 const initState = tcgPriceCategories[SET_PRICE_CATEGORY_MARKET];

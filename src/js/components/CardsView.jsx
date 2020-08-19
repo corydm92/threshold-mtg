@@ -1,14 +1,23 @@
 import React, { useEffect } from 'react';
 import { isEmpty } from 'lodash';
 import CardsTable from './CardsTable';
+import SideBar from './SideBar';
+import Grid from '@material-ui/core/Grid';
 
 const CardsView = (props) => {
   const {
+    // STORE
     cards,
-    fetchCards,
-    isLoadingCards,
-    isLoadingCardsFalse,
     priceCategory,
+    isLoadingCards,
+
+    // ACTIONS
+    fetchCards,
+    isLoadingCardsFalse,
+    setPriceCategoryLow,
+    setPriceCategoryMid,
+    setPriceCategoryHigh,
+    setPriceCategoryMarket,
   } = {
     ...props,
   };
@@ -25,12 +34,24 @@ const CardsView = (props) => {
 
   return (
     <div data-test='cardsView'>
-      <div>Cards Container</div>
-      <CardsTable
-        cards={cards}
-        isLoadingCards={isLoadingCards}
-        priceCategory={priceCategory}
-      />
+      <Grid spacing={2} container>
+        <Grid item xs={2}>
+          <SideBar
+            priceCategory={priceCategory}
+            setPriceCategoryLow={setPriceCategoryLow}
+            setPriceCategoryMid={setPriceCategoryMid}
+            setPriceCategoryHigh={setPriceCategoryHigh}
+            setPriceCategoryMarket={setPriceCategoryMarket}
+          />
+        </Grid>
+        <Grid item xs={10}>
+          <CardsTable
+            cards={cards}
+            isLoadingCards={isLoadingCards}
+            priceCategory={priceCategory}
+          />
+        </Grid>
+      </Grid>
     </div>
   );
 };
