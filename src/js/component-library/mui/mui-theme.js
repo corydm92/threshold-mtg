@@ -5,8 +5,11 @@ const theme = createMuiTheme({
     primary: {
       main: 'rgba(82, 33, 110, 1)',
       dark: '#2F133F',
-      light: '#692A8D',
+      light: 'rgba(82, 33, 110, .8)',
       contrastText: '#fff',
+    },
+    secondary: {
+      main: 'rgba(77, 170, 87, 1)',
     },
     text: { primary: '#000', secondary: '#fff' },
     action: {
