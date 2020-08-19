@@ -11,6 +11,10 @@ import {
   IS_LOADING_CARD_FALSE,
   SET_SPEC_PRICES_SUCCESSFUL,
   SET_TCG_PRICES_SUCCESSFUL,
+  SET_PRICE_CATEGORY_LOW,
+  SET_PRICE_CATEGORY_MID,
+  SET_PRICE_CATEGORY_HIGH,
+  SET_PRICE_CATEGORY_MARKET,
   // SET_SPEC_PRICES_FAILED,
   // SET_TCG_PRICES_FAILED,
 } from './actionTypes';
@@ -130,6 +134,22 @@ export const setSpecPricesSuccessful = (specPrices) => {
 
 export const setTcgPricesSuccessful = (tcgPrices) => {
   return { type: SET_TCG_PRICES_SUCCESSFUL, payload: tcgPrices };
+};
+
+export const setPriceCategoryLow = () => {
+  return { type: SET_PRICE_CATEGORY_LOW };
+};
+
+export const setPriceCategoryMid = () => {
+  return { type: SET_PRICE_CATEGORY_MID };
+};
+
+export const setPriceCategoryHigh = () => {
+  return { type: SET_PRICE_CATEGORY_HIGH };
+};
+
+export const setPriceCategoryMarket = () => {
+  return { type: SET_PRICE_CATEGORY_MARKET };
 };
 
 // Might be useful in the future
