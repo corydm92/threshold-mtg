@@ -12,13 +12,13 @@ const useStyles = makeStyles((theme) => {
       margin: '8px 0',
       alignItems: 'center',
       height: '100%',
-      borderBottom: (props) => props.noBorder && '0px',
+      border: (props) => props.noBorder && '0px',
     },
   };
 });
 
 const MuiTablePagination = (props) => {
-  const classes = useStyles();
+  const classes = useStyles(props);
   return (
     <TablePagination className={classes.root}>{props.children}</TablePagination>
   );

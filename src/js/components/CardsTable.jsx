@@ -27,6 +27,41 @@ const tableHeaders = [
   { label: 'TCG Price', colSpan: 2 },
 ];
 
+const MuiTableBody = (cards) => {
+  return (
+    <TableBody>
+      {cards.map((card) => {
+        return (
+          <TableRow>
+            <Grid container>
+              <Grid item xs={6}>
+                <TableCell>
+                  <div>
+                    <div>{card.cardName}</div>
+                    <div>{card.setName}</div>
+                  </div>
+                </TableCell>
+              </Grid>
+              <Grid item xs={1}>
+                <TableCell>{card.spread}</TableCell>
+              </Grid>
+              <Grid item xs={1}>
+                <TableCell>{card.quantity}</TableCell>
+              </Grid>
+              <Grid item xs={2}>
+                <TableCell>{card.avgPurchasePrice}</TableCell>
+              </Grid>
+              <Grid item xs={2}>
+                <TableCell>{card.tcgPrice}</TableCell>
+              </Grid>
+            </Grid>
+          </TableRow>
+        );
+      })}
+    </TableBody>
+  );
+};
+
 const MuiTable = (props) => {
   const classes = useStyles();
 
@@ -49,38 +84,7 @@ const MuiTable = (props) => {
               </Grid>
             </TableRow>
           </TableHead>
-          {!isLoadingCards && (
-            <TableBody>
-              {cards.map((card) => {
-                return (
-                  <TableRow>
-                    <Grid container>
-                      <Grid item xs={6}>
-                        <TableCell>
-                          <div>
-                            <div>{card.cardName}</div>
-                            <div>{card.setName}</div>
-                          </div>
-                        </TableCell>
-                      </Grid>
-                      <Grid item xs={1}>
-                        <TableCell>{card.spread}</TableCell>
-                      </Grid>
-                      <Grid item xs={1}>
-                        <TableCell>{card.quantity}</TableCell>
-                      </Grid>
-                      <Grid item xs={2}>
-                        <TableCell>{card.avgPurchasePrice}</TableCell>
-                      </Grid>
-                      <Grid item xs={2}>
-                        <TableCell>{card.tcgPrice}</TableCell>
-                      </Grid>
-                    </Grid>
-                  </TableRow>
-                );
-              })}
-            </TableBody>
-          )}
+          {!isLoadingCards && MuiTableBody(cards)}
         </Table>
 
         {isLoadingCards ? (
