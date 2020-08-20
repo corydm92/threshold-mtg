@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TableContainer from '../component-library/mui/components/Table/TableContainer';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '../component-library/mui/components/Table/Table';
@@ -112,6 +112,8 @@ const MuiTable = (props) => {
   const { cards, isLoadingCards, priceCategory } = { ...props };
   const classes = useStyles();
 
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+
   return (
     <React.Fragment>
       <TableContainer>
@@ -133,15 +135,13 @@ const MuiTable = (props) => {
           </Table>
         ) : (
           <TablePagination
-            rowsPerPageOptions={[10, 25, 100]}
+            rowsPerPageOptions={[5, 10, 25]}
             component='div'
-            className={classes.pagination}
-            noBorder
-            // count={rows.length}
-            // rowsPerPage={rowsPerPage}
-            // page={page}
-            // onChangePage={handleChangePage}
-            // onChangeRowsPerPage={handleChangeRowsPerPage}
+            // count={data.length}
+            rowsPerPage={5}
+            // page={this.state.page}
+            // onChangePage={this.handleChangePage}
+            // onChangeRowsPerPage={this.handleChangeRowsPerPage}
           />
         )}
       </TableContainer>
