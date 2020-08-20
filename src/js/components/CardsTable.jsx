@@ -9,20 +9,20 @@ import TableCell from '../component-library/mui/components/Table/TableCell';
 import TablePagination from '../component-library/mui/components/Table/TablePagination';
 import Spinner from '../component-library/mui/components/Spinner';
 import Grid from '@material-ui/core/Grid';
-import { getPriceCategory } from '../../utils';
+import { getPriceCategory, isPositive } from '../../utils';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
   },
   container: {
     maxHeight: 440,
   },
-});
+}));
 
 const MuiTableHeaders = (priceCategory) => {
   const tableHeaders = [
-    { label: 'Card Name', colSpan: 5, centerText: false },
+    { label: 'Card', colSpan: 5, centerText: false },
     { label: 'Spread', colSpan: 1, centerText: true },
     { label: 'Gain / Loss', colSpan: 1, centerText: true },
     { label: 'Quantity', colSpan: 1, centerText: true },
@@ -37,7 +37,7 @@ const MuiTableHeaders = (priceCategory) => {
           {tableHeaders.map((header) => {
             return (
               <Grid item xs={header.colSpan}>
-                <TableCell centerText={header.centerText}>
+                <TableCell bold centerText={header.centerText}>
                   {header.label}
                 </TableCell>
               </Grid>
@@ -65,10 +65,25 @@ const MuiTableBody = (cards) => {
                 </TableCell>
               </Grid>
               <Grid item xs={1}>
-                <TableCell centerText>{card.spread}</TableCell>
+                <TableCell
+                  useColor
+                  bold
+                  isPositive={isPositive(card.spread)}
+                  centerText
+                >
+                  {card.spread}
+                  {'%'}
+                </TableCell>
               </Grid>
               <Grid item xs={1}>
-                <TableCell centerText>{card.gainLoss}</TableCell>
+                <TableCell
+                  useColor
+                  bold
+                  isPositive={isPositive(card.gainLoss)}
+                  centerText
+                >
+                  {card.gainLoss}
+                </TableCell>
               </Grid>
               <Grid item xs={1}>
                 <TableCell centerText>{card.quantity}</TableCell>

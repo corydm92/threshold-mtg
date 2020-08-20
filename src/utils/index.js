@@ -37,3 +37,20 @@ export const getPriceCategory = (category) => {
 
   return categories[category];
 };
+
+export const gainLossCalc = (currentPrice, purchasePrice) => {
+  return roundTwoDecimals(currentPrice - purchasePrice);
+};
+
+export const isPositive = (num) => {
+  if (num >= 0) {
+    return true;
+  }
+  return false;
+};
+
+export const getPriceSpread = (currentPrice, purchasePrice) => {
+  return roundTwoDecimals(
+    ((currentPrice - purchasePrice) / purchasePrice) * 100
+  );
+};
