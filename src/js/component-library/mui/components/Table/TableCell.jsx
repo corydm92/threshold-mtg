@@ -29,7 +29,6 @@ const useStyles = makeStyles((theme) => {
 });
 
 const MuiTableCell = (props) => {
-  console.log(props);
   const classes = useStyles(props);
   return (
     <TableCell className={classes.root} colSpan={props.colSpan}>
