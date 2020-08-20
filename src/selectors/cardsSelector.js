@@ -1,5 +1,10 @@
 import { createSelector } from 'reselect';
-import { getCardQuantity, getAvgPurchasePrice } from '../utils';
+import {
+  getCardQuantity,
+  getAvgPurchasePrice,
+  gainLossCalc,
+  getPriceSpread,
+} from '../utils';
 
 const getCards = (state) => state.cardsReducer.entities.cards;
 const getCardsResults = (state) => state.cardsReducer.result;
@@ -16,13 +21,19 @@ export const cardsSelector = createSelector(
         (card.foil ? ' - Foil' : '') +
         (card.language ? ` - ${card.language}` : '');
 
+      const avgPurchasePrice = getAvgPurchasePrice(card.spec_prices);
+      const tcgPrice = card.tcg_price[priceCategory];
+      const gainLoss = gainLossCalc(tcgPrice, avgPurchasePrice);
+      const spread = getPriceSpread(tcgPrice, avgPurchasePrice);
+
       return {
         cardName,
         setName: card.set_name,
-        spread: '100%',
+        spread,
         quantity: getCardQuantity(card.spec_prices),
-        avgPurchasePrice: getAvgPurchasePrice(card.spec_prices),
-        tcgPrice: card.tcg_price[priceCategory],
+        avgPurchasePrice,
+        tcgPrice,
+        gainLoss,
       };
     });
   }

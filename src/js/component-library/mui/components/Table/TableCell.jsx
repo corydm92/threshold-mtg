@@ -12,11 +12,24 @@ const useStyles = makeStyles((theme) => {
       justifyContent: (props) => props.centerText && 'center',
       height: '100%',
       borderBottom: (props) => props.noBorder && '0px',
+      color: (props) => {
+        if (props.useColor) {
+          return props.isPositive
+            ? theme.palette.custom.green
+            : theme.palette.custom.red;
+        }
+      },
+      fontWeight: (props) => {
+        if (props.bold) {
+          return 'bold';
+        }
+      },
     },
   };
 });
 
 const MuiTableCell = (props) => {
+  console.log(props);
   const classes = useStyles(props);
   return (
     <TableCell className={classes.root} colSpan={props.colSpan}>
