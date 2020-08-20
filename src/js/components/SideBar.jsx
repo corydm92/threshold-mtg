@@ -70,6 +70,10 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: 'none',
     border: '1px solid rgba(224, 224, 224, 1)',
   },
+  cardContent: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
 }));
 
 const SideBar = (props) => {
@@ -115,7 +119,11 @@ const SideBar = (props) => {
         root: classes.card,
       }}
     >
-      <CardContent>
+      <CardContent
+        classes={{
+          root: classes.cardContent,
+        }}
+      >
         <FormControl className={classes.formControl} component='fieldset'>
           <FormLabel className={classes.formLabel} component='legend'>
             TCG Price Categories
