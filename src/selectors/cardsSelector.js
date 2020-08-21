@@ -42,9 +42,7 @@ export const cardsSelector = createSelector(
         cardName,
         setName: card.set_name,
         spread,
-        quantity: !isEmpty(card.spec_prices)
-          ? getCardQuantity(card.spec_prices)
-          : 0, // Needs to be refactored
+        quantity: getCardQuantity(card.spec_prices),
         avgPurchasePrice,
         tcgPrice,
         gainLoss,
