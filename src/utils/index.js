@@ -1,10 +1,28 @@
-export const getCardQuantity = (specPrices) => {
-  let totalQuantity = 0;
-  for (let spec of specPrices) {
-    totalQuantity += spec.quantity;
+import { isEmpty } from 'lodash';
+
+export const getCardQuantity = (specPrices, card) => {
+  try {
+    let totalQuantity = 0;
+
+    for (let spec of specPrices) {
+      totalQuantity += spec.quantity;
+    }
+
+    return totalQuantity;
+  } catch (err) {
+    console.log(err);
+    return 0;
+  }
+};
+
+export const cardIsValid = (card) => {
+  let isValid = true;
+
+  if (isEmpty(card.spec_prices)) {
+    isValid = false;
   }
 
-  return totalQuantity;
+  return isValid;
 };
 
 export const roundTwoDecimals = (num) => {

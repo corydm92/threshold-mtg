@@ -5,7 +5,10 @@ import {
   gainLossCalc,
   getPriceSpread,
   roundTwoDecimals,
+  cardIsValid,
 } from '../utils';
+
+import { isEmpty } from 'lodash';
 
 const getCards = (state) => state.cardsReducer.entities.cards;
 const getCardsResults = (state) => state.cardsReducer.result;
@@ -16,6 +19,12 @@ export const cardsSelector = createSelector(
   (cards, results, priceCategory) => {
     return results.map((result) => {
       const card = { ...cards[result] };
+
+      const isValid = cardIsValid(card);
+
+      if (!isValid) {
+        return {};
+      }
 
       const cardName =
         card.card_name +
@@ -33,7 +42,9 @@ export const cardsSelector = createSelector(
         cardName,
         setName: card.set_name,
         spread,
-        quantity: getCardQuantity(card.spec_prices),
+        quantity: !isEmpty(card.spec_prices)
+          ? getCardQuantity(card.spec_prices)
+          : 0, // Needs to be refactored
         avgPurchasePrice,
         tcgPrice,
         gainLoss,

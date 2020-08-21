@@ -1,13 +1,14 @@
 import { connect } from 'react-redux';
 import MainView from '../components/MainView';
+import { fetchCards } from '../../redux/actions';
 
 const mapStateToProps = (state) => {
-  return {
-  };
+  return {};
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    fetchCards: (params) => dispatch(fetchCards(params)),
   };
 };
 

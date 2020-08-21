@@ -51,7 +51,7 @@ export const fetchCards = (params) => (dispatch) => {
 };
 
 // Fetches all card data
-export const fetchCardsData = (params = '/?limit=10') => (dispatch) => {
+export const fetchCardsData = (params = '/?limit=100000') => (dispatch) => {
   return axios
     .get(REACT_APP_BASE_API_URL + params)
     .then((res) => {

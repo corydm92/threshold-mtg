@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import CardsView from '../components/CardsView';
 import {
-  fetchCards,
   isLoadingCardsFalse,
   setPriceCategoryLow,
   setPriceCategoryMid,
@@ -20,7 +19,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchCards: (params) => dispatch(fetchCards(params)),
     isLoadingCardsFalse: () => dispatch(isLoadingCardsFalse()),
     setPriceCategoryLow: () => dispatch(setPriceCategoryLow()),
     setPriceCategoryMid: () => dispatch(setPriceCategoryMid()),
