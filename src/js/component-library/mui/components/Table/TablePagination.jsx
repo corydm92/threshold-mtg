@@ -19,8 +19,30 @@ const useStyles = makeStyles((theme) => {
 
 const MuiTablePagination = (props) => {
   const classes = useStyles(props);
+
+  const {
+    rowsPerPageOptions,
+    component,
+    count,
+    rowsPerPage,
+    page,
+    onChangePage,
+    onChangeRowsPerPage,
+  } = { ...props };
+
   return (
-    <TablePagination className={classes.root}>{props.children}</TablePagination>
+    <TablePagination
+      rowsPerPageOptions={rowsPerPageOptions}
+      component={component}
+      count={count}
+      rowsPerPage={rowsPerPage}
+      page={page}
+      onChangePage={onChangePage}
+      onChangeRowsPerPage={onChangeRowsPerPage}
+      className={classes.root}
+    >
+      {props.children}
+    </TablePagination>
   );
 };
 

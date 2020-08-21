@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import TableContainer from '../component-library/mui/components/Table/TableContainer';
-import { makeStyles } from '@material-ui/core/styles';
 import Table from '../component-library/mui/components/Table/Table';
 import TableHead from '../component-library/mui/components/Table/TableHead';
 import TableBody from '../component-library/mui/components/Table/TableBody';
@@ -10,15 +9,6 @@ import TablePagination from '../component-library/mui/components/Table/TablePagi
 import Spinner from '../component-library/mui/components/Spinner';
 import Grid from '@material-ui/core/Grid';
 import { getPriceCategory, isPositive } from '../../utils';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-  },
-  container: {
-    maxHeight: 440,
-  },
-}));
 
 const MuiTableHeaders = (priceCategory) => {
   const tableHeaders = [
@@ -110,14 +100,33 @@ const MuiTableBody = (cards) => {
 
 const MuiTable = (props) => {
   const { cards, isLoadingCards, priceCategory } = { ...props };
-  const classes = useStyles();
+
+  const [rowPerPage, setRowPerPage] = useState(5);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [data, setData] = useState(cards);
+
+  useEffect(() => {
+    const startingIndex = rowPerPage * (currentPage + 1) - rowPerPage;
+    const endingIndex = rowPerPage * (currentPage + 1);
+
+    const data = cards.slice(startingIndex, endingIndex);
+    setData(data);
+  }, [cards, rowPerPage, currentPage]);
+
+  const handleChangePage = (event, page) => {
+    setCurrentPage(page);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowPerPage(event.target.value);
+  };
 
   return (
     <React.Fragment>
       <TableContainer>
         <Table stickyHeader>
           {MuiTableHeaders(priceCategory)}
-          {!isLoadingCards && MuiTableBody(cards)}
+          {!isLoadingCards && MuiTableBody(data)}
         </Table>
 
         {isLoadingCards ? (
@@ -133,15 +142,14 @@ const MuiTable = (props) => {
           </Table>
         ) : (
           <TablePagination
-            rowsPerPageOptions={[10, 25, 100]}
+            rowsPerPageOptions={[5, 10, 25]}
             component='div'
-            className={classes.pagination}
+            count={cards.length}
+            rowsPerPage={rowPerPage}
             noBorder
-            // count={rows.length}
-            // rowsPerPage={rowsPerPage}
-            // page={page}
-            // onChangePage={handleChangePage}
-            // onChangeRowsPerPage={handleChangeRowsPerPage}
+            page={currentPage}
+            onChangePage={handleChangePage}
+            onChangeRowsPerPage={handleChangeRowsPerPage}
           />
         )}
       </TableContainer>
