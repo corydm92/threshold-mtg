@@ -9,7 +9,7 @@ const MainView = (props) => {
   const { fetchCards } = { ...props };
 
   useEffect(() => {
-    fetchCards();
+    fetchCards('/?limit=10');
   }, [fetchCards]);
 
   return (
