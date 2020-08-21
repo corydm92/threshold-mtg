@@ -1,18 +1,13 @@
 import { isEmpty } from 'lodash';
 
-export const getCardQuantity = (specPrices, card) => {
-  try {
-    let totalQuantity = 0;
+export const getCardQuantity = (specPrices) => {
+  let totalQuantity = 0;
 
-    for (let spec of specPrices) {
-      totalQuantity += spec.quantity;
-    }
-
-    return totalQuantity;
-  } catch (err) {
-    console.log(err);
-    return 0;
+  for (let spec of specPrices) {
+    totalQuantity += spec.quantity;
   }
+
+  return totalQuantity;
 };
 
 export const cardIsValid = (card) => {
