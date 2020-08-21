@@ -7,17 +7,70 @@ import TableRow from '../component-library/mui/components/Table/TableRow';
 import TableCell from '../component-library/mui/components/Table/TableCell';
 import TablePagination from '../component-library/mui/components/Table/TablePagination';
 import Spinner from '../component-library/mui/components/Spinner';
+import TableSortLabel from '../component-library/mui/components/Table/TableSortLabel';
 import Grid from '@material-ui/core/Grid';
 import { getPriceCategory, isPositive } from '../../utils';
 
-const MuiTableHeaders = (priceCategory) => {
+function descendingComparator(a, b, orderBy) {
+  // console.log(orderBy);
+  console.log(a[orderBy], ' ', b[orderBy]);
+  if (b[orderBy] <= a[orderBy]) {
+    return -1;
+  }
+  if (b[orderBy] >= a[orderBy]) {
+    return 1;
+  }
+  return 0;
+}
+
+function getComparator(order, orderBy) {
+  return order === 'desc'
+    ? (a, b) => descendingComparator(a, b, orderBy)
+    : (a, b) => -descendingComparator(a, b, orderBy);
+}
+
+function stableSort(array, comparator) {
+  console.log(array);
+  const stabilizedThis = array.map((el, index) => [el, index]);
+  stabilizedThis.sort((a, b) => {
+    const order = comparator(a[0], b[0]);
+    if (order !== 0) return order;
+    return a[1] - b[1];
+  });
+  return stabilizedThis.map((el) => el[0]);
+}
+
+const MuiTableHeaders = (props) => {
+  const {
+    order,
+    orderBy,
+    numSelected,
+    rowCount,
+    onRequestSort,
+    priceCategory,
+  } = { ...props };
+
+  const createSortHandler = (property) => (event) => {
+    onRequestSort(event, property);
+  };
+
   const tableHeaders = [
-    { label: 'Card', colSpan: 5, centerText: false },
-    { label: 'Spread', colSpan: 1, centerText: true },
-    { label: 'Gain / Loss', colSpan: 1, centerText: true },
-    { label: 'Quantity', colSpan: 1, centerText: true },
-    { label: 'Avg Purchase Price', colSpan: 2, centerText: true },
-    { label: getPriceCategory(priceCategory), colSpan: 2, centerText: true },
+    { id: 'cardName', label: 'Card', colSpan: 4, centerText: false },
+    { id: 'spread', label: 'Spread', colSpan: 1, centerText: true },
+    { id: 'gainLoss', label: 'Gain / Loss', colSpan: 2, centerText: true },
+    { id: 'quantity', label: 'Quantity', colSpan: 1, centerText: true },
+    {
+      id: 'avgPurchasePrice',
+      label: 'Avg Purchase Price',
+      colSpan: 2,
+      centerText: true,
+    },
+    {
+      id: 'tcgPrice',
+      label: getPriceCategory(priceCategory),
+      colSpan: 2,
+      centerText: true,
+    },
   ];
 
   return (
@@ -27,8 +80,18 @@ const MuiTableHeaders = (priceCategory) => {
           {tableHeaders.map((header) => {
             return (
               <Grid item xs={header.colSpan}>
-                <TableCell bold centerText={header.centerText}>
-                  {header.label}
+                <TableCell
+                  sortDirection={orderBy === header.id ? order : false}
+                  bold
+                  centerText={header.centerText}
+                >
+                  <TableSortLabel
+                    active={orderBy === header.id}
+                    direction={orderBy === header.id ? order : 'desc'}
+                    onClick={createSortHandler(header.id)}
+                  >
+                    {header.label}
+                  </TableSortLabel>
                 </TableCell>
               </Grid>
             );
@@ -39,14 +102,16 @@ const MuiTableHeaders = (priceCategory) => {
   );
 };
 
-const MuiTableBody = (cards) => {
+const MuiTableBody = (props) => {
+  const { data, order, orderBy } = { ...props };
+
   return (
     <TableBody>
-      {cards.map((card) => {
+      {stableSort(data, getComparator(order, orderBy)).map((card) => {
         return (
           <TableRow>
             <Grid container>
-              <Grid item xs={5}>
+              <Grid item xs={4}>
                 <TableCell>
                   <div>
                     <div>{card.cardName}</div>
@@ -65,7 +130,7 @@ const MuiTableBody = (cards) => {
                   {'%'}
                 </TableCell>
               </Grid>
-              <Grid item xs={1}>
+              <Grid item xs={2}>
                 <TableCell
                   useColor
                   bold
@@ -101,9 +166,17 @@ const MuiTableBody = (cards) => {
 const MuiTable = (props) => {
   const { cards, isLoadingCards, priceCategory } = { ...props };
 
+  const [order, setOrder] = useState('desc');
+  const [orderBy, setOrderBy] = useState('spread');
   const [rowPerPage, setRowPerPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(0);
   const [data, setData] = useState(cards);
+
+  const handleRequestSort = (event, property) => {
+    const isDesc = orderBy === property && order === 'desc';
+    setOrder(isDesc ? 'asc' : 'desc');
+    setOrderBy(property);
+  };
 
   useEffect(() => {
     const startingIndex = rowPerPage * (currentPage + 1) - rowPerPage;
@@ -125,8 +198,15 @@ const MuiTable = (props) => {
     <React.Fragment>
       <TableContainer>
         <Table stickyHeader>
-          {MuiTableHeaders(priceCategory)}
-          {!isLoadingCards && MuiTableBody(data)}
+          <MuiTableHeaders
+            order={order}
+            orderBy={orderBy}
+            priceCategory={priceCategory}
+            onRequestSort={handleRequestSort}
+          />
+          {!isLoadingCards && (
+            <MuiTableBody data={data} order={order} orderBy={orderBy} />
+          )}
         </Table>
 
         {isLoadingCards ? (
