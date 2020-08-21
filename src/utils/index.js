@@ -8,7 +8,15 @@ export const getCardQuantity = (specPrices) => {
 };
 
 export const roundTwoDecimals = (num) => {
-  return num.toFixed(2);
+  return parseFloat(num.toFixed(2));
+};
+
+export const addZeroes = (num) => {
+  // Display only, forces two decimal points
+  num = num.toString();
+  const dec = num.split('.')[1];
+  const len = dec && dec.length > 2 ? dec.length : 2;
+  return Number(num).toFixed(len);
 };
 
 export const getAvgPurchasePrice = (specPrices) => {

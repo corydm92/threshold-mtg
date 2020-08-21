@@ -4,6 +4,7 @@ import {
   getAvgPurchasePrice,
   gainLossCalc,
   getPriceSpread,
+  roundTwoDecimals,
 } from '../utils';
 
 const getCards = (state) => state.cardsReducer.entities.cards;
@@ -22,7 +23,9 @@ export const cardsSelector = createSelector(
         (card.language ? ` - ${card.language}` : '');
 
       const avgPurchasePrice = getAvgPurchasePrice(card.spec_prices);
-      const tcgPrice = card.tcg_price[priceCategory];
+      const tcgPrice = roundTwoDecimals(
+        parseFloat(card.tcg_price[priceCategory]) // Necessary, returns from DB as string
+      );
       const gainLoss = gainLossCalc(tcgPrice, avgPurchasePrice);
       const spread = getPriceSpread(tcgPrice, avgPurchasePrice);
 

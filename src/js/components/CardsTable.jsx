@@ -9,11 +9,9 @@ import TablePagination from '../component-library/mui/components/Table/TablePagi
 import Spinner from '../component-library/mui/components/Spinner';
 import TableSortLabel from '../component-library/mui/components/Table/TableSortLabel';
 import Grid from '@material-ui/core/Grid';
-import { getPriceCategory, isPositive } from '../../utils';
+import { getPriceCategory, isPositive, addZeroes } from '../../utils';
 
 function descendingComparator(a, b, orderBy) {
-  // console.log(orderBy);
-  console.log(a[orderBy], ' ', b[orderBy]);
   if (b[orderBy] <= a[orderBy]) {
     return -1;
   }
@@ -41,14 +39,7 @@ function stableSort(array, comparator) {
 }
 
 const MuiTableHeaders = (props) => {
-  const {
-    order,
-    orderBy,
-    numSelected,
-    rowCount,
-    onRequestSort,
-    priceCategory,
-  } = { ...props };
+  const { order, orderBy, onRequestSort, priceCategory } = { ...props };
 
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
@@ -103,11 +94,11 @@ const MuiTableHeaders = (props) => {
 };
 
 const MuiTableBody = (props) => {
-  const { data, order, orderBy } = { ...props };
+  const { data } = { ...props };
 
   return (
     <TableBody>
-      {stableSort(data, getComparator(order, orderBy)).map((card) => {
+      {data.map((card) => {
         return (
           <TableRow>
             <Grid container>
@@ -126,7 +117,7 @@ const MuiTableBody = (props) => {
                   isPositive={isPositive(card.spread)}
                   centerText
                 >
-                  {card.spread}
+                  {addZeroes(card.spread)}
                   {'%'}
                 </TableCell>
               </Grid>
@@ -137,7 +128,7 @@ const MuiTableBody = (props) => {
                   isPositive={isPositive(card.gainLoss)}
                   centerText
                 >
-                  {card.gainLoss}
+                  {addZeroes(card.gainLoss)}
                 </TableCell>
               </Grid>
               <Grid item xs={1}>
@@ -146,13 +137,13 @@ const MuiTableBody = (props) => {
               <Grid item xs={2}>
                 <TableCell centerText>
                   {'$'}
-                  {card.avgPurchasePrice}
+                  {addZeroes(card.avgPurchasePrice)}
                 </TableCell>
               </Grid>
               <Grid item xs={2}>
                 <TableCell centerText>
                   {'$'}
-                  {card.tcgPrice}
+                  {addZeroes(card.tcgPrice)}
                 </TableCell>
               </Grid>
             </Grid>
@@ -168,7 +159,7 @@ const MuiTable = (props) => {
 
   const [order, setOrder] = useState('desc');
   const [orderBy, setOrderBy] = useState('spread');
-  const [rowPerPage, setRowPerPage] = useState(5);
+  const [rowPerPage, setRowPerPage] = useState(25);
   const [currentPage, setCurrentPage] = useState(0);
   const [data, setData] = useState(cards);
 
@@ -182,9 +173,12 @@ const MuiTable = (props) => {
     const startingIndex = rowPerPage * (currentPage + 1) - rowPerPage;
     const endingIndex = rowPerPage * (currentPage + 1);
 
-    const data = cards.slice(startingIndex, endingIndex);
+    const data = stableSort(cards, getComparator(order, orderBy)).slice(
+      startingIndex,
+      endingIndex
+    );
     setData(data);
-  }, [cards, rowPerPage, currentPage]);
+  }, [cards, rowPerPage, currentPage, order, orderBy]);
 
   const handleChangePage = (event, page) => {
     setCurrentPage(page);
@@ -204,9 +198,7 @@ const MuiTable = (props) => {
             priceCategory={priceCategory}
             onRequestSort={handleRequestSort}
           />
-          {!isLoadingCards && (
-            <MuiTableBody data={data} order={order} orderBy={orderBy} />
-          )}
+          {!isLoadingCards && <MuiTableBody data={data} />}
         </Table>
 
         {isLoadingCards ? (
