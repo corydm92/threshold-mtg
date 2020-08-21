@@ -12,7 +12,6 @@ const CardsView = (props) => {
     isLoadingCards,
 
     // ACTIONS
-    fetchCards,
     isLoadingCardsFalse,
     setPriceCategoryLow,
     setPriceCategoryMid,
@@ -21,10 +20,6 @@ const CardsView = (props) => {
   } = {
     ...props,
   };
-
-  useEffect(() => {
-    fetchCards();
-  }, [fetchCards]);
 
   useEffect(() => {
     if (!isEmpty(cards) && isLoadingCards) {

@@ -1,5 +1,8 @@
+import { isEmpty } from 'lodash';
+
 export const getCardQuantity = (specPrices) => {
   let totalQuantity = 0;
+
   for (let spec of specPrices) {
     totalQuantity += spec.quantity;
   }
@@ -7,8 +10,26 @@ export const getCardQuantity = (specPrices) => {
   return totalQuantity;
 };
 
+export const cardIsValid = (card) => {
+  let isValid = true;
+
+  if (isEmpty(card.spec_prices)) {
+    isValid = false;
+  }
+
+  return isValid;
+};
+
 export const roundTwoDecimals = (num) => {
-  return num.toFixed(2);
+  return parseFloat(num.toFixed(2));
+};
+
+export const addZeroes = (num) => {
+  // Display only, forces two decimal points
+  num = num.toString();
+  const dec = num.split('.')[1];
+  const len = dec && dec.length > 2 ? dec.length : 2;
+  return Number(num).toFixed(len);
 };
 
 export const getAvgPurchasePrice = (specPrices) => {
