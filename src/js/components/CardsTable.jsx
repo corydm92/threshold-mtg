@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TableContainer from '../component-library/mui/components/Table/TableContainer';
 import Table from '../component-library/mui/components/Table/Table';
 import TableHead from '../component-library/mui/components/Table/TableHead';
@@ -9,7 +9,6 @@ import TablePagination from '../component-library/mui/components/Table/TablePagi
 import Spinner from '../component-library/mui/components/Spinner';
 import Grid from '@material-ui/core/Grid';
 import { getPriceCategory, isPositive } from '../../utils';
-import { useEffect } from 'react';
 
 const MuiTableHeaders = (priceCategory) => {
   const tableHeaders = [

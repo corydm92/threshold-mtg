@@ -30,8 +30,6 @@ const MuiTablePagination = (props) => {
     onChangeRowsPerPage,
   } = { ...props };
 
-  // const [rowsPerPage, setRowsPerPage] = useState(10);
-
   return (
     <TablePagination
       rowsPerPageOptions={rowsPerPageOptions}
