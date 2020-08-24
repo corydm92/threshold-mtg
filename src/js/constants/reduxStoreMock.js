@@ -1,4 +1,5 @@
 export const initState = {
+  tcgPriceCategory: 'market_price',
   cardsReducer: {
     entities: {},
     result: [],
@@ -13,6 +14,7 @@ export const initState = {
 };
 
 export const fullState = {
+  tcgPriceCategory: 'market_price',
   cardsReducer: {
     entities: {
       cards: {
