@@ -19,13 +19,12 @@ import {
   // SET_TCG_PRICES_FAILED,
 } from './actionTypes';
 
+import { axiosGET } from '../axios';
+
 import { isEmpty } from 'lodash';
 
-import axios from 'axios';
 import cardsNormalizr from '../normalizr/cardsNormalizr';
 import cardNormalizr from '../normalizr/cardNormalizr';
-
-const REACT_APP_BASE_API_URL = process.env.REACT_APP_BASE_API_URL;
 
 export const isLoadingCardsTrue = () => {
   return { type: IS_LOADING_CARDS_TRUE };
@@ -51,9 +50,8 @@ export const fetchCards = (params) => (dispatch) => {
 };
 
 // Fetches all card data
-export const fetchCardsData = (params = '/?limit=100000') => (dispatch) => {
-  return axios
-    .get(REACT_APP_BASE_API_URL + params)
+export const fetchCardsData = (params) => (dispatch) => {
+  return axiosGET(params)
     .then((res) => {
       // Input JSON (or plain JS object) data that needs normalization.
       const normalizedResponse = cardsNormalizr(res.data.results);
@@ -87,8 +85,7 @@ export const fetchSingleCard = (id) => (dispatch, getState) => {
 
 // Providing default ID, remove once component is built for displaying a single card.
 export const fetchSingleCardData = (id) => (dispatch) => {
-  return axios
-    .get(REACT_APP_BASE_API_URL + '/' + id + '/')
+  return axiosGET('/' + id + '/')
     .then((res) => {
       const normalizedResponse = cardNormalizr(res.data);
       const result = normalizedResponse.result;
