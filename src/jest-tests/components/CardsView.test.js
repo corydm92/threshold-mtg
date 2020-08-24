@@ -70,7 +70,6 @@ describe('CardsView tests', () => {
     });
 
     it('Checks useEffect hooks on mount', () => {
-      // expect(fetchCards).toHaveBeenCalled();
       expect(isLoadingCardsFalse).toHaveBeenCalled();
     });
   });

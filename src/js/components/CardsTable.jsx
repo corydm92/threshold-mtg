@@ -97,7 +97,7 @@ const MuiTableBody = (props) => {
 
   return (
     <TableBody>
-      {data.map((card) => {
+      {data.map((card, index) => {
         return (
           <TableRow>
             <Grid container>
