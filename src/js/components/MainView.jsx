@@ -14,7 +14,7 @@ const MainView = (props) => {
 
   return (
     <div data-test='mainView'>
-      <AppBar title='MTG Management' />
+      <AppBar title='Threshold MTG' />
       <Container>
         <ToolbarMixin>
           <Routes />
