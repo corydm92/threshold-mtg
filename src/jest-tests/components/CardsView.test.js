@@ -4,26 +4,38 @@ import CardsView from '../../js/components/CardsView';
 import { findByTestAttr } from '../../utils/testUtils';
 import { fullState } from '../../js/constants/reduxStoreMock';
 import { cardsSelector } from '../../selectors/cardsSelector';
+import { ThemeProvider } from '@material-ui/core/styles';
+import theme from '../../js//component-library/mui/mui-theme';
 
 describe('CardsView tests', () => {
   let wrapper;
   let fetchCards = jest.fn();
   let isLoadingCardsFalse = jest.fn();
+  let setPriceCategoryLow = jest.fn();
+  let setPriceCategoryMid = jest.fn();
+  let setPriceCategoryHigh = jest.fn();
+  let setPriceCategoryMarket = jest.fn();
+  const priceCategory = 'market_price';
 
   describe('Init State / No Data', () => {
     beforeEach(() => {
       const props = {
         fetchCards,
         isLoadingCardsFalse,
-        cards: {},
+        setPriceCategoryLow,
+        setPriceCategoryMid,
+        setPriceCategoryHigh,
+        setPriceCategoryMarket,
+        priceCategory,
+        cards: [],
         isLoadingCards: fullState.isLoadingReducer.cards,
       };
 
-      wrapper = mount(<CardsView {...props} />);
-    });
-
-    it('Checks useEffect hooks on mount', () => {
-      expect(fetchCards).toHaveBeenCalled();
+      wrapper = mount(
+        <ThemeProvider theme={theme}>
+          <CardsView {...props} />
+        </ThemeProvider>
+      );
     });
 
     it('Renders Container', () => {
@@ -37,11 +49,19 @@ describe('CardsView tests', () => {
       const props = {
         fetchCards,
         isLoadingCardsFalse,
+        setPriceCategoryLow,
+        setPriceCategoryMid,
+        setPriceCategoryHigh,
+        setPriceCategoryMarket,
         cards: cardsSelector(fullState),
         isLoadingCards: true, // Force true to test isLoadingCardsFalse method
       };
 
-      wrapper = mount(<CardsView {...props} />);
+      wrapper = mount(
+        <ThemeProvider theme={theme}>
+          <CardsView {...props} />
+        </ThemeProvider>
+      );
     });
 
     it('Renders Container', () => {
@@ -50,7 +70,6 @@ describe('CardsView tests', () => {
     });
 
     it('Checks useEffect hooks on mount', () => {
-      expect(fetchCards).toHaveBeenCalled();
       expect(isLoadingCardsFalse).toHaveBeenCalled();
     });
   });

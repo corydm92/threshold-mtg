@@ -16,7 +16,6 @@ describe('CardsViewContainer tests', () => {
   });
 
   it('Renders the Component', () => {
-    console.log(wrapper.debug());
     expect(wrapper).not.toBeNull();
   });
 
@@ -26,7 +25,6 @@ describe('CardsViewContainer tests', () => {
   });
 
   it('Checks mapDispatchToProps', () => {
-    expect(wrapper.props().fetchCards()).not.toBeNull();
     expect(wrapper.props().isLoadingCardsFalse()).not.toBeNull();
   });
 });

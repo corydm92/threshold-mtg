@@ -97,7 +97,7 @@ const MuiTableBody = (props) => {
 
   return (
     <TableBody>
-      {data.map((card) => {
+      {data.map((card, index) => {
         return (
           <TableRow>
             <Grid container>
@@ -189,7 +189,7 @@ const MuiTable = (props) => {
 
   return (
     <React.Fragment>
-      <TableContainer>
+      <TableContainer data-test='cardsTable'>
         <Table stickyHeader>
           <MuiTableHeaders
             order={order}
