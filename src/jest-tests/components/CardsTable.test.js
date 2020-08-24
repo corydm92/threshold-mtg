@@ -11,7 +11,7 @@ describe('CardsTable tests', () => {
   describe('Without Data', () => {
     beforeEach(() => {
       const props = {
-        cards: {},
+        cards: [],
         isLoadingCards: fullState.isLoadingReducer.cards,
       };
 
@@ -19,7 +19,6 @@ describe('CardsTable tests', () => {
     });
 
     it('Renders the Component', () => {
-      console.log(wrapper.debug());
       const cardsTable = findByTestAttr(wrapper, 'cardsTable');
       expect(cardsTable).toHaveLength(1);
     });
