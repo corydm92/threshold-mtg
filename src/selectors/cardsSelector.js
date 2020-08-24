@@ -23,6 +23,7 @@ export const cardsSelector = createSelector(
       const isValid = cardIsValid(card);
 
       if (!isValid) {
+        console.log(card);
         return {};
       }
 
