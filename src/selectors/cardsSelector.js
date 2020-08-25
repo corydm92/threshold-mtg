@@ -8,8 +8,6 @@ import {
   cardIsValid,
 } from '../utils';
 
-import { isEmpty } from 'lodash';
-
 const getCards = (state) => state.cardsReducer.entities.cards;
 const getCardsResults = (state) => state.cardsReducer.result;
 const getTcgPriceCategory = (state) => state.tcgPriceCategory;

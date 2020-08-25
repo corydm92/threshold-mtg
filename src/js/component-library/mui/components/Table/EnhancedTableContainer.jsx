@@ -1,8 +1,8 @@
 import React from 'react';
 import TableContainer from '@material-ui/core/TableContainer';
 
-const MuiTableContainer = (props) => {
+const EnhancedTableContainer = (props) => {
   return <TableContainer>{props.children}</TableContainer>;
 };
 
-export default MuiTableContainer;
+export default EnhancedTableContainer;

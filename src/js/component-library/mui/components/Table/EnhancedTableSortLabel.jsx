@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-const MuiTableSortLabel = (props) => {
+const EnhancedTableSortLabel = (props) => {
   const classes = useStyles(props);
   const { active, direction, onClick } = { ...props };
   return (
@@ -28,4 +28,4 @@ const MuiTableSortLabel = (props) => {
   );
 };
 
-export default MuiTableSortLabel;
+export default EnhancedTableSortLabel;
