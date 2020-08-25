@@ -2,9 +2,14 @@ import React from 'react';
 import { Container } from '@material-ui/core';
 
 const MuiContainer = (props) => {
-  const { disableGutters = false } = props;
+  const { className, classes, disableGutters = false } = { ...props };
   return (
-    <Container data-test='container' disableGutters={disableGutters}>
+    <Container
+      className={className}
+      classes={classes}
+      data-test='container'
+      disableGutters={disableGutters}
+    >
       {props.children}
     </Container>
   );
