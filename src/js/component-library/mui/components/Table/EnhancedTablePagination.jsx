@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-const MuiTablePagination = (props) => {
+const EnhancedTablePagination = (props) => {
   const classes = useStyles(props);
 
   const {
@@ -46,4 +46,4 @@ const MuiTablePagination = (props) => {
   );
 };
 
-export default MuiTablePagination;
+export default EnhancedTablePagination;

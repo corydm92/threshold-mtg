@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-const MuiTableCell = (props) => {
+const EnhancedTableCell = (props) => {
   const classes = useStyles(props);
   return (
     <TableCell className={classes.root} colSpan={props.colSpan}>
@@ -37,4 +37,4 @@ const MuiTableCell = (props) => {
   );
 };
 
-export default MuiTableCell;
+export default EnhancedTableCell;

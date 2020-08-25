@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import TableContainer from '../component-library/mui/components/Table/TableContainer';
-import Table from '../component-library/mui/components/Table/Table';
-import TableHead from '../component-library/mui/components/Table/TableHead';
-import TableBody from '../component-library/mui/components/Table/TableBody';
-import TableRow from '../component-library/mui/components/Table/TableRow';
-import TableCell from '../component-library/mui/components/Table/TableCell';
-import TablePagination from '../component-library/mui/components/Table/TablePagination';
+import EnhancedTableContainer from '../component-library/mui/components/Table/EnhancedTableContainer';
+import EnhancedTable from '../component-library/mui/components/Table/EnhancedTable';
+import EnhancedTableHead from '../component-library/mui/components/Table/EnhancedTableHead';
+import EnhancedTableBody from '../component-library/mui/components/Table/EnhancedTableBody';
+import EnhancedTableRow from '../component-library/mui/components/Table/EnhancedTableRow';
+import EnhancedTableCell from '../component-library/mui/components/Table/EnhancedTableCell';
+import EnhancedTablePagination from '../component-library/mui/components/Table/EnhancedTablePagination';
 import Spinner from '../component-library/mui/components/Spinner';
-import TableSortLabel from '../component-library/mui/components/Table/TableSortLabel';
+import EnhancedTableSortLabel from '../component-library/mui/components/Table/EnhancedTableSortLabel';
 import Grid from '@material-ui/core/Grid';
 import { getPriceCategory, isPositive, addZeroes } from '../../utils';
 
@@ -64,31 +64,31 @@ const MuiTableHeaders = (props) => {
   ];
 
   return (
-    <TableHead>
-      <TableRow>
+    <EnhancedTableHead>
+      <EnhancedTableRow>
         <Grid container>
           {tableHeaders.map((header) => {
             return (
               <Grid item xs={header.colSpan}>
-                <TableCell
+                <EnhancedTableCell
                   sortDirection={orderBy === header.id ? order : false}
                   bold
                   centerText={header.centerText}
                 >
-                  <TableSortLabel
+                  <EnhancedTableSortLabel
                     active={orderBy === header.id}
                     direction={orderBy === header.id ? order : 'desc'}
                     onClick={createSortHandler(header.id)}
                   >
                     {header.label}
-                  </TableSortLabel>
-                </TableCell>
+                  </EnhancedTableSortLabel>
+                </EnhancedTableCell>
               </Grid>
             );
           })}
         </Grid>
-      </TableRow>
-    </TableHead>
+      </EnhancedTableRow>
+    </EnhancedTableHead>
   );
 };
 
@@ -96,21 +96,21 @@ const MuiTableBody = (props) => {
   const { data } = { ...props };
 
   return (
-    <TableBody>
+    <EnhancedTableBody>
       {data.map((card, index) => {
         return (
-          <TableRow>
+          <EnhancedTableRow>
             <Grid container>
               <Grid item xs={4}>
-                <TableCell>
+                <EnhancedTableCell>
                   <div>
                     <div>{card.cardName}</div>
                     <div>{card.setName}</div>
                   </div>
-                </TableCell>
+                </EnhancedTableCell>
               </Grid>
               <Grid item xs={1}>
-                <TableCell
+                <EnhancedTableCell
                   useColor
                   bold
                   isPositive={isPositive(card.spread)}
@@ -118,38 +118,40 @@ const MuiTableBody = (props) => {
                 >
                   {addZeroes(card.spread)}
                   {'%'}
-                </TableCell>
+                </EnhancedTableCell>
               </Grid>
               <Grid item xs={2}>
-                <TableCell
+                <EnhancedTableCell
                   useColor
                   bold
                   isPositive={isPositive(card.gainLoss)}
                   centerText
                 >
                   {addZeroes(card.gainLoss)}
-                </TableCell>
+                </EnhancedTableCell>
               </Grid>
               <Grid item xs={1}>
-                <TableCell centerText>{card.quantity}</TableCell>
+                <EnhancedTableCell centerText>
+                  {card.quantity}
+                </EnhancedTableCell>
               </Grid>
               <Grid item xs={2}>
-                <TableCell centerText>
+                <EnhancedTableCell centerText>
                   {'$'}
                   {addZeroes(card.avgPurchasePrice)}
-                </TableCell>
+                </EnhancedTableCell>
               </Grid>
               <Grid item xs={2}>
-                <TableCell centerText>
+                <EnhancedTableCell centerText>
                   {'$'}
                   {addZeroes(card.tcgPrice)}
-                </TableCell>
+                </EnhancedTableCell>
               </Grid>
             </Grid>
-          </TableRow>
+          </EnhancedTableRow>
         );
       })}
-    </TableBody>
+    </EnhancedTableBody>
   );
 };
 
@@ -189,8 +191,8 @@ const MuiTable = (props) => {
 
   return (
     <React.Fragment>
-      <TableContainer data-test='cardsTable'>
-        <Table stickyHeader>
+      <EnhancedTableContainer data-test='cardsTable'>
+        <EnhancedTable stickyHeader>
           <MuiTableHeaders
             order={order}
             orderBy={orderBy}
@@ -198,21 +200,21 @@ const MuiTable = (props) => {
             onRequestSort={handleRequestSort}
           />
           {!isLoadingCards && <MuiTableBody data={data} />}
-        </Table>
+        </EnhancedTable>
 
         {isLoadingCards ? (
           // Must render as full table to center with no scroll bar
-          <Table>
-            <TableBody>
-              <TableRow>
-                <TableCell padding noBorder colSpan={5}>
+          <EnhancedTable>
+            <EnhancedTableBody>
+              <EnhancedTableRow>
+                <EnhancedTableCell padding noBorder colSpan={5}>
                   <Spinner />
-                </TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
+                </EnhancedTableCell>
+              </EnhancedTableRow>
+            </EnhancedTableBody>
+          </EnhancedTable>
         ) : (
-          <TablePagination
+          <EnhancedTablePagination
             rowsPerPageOptions={[5, 10, 25]}
             component='div'
             count={cards.length}
@@ -223,7 +225,7 @@ const MuiTable = (props) => {
             onChangeRowsPerPage={handleChangeRowsPerPage}
           />
         )}
-      </TableContainer>
+      </EnhancedTableContainer>
     </React.Fragment>
   );
 };

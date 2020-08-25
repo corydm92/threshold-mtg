@@ -1,8 +1,8 @@
 import React from 'react';
 import TableHead from '@material-ui/core/TableHead';
 
-const MuiTableHead = (props) => {
+const EnhancedTableHead = (props) => {
   return <TableHead>{props.children}</TableHead>;
 };
 
-export default MuiTableHead;
+export default EnhancedTableHead;

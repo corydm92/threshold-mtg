@@ -1,8 +1,8 @@
 import React from 'react';
 import Table from '@material-ui/core/Table';
 
-function MuiTable(props) {
+function EnhancedTable(props) {
   return <Table>{props.children}</Table>;
 }
 
-export default MuiTable;
+export default EnhancedTable;
