@@ -1,8 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { isEmpty } from 'lodash';
 import CardsTable from './CardsTable';
 import SideBar from './SideBar';
 import Grid from '@material-ui/core/Grid';
+import EnhancedToolbar from '../component-library/mui/components/Toolbar';
+import TableDisplayIcons from './TableDisplayIcons';
+import { listDisplay } from '../constants/tableDisplayIcons';
 
 const CardsView = (props) => {
   const {
@@ -21,14 +24,31 @@ const CardsView = (props) => {
     ...props,
   };
 
+  const [activeDisplay, setActiveDisplay] = useState(listDisplay);
+
   useEffect(() => {
     if (!isEmpty(cards) && isLoadingCards) {
       isLoadingCardsFalse();
     }
   }, [cards, isLoadingCards, isLoadingCardsFalse]);
 
+  const handleDisplayChange = (display) => {
+    setActiveDisplay(display);
+  };
+
   return (
     <div data-test='cardsView'>
+      <EnhancedToolbar>
+        <Grid container>
+          <Grid item xs={10}></Grid>
+          <Grid item xs={2}>
+            <TableDisplayIcons
+              onClick={handleDisplayChange}
+              activeDisplay={activeDisplay}
+            />
+          </Grid>
+        </Grid>
+      </EnhancedToolbar>
       <Grid spacing={2} container>
         <Grid item xs={2}>
           <SideBar

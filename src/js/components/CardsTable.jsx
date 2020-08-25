@@ -160,7 +160,7 @@ const MuiTable = (props) => {
 
   const [order, setOrder] = useState('desc');
   const [orderBy, setOrderBy] = useState('spread');
-  const [rowPerPage, setRowPerPage] = useState(25);
+  const [rowPerPage, setRowPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(0);
   const [data, setData] = useState(cards);
 
@@ -187,6 +187,7 @@ const MuiTable = (props) => {
 
   const handleChangeRowsPerPage = (event) => {
     setRowPerPage(event.target.value);
+    setCurrentPage(0);
   };
 
   return (
