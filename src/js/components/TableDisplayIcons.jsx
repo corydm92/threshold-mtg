@@ -7,6 +7,8 @@ import ViewComfyIcon from '@material-ui/icons/ViewComfy';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 
+import { listDisplay, imageDisplay } from '../constants/tableDisplayIcons';
+
 const useStyles = makeStyles((theme) => {
   return {
     root: {},
@@ -49,8 +51,8 @@ const TableDisplayIcons = (props) => {
         leaveDelay={1}
       >
         <IconButton
-          className={getClasses('image')}
-          onClick={() => onClick('image')}
+          className={getClasses(imageDisplay)}
+          onClick={() => onClick(imageDisplay)}
         >
           <ViewComfyIcon fontSize='large' />
         </IconButton>
@@ -64,8 +66,8 @@ const TableDisplayIcons = (props) => {
         leaveDelay={200}
       >
         <IconButton
-          className={getClasses('list')}
-          onClick={() => onClick('list')}
+          className={getClasses(listDisplay)}
+          onClick={() => onClick(listDisplay)}
         >
           <ViewListIcon fontSize='large' />
         </IconButton>

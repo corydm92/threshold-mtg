@@ -5,6 +5,7 @@ import SideBar from './SideBar';
 import Grid from '@material-ui/core/Grid';
 import EnhancedToolbar from '../component-library/mui/components/Toolbar';
 import TableDisplayIcons from './TableDisplayIcons';
+import { listDisplay } from '../constants/tableDisplayIcons';
 
 const CardsView = (props) => {
   const {
@@ -23,7 +24,7 @@ const CardsView = (props) => {
     ...props,
   };
 
-  const [activeDisplay, setActiveDisplay] = useState('list');
+  const [activeDisplay, setActiveDisplay] = useState(listDisplay);
 
   useEffect(() => {
     if (!isEmpty(cards) && isLoadingCards) {
