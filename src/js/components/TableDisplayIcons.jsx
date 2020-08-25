@@ -48,7 +48,6 @@ const TableDisplayIcons = (props) => {
         arrow
         enterDelay={500}
         enterNextDelay={500}
-        leaveDelay={1}
       >
         <IconButton
           className={getClasses(imageDisplay)}
@@ -63,7 +62,6 @@ const TableDisplayIcons = (props) => {
         arrow
         enterDelay={500}
         enterNextDelay={500}
-        leaveDelay={200}
       >
         <IconButton
           className={getClasses(listDisplay)}
