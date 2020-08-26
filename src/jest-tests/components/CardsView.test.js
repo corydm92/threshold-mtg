@@ -2,7 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import CardsView from '../../js/components/CardsView';
 import { findByTestAttr } from '../../utils/testUtils';
-import { fullState } from '../../js/constants/test-mocks/reduxStoreMock';
+import { fullState } from '../test-mocks/reduxStoreMock';
 import { cardsSelector } from '../../selectors/cardsSelector';
 import { ThemeProvider } from '@material-ui/core/styles';
 import theme from '../../js//component-library/mui/mui-theme';

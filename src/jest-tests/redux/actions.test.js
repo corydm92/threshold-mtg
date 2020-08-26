@@ -24,12 +24,12 @@ import moxios from 'moxios';
 import { mockStore } from '../../utils/testUtils';
 
 // CONSTANTS
-import cardsGetMock from '../../js/constants/test-mocks/fetchCardsData/cardsGetMock';
-import cardsReducerAfterNormalize from '../../js/constants/test-mocks/fetchCardsData/cardsReducerAfterNormalize';
-import cardGetMock from '../../js/constants/test-mocks/fetchCardData/cardGetMock';
-import cardReducerAfterNormalize from '../../js/constants/test-mocks/fetchCardData/cardReducerAfterNormalize';
-import specPricesReducerAfterNormalize from '../../js/constants/test-mocks/fetchCardData/specPricesReducerAfterNormalize';
-import tcgPricesReducerAfterNormalize from '../../js/constants/test-mocks/fetchCardData/tcgPricesReducerAfterNormalize';
+import cardsGetMock from '../test-mocks/fetchCardsData/cardsGetMock';
+import cardsReducerAfterNormalize from '../test-mocks/fetchCardsData/cardsReducerAfterNormalize';
+import cardGetMock from '../test-mocks/fetchCardData/cardGetMock';
+import cardReducerAfterNormalize from '../test-mocks/fetchCardData/cardReducerAfterNormalize';
+import specPricesReducerAfterNormalize from '../test-mocks/fetchCardData/specPricesReducerAfterNormalize';
+import tcgPricesReducerAfterNormalize from '../test-mocks/fetchCardData/tcgPricesReducerAfterNormalize';
 
 describe('Action Creator Tests', () => {
   beforeEach(() => {

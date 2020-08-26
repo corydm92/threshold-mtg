@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { mockStore, findByTestAttr } from '../../utils/testUtils';
-import { fullState } from '../../js/constants/test-mocks/reduxStoreMock';
+import { fullState } from '../test-mocks/reduxStoreMock';
 import InventoryContainer from '../../js/containers/InventoryContainer';
 describe('InventoryContainer tests', () => {
   let wrapper;

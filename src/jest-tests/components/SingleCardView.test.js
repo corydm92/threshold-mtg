@@ -2,7 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { findByTestAttr } from '../../utils/testUtils';
 import SingleCardView from '../../js/components/SingleCardView';
-import { fullState } from '../../js/constants/test-mocks/reduxStoreMock';
+import { fullState } from '../test-mocks/reduxStoreMock';
 import { cardSelector } from '../../selectors/cardSelector';
 
 describe('SingleCardView tests', () => {

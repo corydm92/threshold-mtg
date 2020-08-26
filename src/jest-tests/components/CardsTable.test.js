@@ -2,7 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import CardsTable from '../../js/components/CardsTable';
 import { findByTestAttr } from '../../utils/testUtils';
-import { fullState } from '../../js/constants/test-mocks/reduxStoreMock';
+import { fullState } from '../test-mocks/reduxStoreMock';
 import { cardsSelector } from '../../selectors/cardsSelector';
 
 describe('CardsTable tests', () => {
