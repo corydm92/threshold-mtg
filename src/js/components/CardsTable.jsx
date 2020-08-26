@@ -10,6 +10,7 @@ import Spinner from '../component-library/mui/components/Spinner';
 import EnhancedTableSortLabel from '../component-library/mui/components/Table/EnhancedTableSortLabel';
 import Grid from '@material-ui/core/Grid';
 import { getPriceCategory, isPositive, addZeroes } from '../../utils';
+import { makeStyles } from '@material-ui/core/styles';
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] <= a[orderBy]) {
@@ -37,8 +38,17 @@ function stableSort(array, comparator) {
   return stabilizedThis.map((el) => el[0]);
 }
 
+const muiTableHeaderStyles = makeStyles((theme) => {
+  return {
+    root: {
+      display: 'flex',
+    },
+  };
+});
+
 const MuiTableHeaders = (props) => {
   const { order, orderBy, onRequestSort, priceCategory } = { ...props };
+  const classes = muiTableHeaderStyles();
 
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
@@ -65,11 +75,11 @@ const MuiTableHeaders = (props) => {
 
   return (
     <EnhancedTableHead>
-      <EnhancedTableRow>
+      <EnhancedTableRow className={classes.root}>
         <Grid container>
-          {tableHeaders.map((header) => {
+          {tableHeaders.map((header, index) => {
             return (
-              <Grid item xs={header.colSpan}>
+              <Grid item xs={header.colSpan} key={index}>
                 <EnhancedTableCell
                   sortDirection={orderBy === header.id ? order : false}
                   bold
@@ -99,7 +109,7 @@ const MuiTableBody = (props) => {
     <EnhancedTableBody>
       {data.map((card, index) => {
         return (
-          <EnhancedTableRow>
+          <EnhancedTableRow key={index}>
             <Grid container>
               <Grid item xs={4}>
                 <EnhancedTableCell>
@@ -217,7 +227,6 @@ const MuiTable = (props) => {
         ) : (
           <EnhancedTablePagination
             rowsPerPageOptions={[5, 10, 25]}
-            component='div'
             count={cards.length}
             rowsPerPage={rowPerPage}
             noBorder

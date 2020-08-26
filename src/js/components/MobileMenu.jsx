@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { IconButton, Menu, MenuItem } from '@material-ui/core/';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Link } from 'react-router-dom';
-import RouteMapper from '../../../routes/RouteMapper';
+import RouteMapper from '../routes/RouteMapper';
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -23,20 +23,6 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-export const CustomMenuItem = ({ path, classes, label, onClick, ...props }) => {
-  return (
-    <MenuItem
-      onClick={onClick}
-      component={Link}
-      to={path}
-      classes={{ ...classes }}
-      {...props}
-    >
-      {label}
-    </MenuItem>
-  );
-};
-
 const MuiMenuIcon = () => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
@@ -51,12 +37,14 @@ const MuiMenuIcon = () => {
 
   return (
     <div data-test='mobile-menu' className={classes.root}>
-      <IconButton edge={false} color='inherit' aria-label='menu'>
-        <MenuIcon
-          onClick={handleClick}
-          fontSize='large'
-          data-test='mobile-menu-icon'
-        />
+      <IconButton
+        edge={false}
+        color='inherit'
+        aria-label='menu'
+        onClick={handleClick}
+        data-test='mobile-menu-icon-button'
+      >
+        <MenuIcon fontSize='large' data-test='mobile-menu-icon' />
       </IconButton>
       <Menu
         data-test='mui-menu'
@@ -65,20 +53,24 @@ const MuiMenuIcon = () => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <CustomMenuItem
+        <MenuItem
           onClick={handleClose}
-          path={RouteMapper.home.path}
+          component={Link}
+          to={RouteMapper.home.path}
           classes={{ root: classes.links }}
-          label={RouteMapper.home.label}
           data-test='home-link'
-        />
-        <CustomMenuItem
+        >
+          {RouteMapper.home.label}
+        </MenuItem>
+        <MenuItem
           onClick={handleClose}
-          path={RouteMapper.inventory.cards.path}
+          component={Link}
+          to={RouteMapper.inventory.cards.path}
           classes={{ root: classes.links }}
-          label={RouteMapper.inventory.label}
           data-test='inventory-link'
-        />
+        >
+          {RouteMapper.inventory.label}
+        </MenuItem>
       </Menu>
     </div>
   );

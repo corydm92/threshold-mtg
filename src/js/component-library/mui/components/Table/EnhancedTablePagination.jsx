@@ -22,7 +22,6 @@ const EnhancedTablePagination = (props) => {
 
   const {
     rowsPerPageOptions,
-    component,
     count,
     rowsPerPage,
     page,
@@ -33,7 +32,7 @@ const EnhancedTablePagination = (props) => {
   return (
     <TablePagination
       rowsPerPageOptions={rowsPerPageOptions}
-      component={component}
+      component='div'
       count={count}
       rowsPerPage={rowsPerPage}
       page={page}

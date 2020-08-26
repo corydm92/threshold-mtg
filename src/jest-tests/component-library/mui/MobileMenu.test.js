@@ -1,9 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { findByTestAttr } from '../../../utils/testUtils';
-import MobileMenu, {
-  CustomMenuItem,
-} from '../../../js/component-library/mui/components/MobileMenu';
+import MobileMenu from '../../../js/components/MobileMenu';
 
 describe('MobileMenu tests', () => {
   describe('Menu Component', () => {
@@ -16,7 +14,7 @@ describe('MobileMenu tests', () => {
     it('Triggers setAnchorEl to event on menu click', () => {
       // Cannot make assertions, but simulating the click seems to register in coverage.
 
-      const mobileMenuIcon = findByTestAttr(wrapper, 'mobile-menu-icon');
+      const mobileMenuIcon = findByTestAttr(wrapper, 'mobile-menu-icon-button');
 
       const event = {
         currentTarget: {},
@@ -40,26 +38,12 @@ describe('MobileMenu tests', () => {
 
       expect(mobileMenu).not.toBeNull();
     });
-  });
 
-  describe('CustomMenuItem tests', () => {
-    let wrapper;
-
-    beforeEach(() => {
-      const props = {
-        path: '/test-path',
-        classes: { test: 'class' },
-        label: 'test label',
-        onClick: () => {},
-        'data-test': 'home-link',
-      };
-
-      wrapper = shallow(<CustomMenuItem {...props} />);
-    });
-
-    it('Renders the CustomMenuItem Component', () => {
-      const customMenuItem = findByTestAttr(wrapper, 'home-link');
-      expect(customMenuItem).not.toBeNull();
+    it('Renders the a MenuItem Component', () => {
+      const homeLink = findByTestAttr(wrapper, 'home-link');
+      const inventoryLink = findByTestAttr(wrapper, 'inventory-link');
+      expect(homeLink).not.toBeNull();
+      expect(inventoryLink).not.toBeNull();
     });
   });
 });
