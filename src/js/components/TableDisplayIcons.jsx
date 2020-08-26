@@ -41,7 +41,7 @@ const TableDisplayIcons = (props) => {
   };
 
   return (
-    <Container className={classes.container}>
+    <Container className={classes.container} dataTest={'TableDisplayIcons'}>
       <Tooltip
         title='Image View'
         placement='bottom'
@@ -50,6 +50,7 @@ const TableDisplayIcons = (props) => {
         enterNextDelay={500}
       >
         <IconButton
+          data-test={imageDisplay}
           className={getClasses(imageDisplay)}
           onClick={() => onClick(imageDisplay)}
         >
@@ -64,6 +65,7 @@ const TableDisplayIcons = (props) => {
         enterNextDelay={500}
       >
         <IconButton
+          data-test={listDisplay}
           className={getClasses(listDisplay)}
           onClick={() => onClick(listDisplay)}
         >

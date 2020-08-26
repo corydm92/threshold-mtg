@@ -7,7 +7,7 @@ describe('Container Component', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(<Container />);
+    wrapper = shallow(<Container dataTest='container' />);
   });
 
   it('Renders Container without errors', () => {
