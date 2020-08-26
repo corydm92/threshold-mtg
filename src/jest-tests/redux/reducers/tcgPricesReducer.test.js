@@ -1,7 +1,7 @@
 import tcgPricesReducer, {
   initState,
 } from '../../../redux/reducers/tcgPricesReducer';
-import { fullState } from '../../../js/constants/test-mocks/reduxStoreMock';
+import { fullState } from '../../test-mocks/reduxStoreMock';
 import {
   SET_TCG_PRICES_SUCCESSFUL,
   SET_TCG_PRICES_FAILED,

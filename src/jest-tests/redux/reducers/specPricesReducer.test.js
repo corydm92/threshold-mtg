@@ -1,7 +1,7 @@
 import specPricesReducer, {
   initState,
 } from '../../../redux/reducers/specPricesReducer';
-import { fullState } from '../../../js/constants/test-mocks/reduxStoreMock';
+import { fullState } from '../../test-mocks/reduxStoreMock';
 import {
   SET_SPEC_PRICES_SUCCESSFUL,
   SET_SPEC_PRICES_FAILED,
