@@ -2,7 +2,14 @@ import React from 'react';
 import { imageDisplay, listDisplay } from '../constants/tableDisplayIcons';
 import Container from '../component-library/mui/components/Container';
 import EnhancedTypography from '../component-library/mui/components/Typography';
-import StarOutlineIcon from '@material-ui/icons/StarOutlined';
+import StarIcon from '@material-ui/icons/Star';
+
+const IconHolder = (props) => {
+  const { foil } = { ...props };
+  return (
+    <React.Fragment>{foil ? <StarIcon htmlColor='gold' /> : ''}</React.Fragment>
+  );
+};
 
 const ListView = (props) => {
   const { cardName, setName, tcgUrl, tcgInventoryUrl, foil } = { ...props };
@@ -11,7 +18,7 @@ const ListView = (props) => {
     <Container disableGutters dataTest='ListView'>
       <EnhancedTypography largeText>{cardName}</EnhancedTypography>
       <EnhancedTypography>{setName}</EnhancedTypography>
-      {foil ? <StarOutlineIcon /> : ''}
+      <IconHolder foil={foil} />
     </Container>
   );
 };
