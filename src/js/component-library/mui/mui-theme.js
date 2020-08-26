@@ -22,6 +22,7 @@ const theme = createMuiTheme({
     },
   },
   typography: {
+    htmlFontSize: 16,
     fontFamily: ['Raleway, sans-serif', 'Roboto, sans-serif'],
   },
 });

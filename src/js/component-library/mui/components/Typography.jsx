@@ -1,8 +1,27 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => {
+  console.log(theme);
+  return {
+    root: {},
+    typography: {
+      fontSize: (props) => (props.largeText ? '16px' : '14px'),
+      fontWeight: (props) =>
+        props.bold
+          ? theme.typography.fontWeightBold
+          : theme.typography.fontWeightRegular,
+    },
+  };
+});
 
 const EnhancedTypography = (props) => {
-  return <Typography>{props.children}</Typography>;
+  const classes = useStyles(props);
+  console.log(props.bold);
+  return (
+    <Typography className={classes.typography}>{props.children}</Typography>
+  );
 };
 
 export default EnhancedTypography;

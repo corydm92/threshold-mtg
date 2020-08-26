@@ -12,6 +12,7 @@ import Grid from '@material-ui/core/Grid';
 import { getPriceCategory, isPositive, addZeroes } from '../../utils';
 import { makeStyles } from '@material-ui/core/styles';
 import CardDetails from './CardDetails';
+import EnhancedTypography from '../component-library/mui/components/Typography';
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] <= a[orderBy]) {
@@ -83,7 +84,6 @@ const MuiTableHeaders = (props) => {
               <Grid item xs={header.colSpan} key={index}>
                 <EnhancedTableCell
                   sortDirection={orderBy === header.id ? order : false}
-                  bold
                   centerText={header.centerText}
                 >
                   <EnhancedTableSortLabel
@@ -91,7 +91,7 @@ const MuiTableHeaders = (props) => {
                     direction={orderBy === header.id ? order : 'desc'}
                     onClick={createSortHandler(header.id)}
                   >
-                    {header.label}
+                    <EnhancedTypography bold>{header.label}</EnhancedTypography>
                   </EnhancedTableSortLabel>
                 </EnhancedTableCell>
               </Grid>

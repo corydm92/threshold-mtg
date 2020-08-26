@@ -7,7 +7,7 @@ const ListView = (props) => {
   const { cardName, setName, tcgUrl, tcgInventoryUrl } = { ...props };
   return (
     <Container disableGutters dataTest='ListView'>
-      <EnhancedTypography>{cardName}</EnhancedTypography>
+      <EnhancedTypography largeText>{cardName}</EnhancedTypography>
       <EnhancedTypography>{setName}</EnhancedTypography>
     </Container>
   );
@@ -41,7 +41,7 @@ const CardDetails = (props) => {
           tcgInventoryUrl={tcgInventoryUrl}
         />
       );
-    default:
+    case listDisplay:
       return (
         <ListView
           cardName={cardName}
@@ -50,6 +50,8 @@ const CardDetails = (props) => {
           tcgInventoryUrl={tcgInventoryUrl}
         />
       );
+    default:
+      break;
   }
 };
 
