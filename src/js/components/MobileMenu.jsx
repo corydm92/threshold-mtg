@@ -42,6 +42,7 @@ const MuiMenuIcon = () => {
         color='inherit'
         aria-label='menu'
         onClick={handleClick}
+        data-test='mobile-menu-icon-button'
       >
         <MenuIcon fontSize='large' data-test='mobile-menu-icon' />
       </IconButton>
