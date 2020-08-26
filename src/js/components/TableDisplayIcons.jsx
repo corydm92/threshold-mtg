@@ -41,7 +41,7 @@ const TableDisplayIcons = (props) => {
   };
 
   return (
-    <Container className={classes.container}>
+    <Container className={classes.container} dataTest={'TableDisplayIcons'}>
       <Tooltip
         title='Image View'
         placement='bottom'
