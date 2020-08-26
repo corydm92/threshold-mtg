@@ -30,8 +30,9 @@ const useStyles = makeStyles((theme) => {
 
 const EnhancedTableCell = (props) => {
   const classes = useStyles(props);
+  const { colSpan, component } = { ...props };
   return (
-    <TableCell className={classes.root} colSpan={props.colSpan}>
+    <TableCell className={classes.root} colSpan={colSpan} component={component}>
       {props.children}
     </TableCell>
   );

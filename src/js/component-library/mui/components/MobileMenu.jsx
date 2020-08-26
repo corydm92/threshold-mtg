@@ -51,12 +51,13 @@ const MuiMenuIcon = () => {
 
   return (
     <div data-test='mobile-menu' className={classes.root}>
-      <IconButton edge={false} color='inherit' aria-label='menu'>
-        <MenuIcon
-          onClick={handleClick}
-          fontSize='large'
-          data-test='mobile-menu-icon'
-        />
+      <IconButton
+        edge={false}
+        color='inherit'
+        aria-label='menu'
+        onClick={handleClick}
+      >
+        <MenuIcon fontSize='large' data-test='mobile-menu-icon' />
       </IconButton>
       <Menu
         data-test='mui-menu'

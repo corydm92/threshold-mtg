@@ -2,7 +2,17 @@ import React from 'react';
 import TableRow from '@material-ui/core/TableRow';
 
 const EnhancedTableRow = (props) => {
-  return <TableRow data-test={'cards-table-row'}>{props.children}</TableRow>;
+  const { classes, className, component } = { ...props };
+  return (
+    <TableRow
+      classes={classes}
+      className={className}
+      data-test={'cards-table-row'}
+      component={component}
+    >
+      {props.children}
+    </TableRow>
+  );
 };
 
 export default EnhancedTableRow;

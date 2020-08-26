@@ -10,6 +10,7 @@ import Spinner from '../component-library/mui/components/Spinner';
 import EnhancedTableSortLabel from '../component-library/mui/components/Table/EnhancedTableSortLabel';
 import Grid from '@material-ui/core/Grid';
 import { getPriceCategory, isPositive, addZeroes } from '../../utils';
+import { makeStyles } from '@material-ui/core/styles';
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] <= a[orderBy]) {
@@ -37,8 +38,17 @@ function stableSort(array, comparator) {
   return stabilizedThis.map((el) => el[0]);
 }
 
+const muiTableHeaderStyles = makeStyles((theme) => {
+  return {
+    root: {
+      display: 'flex',
+    },
+  };
+});
+
 const MuiTableHeaders = (props) => {
   const { order, orderBy, onRequestSort, priceCategory } = { ...props };
+  const classes = muiTableHeaderStyles();
 
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
@@ -64,16 +74,17 @@ const MuiTableHeaders = (props) => {
   ];
 
   return (
-    <EnhancedTableHead>
-      <EnhancedTableRow>
+    <EnhancedTableHead component='div'>
+      <EnhancedTableRow component='div' className={classes.root}>
         <Grid container>
-          {tableHeaders.map((header) => {
+          {tableHeaders.map((header, index) => {
             return (
-              <Grid item xs={header.colSpan}>
+              <Grid item xs={header.colSpan} key={index}>
                 <EnhancedTableCell
                   sortDirection={orderBy === header.id ? order : false}
                   bold
                   centerText={header.centerText}
+                  component='div'
                 >
                   <EnhancedTableSortLabel
                     active={orderBy === header.id}
@@ -96,13 +107,13 @@ const MuiTableBody = (props) => {
   const { data } = { ...props };
 
   return (
-    <EnhancedTableBody>
+    <EnhancedTableBody component='div'>
       {data.map((card, index) => {
         return (
-          <EnhancedTableRow>
+          <EnhancedTableRow component='div'>
             <Grid container>
               <Grid item xs={4}>
-                <EnhancedTableCell>
+                <EnhancedTableCell component='div'>
                   <div>
                     <div>{card.cardName}</div>
                     <div>{card.setName}</div>
@@ -111,6 +122,7 @@ const MuiTableBody = (props) => {
               </Grid>
               <Grid item xs={1}>
                 <EnhancedTableCell
+                  component='div'
                   useColor
                   bold
                   isPositive={isPositive(card.spread)}
@@ -122,6 +134,7 @@ const MuiTableBody = (props) => {
               </Grid>
               <Grid item xs={2}>
                 <EnhancedTableCell
+                  component='div'
                   useColor
                   bold
                   isPositive={isPositive(card.gainLoss)}
@@ -131,18 +144,18 @@ const MuiTableBody = (props) => {
                 </EnhancedTableCell>
               </Grid>
               <Grid item xs={1}>
-                <EnhancedTableCell centerText>
+                <EnhancedTableCell component='div' centerText>
                   {card.quantity}
                 </EnhancedTableCell>
               </Grid>
               <Grid item xs={2}>
-                <EnhancedTableCell centerText>
+                <EnhancedTableCell component='div' centerText>
                   {'$'}
                   {addZeroes(card.avgPurchasePrice)}
                 </EnhancedTableCell>
               </Grid>
               <Grid item xs={2}>
-                <EnhancedTableCell centerText>
+                <EnhancedTableCell component='div' centerText>
                   {'$'}
                   {addZeroes(card.tcgPrice)}
                 </EnhancedTableCell>
@@ -193,7 +206,7 @@ const MuiTable = (props) => {
   return (
     <React.Fragment>
       <EnhancedTableContainer data-test='CardsTable'>
-        <EnhancedTable stickyHeader>
+        <EnhancedTable component='div' stickyHeader>
           <MuiTableHeaders
             order={order}
             orderBy={orderBy}
@@ -206,9 +219,9 @@ const MuiTable = (props) => {
         {isLoadingCards ? (
           // Must render as full table to center with no scroll bar
           <EnhancedTable>
-            <EnhancedTableBody>
-              <EnhancedTableRow>
-                <EnhancedTableCell padding noBorder colSpan={5}>
+            <EnhancedTableBody component='div'>
+              <EnhancedTableRow component='div'>
+                <EnhancedTableCell component='div' padding noBorder colSpan={5}>
                   <Spinner />
                 </EnhancedTableCell>
               </EnhancedTableRow>

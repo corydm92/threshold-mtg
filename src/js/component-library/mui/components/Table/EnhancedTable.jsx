@@ -2,7 +2,8 @@ import React from 'react';
 import Table from '@material-ui/core/Table';
 
 function EnhancedTable(props) {
-  return <Table>{props.children}</Table>;
+  const { component } = { ...props };
+  return <Table component={component}>{props.children}</Table>;
 }
 
 export default EnhancedTable;
