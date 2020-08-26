@@ -9,21 +9,33 @@ import {
 
 describe('Sidebar tests', () => {
   let wrapper;
-  const activeClick = jest.fn();
+  const onClick = jest.fn();
 
-  describe('Whole Component', () => {
-    beforeEach(() => {
-      const props = {
-        activeClick,
-        activeDisplay: listDisplay,
-      };
+  beforeEach(() => {
+    const props = {
+      onClick,
+      activeDisplay: listDisplay,
+    };
 
-      wrapper = shallow(<TableDisplayIcons {...props} />).dive();
-    });
+    wrapper = shallow(<TableDisplayIcons {...props} />).dive();
+  });
 
-    it('Renders the Component', () => {
-      const tableDisplayIcons = findByTestAttr(wrapper, 'TableDisplayIcons');
-      expect(tableDisplayIcons).toHaveLength(1);
-    });
+  it('Renders the Component', () => {
+    const tableDisplayIcons = findByTestAttr(wrapper, 'TableDisplayIcons');
+    expect(tableDisplayIcons).toHaveLength(1);
+  });
+
+  it('Triggers onClick for imageDisplay', () => {
+    const imageDisplayIcon = findByTestAttr(wrapper, imageDisplay);
+    expect(imageDisplayIcon).toHaveLength(1);
+    imageDisplayIcon.simulate('click');
+    expect(onClick).toHaveBeenCalled();
+  });
+
+  it('Triggers onClick for listDisplay', () => {
+    const listDisplayIcon = findByTestAttr(wrapper, listDisplay);
+    expect(listDisplayIcon).toHaveLength(1);
+    listDisplayIcon.simulate('click');
+    expect(onClick).toHaveBeenCalled();
   });
 });

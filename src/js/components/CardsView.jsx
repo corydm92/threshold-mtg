@@ -33,6 +33,7 @@ const CardsView = (props) => {
   }, [cards, isLoadingCards, isLoadingCardsFalse]);
 
   const handleDisplayChange = (display) => {
+    console.log('jere');
     setActiveDisplay(display);
   };
 

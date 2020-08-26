@@ -19,7 +19,7 @@ describe('CardsTable tests', () => {
     });
 
     it('Renders the Component', () => {
-      const cardsTable = findByTestAttr(wrapper, 'cardsTable');
+      const cardsTable = findByTestAttr(wrapper, 'CardsTable');
       expect(cardsTable).toHaveLength(1);
     });
   });
@@ -35,7 +35,7 @@ describe('CardsTable tests', () => {
     });
 
     it('Renders the Component', () => {
-      const cardsTable = findByTestAttr(wrapper, 'cardsTable');
+      const cardsTable = findByTestAttr(wrapper, 'CardsTable');
       const cardsTableRow = findByTestAttr(wrapper, 'cards-table-row');
       expect(cardsTable).toHaveLength(1);
       expect(cardsTableRow).toBeTruthy();
