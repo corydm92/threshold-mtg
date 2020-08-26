@@ -12,6 +12,13 @@ const useStyles = makeStyles((theme) => {
     root: {},
     svg: {
       fill: theme.palette.primary.main,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    container: {
+      display: 'flex',
+      alignItems: 'center',
     },
   };
 });
@@ -22,9 +29,13 @@ const IconHolder = (props) => {
 
   console.log(classes);
   return (
-    <Container data-test='IconHolder'>
+    <Container
+      classes={{ root: classes.container }}
+      disableGutters
+      dataTest='IconHolder'
+    >
       {foil ? <StarIcon htmlColor='gold' /> : ''}
-      <SvgIcon className={classes.svg}>
+      <SvgIcon component='div' className={classes.svg}>
         <svg
           aria-hidden='true'
           class=''
