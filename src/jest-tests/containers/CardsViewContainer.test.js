@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import CardsViewContainer from '../../js/containers/CardsViewContainer';
 import { mockStore } from '../../utils/testUtils';
-import { fullState } from '../../js/constants/reduxStoreMock';
+import { fullState } from '../../js/constants/test-mocks/reduxStoreMock';
 
 describe('CardsViewContainer tests', () => {
   let wrapper;
