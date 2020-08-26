@@ -1,15 +1,56 @@
 import React from 'react';
+import { imageDisplay, listDisplay } from '../constants/tableDisplayIcons';
+import Container from '../component-library/mui/components/Container';
+import EnhancedTypography from '../component-library/mui/components/Typography';
 
-const ListView = () => {
-  return <div data-test='ListView'></div>;
+const ListView = (props) => {
+  const { cardName, setName, tcgUrl, tcgInventoryUrl } = { ...props };
+  return (
+    <Container disableGutters dataTest='ListView'>
+      <EnhancedTypography>{cardName}</EnhancedTypography>
+      <EnhancedTypography>{setName}</EnhancedTypography>
+    </Container>
+  );
 };
 
-const ImageView = () => {
+const ImageView = (props) => {
+  const { cardName, setName, tcgUrl, tcgImageUrl, tcgInventoryUrl } = {
+    ...props,
+  };
   return <div data-test='ImageView'></div>;
 };
 
-const CardDetails = () => {
-  return <div></div>;
+const CardDetails = (props) => {
+  const {
+    activeDisplay,
+    cardName,
+    setName,
+    tcgUrl,
+    tcgImageUrl,
+    tcgInventoryUrl,
+  } = { ...props };
+
+  switch (activeDisplay) {
+    case imageDisplay:
+      return (
+        <ImageView
+          cardName={cardName}
+          setName={setName}
+          tcgUrl={tcgUrl}
+          tcgImageUrl={tcgImageUrl}
+          tcgInventoryUrl={tcgInventoryUrl}
+        />
+      );
+    default:
+      return (
+        <ListView
+          cardName={cardName}
+          setName={setName}
+          tcgUrl={tcgUrl}
+          tcgInventoryUrl={tcgInventoryUrl}
+        />
+      );
+  }
 };
 
 export default CardDetails;

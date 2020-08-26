@@ -64,6 +64,7 @@ const CardsView = (props) => {
             cards={cards}
             isLoadingCards={isLoadingCards}
             priceCategory={priceCategory}
+            activeDisplay={activeDisplay}
           />
         </Grid>
       </Grid>

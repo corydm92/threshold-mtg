@@ -104,12 +104,11 @@ const MuiTableHeaders = (props) => {
 };
 
 const MuiTableBody = (props) => {
-  const { data } = { ...props };
+  const { data, activeDisplay } = { ...props };
 
   return (
     <EnhancedTableBody>
       {data.map((card, index) => {
-        console.log(card);
         return (
           <EnhancedTableRow key={index}>
             <Grid container>
@@ -118,11 +117,11 @@ const MuiTableBody = (props) => {
                   <CardDetails
                     cardName={card.cardName}
                     setName={card.setName}
+                    tcgUrl={card.tcgUrl}
+                    tcgImageUrl={card.tcgImageUrl}
+                    tcgInventoryUrl={card.tcgInventoryUrl}
+                    activeDisplay={activeDisplay}
                   />
-                  {/* <div>
-                    <div>{card.cardName}</div>
-                    <div>{card.setName}</div>
-                  </div> */}
                 </EnhancedTableCell>
               </Grid>
               <Grid item xs={1}>
@@ -174,7 +173,7 @@ const MuiTableBody = (props) => {
 };
 
 const MuiTable = (props) => {
-  const { cards, isLoadingCards, priceCategory } = { ...props };
+  const { cards, isLoadingCards, priceCategory, activeDisplay } = { ...props };
 
   const [order, setOrder] = useState('desc');
   const [orderBy, setOrderBy] = useState('spread');
@@ -218,7 +217,9 @@ const MuiTable = (props) => {
             priceCategory={priceCategory}
             onRequestSort={handleRequestSort}
           />
-          {!isLoadingCards && <MuiTableBody data={data} />}
+          {!isLoadingCards && (
+            <MuiTableBody data={data} activeDisplay={activeDisplay} />
+          )}
         </EnhancedTable>
 
         {isLoadingCards ? (
