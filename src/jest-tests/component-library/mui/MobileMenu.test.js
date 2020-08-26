@@ -1,9 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { findByTestAttr } from '../../../utils/testUtils';
-import MobileMenu, {
-  CustomMenuItem,
-} from '../../../js/component-library/mui/components/MobileMenu';
+import MobileMenu, { CustomMenuItem } from '../../../js/components/MobileMenu';
 
 describe('MobileMenu tests', () => {
   describe('Menu Component', () => {
