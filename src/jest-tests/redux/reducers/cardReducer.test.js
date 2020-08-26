@@ -3,7 +3,7 @@ import {
   FETCH_CARD_DATA_SUCCESSFUL,
   FETCH_CARD_DATA_FAILED,
 } from '../../../redux/actionTypes';
-import { fullState } from '../../../js/constants/reduxStoreMock';
+import { fullState } from '../../test-mocks/reduxStoreMock';
 
 const mockCardReducer = { ...fullState.cardReducer };
 

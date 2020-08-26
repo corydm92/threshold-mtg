@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { mockStore } from '../../utils/testUtils';
-import { fullState } from '../../js/constants/reduxStoreMock';
+import { fullState } from '../test-mocks/reduxStoreMock';
 import HomePageContainer from '../../js/containers/HomePageContainer';
 
 describe('HomePageContainer tests', () => {

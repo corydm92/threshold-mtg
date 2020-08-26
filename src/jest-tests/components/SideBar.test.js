@@ -2,7 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import SideBar from '../../js/components/SideBar';
 import { findByTestAttr } from '../../utils/testUtils';
-import { fullState } from '../../js/constants/reduxStoreMock';
+import { fullState } from '../test-mocks/reduxStoreMock';
 import { ThemeProvider } from '@material-ui/core/styles';
 import theme from '../../js//component-library/mui/mui-theme';
 
