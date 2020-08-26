@@ -74,8 +74,8 @@ const MuiTableHeaders = (props) => {
   ];
 
   return (
-    <EnhancedTableHead component='div'>
-      <EnhancedTableRow component='div' className={classes.root}>
+    <EnhancedTableHead>
+      <EnhancedTableRow className={classes.root}>
         <Grid container>
           {tableHeaders.map((header, index) => {
             return (
@@ -84,7 +84,6 @@ const MuiTableHeaders = (props) => {
                   sortDirection={orderBy === header.id ? order : false}
                   bold
                   centerText={header.centerText}
-                  component='div'
                 >
                   <EnhancedTableSortLabel
                     active={orderBy === header.id}
@@ -107,13 +106,13 @@ const MuiTableBody = (props) => {
   const { data } = { ...props };
 
   return (
-    <EnhancedTableBody component='div'>
+    <EnhancedTableBody>
       {data.map((card, index) => {
         return (
-          <EnhancedTableRow component='div'>
+          <EnhancedTableRow key={index}>
             <Grid container>
               <Grid item xs={4}>
-                <EnhancedTableCell component='div'>
+                <EnhancedTableCell>
                   <div>
                     <div>{card.cardName}</div>
                     <div>{card.setName}</div>
@@ -122,7 +121,6 @@ const MuiTableBody = (props) => {
               </Grid>
               <Grid item xs={1}>
                 <EnhancedTableCell
-                  component='div'
                   useColor
                   bold
                   isPositive={isPositive(card.spread)}
@@ -134,7 +132,6 @@ const MuiTableBody = (props) => {
               </Grid>
               <Grid item xs={2}>
                 <EnhancedTableCell
-                  component='div'
                   useColor
                   bold
                   isPositive={isPositive(card.gainLoss)}
@@ -144,18 +141,18 @@ const MuiTableBody = (props) => {
                 </EnhancedTableCell>
               </Grid>
               <Grid item xs={1}>
-                <EnhancedTableCell component='div' centerText>
+                <EnhancedTableCell centerText>
                   {card.quantity}
                 </EnhancedTableCell>
               </Grid>
               <Grid item xs={2}>
-                <EnhancedTableCell component='div' centerText>
+                <EnhancedTableCell centerText>
                   {'$'}
                   {addZeroes(card.avgPurchasePrice)}
                 </EnhancedTableCell>
               </Grid>
               <Grid item xs={2}>
-                <EnhancedTableCell component='div' centerText>
+                <EnhancedTableCell centerText>
                   {'$'}
                   {addZeroes(card.tcgPrice)}
                 </EnhancedTableCell>
@@ -206,7 +203,7 @@ const MuiTable = (props) => {
   return (
     <React.Fragment>
       <EnhancedTableContainer data-test='CardsTable'>
-        <EnhancedTable component='div' stickyHeader>
+        <EnhancedTable stickyHeader>
           <MuiTableHeaders
             order={order}
             orderBy={orderBy}
@@ -219,9 +216,9 @@ const MuiTable = (props) => {
         {isLoadingCards ? (
           // Must render as full table to center with no scroll bar
           <EnhancedTable>
-            <EnhancedTableBody component='div'>
-              <EnhancedTableRow component='div'>
-                <EnhancedTableCell component='div' padding noBorder colSpan={5}>
+            <EnhancedTableBody>
+              <EnhancedTableRow>
+                <EnhancedTableCell padding noBorder colSpan={5}>
                   <Spinner />
                 </EnhancedTableCell>
               </EnhancedTableRow>
@@ -230,7 +227,6 @@ const MuiTable = (props) => {
         ) : (
           <EnhancedTablePagination
             rowsPerPageOptions={[5, 10, 25]}
-            component='div'
             count={cards.length}
             rowsPerPage={rowPerPage}
             noBorder
