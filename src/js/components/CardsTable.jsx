@@ -11,6 +11,7 @@ import EnhancedTableSortLabel from '../component-library/mui/components/Table/En
 import Grid from '@material-ui/core/Grid';
 import { getPriceCategory, isPositive, addZeroes } from '../../utils';
 import { makeStyles } from '@material-ui/core/styles';
+import CardDetails from './CardDetails';
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] <= a[orderBy]) {
@@ -108,15 +109,20 @@ const MuiTableBody = (props) => {
   return (
     <EnhancedTableBody>
       {data.map((card, index) => {
+        console.log(card);
         return (
           <EnhancedTableRow key={index}>
             <Grid container>
               <Grid item xs={4}>
-                <EnhancedTableCell>
-                  <div>
+                <EnhancedTableCell data-cy='card-details'>
+                  <CardDetails
+                    cardName={card.cardName}
+                    setName={card.setName}
+                  />
+                  {/* <div>
                     <div>{card.cardName}</div>
                     <div>{card.setName}</div>
-                  </div>
+                  </div> */}
                 </EnhancedTableCell>
               </Grid>
               <Grid item xs={1}>
@@ -125,6 +131,7 @@ const MuiTableBody = (props) => {
                   bold
                   isPositive={isPositive(card.spread)}
                   centerText
+                  data-cy='card-spread'
                 >
                   {addZeroes(card.spread)}
                   {'%'}
@@ -136,23 +143,24 @@ const MuiTableBody = (props) => {
                   bold
                   isPositive={isPositive(card.gainLoss)}
                   centerText
+                  data-cy='card-gain-loss'
                 >
                   {addZeroes(card.gainLoss)}
                 </EnhancedTableCell>
               </Grid>
               <Grid item xs={1}>
-                <EnhancedTableCell centerText>
+                <EnhancedTableCell centerText data-cy='card-quantity'>
                   {card.quantity}
                 </EnhancedTableCell>
               </Grid>
               <Grid item xs={2}>
-                <EnhancedTableCell centerText>
+                <EnhancedTableCell centerText data-cy='card-avg-purchase-price'>
                   {'$'}
                   {addZeroes(card.avgPurchasePrice)}
                 </EnhancedTableCell>
               </Grid>
               <Grid item xs={2}>
-                <EnhancedTableCell centerText>
+                <EnhancedTableCell centerText data-cy='card-tcg-price'>
                   {'$'}
                   {addZeroes(card.tcgPrice)}
                 </EnhancedTableCell>

@@ -29,6 +29,9 @@ export const cardsSelector = createSelector(
         card.card_name +
         (card.foil ? ' - Foil' : '') +
         (card.language ? ` - ${card.language}` : '');
+      const tcgUrl = card.tcg_url;
+      const tcgImageUrl = card.tcg_imageUrl;
+      const tcgInventoryUrl = `https://store.tcgplayer.com/admin/product/manage/${card.tcg_productId}`;
 
       const avgPurchasePrice = getAvgPurchasePrice(card.spec_prices);
       const tcgPrice = roundTwoDecimals(
@@ -40,6 +43,9 @@ export const cardsSelector = createSelector(
       return {
         cardName,
         setName: card.set_name,
+        tcgUrl,
+        tcgImageUrl,
+        tcgInventoryUrl,
         spread,
         quantity: getCardQuantity(card.spec_prices),
         avgPurchasePrice,
