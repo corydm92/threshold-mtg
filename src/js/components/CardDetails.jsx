@@ -2,13 +2,16 @@ import React from 'react';
 import { imageDisplay, listDisplay } from '../constants/tableDisplayIcons';
 import Container from '../component-library/mui/components/Container';
 import EnhancedTypography from '../component-library/mui/components/Typography';
+import StarOutlineIcon from '@material-ui/icons/StarOutlined';
 
 const ListView = (props) => {
-  const { cardName, setName, tcgUrl, tcgInventoryUrl } = { ...props };
+  const { cardName, setName, tcgUrl, tcgInventoryUrl, foil } = { ...props };
+  console.log(foil);
   return (
     <Container disableGutters dataTest='ListView'>
       <EnhancedTypography largeText>{cardName}</EnhancedTypography>
       <EnhancedTypography>{setName}</EnhancedTypography>
+      {foil ? <StarOutlineIcon /> : ''}
     </Container>
   );
 };
@@ -21,35 +24,13 @@ const ImageView = (props) => {
 };
 
 const CardDetails = (props) => {
-  const {
-    activeDisplay,
-    cardName,
-    setName,
-    tcgUrl,
-    tcgImageUrl,
-    tcgInventoryUrl,
-  } = { ...props };
+  const { activeDisplay } = { ...props };
 
   switch (activeDisplay) {
     case imageDisplay:
-      return (
-        <ImageView
-          cardName={cardName}
-          setName={setName}
-          tcgUrl={tcgUrl}
-          tcgImageUrl={tcgImageUrl}
-          tcgInventoryUrl={tcgInventoryUrl}
-        />
-      );
+      return <ImageView {...props} />;
     case listDisplay:
-      return (
-        <ListView
-          cardName={cardName}
-          setName={setName}
-          tcgUrl={tcgUrl}
-          tcgInventoryUrl={tcgInventoryUrl}
-        />
-      );
+      return <ListView {...props} />;
     default:
       break;
   }

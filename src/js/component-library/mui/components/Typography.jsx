@@ -12,13 +12,14 @@ const useStyles = makeStyles((theme) => {
         props.bold
           ? theme.typography.fontWeightBold
           : theme.typography.fontWeightRegular,
+      display: 'flex',
+      alignItems: 'center',
     },
   };
 });
 
 const EnhancedTypography = (props) => {
   const classes = useStyles(props);
-  console.log(props.bold);
   return (
     <Typography className={classes.typography}>{props.children}</Typography>
   );
