@@ -20,7 +20,6 @@ const ListView = (props) => {
       <IconHolder
         scaleSize={0.8}
         foil={foil}
-        cardName={cardName}
         setName={setName}
         tcgUrl={tcgUrl}
         tcgSellerDashboardUrl={tcgSellerDashboardUrl}
