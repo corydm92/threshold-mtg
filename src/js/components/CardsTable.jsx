@@ -109,7 +109,6 @@ const MuiTableBody = (props) => {
   return (
     <EnhancedTableBody>
       {data.map((card, index) => {
-        console.log(card);
         return (
           <EnhancedTableRow key={index}>
             <Grid container>

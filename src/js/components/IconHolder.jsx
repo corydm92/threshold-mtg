@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => {
 
 const IconHolder = (props) => {
   const classes = useStyles(props);
-  const { foil, originalCardName, setName, tcgUrl, tcgSellerDashboardUrl } = {
+  const { foil, originalCardName, tcgUrl, tcgSellerDashboardUrl } = {
     ...props,
   };
 
