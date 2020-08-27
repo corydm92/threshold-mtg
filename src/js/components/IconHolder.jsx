@@ -35,9 +35,9 @@ const useStyles = makeStyles((theme) => {
       paddingLeft: (props) => `${10 * props.scaleSize}px`,
     },
     tcgStore: {
-      width: (props) => `${58 * props.scaleSize}px`,
+      width: (props) => `${59 * props.scaleSize}px`,
       height: (props) => `${22 * props.scaleSize}px`,
-      paddingLeft: (props) => `${10 * props.scaleSize}px`,
+      paddingLeft: (props) => `${8 * props.scaleSize}px`,
     },
     container: {
       display: 'flex',
@@ -199,7 +199,7 @@ l-75 39 -5 640 c-6 722 -4 794 14 794 8 0 67 -28 132 -62z m-1276 -1162 c14
             className={`${classes.root} ${classes.tcgStore}`}
             data-test='tcgstore-icon'
           >
-            <svg width='58px' viewBox='0 0 300.000000 111.000000'>
+            <svg width='59px' viewBox='0 0 300.000000 111.000000'>
               <g
                 transform='translate(0.000000,111.000000) scale(0.050000,-0.050000)'
                 stroke='none'
