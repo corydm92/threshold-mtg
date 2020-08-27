@@ -5,7 +5,14 @@ import EnhancedTypography from '../component-library/mui/components/Typography';
 import IconHolder from './IconHolder';
 
 const ListView = (props) => {
-  const { cardName, setName, tcgUrl, tcgInventoryUrl, foil } = { ...props };
+  const {
+    cardName,
+    originalCardName,
+    setName,
+    tcgUrl,
+    tcgSellerDashboardUrl,
+    foil,
+  } = { ...props };
   return (
     <Container disableGutters dataTest='ListView'>
       <EnhancedTypography largeText>{cardName}</EnhancedTypography>
@@ -16,13 +23,15 @@ const ListView = (props) => {
         cardName={cardName}
         setName={setName}
         tcgUrl={tcgUrl}
+        tcgSellerDashboardUrl={tcgSellerDashboardUrl}
+        originalCardName={originalCardName}
       />
     </Container>
   );
 };
 
 const ImageView = (props) => {
-  const { cardName, setName, tcgUrl, tcgImageUrl, tcgInventoryUrl } = {
+  const { cardName, setName, tcgUrl, tcgImageUrl, tcgSellerDashboardUrl } = {
     ...props,
   };
   return <div data-test='ImageView'></div>;

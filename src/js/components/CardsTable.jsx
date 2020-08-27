@@ -109,17 +109,19 @@ const MuiTableBody = (props) => {
   return (
     <EnhancedTableBody>
       {data.map((card, index) => {
+        console.log(card);
         return (
           <EnhancedTableRow key={index}>
             <Grid container>
               <Grid item xs={4}>
                 <EnhancedTableCell data-cy='card-details'>
                   <CardDetails
+                    originalCardName={card.originalCardName}
                     cardName={card.cardName}
                     setName={card.setName}
                     tcgUrl={card.tcgUrl}
                     tcgImageUrl={card.tcgImageUrl}
-                    tcgInventoryUrl={card.tcgInventoryUrl}
+                    tcgSellerDashboardUrl={card.tcgSellerDashboardUrl}
                     foil={card.foil}
                     activeDisplay={activeDisplay}
                   />

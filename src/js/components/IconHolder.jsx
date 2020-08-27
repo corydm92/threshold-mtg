@@ -4,6 +4,7 @@ import EnhancedTooltip from '../component-library/mui/components/Tooltip';
 import SvgIcon from '@material-ui/core/SvgIcon';
 import { makeStyles } from '@material-ui/styles';
 import { Link } from 'react-router-dom';
+import { formatCardKingdomBuylistLink } from '../constants/outsideSiteUrls';
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -11,16 +12,17 @@ const useStyles = makeStyles((theme) => {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      fill: theme.palette.primary.main,
+      // fill: theme.palette.primary.main,
+      fill: '#568EA3',
     },
     star: {
       width: (props) => `${29 * props.scaleSize}px`,
       height: (props) => `${29 * props.scaleSize}px`,
-      fill: 'gold',
+      fill: theme.palette.custom.gold,
     },
     tcgListing: {
-      width: (props) => `${23 * props.scaleSize}px`,
-      height: (props) => `${23 * props.scaleSize}px`,
+      width: (props) => `${19 * props.scaleSize}px`,
+      height: (props) => `${19 * props.scaleSize}px`,
       paddingLeft: (props) => `${props.foil ? 5 * props.scaleSize : 0}px`,
     },
     cardKingdom: {
@@ -50,7 +52,7 @@ const useStyles = makeStyles((theme) => {
 
 const IconHolder = (props) => {
   const classes = useStyles(props);
-  const { foil, cardName, setName, tcgUrl } = { ...props };
+  const { foil, cardName, originalCardName, setName, tcgUrl } = { ...props };
 
   return (
     <Container
@@ -83,7 +85,7 @@ const IconHolder = (props) => {
       {/* TCG LISTING ICON */}
 
       <EnhancedTooltip title='TCG Price'>
-        <Link to={{ pathname: tcgUrl }} params={{ test: 123 }} target='_blank'>
+        <Link to={{ pathname: tcgUrl }} target='_blank'>
           <SvgIcon
             component='div'
             className={`${classes.root} ${classes.tcgListing}`}
@@ -99,34 +101,40 @@ const IconHolder = (props) => {
       {/* CARD KINGDOM ICON */}
 
       <EnhancedTooltip title='CardKingdom Buylist'>
-        <SvgIcon
-          component='div'
-          className={`${classes.root} ${classes.cardKingdom}`}
-          data-test='cardkingdom-icon'
+        <Link
+          to={{ pathname: formatCardKingdomBuylistLink(originalCardName) }}
+          target='_blank'
         >
-          <svg height='25px' width='25px' viewBox='0 0 3.7041667 3.1750001'>
-            <g transform='translate(0 -293.82)'>
-              <path d='m0 293.82v1.1592h0.52042v2.0158h2.6633v-2.0158h0.52042v-1.1592h-0.57636v1.0908h-0.49196v-1.084h-0.54839v1.084h-0.47074v-1.084h-0.54839v1.084h-0.49196v-1.0908z'></path>
-            </g>
-          </svg>
-        </SvgIcon>
+          <SvgIcon
+            component='div'
+            className={`${classes.root} ${classes.cardKingdom}`}
+            data-test='cardkingdom-icon'
+          >
+            <svg height='25px' width='25px' viewBox='0 0 3.7041667 3.1750001'>
+              <g transform='translate(0 -293.82)'>
+                <path d='m0 293.82v1.1592h0.52042v2.0158h2.6633v-2.0158h0.52042v-1.1592h-0.57636v1.0908h-0.49196v-1.084h-0.54839v1.084h-0.47074v-1.084h-0.54839v1.084h-0.49196v-1.0908z' />
+              </g>
+            </svg>
+          </SvgIcon>
+        </Link>
       </EnhancedTooltip>
 
       {/* EDHREC ICON */}
 
       <EnhancedTooltip title='EDHREC'>
-        <SvgIcon
-          component='div'
-          className={`${classes.root} ${classes.edhRec}`}
-          data-test='edhrec-icon'
-        >
-          <svg height='29px' width='29px' viewBox='0 0 777.000000 582.000000'>
-            <g
-              transform='translate(0.000000,582.000000) scale(0.100000,-0.100000)'
-              stroke='none'
-            >
-              <path
-                d='M0 2910 l0 -2910 3885 0 3885 0 0 2910 0 2910 -3885 0 -3885 0 0
+        <Link to={{ pathname: tcgUrl }} target='_blank'>
+          <SvgIcon
+            component='div'
+            className={`${classes.root} ${classes.edhRec}`}
+            data-test='edhrec-icon'
+          >
+            <svg height='29px' width='29px' viewBox='0 0 777.000000 582.000000'>
+              <g
+                transform='translate(0.000000,582.000000) scale(0.100000,-0.100000)'
+                stroke='none'
+              >
+                <path
+                  d='M0 2910 l0 -2910 3885 0 3885 0 0 2910 0 2910 -3885 0 -3885 0 0
 -2910z m3063 2516 c99 -44 167 -157 167 -276 0 -56 -21 -116 -60 -170 -11 -15
 -20 -35 -20 -43 0 -14 21 -69 65 -172 20 -46 43 -101 61 -142 9 -21 22 -51 30
 -66 8 -16 14 -33 14 -38 0 -4 11 -32 24 -61 14 -29 43 -98 66 -153 23 -55 46
@@ -171,10 +179,11 @@ l-75 39 -5 640 c-6 722 -4 794 14 794 8 0 67 -28 132 -62z m-1276 -1162 c14
 215 113 48 25 155 80 237 123 83 42 170 89 195 102 25 14 110 59 190 101 80
 41 183 95 230 119 47 25 131 70 188 99 57 30 156 82 220 115 64 34 167 87 227
 118 108 55 196 100 225 117 59 33 178 89 190 89 8 0 26 -7 40 -14z'
-              />
-            </g>
-          </svg>
-        </SvgIcon>
+                />
+              </g>
+            </svg>
+          </SvgIcon>
+        </Link>
       </EnhancedTooltip>
 
       {/* TCG STORE ICON */}
