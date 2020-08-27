@@ -10,7 +10,13 @@ const ListView = (props) => {
     <Container disableGutters dataTest='ListView'>
       <EnhancedTypography largeText>{cardName}</EnhancedTypography>
       <EnhancedTypography>{setName}</EnhancedTypography>
-      <IconHolder scaleSize={1} foil={foil} />
+      <IconHolder
+        scaleSize={0.8}
+        foil={foil}
+        cardName={cardName}
+        setName={setName}
+        tcgUrl={tcgUrl}
+      />
     </Container>
   );
 };
