@@ -10,22 +10,31 @@ const useStyles = makeStyles((theme) => {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      height: '30px',
-      width: '30px',
       fill: theme.palette.primary.main,
     },
     star: {
+      width: (props) => `${29 * props.scaleSize}px`,
+      height: (props) => `${29 * props.scaleSize}px`,
       fill: 'gold',
     },
-    tcgListing: {},
-    cardKingdom: {
-      width: '23px',
-      position: 'relative',
-      top: '1px',
+    tcgListing: {
+      width: (props) => `${23 * props.scaleSize}px`,
+      height: (props) => `${23 * props.scaleSize}px`,
     },
-    edhRec: {},
+    cardKingdom: {
+      width: (props) => `${25 * props.scaleSize}px`,
+      height: (props) => `${25 * props.scaleSize}px`,
+      paddingLeft: (props) => `${5 * props.scaleSize}px`,
+    },
+    edhRec: {
+      width: (props) => `${29 * props.scaleSize}px`,
+      height: (props) => `${29 * props.scaleSize}px`,
+      paddingLeft: (props) => `${5 * props.scaleSize}px`,
+    },
     tcgStore: {
-      width: '60px',
+      width: (props) => `${58 * props.scaleSize}px`,
+      height: (props) => `${22 * props.scaleSize}px`,
+      paddingLeft: (props) => `${5 * props.scaleSize}px`,
     },
     container: {
       display: 'flex',
@@ -38,10 +47,9 @@ const useStyles = makeStyles((theme) => {
 });
 
 const IconHolder = (props) => {
-  const classes = useStyles();
+  const classes = useStyles(props);
   const { foil } = { ...props };
 
-  console.log(classes);
   return (
     <Container
       classes={{ root: classes.container }}
@@ -49,29 +57,56 @@ const IconHolder = (props) => {
       disableGutters
       dataTest='IconHolder'
     >
-      {foil ? <StarIcon className={`${classes.root} ${classes.star}`} /> : ''}
+      {/* STAR ICON */}
+
+      {foil ? (
+        <SvgIcon
+          component='div'
+          className={`${classes.root} ${classes.star}`}
+          data-test='foil-icon'
+        >
+          <svg
+            className={`${classes.root} ${classes.star}`}
+            focusable='false'
+            viewBox='0 0 24 24'
+            aria-hidden='true'
+            height='29px'
+            width='29px'
+          >
+            <path d='M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z'></path>
+          </svg>
+        </SvgIcon>
+      ) : null}
+
+      {/* {foil ? <StarIcon className={`${classes.root} ${classes.star}`} /> : ''} */}
+
+      {/* TCG LISTING ICON */}
+
       <SvgIcon
         component='div'
-        className={`${classes.root}`}
+        className={`${classes.root} ${classes.tcgListing}`}
         data-test='tcg-icon'
       >
         <svg
           aria-hidden='true'
-          class=''
+          className=''
           focusable='false'
-          height='20px'
-          width='20px'
+          height='23px'
+          width='23px'
           version='1.1'
           viewBox='0 0 10.399999 12'
           xmlns='http://www.w3.org/2000/svg'
         >
           <path
             d='m4.22 0.8h-2.5536c-0.4496 0-0.8 0.3576-0.8 0.8v8.8c0 0.4424 0.3584 0.8 0.8 0.8h7.0672c0.4496 0 0.8-0.3576 0.8-0.8v-8.8c9e-7 -0.4424-0.3584-0.8-0.8-0.8h-1.4896l0.5472 2.52c0.025596 0.0768-0.00804 0.14-0.1008 0.188-0.0672 0.0352-0.1472 0.0528-0.24 0.0528-0.041604 0-0.072 0-0.092796-4e-3l-2.2712 0.9552 0.656 3.2432c0.020004 0.051204 0.00804 0.099204-0.036 0.144-0.0432 0.044796-0.1096 0.075204-0.1968 0.0912-0.051996 0.00636-0.087996 0.0096-0.108 0.0096-0.1496 0-0.2584-0.039996-0.3256-0.12l-2.444-3.9624c-0.056-0.0776-0.0384-0.148 0.0544-0.212 0.0776-0.048 0.1648-0.072 0.264-0.072 0.02 0 0.0504 0.0032 0.092 0.0096l2.1968-1.128-1.02-1.7152zm-4.22 0.005604c0-0.4456 0.3576-0.8056 0.8-0.8056h8.8c0.4424 0 0.8 0.36 0.8 0.8056v10.389c0 0.4456-0.3576 0.8056-0.8 0.8056h-8.8c-0.4424 0-0.8-0.36-0.8-0.8056z'
-            fill-rule='evenodd'
-            stroke-width='.8'
+            fillRule='evenodd'
+            strokeWidth='.8'
           />
         </svg>
       </SvgIcon>
+
+      {/* CARD KINGDOM ICON */}
+
       <SvgIcon
         component='div'
         className={`${classes.root} ${classes.cardKingdom}`}
@@ -89,16 +124,19 @@ const IconHolder = (props) => {
           </g>
         </svg>
       </SvgIcon>
+
+      {/* EDHREC ICON */}
+
       <SvgIcon
         component='div'
-        className={`${classes.root}`}
+        className={`${classes.root} ${classes.edhRec}`}
         data-test='edhrec-icon'
       >
         <svg
           version='1.0'
           xmlns='http://www.w3.org/2000/svg'
-          height='20px'
-          width='20px'
+          height='29px'
+          width='29px'
           viewBox='0 0 777.000000 582.000000'
           preserveAspectRatio='xMidYMid meet'
         >
@@ -156,6 +194,9 @@ l-75 39 -5 640 c-6 722 -4 794 14 794 8 0 67 -28 132 -62z m-1276 -1162 c14
           </g>
         </svg>
       </SvgIcon>
+
+      {/* TCG STORE ICON */}
+
       <SvgIcon
         component='div'
         className={`${classes.root} ${classes.tcgStore}`}
@@ -164,8 +205,7 @@ l-75 39 -5 640 c-6 722 -4 794 14 794 8 0 67 -28 132 -62z m-1276 -1162 c14
         <svg
           xmlns='http://www.w3.org/2000/svg'
           version='1.0'
-          height='20px'
-          width='20px'
+          width='58px'
           viewBox='0 0 300.000000 111.000000'
           preserveAspectRatio='xMidYMid meet'
         >

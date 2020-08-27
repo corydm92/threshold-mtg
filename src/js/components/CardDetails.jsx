@@ -6,12 +6,11 @@ import IconHolder from './IconHolder';
 
 const ListView = (props) => {
   const { cardName, setName, tcgUrl, tcgInventoryUrl, foil } = { ...props };
-  console.log(foil);
   return (
     <Container disableGutters dataTest='ListView'>
       <EnhancedTypography largeText>{cardName}</EnhancedTypography>
       <EnhancedTypography>{setName}</EnhancedTypography>
-      <IconHolder foil={foil} />
+      <IconHolder scaleSize={1} foil={foil} />
     </Container>
   );
 };
