@@ -11,6 +11,8 @@ import EnhancedTableSortLabel from '../component-library/mui/components/Table/En
 import Grid from '@material-ui/core/Grid';
 import { getPriceCategory, isPositive, addZeroes } from '../../utils';
 import { makeStyles } from '@material-ui/core/styles';
+import CardDetails from './CardDetails';
+import EnhancedTypography from '../component-library/mui/components/Typography';
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] <= a[orderBy]) {
@@ -82,7 +84,6 @@ const MuiTableHeaders = (props) => {
               <Grid item xs={header.colSpan} key={index}>
                 <EnhancedTableCell
                   sortDirection={orderBy === header.id ? order : false}
-                  bold
                   centerText={header.centerText}
                 >
                   <EnhancedTableSortLabel
@@ -90,7 +91,7 @@ const MuiTableHeaders = (props) => {
                     direction={orderBy === header.id ? order : 'desc'}
                     onClick={createSortHandler(header.id)}
                   >
-                    {header.label}
+                    <EnhancedTypography bold>{header.label}</EnhancedTypography>
                   </EnhancedTableSortLabel>
                 </EnhancedTableCell>
               </Grid>
@@ -103,7 +104,7 @@ const MuiTableHeaders = (props) => {
 };
 
 const MuiTableBody = (props) => {
-  const { data } = { ...props };
+  const { data, activeDisplay } = { ...props };
 
   return (
     <EnhancedTableBody>
@@ -112,11 +113,17 @@ const MuiTableBody = (props) => {
           <EnhancedTableRow key={index}>
             <Grid container>
               <Grid item xs={4}>
-                <EnhancedTableCell>
-                  <div>
-                    <div>{card.cardName}</div>
-                    <div>{card.setName}</div>
-                  </div>
+                <EnhancedTableCell data-cy='card-details'>
+                  <CardDetails
+                    originalCardName={card.originalCardName}
+                    cardName={card.cardName}
+                    setName={card.setName}
+                    tcgUrl={card.tcgUrl}
+                    tcgImageUrl={card.tcgImageUrl}
+                    tcgSellerDashboardUrl={card.tcgSellerDashboardUrl}
+                    foil={card.foil}
+                    activeDisplay={activeDisplay}
+                  />
                 </EnhancedTableCell>
               </Grid>
               <Grid item xs={1}>
@@ -125,6 +132,7 @@ const MuiTableBody = (props) => {
                   bold
                   isPositive={isPositive(card.spread)}
                   centerText
+                  data-cy='card-spread'
                 >
                   {addZeroes(card.spread)}
                   {'%'}
@@ -136,23 +144,24 @@ const MuiTableBody = (props) => {
                   bold
                   isPositive={isPositive(card.gainLoss)}
                   centerText
+                  data-cy='card-gain-loss'
                 >
                   {addZeroes(card.gainLoss)}
                 </EnhancedTableCell>
               </Grid>
               <Grid item xs={1}>
-                <EnhancedTableCell centerText>
+                <EnhancedTableCell centerText data-cy='card-quantity'>
                   {card.quantity}
                 </EnhancedTableCell>
               </Grid>
               <Grid item xs={2}>
-                <EnhancedTableCell centerText>
+                <EnhancedTableCell centerText data-cy='card-avg-purchase-price'>
                   {'$'}
                   {addZeroes(card.avgPurchasePrice)}
                 </EnhancedTableCell>
               </Grid>
               <Grid item xs={2}>
-                <EnhancedTableCell centerText>
+                <EnhancedTableCell centerText data-cy='card-tcg-price'>
                   {'$'}
                   {addZeroes(card.tcgPrice)}
                 </EnhancedTableCell>
@@ -166,7 +175,7 @@ const MuiTableBody = (props) => {
 };
 
 const MuiTable = (props) => {
-  const { cards, isLoadingCards, priceCategory } = { ...props };
+  const { cards, isLoadingCards, priceCategory, activeDisplay } = { ...props };
 
   const [order, setOrder] = useState('desc');
   const [orderBy, setOrderBy] = useState('spread');
@@ -210,7 +219,9 @@ const MuiTable = (props) => {
             priceCategory={priceCategory}
             onRequestSort={handleRequestSort}
           />
-          {!isLoadingCards && <MuiTableBody data={data} />}
+          {!isLoadingCards && (
+            <MuiTableBody data={data} activeDisplay={activeDisplay} />
+          )}
         </EnhancedTable>
 
         {isLoadingCards ? (

@@ -75,3 +75,38 @@ export const getPriceSpread = (currentPrice, purchasePrice) => {
     ((currentPrice - purchasePrice) / purchasePrice) * 100
   );
 };
+
+function replaceInCardName(cardName) {
+  const replaceTargets = [
+    ' (Borderless)',
+    ' (Extended Art)',
+    ' (JP Alternate Art)',
+    ' (Showcase)',
+    ' (Alternate Art)',
+  ];
+  for (let target of replaceTargets) {
+    cardName = cardName.replace(target, '');
+  }
+  return cardName;
+}
+
+export const formatCardKingdomBuylistLink = (cardName) => {
+  const baseUri =
+    'https://www.cardkingdom.com/purchasing/mtg_singles?filter%5Bsearch%5D=mtg_advanced&filter%5Bname%5D=';
+
+  const replacedCardname = replaceInCardName(cardName);
+
+  const outStr = baseUri + encodeURIComponent(replacedCardname);
+
+  return outStr;
+};
+
+export const formatEdhrecLink = (cardName) => {
+  const baseUri = 'https://edhrec.com/cards/';
+
+  const replacedCardname = replaceInCardName(cardName);
+
+  const outStr = baseUri + replacedCardname.split(' ').join('-');
+
+  return outStr;
+};

@@ -5,7 +5,7 @@ import Container from '../component-library/mui/components/Container';
 import ViewListIcon from '@material-ui/icons/ViewList';
 import ViewComfyIcon from '@material-ui/icons/ViewComfy';
 import IconButton from '@material-ui/core/IconButton';
-import Tooltip from '@material-ui/core/Tooltip';
+import EnhancedTooltip from '../component-library/mui/components/Tooltip';
 
 import { listDisplay, imageDisplay } from '../constants/tableDisplayIcons';
 
@@ -42,13 +42,7 @@ const TableDisplayIcons = (props) => {
 
   return (
     <Container className={classes.container} dataTest={'TableDisplayIcons'}>
-      <Tooltip
-        title='Image View'
-        placement='bottom'
-        arrow
-        enterDelay={500}
-        enterNextDelay={500}
-      >
+      <EnhancedTooltip title='Image View'>
         <IconButton
           data-test={imageDisplay}
           className={getClasses(imageDisplay)}
@@ -56,14 +50,8 @@ const TableDisplayIcons = (props) => {
         >
           <ViewComfyIcon fontSize='large' />
         </IconButton>
-      </Tooltip>
-      <Tooltip
-        title='List View'
-        placement='bottom'
-        arrow
-        enterDelay={500}
-        enterNextDelay={500}
-      >
+      </EnhancedTooltip>
+      <EnhancedTooltip title='List View'>
         <IconButton
           data-test={listDisplay}
           className={getClasses(listDisplay)}
@@ -71,7 +59,7 @@ const TableDisplayIcons = (props) => {
         >
           <ViewListIcon fontSize='large' />
         </IconButton>
-      </Tooltip>
+      </EnhancedTooltip>
     </Container>
   );
 };
