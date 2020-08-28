@@ -9,13 +9,23 @@ const useStyles = makeStyles((theme) => {
       width: 'auto',
       '& img': {
         maxHeight: '150px',
+        borderRadius: '5px',
       },
     },
     card: {
       display: 'flex',
     },
     foilCard: {
-      backgroundColor: 'rgba(0,0,0,1)',
+      '&:after': {
+        display: 'block',
+        position: 'relative',
+        backgroundImage:
+          'linear-gradient(110deg, rgb(255, 166, 0, .3) , rgb(255, 255, 0, .3), rgb(0, 128, 0, .3), rgb(0, 255, 255, .3), rgb(0, 0, 255, .3), rgb(238, 130, 238, .3))',
+        marginTop: '-155px',
+        height: '150px',
+        borderRadius: '5px',
+        content: "''",
+      },
     },
   };
 });
