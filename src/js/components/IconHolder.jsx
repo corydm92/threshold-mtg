@@ -5,6 +5,7 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 import { makeStyles } from '@material-ui/styles';
 import { Link } from 'react-router-dom';
 import { formatCardKingdomBuylistLink, formatEdhrecLink } from '../../utils';
+import ReactCountryFlag from 'react-country-flag';
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -51,9 +52,11 @@ const useStyles = makeStyles((theme) => {
 
 const IconHolder = (props) => {
   const classes = useStyles(props);
-  const { foil, originalCardName, tcgUrl, tcgSellerDashboardUrl } = {
+  const { foil, originalCardName, tcgUrl, tcgSellerDashboardUrl, language } = {
     ...props,
   };
+
+  console.log(language);
 
   return (
     <Container
@@ -83,7 +86,24 @@ const IconHolder = (props) => {
         </EnhancedTooltip>
       ) : null}
 
+      {/* FLAG ICON */}
+
       {/* TCG LISTING ICON */}
+
+      <EnhancedTooltip title='Foil'>
+        <SvgIcon
+          component='div'
+          className={`${classes.root}`}
+          data-test='foil-icon'
+        >
+          <ReactCountryFlag
+            className='emojiFlag'
+            countryCode='US'
+            svg
+            aria-label='United States'
+          />
+        </SvgIcon>
+      </EnhancedTooltip>
 
       <EnhancedTooltip title='TCG Player Listings'>
         <Link to={{ pathname: tcgUrl }} target='_blank'>

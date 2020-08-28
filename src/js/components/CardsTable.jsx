@@ -122,6 +122,7 @@ const MuiTableBody = (props) => {
                     tcgImageUrl={card.tcgImageUrl}
                     tcgSellerDashboardUrl={card.tcgSellerDashboardUrl}
                     foil={card.foil}
+                    language={card.language}
                     activeDisplay={activeDisplay}
                   />
                 </EnhancedTableCell>

@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
+      paddingLeft: theme.spacing(2),
     },
     gridItem: {
       display: 'flex',
@@ -37,6 +38,7 @@ const ListView = (props) => {
     tcgSellerDashboardUrl,
     foil,
     tcgImageUrl,
+    language,
   } = { ...props };
   return (
     <Container disableGutters dataTest='ListView'>
@@ -60,6 +62,7 @@ const ListView = (props) => {
         tcgUrl={tcgUrl}
         tcgSellerDashboardUrl={tcgSellerDashboardUrl}
         originalCardName={originalCardName}
+        language={language}
       />
     </Container>
   );
