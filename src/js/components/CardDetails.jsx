@@ -33,7 +33,6 @@ const ListView = (props) => {
   const classes = useStyles();
   const {
     cardName,
-    originalCardName,
     setName,
     tcgUrl,
     tcgSellerDashboardUrl,
@@ -47,7 +46,7 @@ const ListView = (props) => {
         <Grid
           item
           className={classes.gridItem}
-          xs='4'
+          xs={4}
           data-test='list-view-grid-item'
         >
           <CardImage imageUrl={tcgImageUrl} foil={foil} />
@@ -55,7 +54,7 @@ const ListView = (props) => {
         <Grid
           className={classes.textContainer}
           item
-          xs='8'
+          xs={8}
           data-test='list-view-grid-item'
         >
           <IconHolder
@@ -64,7 +63,7 @@ const ListView = (props) => {
             setName={setName}
             tcgUrl={tcgUrl}
             tcgSellerDashboardUrl={tcgSellerDashboardUrl}
-            originalCardName={originalCardName}
+            cardName={cardName}
             language={language}
           />
           <Container disableGutters>

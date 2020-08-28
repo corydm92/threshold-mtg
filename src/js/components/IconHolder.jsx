@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme) => {
 
 const IconHolder = (props) => {
   const classes = useStyles(props);
-  const { foil, originalCardName, tcgUrl, tcgSellerDashboardUrl, language } = {
+  const { foil, cardName, tcgUrl, tcgSellerDashboardUrl, language } = {
     ...props,
   };
 
@@ -136,7 +136,7 @@ const IconHolder = (props) => {
 
       <EnhancedTooltip title='CardKingdom Buylist'>
         <Link
-          to={{ pathname: formatCardKingdomBuylistLink(originalCardName) }}
+          to={{ pathname: formatCardKingdomBuylistLink(cardName) }}
           target='_blank'
         >
           <SvgIcon
@@ -156,10 +156,7 @@ const IconHolder = (props) => {
       {/* EDHREC ICON */}
 
       <EnhancedTooltip title='EDHREC'>
-        <Link
-          to={{ pathname: formatEdhrecLink(originalCardName) }}
-          target='_blank'
-        >
+        <Link to={{ pathname: formatEdhrecLink(cardName) }} target='_blank'>
           <SvgIcon
             component='div'
             className={`${classes.root} ${classes.edhRec}`}
