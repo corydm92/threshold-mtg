@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => {
       alignItems: 'center',
     },
     iconHolder: {
-      paddingTop: theme.spacing(1),
+      paddingBottom: theme.spacing(1),
     },
   };
 });

@@ -17,9 +17,10 @@ const useStyles = makeStyles((theme) => {
       },
     },
     textContainer: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
+      // display: 'flex',
+      // alignItems: 'center',
+      // justifyContent: 'center',
+      // flexWrap: 'wrap',
       paddingLeft: theme.spacing(2),
     },
     gridItem: {
@@ -42,11 +43,30 @@ const ListView = (props) => {
   } = { ...props };
   return (
     <Container disableGutters dataTest='ListView'>
-      <Grid container>
-        <Grid item className={classes.gridItem} xs='4'>
+      <Grid container data-test='list-view-grid-container'>
+        <Grid
+          item
+          className={classes.gridItem}
+          xs='4'
+          data-test='list-view-grid-item'
+        >
           <CardImage imageUrl={tcgImageUrl} foil={foil} />
         </Grid>
-        <Grid className={classes.textContainer} item xs='8'>
+        <Grid
+          className={classes.textContainer}
+          item
+          xs='8'
+          data-test='list-view-grid-item'
+        >
+          <IconHolder
+            scaleSize={0.8}
+            foil={foil}
+            setName={setName}
+            tcgUrl={tcgUrl}
+            tcgSellerDashboardUrl={tcgSellerDashboardUrl}
+            originalCardName={originalCardName}
+            language={language}
+          />
           <Container disableGutters>
             <EnhancedTypography largeText bold>
               {cardName}
@@ -55,15 +75,6 @@ const ListView = (props) => {
           </Container>
         </Grid>
       </Grid>
-      <IconHolder
-        scaleSize={0.8}
-        foil={foil}
-        setName={setName}
-        tcgUrl={tcgUrl}
-        tcgSellerDashboardUrl={tcgSellerDashboardUrl}
-        originalCardName={originalCardName}
-        language={language}
-      />
     </Container>
   );
 };
