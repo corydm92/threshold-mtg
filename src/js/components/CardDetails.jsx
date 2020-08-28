@@ -21,6 +21,9 @@ const useStyles = makeStyles((theme) => {
       alignItems: 'center',
       justifyContent: 'center',
     },
+    gridItem: {
+      display: 'flex',
+    },
   };
 });
 
@@ -38,7 +41,7 @@ const ListView = (props) => {
   return (
     <Container disableGutters dataTest='ListView'>
       <Grid container>
-        <Grid item xs='4'>
+        <Grid item className={classes.gridItem} xs='4'>
           <CardImage imageUrl={tcgImageUrl} foil={foil} />
         </Grid>
         <Grid className={classes.textContainer} item xs='8'>

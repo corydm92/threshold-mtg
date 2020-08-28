@@ -7,6 +7,7 @@ const useStyles = makeStyles((theme) => {
     root: {
       display: 'inline-flex',
       width: 'auto',
+      margin: 0,
       '& img': {
         maxHeight: '150px',
         borderRadius: '5px',
@@ -34,7 +35,7 @@ const NonFoilImage = (props) => {
   const { imageUrl } = { ...props };
 
   return (
-    <EnhancedContainer data-test='image-wrapper' disableGutters>
+    <EnhancedContainer dataTest='image-wrapper' disableGutters>
       <img src={imageUrl} alt='mtg-img' />
     </EnhancedContainer>
   );
@@ -45,7 +46,7 @@ const FoilImage = (props) => {
   const classes = useStyles();
   return (
     <EnhancedContainer
-      data-test='foil-image-wrapper'
+      dataTest='foil-image-wrapper'
       className={classes.foilCard}
       disableGutters
     >
@@ -58,7 +59,11 @@ const CardImage = (props) => {
   const classes = useStyles();
   const { imageUrl, foil } = { ...props };
   return (
-    <EnhancedContainer classes={{ root: classes.root }} disableGutters>
+    <EnhancedContainer
+      dataTest='CardImage'
+      classes={{ root: classes.root }}
+      disableGutters
+    >
       {foil ? (
         <FoilImage imageUrl={imageUrl} />
       ) : (
