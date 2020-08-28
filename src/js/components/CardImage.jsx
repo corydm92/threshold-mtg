@@ -1,6 +1,7 @@
 import React from 'react';
 import EnhancedContainer from '../component-library/mui/components/Container';
 import { makeStyles } from '@material-ui/styles';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -9,8 +10,10 @@ const useStyles = makeStyles((theme) => {
       width: 'auto',
       margin: 0,
       '& img': {
-        maxHeight: '150px',
-        borderRadius: '5px',
+        height: '150px',
+        width: '105px',
+        borderRadius: '8px',
+        border: '1px solid black',
       },
     },
     card: {
@@ -24,34 +27,30 @@ const useStyles = makeStyles((theme) => {
           'linear-gradient(110deg, rgb(255, 166, 0, .3) , rgb(255, 255, 0, .3), rgb(0, 128, 0, .3), rgb(0, 255, 255, .3), rgb(0, 0, 255, .3), rgb(238, 130, 238, .3))',
         marginTop: '-155px',
         height: '150px',
-        borderRadius: '5px',
+        width: '105px',
+        borderRadius: '8px',
         content: "''",
       },
     },
   };
 });
 
-const NonFoilImage = (props) => {
-  const { imageUrl } = { ...props };
-
-  return (
-    <EnhancedContainer dataTest='image-wrapper' disableGutters>
-      <img src={imageUrl} alt='mtg-img' />
-    </EnhancedContainer>
-  );
-};
-
-const FoilImage = (props) => {
-  const { imageUrl } = { ...props };
+const Image = (props) => {
+  const { imageUrl, foil } = { ...props };
   const classes = useStyles();
+
+  const dataTest = foil ? 'foil-image-wrapper' : 'image-wrapper';
+
   return (
-    <EnhancedContainer
-      dataTest='foil-image-wrapper'
-      className={classes.foilCard}
-      disableGutters
-    >
-      <img src={imageUrl} alt='mtg-img' />
-    </EnhancedContainer>
+    <Link to={{ pathname: imageUrl }} target='_blank'>
+      <EnhancedContainer
+        className={foil ? classes.foilCard : classes.card}
+        dataTest={dataTest}
+        disableGutters
+      >
+        <img src={imageUrl} alt='mtg-img' />
+      </EnhancedContainer>
+    </Link>
   );
 };
 
@@ -64,11 +63,7 @@ const CardImage = (props) => {
       classes={{ root: classes.root }}
       disableGutters
     >
-      {foil ? (
-        <FoilImage imageUrl={imageUrl} />
-      ) : (
-        <NonFoilImage imageUrl={imageUrl} />
-      )}
+      <Image imageUrl={imageUrl} foil={foil} />
     </EnhancedContainer>
   );
 };
