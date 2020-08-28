@@ -10,6 +10,7 @@ const theme = createMuiTheme({
     },
     custom: {
       darkGray: 'rgba(125, 124, 122, 1)',
+      lightGray: 'rgba(224, 224,224, 1)',
       green: 'rgba(77, 139, 49, 1)',
       red: 'rgba(219, 34, 42, 1)',
       gold: 'rgba(243, 201, 105, 1)',

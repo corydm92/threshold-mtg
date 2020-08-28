@@ -115,13 +115,14 @@ const MuiTableBody = (props) => {
               <Grid item xs={4}>
                 <EnhancedTableCell data-cy='card-details'>
                   <CardDetails
-                    originalCardName={card.originalCardName}
+                    cardName={card.cardName}
                     cardName={card.cardName}
                     setName={card.setName}
                     tcgUrl={card.tcgUrl}
                     tcgImageUrl={card.tcgImageUrl}
                     tcgSellerDashboardUrl={card.tcgSellerDashboardUrl}
                     foil={card.foil}
+                    language={card.language}
                     activeDisplay={activeDisplay}
                   />
                 </EnhancedTableCell>

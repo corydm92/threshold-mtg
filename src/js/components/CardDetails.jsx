@@ -3,28 +3,73 @@ import { imageDisplay, listDisplay } from '../constants/tableDisplayIcons';
 import Container from '../component-library/mui/components/Container';
 import EnhancedTypography from '../component-library/mui/components/Typography';
 import IconHolder from './IconHolder';
+import CardImage from './CardImage';
+import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/styles';
+
+const useStyles = makeStyles((theme) => {
+  return {
+    root: {
+      display: 'inline-flex',
+      width: 'auto',
+      '& img': {
+        maxHeight: '150px',
+      },
+    },
+    textContainer: {
+      paddingLeft: theme.spacing(2),
+    },
+    gridItem: {
+      display: 'flex',
+    },
+  };
+});
 
 const ListView = (props) => {
+  const classes = useStyles();
   const {
     cardName,
-    originalCardName,
     setName,
     tcgUrl,
     tcgSellerDashboardUrl,
     foil,
+    tcgImageUrl,
+    language,
   } = { ...props };
   return (
     <Container disableGutters dataTest='ListView'>
-      <EnhancedTypography largeText>{cardName}</EnhancedTypography>
-      <EnhancedTypography>{setName}</EnhancedTypography>
-      <IconHolder
-        scaleSize={0.8}
-        foil={foil}
-        setName={setName}
-        tcgUrl={tcgUrl}
-        tcgSellerDashboardUrl={tcgSellerDashboardUrl}
-        originalCardName={originalCardName}
-      />
+      <Grid container data-test='list-view-grid-container'>
+        <Grid
+          item
+          className={classes.gridItem}
+          xs={4}
+          data-test='list-view-grid-item'
+        >
+          <CardImage imageUrl={tcgImageUrl} foil={foil} />
+        </Grid>
+        <Grid
+          className={classes.textContainer}
+          item
+          xs={8}
+          data-test='list-view-grid-item'
+        >
+          <IconHolder
+            scaleSize={0.8}
+            foil={foil}
+            setName={setName}
+            tcgUrl={tcgUrl}
+            tcgSellerDashboardUrl={tcgSellerDashboardUrl}
+            cardName={cardName}
+            language={language}
+          />
+          <Container disableGutters>
+            <EnhancedTypography largeText bold>
+              {cardName}
+            </EnhancedTypography>
+            <EnhancedTypography>{setName}</EnhancedTypography>
+          </Container>
+        </Grid>
+      </Grid>
     </Container>
   );
 };

@@ -2,7 +2,12 @@ import React from 'react';
 import TableContainer from '@material-ui/core/TableContainer';
 
 const EnhancedTableContainer = (props) => {
-  return <TableContainer component='div'>{props.children}</TableContainer>;
+  const { classes, className } = { ...props };
+  return (
+    <TableContainer className={className} classes={classes} component='div'>
+      {props.children}
+    </TableContainer>
+  );
 };
 
 export default EnhancedTableContainer;

@@ -25,9 +25,6 @@ export const cardsSelector = createSelector(
         return {};
       }
 
-      const cardName =
-        card.card_name + (card.language ? ` - ${card.language}` : '');
-
       const tcgSellerDashboardUrl = `https://store.tcgplayer.com/admin/product/manage/${card.tcg_productId}`;
 
       const avgPurchasePrice = getAvgPurchasePrice(card.spec_prices);
@@ -38,8 +35,7 @@ export const cardsSelector = createSelector(
       const spread = getPriceSpread(tcgPrice, avgPurchasePrice);
 
       return {
-        cardName,
-        originalCardName: card.card_name, // Used for uri concatination
+        cardName: card.card_name,
         foil: card.foil,
         language: card.language,
         setName: card.set_name,
