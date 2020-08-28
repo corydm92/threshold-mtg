@@ -17,10 +17,6 @@ const useStyles = makeStyles((theme) => {
       },
     },
     textContainer: {
-      // display: 'flex',
-      // alignItems: 'center',
-      // justifyContent: 'center',
-      // flexWrap: 'wrap',
       paddingLeft: theme.spacing(2),
     },
     gridItem: {
