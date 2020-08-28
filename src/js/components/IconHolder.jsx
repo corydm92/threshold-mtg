@@ -6,6 +6,17 @@ import { makeStyles } from '@material-ui/styles';
 import { Link } from 'react-router-dom';
 import { formatCardKingdomBuylistLink, formatEdhrecLink } from '../../utils';
 import ReactCountryFlag from 'react-country-flag';
+import countryCodes from '../constants/countryCodes';
+
+function getPadding(foil, language, scaleSize) {
+  if (foil) {
+    return 5 * scaleSize;
+  } else if (!foil && countryCodes[language]) {
+    return 8 * scaleSize;
+  } else {
+    return 0;
+  }
+}
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -15,15 +26,23 @@ const useStyles = makeStyles((theme) => {
       justifyContent: 'center',
       fill: theme.palette.custom.blue,
     },
+    flag: {
+      '& img': {
+        width: (props) => `${29 * props.scaleSize}px !important`,
+        height: (props) => `${29 * props.scaleSize}px !important`,
+      },
+    },
     star: {
       width: (props) => `${29 * props.scaleSize}px`,
       height: (props) => `${29 * props.scaleSize}px`,
       fill: theme.palette.custom.gold,
+      paddingLeft: (props) => `${countryCodes[props.language] ? 4 : 0}px`,
     },
     tcgListing: {
       width: (props) => `${19 * props.scaleSize}px`,
       height: (props) => `${19 * props.scaleSize}px`,
-      paddingLeft: (props) => `${props.foil ? 5 * props.scaleSize : 0}px`,
+      paddingLeft: (props) =>
+        `${getPadding(props.foil, props.language, props.scaleSize)}px`,
     },
     cardKingdom: {
       width: (props) => `${25 * props.scaleSize}px`,
@@ -56,8 +75,6 @@ const IconHolder = (props) => {
     ...props,
   };
 
-  console.log(language);
-
   return (
     <Container
       classes={{ root: classes.container }}
@@ -65,6 +82,24 @@ const IconHolder = (props) => {
       disableGutters
       dataTest='IconHolder'
     >
+      {/* FLAG ICON */}
+
+      {countryCodes[language] && (
+        <EnhancedTooltip title={language}>
+          <SvgIcon
+            component='div'
+            className={`${classes.root} ${classes.flag}`}
+            data-test='flag-icon'
+          >
+            <ReactCountryFlag
+              countryCode={countryCodes[language]}
+              svg
+              aria-label={language}
+            />
+          </SvgIcon>
+        </EnhancedTooltip>
+      )}
+
       {/* STAR ICON */}
 
       {foil ? (
@@ -74,36 +109,14 @@ const IconHolder = (props) => {
             className={`${classes.root} ${classes.star}`}
             data-test='foil-icon'
           >
-            <svg
-              className={`${classes.root} ${classes.star}`}
-              viewBox='0 0 24 24'
-              height='29px'
-              width='29px'
-            >
+            <svg viewBox='0 0 24 24' height='29px' width='29px'>
               <path d='M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z' />
             </svg>
           </SvgIcon>
         </EnhancedTooltip>
       ) : null}
 
-      {/* FLAG ICON */}
-
       {/* TCG LISTING ICON */}
-
-      <EnhancedTooltip title='Foil'>
-        <SvgIcon
-          component='div'
-          className={`${classes.root}`}
-          data-test='foil-icon'
-        >
-          <ReactCountryFlag
-            className='emojiFlag'
-            countryCode='US'
-            svg
-            aria-label='United States'
-          />
-        </SvgIcon>
-      </EnhancedTooltip>
 
       <EnhancedTooltip title='TCG Player Listings'>
         <Link to={{ pathname: tcgUrl }} target='_blank'>
