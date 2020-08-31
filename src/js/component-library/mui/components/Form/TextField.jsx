@@ -28,7 +28,6 @@ const EnhancedTextField = (props) => {
     required,
     label,
     fullWidth = false,
-    defaultValue = '',
     id = '',
     useAutocomplete,
     autocompleteOptions,
@@ -36,24 +35,25 @@ const EnhancedTextField = (props) => {
     ...props,
   };
 
-  const testOptions = [{ name: 'test1' }, { name: 'test2' }];
-  const EnhancedTextField = (params) => (
-    <TextField
-      {...params}
-      className={classes.root}
-      required={required}
-      fullWidth={fullWidth}
-      id={id}
-      label={label}
-      defaultValue={defaultValue}
-    />
-  );
-
+  const EnhancedTextField = (params) => {
+    return (
+      <TextField
+        {...params}
+        className={classes.root}
+        required={required}
+        fullWidth={fullWidth}
+        id={id}
+        InputLabelProps={{
+          shrink: true,
+        }}
+        label={label}
+      />
+    );
+  };
   if (useAutocomplete) {
     return (
       <EnhancedAutocomplete
         options={autocompleteOptions}
-        // getOptionLabel={(option) => option.name}
         renderInput={(params) => <EnhancedTextField {...params} />}
       />
     );

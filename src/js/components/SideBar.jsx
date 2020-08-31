@@ -77,7 +77,9 @@ const useStyles = makeStyles((theme) => ({
   cardContent: {
     display: 'flex',
     justifyContent: 'center',
-    // width: '100%',
+  },
+  filterCardContent: {
+    paddingTop: 0,
   },
 }));
 
@@ -94,7 +96,7 @@ const SideBar = (props) => {
   } = { ...props };
 
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = React.useState(true);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -130,7 +132,7 @@ const SideBar = (props) => {
           }}
         >
           <FormControl className={classes.formControl} component='fieldset'>
-            <FormLabel bold className={classes.formLabel} component='legend'>
+            <FormLabel className={classes.formLabel} component='legend'>
               TCG Price Categories
             </FormLabel>
             <RadioGroup
@@ -233,7 +235,7 @@ const SideBar = (props) => {
           </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout='auto' unmountOnExit>
-          <CardContent>
+          <CardContent className={classes.filterCardContent}>
             <SideBarFilterForm collectionCardNames={collectionCardNames} />
           </CardContent>
         </Collapse>
