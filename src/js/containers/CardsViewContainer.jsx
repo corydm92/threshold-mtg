@@ -7,11 +7,16 @@ import {
   setPriceCategoryHigh,
   setPriceCategoryMarket,
 } from '../../redux/actions';
-import { cardsSelector } from '../../selectors/cardsSelector';
+import {
+  cardsSelector,
+  cardNamesSelector,
+  setNamesSelector,
+} from '../../selectors/cardsSelector';
 
 const mapStateToProps = (state) => {
   return {
     cards: cardsSelector(state),
+    allCardNames: cardNamesSelector(state),
     isLoadingCards: state.isLoadingReducer.cards,
     priceCategory: state.tcgPriceCategory,
   };

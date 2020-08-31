@@ -12,6 +12,28 @@ const getCards = (state) => state.cardsReducer.entities.cards;
 const getCardsResults = (state) => state.cardsReducer.result;
 const getTcgPriceCategory = (state) => state.tcgPriceCategory;
 
+export const cardNamesSelector = createSelector(
+  [getCards, getCardsResults],
+  (cards, results) => {
+    return results.map((result) => {
+      const card = { ...cards[result] };
+
+      return card.card_name;
+    });
+  }
+);
+
+export const setNamesSelector = createSelector(
+  [getCards, getCardsResults],
+  (cards, results) => {
+    return results.map((result) => {
+      const card = { ...cards[result] };
+
+      return card.set_name;
+    });
+  }
+);
+
 export const cardsSelector = createSelector(
   [getCards, getCardsResults, getTcgPriceCategory],
   (cards, results, priceCategory) => {
