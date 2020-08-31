@@ -15,6 +15,11 @@ const useStyles = makeStyles((theme) => ({
     },
     margin: `${theme.spacing(1)}px 0`,
   },
+  autoComplete: {
+    '& .MuiAutocomplete-popper': {
+      display: 'none',
+    },
+  },
 }));
 
 const EnhancedTextField = (props) => {
@@ -26,6 +31,7 @@ const EnhancedTextField = (props) => {
     defaultValue = '',
     id = '',
     useAutocomplete,
+    autocompleteOptions,
   } = {
     ...props,
   };
@@ -46,8 +52,8 @@ const EnhancedTextField = (props) => {
   if (useAutocomplete) {
     return (
       <EnhancedAutocomplete
-        options={testOptions}
-        getOptionLabel={(option) => option.name}
+        options={autocompleteOptions}
+        // getOptionLabel={(option) => option.name}
         renderInput={(params) => <EnhancedTextField {...params} />}
       />
     );

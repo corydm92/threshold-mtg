@@ -15,22 +15,26 @@ const getTcgPriceCategory = (state) => state.tcgPriceCategory;
 export const cardNamesSelector = createSelector(
   [getCards, getCardsResults],
   (cards, results) => {
-    return results.map((result) => {
-      const card = { ...cards[result] };
+    return results
+      .map((result) => {
+        const card = { ...cards[result] };
 
-      return card.card_name;
-    });
+        return card.card_name;
+      })
+      .sort();
   }
 );
 
 export const setNamesSelector = createSelector(
   [getCards, getCardsResults],
   (cards, results) => {
-    return results.map((result) => {
-      const card = { ...cards[result] };
+    return results
+      .map((result) => {
+        const card = { ...cards[result] };
 
-      return card.set_name;
-    });
+        return card.set_name;
+      })
+      .sort();
   }
 );
 

@@ -2,10 +2,17 @@ import React from 'react';
 import EnhancedButton from '../component-library/mui/components/Form/Button';
 import EnhancedTextField from '../component-library/mui/components/Form/TextField';
 
-const SideBarFilterForm = () => {
+const SideBarFilterForm = (props) => {
+  console.log(props);
+  const { collectionCardNames } = { ...props };
   return (
     <form data-test='side-bar-filter-form'>
-      <EnhancedTextField fullWidth label='Card Name' />
+      <EnhancedTextField
+        fullWidth
+        label='Card Name'
+        useAutocomplete
+        autocompleteOptions={collectionCardNames}
+      />
       {/* Card Name (Input) {'\n'}
       Card Set (Input) {'\n'}
       Foil (Checkbox) {'\n'}

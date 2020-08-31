@@ -16,7 +16,7 @@ import {
 const mapStateToProps = (state) => {
   return {
     cards: cardsSelector(state),
-    allCardNames: cardNamesSelector(state),
+    collectionCardNames: cardNamesSelector(state),
     isLoadingCards: state.isLoadingReducer.cards,
     priceCategory: state.tcgPriceCategory,
   };

@@ -83,7 +83,7 @@ const useStyles = makeStyles((theme) => ({
 
 const SideBar = (props) => {
   // STORE
-  const { priceCategory } = { ...props };
+  const { priceCategory, collectionCardNames } = { ...props };
 
   // ACTIONS
   const {
@@ -234,7 +234,7 @@ const SideBar = (props) => {
         </CardActions>
         <Collapse in={expanded} timeout='auto' unmountOnExit>
           <CardContent>
-            <SideBarFilterForm />
+            <SideBarFilterForm collectionCardNames={collectionCardNames} />
           </CardContent>
         </Collapse>
       </Card>
