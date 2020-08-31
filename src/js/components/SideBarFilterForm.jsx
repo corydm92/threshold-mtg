@@ -5,7 +5,7 @@ import EnhancedTextField from '../component-library/mui/components/Form/TextFiel
 const SideBarFilterForm = () => {
   return (
     <form data-test='side-bar-filter-form'>
-      <EnhancedTextField label='Card Name' />
+      <EnhancedTextField fullWidth label='Card Name' />
       {/* Card Name (Input) {'\n'}
       Card Set (Input) {'\n'}
       Foil (Checkbox) {'\n'}

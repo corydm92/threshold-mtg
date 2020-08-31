@@ -33,7 +33,6 @@ const useStyles = makeStyles((theme) => ({
   },
   expand: {
     transform: 'rotate(0deg)',
-    // marginLeft: 'auto',
     justifyContent: 'center',
     alignItems: 'center',
     transition: theme.transitions.create('transform', {
