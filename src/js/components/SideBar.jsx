@@ -44,9 +44,11 @@ const useStyles = makeStyles((theme) => ({
   },
   formControl: {
     color: theme.palette.text.primary,
+    width: '100%',
   },
   formLabel: {
     color: theme.palette.text.primary,
+    textAlign: 'center',
     fontSize: '14px',
     marginBottom: '16px',
     fontWeight: '700',
@@ -75,6 +77,7 @@ const useStyles = makeStyles((theme) => ({
   cardContent: {
     display: 'flex',
     justifyContent: 'center',
+    // width: '100%',
   },
 }));
 
