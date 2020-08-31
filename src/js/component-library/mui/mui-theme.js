@@ -1,6 +1,11 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 
 const theme = createMuiTheme({
+  breakpoints: {
+    values: {
+      lg: 1440,
+    },
+  },
   palette: {
     primary: {
       main: 'rgba(82, 33, 110, 1)',
