@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 const SideBarFilterForm = (props) => {
   const classes = useStyles();
 
-  const { collectionCardNames } = { ...props };
+  const { collectionCardNames, collectionSetNames } = { ...props };
   return (
     <form className={classes.form} data-test='side-bar-filter-form'>
       <EnhancedTextField
@@ -26,14 +26,25 @@ const SideBarFilterForm = (props) => {
         label='Card Name'
         useAutocomplete
         autocompleteOptions={collectionCardNames}
+        InputLabelProps={{
+          shrink: true,
+        }}
       />
-      {/* Card Name (Input) {'\n'}
-      Card Set (Input) {'\n'}
-      Foil (Checkbox) {'\n'}
-      Spread (Input) {'\n'}
-      Gain (Input) {'\n'}
-      Date From (Date) {'\n'}
-      Date To (Date) */}
+      <EnhancedTextField
+        fullWidth
+        label='Set Name'
+        useAutocomplete
+        autocompleteOptions={collectionSetNames}
+        InputLabelProps={{
+          shrink: true,
+        }}
+      />
+      {/* Card Set (Input) {'\n'} */}
+      {/* Foil (Checkbox) {'\n'} */}
+      {/* Spread (Input) {'\n'} */}
+      {/* Gain (Input) {'\n'} */}
+      {/* Date From (Date) {'\n'} */}
+      {/* Date To (Date) */}
       <EnhancedButton buttonText='Submit' />
     </form>
   );

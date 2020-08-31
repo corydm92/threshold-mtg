@@ -31,6 +31,7 @@ const EnhancedTextField = (props) => {
     id = '',
     useAutocomplete,
     autocompleteOptions,
+    InputLabelProps,
   } = {
     ...props,
   };
@@ -43,9 +44,7 @@ const EnhancedTextField = (props) => {
         required={required}
         fullWidth={fullWidth}
         id={id}
-        InputLabelProps={{
-          shrink: true,
-        }}
+        InputLabelProps={InputLabelProps}
         label={label}
       />
     );

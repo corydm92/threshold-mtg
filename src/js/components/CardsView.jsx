@@ -14,6 +14,7 @@ const CardsView = (props) => {
     priceCategory,
     isLoadingCards,
     collectionCardNames,
+    collectionSetNames,
 
     // ACTIONS
     isLoadingCardsFalse,
@@ -41,7 +42,9 @@ const CardsView = (props) => {
     <div data-test='cardsView'>
       <EnhancedToolbar>
         <Grid container>
-          <Grid item xs={10}></Grid>
+          <Grid item xs={10}>
+            {/* Left Aligned Items Here */}
+          </Grid>
           <Grid item xs={2}>
             <TableDisplayIcons
               onClick={handleDisplayChange}
@@ -59,6 +62,7 @@ const CardsView = (props) => {
             setPriceCategoryHigh={setPriceCategoryHigh}
             setPriceCategoryMarket={setPriceCategoryMarket}
             collectionCardNames={collectionCardNames}
+            collectionSetNames={collectionSetNames}
           />
         </Grid>
         <Grid item xs={10}>
