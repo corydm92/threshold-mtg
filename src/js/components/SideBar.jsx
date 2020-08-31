@@ -14,6 +14,8 @@ import FormLabel from '@material-ui/core/FormLabel';
 import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
+import EnhancedButton from '../component-library/mui/components/Form/Button';
+
 import {
   tcgLow,
   tcgMid,
@@ -48,6 +50,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.primary,
     fontSize: '14px',
     marginBottom: '16px',
+    fontWeight: '700',
   },
   formControlLabel: {
     display: 'flex',
@@ -75,6 +78,10 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
   },
 }));
+
+const SideBarFilterOptions = (props) => {
+  return <EnhancedButton buttonText='Submit' />;
+};
 
 const SideBar = (props) => {
   // STORE
@@ -125,7 +132,7 @@ const SideBar = (props) => {
           }}
         >
           <FormControl className={classes.formControl} component='fieldset'>
-            <FormLabel className={classes.formLabel} component='legend'>
+            <FormLabel bold className={classes.formLabel} component='legend'>
               TCG Price Categories
             </FormLabel>
             <RadioGroup
@@ -228,7 +235,9 @@ const SideBar = (props) => {
           </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout='auto' unmountOnExit>
-          <CardContent></CardContent>
+          <CardContent>
+            <SideBarFilterOptions />
+          </CardContent>
         </Collapse>
       </Card>
     </div>
