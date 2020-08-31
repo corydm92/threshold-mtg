@@ -79,8 +79,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SideBarFilterOptions = (props) => {
-  return <EnhancedButton buttonText='Submit' />;
+const SideBarFilterOptions = () => {
+  return (
+    <div>
+      Card Name (Input) {'\n'}
+      Card Set (Input) {'\n'}
+      Foil (Checkbox) {'\n'}
+      Spread (Input) {'\n'}
+      Gain (Input) {'\n'}
+      Date From (Date) {'\n'}
+      Date To (Date)
+      <EnhancedButton buttonText='Submit' />
+    </div>
+  );
 };
 
 const SideBar = (props) => {
