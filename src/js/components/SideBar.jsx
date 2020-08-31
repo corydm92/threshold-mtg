@@ -14,7 +14,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-import EnhancedButton from '../component-library/mui/components/Form/Button';
+import SideBarFilterForm from './SideBarFilterForm';
 
 import {
   tcgLow,
@@ -78,21 +78,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
   },
 }));
-
-const SideBarFilterOptions = () => {
-  return (
-    <div>
-      Card Name (Input) {'\n'}
-      Card Set (Input) {'\n'}
-      Foil (Checkbox) {'\n'}
-      Spread (Input) {'\n'}
-      Gain (Input) {'\n'}
-      Date From (Date) {'\n'}
-      Date To (Date)
-      <EnhancedButton buttonText='Submit' />
-    </div>
-  );
-};
 
 const SideBar = (props) => {
   // STORE
@@ -247,7 +232,7 @@ const SideBar = (props) => {
         </CardActions>
         <Collapse in={expanded} timeout='auto' unmountOnExit>
           <CardContent>
-            <SideBarFilterOptions />
+            <SideBarFilterForm />
           </CardContent>
         </Collapse>
       </Card>
