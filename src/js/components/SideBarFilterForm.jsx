@@ -44,11 +44,13 @@ const useStyles = makeStyles((theme) => ({
 const SideBarFilterForm = (props) => {
   const classes = useStyles();
 
-  const [checked, setChecked] = useState(false);
+  const [foil, setFoil] = useState(false);
+  const [setName, setSetName] = useState('');
+  const [cardName, setCardName] = useState('');
   const [spread, setSpread] = useState(null);
 
   const handleCheckboxChange = () => {
-    setChecked(!checked);
+    setFoil(!foil);
   };
 
   const handleSpreadChange = (event) => {
@@ -58,7 +60,44 @@ const SideBarFilterForm = (props) => {
   const { collectionCardNames, collectionSetNames } = { ...props };
   return (
     <form className={classes.form} data-test='side-bar-filter-form'>
+      {/* CHECKBOX FOIL */}
+
+      <EnhancedContainer
+        classes={{ root: classes.container }}
+        dataCy='checkbox-foil'
+      >
+        <FormControlLabel
+          classes={{ root: classes.formControlLabel }}
+          control={
+            <EnhancedCheckbox
+              foil={foil}
+              handleCheckboxChange={handleCheckboxChange}
+            />
+          }
+          labelPlacement='start'
+          label='Is Foil?'
+        />
+      </EnhancedContainer>
+
+      {/* SET NAME */}
+
       <EnhancedTextField
+        dataCy='textfield-set-name'
+        fullWidth
+        label='Set Name'
+        useAutocomplete
+        autocompleteOptions={collectionSetNames}
+        onChange={(event) => setSetName(event.target.value)}
+        value={'setName'}
+        InputLabelProps={{
+          shrink: true,
+        }}
+      />
+
+      {/* CARD NAME */}
+
+      <EnhancedTextField
+        dataCy='textfield-card-name'
         fullWidth
         label='Card Name'
         useAutocomplete
@@ -67,33 +106,14 @@ const SideBarFilterForm = (props) => {
           shrink: true,
         }}
       />
-      <EnhancedTextField
-        fullWidth
-        label='Set Name'
-        useAutocomplete
-        autocompleteOptions={collectionSetNames}
-        InputLabelProps={{
-          shrink: true,
-        }}
-      />
-      <EnhancedContainer classes={{ root: classes.container }}>
-        <FormControlLabel
-          classes={{ root: classes.formControlLabel }}
-          control={
-            <EnhancedCheckbox
-              checked={checked}
-              handleCheckboxChange={handleCheckboxChange}
-            />
-          }
-          labelPlacement='start'
-          label='Foil'
-        />
-      </EnhancedContainer>
+
+      {/* SPREAD */}
+
       <EnhancedContainer
         className={`${classes.container} ${classes.spreadValue}`}
       >
         <EnhancedTextField
-          id='standard-select-currency'
+          dataCy='textfield-operand-select'
           select
           label='Spread'
           value={spread}
@@ -112,14 +132,13 @@ const SideBarFilterForm = (props) => {
           })}
         </EnhancedTextField>
         <EnhancedTextField
-          label=''
+          dataCy='textfield-spread'
           className={classes.spreadInput}
           InputLabelProps={{
             shrink: true,
           }}
         />
       </EnhancedContainer>
-      {/* Spread (Input) {'\n'} */}
       {/* Gain (Input) {'\n'} */}
       {/* Date From (Date) {'\n'} */}
       {/* Date To (Date) */}

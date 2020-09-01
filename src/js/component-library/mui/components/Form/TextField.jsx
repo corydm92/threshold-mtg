@@ -33,6 +33,9 @@ const EnhancedTextField = (props) => {
     select,
     helperText,
     className,
+    dataCy,
+    onChange,
+    value,
   } = {
     ...props,
   };
@@ -49,6 +52,9 @@ const EnhancedTextField = (props) => {
         InputLabelProps={InputLabelProps}
         label={label}
         helperText={helperText}
+        data-cy={dataCy}
+        onChange={onChange}
+        value={value}
       >
         {props.children}
       </TextField>
@@ -58,7 +64,14 @@ const EnhancedTextField = (props) => {
     return (
       <EnhancedAutocomplete
         options={autocompleteOptions}
-        renderInput={(params) => <EnhancedTextField {...params} />}
+        onChange={onChange}
+        value={value}
+        renderInput={(params) => (
+          <EnhancedTextField
+            {...params}
+            onChange={(event) => console.log(event.target.value)}
+          />
+        )}
       />
     );
   }
