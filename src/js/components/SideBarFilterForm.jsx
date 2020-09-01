@@ -3,8 +3,10 @@ import EnhancedButton from '../component-library/mui/components/Form/Button';
 import EnhancedCheckbox from '../component-library/mui/components/Form/Checkbox';
 import EnhancedTextField from '../component-library/mui/components/Form/TextField';
 import { makeStyles } from '@material-ui/core/styles';
-import { FormControlLabel } from '@material-ui/core/';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import EnhancedContainer from '../component-library/mui/components/Container';
+import Operands from '../constants/operands';
+import MenuItem from '@material-ui/core/MenuItem';
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -33,9 +35,14 @@ const SideBarFilterForm = (props) => {
   const classes = useStyles();
 
   const [checked, setChecked] = useState(false);
+  const [spread, setSpread] = useState(null);
 
   const handleCheckboxChange = () => {
     setChecked(!checked);
+  };
+
+  const handleSpreadChange = (event) => {
+    setSpread(event.target.value);
   };
 
   const { collectionCardNames, collectionSetNames } = { ...props };
@@ -72,8 +79,24 @@ const SideBarFilterForm = (props) => {
           label='Foil'
         />
       </EnhancedContainer>
-      {/* Card Set (Input) {'\n'} */}
-      {/* Foil (Checkbox) {'\n'} */}
+      <EnhancedTextField
+        id='standard-select-currency'
+        select
+        label='Select'
+        value={spread}
+        onChange={setSpread}
+        helperText='Please select your currency'
+        className={classes.priceOperand}
+      >
+        {Operands.map((option) => {
+          console.log(option);
+          return (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          );
+        })}
+      </EnhancedTextField>
       {/* Spread (Input) {'\n'} */}
       {/* Gain (Input) {'\n'} */}
       {/* Date From (Date) {'\n'} */}

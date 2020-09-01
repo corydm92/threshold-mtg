@@ -13,6 +13,9 @@ const useStyles = makeStyles((theme) => ({
     '& .MuiInputLabel-shrink': {
       color: theme.palette.primary.main,
     },
+    '& .MuiFormHelperText-root': {
+      color: theme.palette.text.primary,
+    },
     margin: `${theme.spacing(1)}px 0`,
   },
   autoComplete: {
@@ -32,6 +35,8 @@ const EnhancedTextField = (props) => {
     useAutocomplete,
     autocompleteOptions,
     InputLabelProps,
+    select,
+    helperText,
   } = {
     ...props,
   };
@@ -39,6 +44,7 @@ const EnhancedTextField = (props) => {
   const EnhancedTextField = (params) => {
     return (
       <TextField
+        select={select}
         {...params}
         className={classes.root}
         required={required}
@@ -46,7 +52,10 @@ const EnhancedTextField = (props) => {
         id={id}
         InputLabelProps={InputLabelProps}
         label={label}
-      />
+        helperText={helperText}
+      >
+        {props.children}
+      </TextField>
     );
   };
   if (useAutocomplete) {
