@@ -14,9 +14,7 @@ const useStyles = makeStyles((theme) => ({
 
 const EnhancedAutocomplete = (props) => {
   const classes = useStyles();
-  const { id, options, getOptionLabel, renderInput, onChange, value } = {
-    ...props,
-  };
+  const { id, options, getOptionLabel, renderInput } = { ...props };
   return (
     <Autocomplete
       classes={{ root: classes.root, popper: classes.popper }}
@@ -24,8 +22,6 @@ const EnhancedAutocomplete = (props) => {
       options={options}
       getOptionLabel={getOptionLabel}
       renderInput={renderInput}
-      onChange={onChange}
-      value={value}
     />
   );
 };

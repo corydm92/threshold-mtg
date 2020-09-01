@@ -43,11 +43,14 @@ const useStyles = makeStyles((theme) => ({
 
 const SideBarFilterForm = (props) => {
   const classes = useStyles();
+  const { collectionCardNames, collectionSetNames } = { ...props };
 
   const [foil, setFoil] = useState(false);
   const [setName, setSetName] = useState('');
   const [cardName, setCardName] = useState('');
-  const [spread, setSpread] = useState(null);
+  const [spread, setSpread] = useState('');
+
+  console.log(setName);
 
   const handleCheckboxChange = () => {
     setFoil(!foil);
@@ -57,7 +60,6 @@ const SideBarFilterForm = (props) => {
     setSpread(event.target.value);
   };
 
-  const { collectionCardNames, collectionSetNames } = { ...props };
   return (
     <form className={classes.form} data-test='side-bar-filter-form'>
       {/* CHECKBOX FOIL */}
@@ -87,8 +89,11 @@ const SideBarFilterForm = (props) => {
         label='Set Name'
         useAutocomplete
         autocompleteOptions={collectionSetNames}
-        onChange={(event) => setSetName(event.target.value)}
-        value={'setName'}
+        onChange={(event) => {
+          console.log(event.target.value);
+          return setSetName(event.target.value);
+        }}
+        value={setName}
         InputLabelProps={{
           shrink: true,
         }}
