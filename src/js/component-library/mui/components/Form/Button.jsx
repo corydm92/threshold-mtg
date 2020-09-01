@@ -7,9 +7,20 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const EnhancedButton = (props) => {
-  const { buttonText, color = 'primary', variant = 'contained' } = { ...props };
+  const {
+    buttonText,
+    color = 'primary',
+    variant = 'contained',
+    classes,
+    className,
+  } = { ...props };
   return (
-    <Button variant={variant} color={color}>
+    <Button
+      variant={variant}
+      color={color}
+      classes={classes}
+      className={className}
+    >
       {buttonText}
     </Button>
   );
