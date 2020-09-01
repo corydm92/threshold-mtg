@@ -53,8 +53,6 @@ const EnhancedTextField = (props) => {
         label={label}
         helperText={helperText}
         data-cy={dataCy}
-        // onChange={onChange} // If useAutoComplete, let that be the controlled component.
-        // value={value}
       >
         {props.children}
       </TextField>
@@ -64,8 +62,6 @@ const EnhancedTextField = (props) => {
     return (
       <EnhancedAutocomplete
         options={autocompleteOptions}
-        // onChange={onChange}
-        // value={value}
         renderInput={(params) => <EnhancedTextField {...params} />}
       />
     );

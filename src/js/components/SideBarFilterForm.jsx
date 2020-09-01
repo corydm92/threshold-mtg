@@ -7,6 +7,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import EnhancedContainer from '../component-library/mui/components/Container';
 import Operands from '../constants/operands';
 import MenuItem from '@material-ui/core/MenuItem';
+import EnhancedDatepicker from '../component-library/mui/components/Form/DatePicker';
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -17,11 +18,14 @@ const useStyles = makeStyles((theme) => ({
     '& .MuiAutocomplete-root': {
       width: '100%',
     },
+    '& .MuiInputLabel-root': {
+      minWidth: '100px',
+    },
   },
   container: {
     padding: 0,
   },
-  spreadValue: {
+  operandValue: {
     display: 'flex',
   },
   formControlLabel: {
@@ -45,21 +49,6 @@ const SideBarFilterForm = (props) => {
   const classes = useStyles();
   const { collectionCardNames, collectionSetNames } = { ...props };
 
-  const [foil, setFoil] = useState(false);
-  const [setName, setSetName] = useState('');
-  const [cardName, setCardName] = useState('');
-  const [spread, setSpread] = useState('');
-
-  console.log(setName);
-
-  const handleCheckboxChange = () => {
-    setFoil(!foil);
-  };
-
-  const handleSpreadChange = (event) => {
-    setSpread(event.target.value);
-  };
-
   return (
     <form className={classes.form} data-test='side-bar-filter-form'>
       {/* CHECKBOX FOIL */}
@@ -70,12 +59,7 @@ const SideBarFilterForm = (props) => {
       >
         <FormControlLabel
           classes={{ root: classes.formControlLabel }}
-          control={
-            <EnhancedCheckbox
-              foil={foil}
-              handleCheckboxChange={handleCheckboxChange}
-            />
-          }
+          control={<EnhancedCheckbox />}
           labelPlacement='start'
           label='Is Foil?'
         />
@@ -89,11 +73,6 @@ const SideBarFilterForm = (props) => {
         label='Set Name'
         useAutocomplete
         autocompleteOptions={collectionSetNames}
-        onChange={(event) => {
-          console.log(event.target.value);
-          return setSetName(event.target.value);
-        }}
-        value={setName}
         InputLabelProps={{
           shrink: true,
         }}
@@ -115,14 +94,12 @@ const SideBarFilterForm = (props) => {
       {/* SPREAD */}
 
       <EnhancedContainer
-        className={`${classes.container} ${classes.spreadValue}`}
+        className={`${classes.container} ${classes.operandValue}`}
       >
         <EnhancedTextField
           dataCy='textfield-operand-select'
           select
           label='Spread'
-          value={spread}
-          onChange={setSpread}
           className={classes.priceOperand}
           InputLabelProps={{
             shrink: true,
@@ -144,9 +121,46 @@ const SideBarFilterForm = (props) => {
           }}
         />
       </EnhancedContainer>
-      {/* Gain (Input) {'\n'} */}
-      {/* Date From (Date) {'\n'} */}
-      {/* Date To (Date) */}
+
+      {/* GAIN */}
+
+      <EnhancedContainer
+        className={`${classes.container} ${classes.operandValue}`}
+      >
+        <EnhancedTextField
+          dataCy='textfield-operand-select'
+          select
+          label='Gain / Loss'
+          className={classes.priceOperand}
+          InputLabelProps={{
+            shrink: true,
+          }}
+        >
+          {Operands.map((option) => {
+            return (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            );
+          })}
+        </EnhancedTextField>
+        <EnhancedTextField
+          dataCy='textfield-gain-loss'
+          className={classes.spreadInput}
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
+      </EnhancedContainer>
+
+      {/* DATE FROM */}
+
+      <EnhancedDatepicker label='Date From' />
+
+      {/* DATE TO */}
+
+      <EnhancedDatepicker label='Date To' />
+
       <EnhancedButton className={classes.button} buttonText='Submit' />
     </form>
   );
