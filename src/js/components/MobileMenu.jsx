@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import RouteMapper from '../routes/RouteMapper';
 
 const useStyles = makeStyles((theme) => {
-  console.log(theme);
   return {
     root: {
       // down() works as a "less than"
@@ -47,6 +46,7 @@ const MuiMenuIcon = () => {
       >
         <MenuIcon fontSize='large' data-test='mobile-menu-icon' />
       </IconButton>
+
       <Menu
         data-test='mui-menu'
         anchorEl={anchorEl}
