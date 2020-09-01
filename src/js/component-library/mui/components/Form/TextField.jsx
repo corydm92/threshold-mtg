@@ -18,11 +18,6 @@ const useStyles = makeStyles((theme) => ({
     },
     margin: `${theme.spacing(1)}px 0`,
   },
-  autoComplete: {
-    '& .MuiAutocomplete-popper': {
-      display: 'none',
-    },
-  },
 }));
 
 const EnhancedTextField = (props) => {
@@ -37,6 +32,7 @@ const EnhancedTextField = (props) => {
     InputLabelProps,
     select,
     helperText,
+    className,
   } = {
     ...props,
   };
@@ -46,7 +42,7 @@ const EnhancedTextField = (props) => {
       <TextField
         select={select}
         {...params}
-        className={classes.root}
+        className={`${classes.root} ${className}`}
         required={required}
         fullWidth={fullWidth}
         id={id}

@@ -21,6 +21,9 @@ const useStyles = makeStyles((theme) => ({
   container: {
     padding: 0,
   },
+  spreadValue: {
+    display: 'flex',
+  },
   formControlLabel: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -28,6 +31,13 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     marginTop: theme.spacing(2),
+  },
+  priceOperand: {
+    width: theme.spacing(10),
+    marginRight: theme.spacing(1),
+  },
+  spreadInput: {
+    marginTop: 'auto',
   },
 }));
 
@@ -79,24 +89,36 @@ const SideBarFilterForm = (props) => {
           label='Foil'
         />
       </EnhancedContainer>
-      <EnhancedTextField
-        id='standard-select-currency'
-        select
-        label='Select'
-        value={spread}
-        onChange={setSpread}
-        helperText='Please select your currency'
-        className={classes.priceOperand}
+      <EnhancedContainer
+        className={`${classes.container} ${classes.spreadValue}`}
       >
-        {Operands.map((option) => {
-          console.log(option);
-          return (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          );
-        })}
-      </EnhancedTextField>
+        <EnhancedTextField
+          id='standard-select-currency'
+          select
+          label='Spread'
+          value={spread}
+          onChange={setSpread}
+          className={classes.priceOperand}
+          InputLabelProps={{
+            shrink: true,
+          }}
+        >
+          {Operands.map((option) => {
+            return (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            );
+          })}
+        </EnhancedTextField>
+        <EnhancedTextField
+          label=''
+          className={classes.spreadInput}
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
+      </EnhancedContainer>
       {/* Spread (Input) {'\n'} */}
       {/* Gain (Input) {'\n'} */}
       {/* Date From (Date) {'\n'} */}
