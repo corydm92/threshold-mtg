@@ -46,6 +46,7 @@ const MuiMenuIcon = () => {
       >
         <MenuIcon fontSize='large' data-test='mobile-menu-icon' />
       </IconButton>
+
       <Menu
         data-test='mui-menu'
         anchorEl={anchorEl}

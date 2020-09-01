@@ -14,6 +14,8 @@ import FormLabel from '@material-ui/core/FormLabel';
 import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
+import SideBarFilterForm from './SideBarFilterForm';
+
 import {
   tcgLow,
   tcgMid,
@@ -31,7 +33,6 @@ const useStyles = makeStyles((theme) => ({
   },
   expand: {
     transform: 'rotate(0deg)',
-    // marginLeft: 'auto',
     justifyContent: 'center',
     alignItems: 'center',
     transition: theme.transitions.create('transform', {
@@ -43,11 +44,14 @@ const useStyles = makeStyles((theme) => ({
   },
   formControl: {
     color: theme.palette.text.primary,
+    width: '100%',
   },
   formLabel: {
     color: theme.palette.text.primary,
+    textAlign: 'center',
     fontSize: '14px',
     marginBottom: '16px',
+    fontWeight: '700',
   },
   formControlLabel: {
     display: 'flex',
@@ -74,11 +78,16 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
   },
+  filterCardContent: {
+    paddingTop: 0,
+  },
 }));
 
 const SideBar = (props) => {
   // STORE
-  const { priceCategory } = { ...props };
+  const { priceCategory, collectionCardNames, collectionSetNames } = {
+    ...props,
+  };
 
   // ACTIONS
   const {
@@ -89,7 +98,7 @@ const SideBar = (props) => {
   } = { ...props };
 
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = React.useState(true);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -228,7 +237,12 @@ const SideBar = (props) => {
           </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout='auto' unmountOnExit>
-          <CardContent></CardContent>
+          <CardContent className={classes.filterCardContent}>
+            <SideBarFilterForm
+              collectionCardNames={collectionCardNames}
+              collectionSetNames={collectionSetNames}
+            />
+          </CardContent>
         </Collapse>
       </Card>
     </div>
