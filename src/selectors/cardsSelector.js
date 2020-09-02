@@ -8,42 +8,11 @@ import {
   cardIsValid,
 } from '../utils';
 
-import { uniq } from 'lodash';
-
 const getCards = (state) => state.cardsReducer.entities.cards;
 const getCardsResults = (state) => state.cardsReducer.result;
 const getTcgPriceCategory = (state) => state.tcgPriceCategory;
 
-export const cardNamesSelector = createSelector(
-  [getCards, getCardsResults],
-  (cards, results) => {
-    return results
-      .map((result) => {
-        const card = { ...cards[result] };
-
-        return card.card_name;
-      })
-      .sort();
-  }
-);
-
-export const setNamesSelector = createSelector(
-  [getCards, getCardsResults],
-  (cards, results) => {
-    const setsArr = results.map((result) => {
-      const card = { ...cards[result] };
-
-      return card.set_name;
-    });
-
-    const sortedSets = setsArr.sort();
-
-    const uniqueSets = uniq(sortedSets, true);
-    return uniqueSets;
-  }
-);
-
-export const cardNameAndSet = createSelector(
+export const cardNamesAndSets = createSelector(
   [getCards, getCardsResults],
   (cards, results) => {
     const outArr = results.map((result) => {

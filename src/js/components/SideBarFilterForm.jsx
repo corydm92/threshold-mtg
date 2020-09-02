@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import EnhancedButton from '../component-library/mui/components/Form/Button';
 import EnhancedCheckbox from '../component-library/mui/components/Form/Checkbox';
 import EnhancedTextField from '../component-library/mui/components/Form/TextField';
@@ -9,6 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Operands from '../constants/operands';
 import MenuItem from '@material-ui/core/MenuItem';
+import { uniq } from 'lodash';
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -47,7 +48,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SideBarFilterForm = (props) => {
+  const classes = useStyles();
+  const { cardNamesAndSets } = {
+    ...props,
+  };
+
   const [isFoil, setIsFoil] = useState(false);
+  const [setName, setSetName] = useState('');
+  const [cardName, setCardName] = useState('');
   const [spreadOperator, setSpreadOperator] = useState('');
   const [spreadValue, setSpreadValue] = useState('');
   const [gainOperator, setGainOperator] = useState('');
@@ -55,15 +63,53 @@ const SideBarFilterForm = (props) => {
   const [dateFrom, setDateFrom] = useState('');
   const [dateTo, setDateTo] = useState('');
 
-  // console.log('isFoil: ', isFoil);
-  // console.log('spreadOperator: ', spreadOperator);
-  // console.log('spreadValue: ', spreadValue);
-  // console.log('gainOperator: ', gainOperator);
-  // console.log('gainValue: ', gainValue);
+  // Not sent to filter reducer, just for filtering select options
+  const [cardNameOptions, setCardNameOptions] = useState([]);
+  const [setNameOptions, setSetNameOptions] = useState([]);
+
+  useEffect(() => {
+    let namesAndSets = [...cardNamesAndSets];
+    let outNames = [];
+    let outSets = [];
+
+    if (setName) {
+      for (let entry of namesAndSets) {
+        if (entry.set === setName) {
+          outNames.push(entry.name);
+        }
+      }
+    }
+
+    if (cardName) {
+      for (let entry of namesAndSets) {
+        if (entry.name === cardName) {
+          outSets.push(entry.set);
+        }
+      }
+    }
+
+    if (!setName && !cardName) {
+      for (let entry of namesAndSets) {
+        outNames.push(entry.name);
+        outSets.push(entry.set);
+      }
+    }
+
+    setCardNameOptions(outNames.sort());
+    setSetNameOptions(uniq(outSets.sort()));
+  }, [
+    cardNamesAndSets,
+    setName,
+    cardName,
+    setCardNameOptions,
+    setSetNameOptions,
+  ]);
 
   const handleSubmit = () => {
     const state = {
       isFoil,
+      setName,
+      cardName,
       spreadOperator,
       spreadValue,
       gainOperator,
@@ -74,9 +120,6 @@ const SideBarFilterForm = (props) => {
 
     console.log(state);
   };
-
-  const classes = useStyles();
-  const { collectionCardNames, collectionSetNames } = { ...props };
 
   return (
     <form
@@ -107,18 +150,20 @@ const SideBarFilterForm = (props) => {
 
       <EnhancedAutocomplete
         dataTest='autocomplete-set-name'
-        onChange={(e) => console.log(e.target.textContent)}
+        onChange={(e) => setSetName(e.target.textContent)}
+        value={setName}
         label='Set Name'
-        options={collectionSetNames}
+        options={setNameOptions}
       />
 
       {/* CARD NAME */}
 
       <EnhancedAutocomplete
         dataTest='autocomplete-card-name'
-        onChange={(e) => console.log(e.target.textContent)}
+        onChange={(e) => setCardName(e.target.textContent)}
+        value={cardName}
         label='Card Name'
-        options={collectionCardNames}
+        options={cardNameOptions}
       />
 
       {/* SPREAD */}

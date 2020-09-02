@@ -85,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
 
 const SideBar = (props) => {
   // STORE
-  const { priceCategory, collectionCardNames, collectionSetNames } = {
+  const { priceCategory, cardNamesAndSets } = {
     ...props,
   };
 
@@ -238,10 +238,7 @@ const SideBar = (props) => {
         </CardActions>
         <Collapse in={expanded} timeout='auto' unmountOnExit>
           <CardContent className={classes.filterCardContent}>
-            <SideBarFilterForm
-              collectionCardNames={collectionCardNames}
-              collectionSetNames={collectionSetNames}
-            />
+            <SideBarFilterForm cardNamesAndSets={cardNamesAndSets} />
           </CardContent>
         </Collapse>
       </Card>
