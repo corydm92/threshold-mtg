@@ -5,3 +5,8 @@ This is a personal project meant to add a user interface to managing a Magic: Th
 ## Work Tracking
 
 The work tracking for this project is done using GitHub Projects [here](https://github.com/corydm92/mtg-management-frontend/projects/1?add_cards_query=is%3Aopen).
+
+## Work In Progress
+
+9/2/2020
+![Work In Progress](/progress-pictures/threshold-mtg-9-2-2020.PNG)
