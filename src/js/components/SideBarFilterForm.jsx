@@ -34,6 +34,9 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
     marginLeft: 0,
+    '& .MuiFormControlLabel-label': {
+      fontSize: theme.typography.fontSize,
+    },
   },
   button: {
     marginTop: theme.spacing(2),
@@ -41,6 +44,9 @@ const useStyles = makeStyles((theme) => ({
   priceOperand: {
     width: theme.spacing(10),
     marginRight: theme.spacing(1),
+  },
+  menuItem: {
+    fontSize: theme.typography.fontSize,
   },
   spreadInput: {
     marginTop: 'auto',
@@ -60,6 +66,8 @@ const SideBarFilterForm = (props) => {
   const [spreadValue, setSpreadValue] = useState('');
   const [gainOperator, setGainOperator] = useState('');
   const [gainValue, setGainValue] = useState('');
+  const [tcgPriceOperator, setTcgPriceOperator] = useState('');
+  const [tcgPriceValue, setTcgPriceValue] = useState('');
   const [dateFrom, setDateFrom] = useState('');
   const [dateTo, setDateTo] = useState('');
 
@@ -68,6 +76,7 @@ const SideBarFilterForm = (props) => {
   const [setNameOptions, setSetNameOptions] = useState([]);
 
   useEffect(() => {
+    // Sets and filters set and card drop down options
     let namesAndSets = [...cardNamesAndSets];
     let outNames = [];
     let outSets = [];
@@ -77,6 +86,11 @@ const SideBarFilterForm = (props) => {
         if (entry.set === setName) {
           outNames.push(entry.name);
         }
+
+        // Handles keeping all set names if card name is blank
+        if (!cardName) {
+          outSets.push(entry.set);
+        }
       }
     }
 
@@ -84,6 +98,11 @@ const SideBarFilterForm = (props) => {
       for (let entry of namesAndSets) {
         if (entry.name === cardName) {
           outSets.push(entry.set);
+        }
+
+        // Handles keeping all card names if set name is blank
+        if (!setName) {
+          outNames.push(entry.name);
         }
       }
     }
@@ -95,7 +114,7 @@ const SideBarFilterForm = (props) => {
       }
     }
 
-    setCardNameOptions(outNames.sort());
+    setCardNameOptions(uniq(outNames.sort()));
     setSetNameOptions(uniq(outSets.sort()));
   }, [
     cardNamesAndSets,
@@ -184,7 +203,11 @@ const SideBarFilterForm = (props) => {
         >
           {Operands.map((option) => {
             return (
-              <MenuItem key={option.value} value={option.value}>
+              <MenuItem
+                className={classes.menuItem}
+                key={option.value}
+                value={option.value}
+              >
                 {option.label}
               </MenuItem>
             );
@@ -219,7 +242,11 @@ const SideBarFilterForm = (props) => {
         >
           {Operands.map((option) => {
             return (
-              <MenuItem key={option.value} value={option.value}>
+              <MenuItem
+                className={classes.menuItem}
+                key={option.value}
+                value={option.value}
+              >
                 {option.label}
               </MenuItem>
             );
@@ -230,6 +257,45 @@ const SideBarFilterForm = (props) => {
           className={classes.spreadInput}
           value={gainValue}
           onChange={(event) => setGainValue(event.target.value)}
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
+      </EnhancedContainer>
+
+      {/* TCG PRICE */}
+
+      <EnhancedContainer
+        className={`${classes.container} ${classes.operandValue}`}
+      >
+        <EnhancedTextField
+          dataTest='tcg-price-operand-select'
+          select
+          label='TCG Price'
+          value={tcgPriceOperator}
+          onChange={(event) => setTcgPriceOperator(event.target.value)}
+          className={classes.priceOperand}
+          InputLabelProps={{
+            shrink: true,
+          }}
+        >
+          {Operands.map((option) => {
+            return (
+              <MenuItem
+                className={classes.menuItem}
+                key={option.value}
+                value={option.value}
+              >
+                {option.label}
+              </MenuItem>
+            );
+          })}
+        </EnhancedTextField>
+        <EnhancedTextField
+          dataTest='tcg-price-gain-loss'
+          className={classes.spreadInput}
+          value={tcgPriceValue}
+          onChange={(event) => setTcgPriceValue(event.target.value)}
           InputLabelProps={{
             shrink: true,
           }}

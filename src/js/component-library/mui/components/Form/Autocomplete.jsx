@@ -16,12 +16,18 @@ const useStyles = makeStyles((theme) => ({
     '& .MuiFormHelperText-root': {
       color: theme.palette.text.primary,
     },
+    '& .MuiInput-input': {
+      fontSize: theme.typography.fontSize,
+    },
     margin: `${theme.spacing(1)}px 0`,
   },
   popper: {
     '& .MuiAutocomplete-listbox': {
       // Sets fixed height for autocomplete selector
       maxHeight: '200px',
+    },
+    '& .MuiAutocomplete-option': {
+      fontSize: theme.typography.fontSize,
     },
   },
 }));
@@ -31,6 +37,7 @@ const EnhancedAutocomplete = (props) => {
   const { id, options, onChange, dataTest, label } = { ...props };
   return (
     <Autocomplete
+      debug
       data-test={dataTest}
       classes={{ root: classes.root, popper: classes.popper }}
       id={id}

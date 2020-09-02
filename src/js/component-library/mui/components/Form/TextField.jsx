@@ -15,6 +15,9 @@ const useStyles = makeStyles((theme) => ({
     '& .MuiFormHelperText-root': {
       color: theme.palette.text.primary,
     },
+    '& .MuiInput-input': {
+      fontSize: theme.typography.fontSize,
+    },
     margin: `${theme.spacing(1)}px 0`,
   },
 }));

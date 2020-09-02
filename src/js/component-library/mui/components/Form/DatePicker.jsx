@@ -14,6 +14,9 @@ const useStyles = makeStyles((theme) => ({
     '& .MuiFormLabel-root': {
       color: theme.palette.text.primary,
     },
+    '& .MuiInput-input': {
+      fontSize: theme.typography.fontSize,
+    },
   },
 }));
 

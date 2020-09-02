@@ -6,7 +6,10 @@ const useStyles = makeStyles((theme) => {
   return {
     root: {},
     typography: {
-      fontSize: (props) => (props.largeText ? '16px' : '14px'),
+      fontSize: (props) =>
+        props.largeText
+          ? theme.typography.htmlFontSize
+          : theme.typography.fontSize,
       fontWeight: (props) =>
         props.bold
           ? theme.typography.fontWeightBold
