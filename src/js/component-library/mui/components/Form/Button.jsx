@@ -1,10 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-
-const useStyles = makeStyles((theme) => ({
-  root: {},
-}));
 
 const EnhancedButton = (props) => {
   const {
@@ -13,6 +8,7 @@ const EnhancedButton = (props) => {
     variant = 'contained',
     classes,
     className,
+    onClick,
   } = { ...props };
   return (
     <Button
@@ -20,6 +16,7 @@ const EnhancedButton = (props) => {
       color={color}
       classes={classes}
       className={className}
+      onClick={onClick}
     >
       {buttonText}
     </Button>

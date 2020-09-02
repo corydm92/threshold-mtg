@@ -49,14 +49,14 @@ const useStyles = makeStyles((theme) => ({
   formLabel: {
     color: theme.palette.text.primary,
     textAlign: 'center',
-    fontSize: '14px',
+    fontSize: theme.typography.fontSize,
     marginBottom: '16px',
     fontWeight: '700',
   },
   formControlLabel: {
     display: 'flex',
     justifyContent: 'space-between',
-    fontSize: '14px',
+    fontSize: theme.typography.fontSize,
     marginLeft: '0',
   },
   radio: {
@@ -67,10 +67,9 @@ const useStyles = makeStyles((theme) => ({
   },
   checked: {},
   body1Text: {
-    fontSize: '14px',
+    fontSize: theme.typography.fontSize,
   },
   card: {
-    // boxShadow: '1px 1px 3px 0px rgba(0,0,0,0.4)',
     boxShadow: 'none',
     border: '1px solid rgba(224, 224, 224, 1)',
   },
@@ -85,7 +84,7 @@ const useStyles = makeStyles((theme) => ({
 
 const SideBar = (props) => {
   // STORE
-  const { priceCategory, collectionCardNames, collectionSetNames } = {
+  const { priceCategory, cardNamesAndSets } = {
     ...props,
   };
 
@@ -238,10 +237,7 @@ const SideBar = (props) => {
         </CardActions>
         <Collapse in={expanded} timeout='auto' unmountOnExit>
           <CardContent className={classes.filterCardContent}>
-            <SideBarFilterForm
-              collectionCardNames={collectionCardNames}
-              collectionSetNames={collectionSetNames}
-            />
+            <SideBarFilterForm cardNamesAndSets={cardNamesAndSets} />
           </CardContent>
         </Collapse>
       </Card>

@@ -14,20 +14,23 @@ const useStyles = makeStyles((theme) => ({
     '& .MuiFormLabel-root': {
       color: theme.palette.text.primary,
     },
+    '& .MuiInput-input': {
+      fontSize: theme.typography.fontSize,
+    },
   },
 }));
 
 const EnhancedDatePicker = (props) => {
   const classes = useStyles();
 
-  const { label } = { ...props };
+  const { label, value, onChange } = { ...props };
 
   return (
     <TextField
-      id='date'
       label={label}
       type='date'
-      defaultValue=''
+      value={value}
+      onChange={onChange}
       className={classes.textField}
       InputLabelProps={{
         shrink: true,

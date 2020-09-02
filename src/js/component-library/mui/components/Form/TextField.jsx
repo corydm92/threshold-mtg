@@ -1,20 +1,22 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
-import EnhancedAutocomplete from './Autocomplete';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     // Targets the form label and border color before focus
     '& .MuiInputLabel-root': {
-      color: 'black',
+      color: theme.palette.text.primary,
     },
     // Targets the form label and border color after focus
-    '& .MuiInputLabel-shrink': {
+    '& .Mui-focused': {
       color: theme.palette.primary.main,
     },
     '& .MuiFormHelperText-root': {
       color: theme.palette.text.primary,
+    },
+    '& .MuiInput-input': {
+      fontSize: theme.typography.fontSize,
     },
     margin: `${theme.spacing(1)}px 0`,
   },
@@ -26,48 +28,37 @@ const EnhancedTextField = (props) => {
     required,
     label,
     fullWidth = false,
-    id = '',
-    useAutocomplete,
-    autocompleteOptions,
+    id,
     InputLabelProps,
     select,
     helperText,
     className,
-    dataCy,
+    dataTest,
     onChange,
     value,
+    params,
   } = {
     ...props,
   };
 
-  const EnhancedTextField = (params) => {
-    return (
-      <TextField
-        select={select}
-        {...params}
-        className={`${classes.root} ${className}`}
-        required={required}
-        fullWidth={fullWidth}
-        id={id}
-        InputLabelProps={InputLabelProps}
-        label={label}
-        helperText={helperText}
-        data-cy={dataCy}
-      >
-        {props.children}
-      </TextField>
-    );
-  };
-  if (useAutocomplete) {
-    return (
-      <EnhancedAutocomplete
-        options={autocompleteOptions}
-        renderInput={(params) => <EnhancedTextField {...params} />}
-      />
-    );
-  }
-
-  return EnhancedTextField();
+  return (
+    <TextField
+      select={select}
+      {...params}
+      className={`${classes.root} ${className}`}
+      required={required}
+      fullWidth={fullWidth}
+      id={id}
+      InputLabelProps={InputLabelProps}
+      label={label}
+      helperText={helperText}
+      data-test={dataTest}
+      value={value}
+      onChange={onChange}
+    >
+      {props.children}
+    </TextField>
+  );
 };
 
 export default EnhancedTextField;

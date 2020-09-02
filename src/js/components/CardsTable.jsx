@@ -116,7 +116,6 @@ const MuiTableBody = (props) => {
                 <EnhancedTableCell data-cy='card-details'>
                   <CardDetails
                     cardName={card.cardName}
-                    cardName={card.cardName}
                     setName={card.setName}
                     tcgUrl={card.tcgUrl}
                     tcgImageUrl={card.tcgImageUrl}

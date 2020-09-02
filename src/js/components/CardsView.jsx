@@ -13,8 +13,7 @@ const CardsView = (props) => {
     cards,
     priceCategory,
     isLoadingCards,
-    collectionCardNames,
-    collectionSetNames,
+    cardNamesAndSets,
 
     // ACTIONS
     isLoadingCardsFalse,
@@ -61,8 +60,7 @@ const CardsView = (props) => {
             setPriceCategoryMid={setPriceCategoryMid}
             setPriceCategoryHigh={setPriceCategoryHigh}
             setPriceCategoryMarket={setPriceCategoryMarket}
-            collectionCardNames={collectionCardNames}
-            collectionSetNames={collectionSetNames}
+            cardNamesAndSets={cardNamesAndSets}
           />
         </Grid>
         <Grid item xs={10}>

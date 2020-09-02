@@ -12,14 +12,14 @@ const useStyles = makeStyles((theme) => {
 
 const EnhancedCheckbox = (props) => {
   const useClasses = useStyles();
-  const { checked, handleCheckboxChange, className, classes } = { ...props };
+  const { checked, onChange, className, classes } = { ...props };
 
   return (
     <Checkbox
       className={className}
       classes={{ root: useClasses.root, ...classes }}
       checked={checked}
-      onChange={handleCheckboxChange}
+      onChange={onChange}
       name='checkbox'
       color='primary'
     />
