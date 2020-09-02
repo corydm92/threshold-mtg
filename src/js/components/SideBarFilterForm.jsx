@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import EnhancedButton from '../component-library/mui/components/Form/Button';
 import EnhancedCheckbox from '../component-library/mui/components/Form/Checkbox';
 import EnhancedTextField from '../component-library/mui/components/Form/TextField';
+import EnhancedContainer from '../component-library/mui/components/Container';
+import EnhancedAutocomplete from '../component-library/mui/components/Form/Autocomplete';
+import EnhancedDatepicker from '../component-library/mui/components/Form/DatePicker';
 import { makeStyles } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import EnhancedContainer from '../component-library/mui/components/Container';
 import Operands from '../constants/operands';
 import MenuItem from '@material-ui/core/MenuItem';
-import EnhancedDatepicker from '../component-library/mui/components/Form/DatePicker';
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -78,16 +79,10 @@ const SideBarFilterForm = (props) => {
 
       {/* SET NAME */}
 
-      <EnhancedTextField
-        dataCy='textfield-set-name'
-        fullWidth
-        onChange={(e) => console.log(e.target.value)}
+      <EnhancedAutocomplete
+        onChange={(e) => console.log(e.target.textContent)}
         label='Set Name'
-        useAutocomplete
-        autocompleteOptions={collectionSetNames}
-        InputLabelProps={{
-          shrink: true,
-        }}
+        options={collectionSetNames}
       />
 
       {/* CARD NAME */}

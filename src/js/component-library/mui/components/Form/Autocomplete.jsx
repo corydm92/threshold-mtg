@@ -1,16 +1,16 @@
 import React from 'react';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import EnhancedTextField from './TextField';
+import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     // Targets the form label and border color before focus
     '& .MuiInputLabel-root': {
-      color: 'black',
+      color: theme.palette.text.primary,
     },
     // Targets the form label and border color after focus
-    '& .MuiInputLabel-shrink': {
+    '& .Mui-focused': {
       color: theme.palette.primary.main,
     },
     '& .MuiFormHelperText-root': {
@@ -28,15 +28,22 @@ const useStyles = makeStyles((theme) => ({
 
 const EnhancedAutocomplete = (props) => {
   const classes = useStyles();
-  const { id, options, getOptionLabel, renderInput } = { ...props };
+  const { id, options, onChange } = { ...props };
   return (
     <Autocomplete
       classes={{ root: classes.root, popper: classes.popper }}
       id={id}
       options={options}
-      getOptionLabel={getOptionLabel}
-      renderInput={(params) => <EnhancedTextField {...params} />}
-      onChange={(event) => console.log(event.target.textContent)}
+      renderInput={(params) => (
+        <TextField
+          {...params}
+          label='Set Name'
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
+      )}
+      onChange={onChange}
     />
   );
 };

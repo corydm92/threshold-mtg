@@ -6,10 +6,10 @@ const useStyles = makeStyles((theme) => ({
   root: {
     // Targets the form label and border color before focus
     '& .MuiInputLabel-root': {
-      color: 'black',
+      color: theme.palette.text.primary,
     },
     // Targets the form label and border color after focus
-    '& .MuiInputLabel-shrink': {
+    '& .Mui-focused': {
       color: theme.palette.primary.main,
     },
     '& .MuiFormHelperText-root': {
@@ -26,8 +26,6 @@ const EnhancedTextField = (props) => {
     label,
     fullWidth = false,
     id,
-    useAutocomplete,
-    autocompleteOptions,
     InputLabelProps,
     select,
     helperText,
