@@ -62,7 +62,7 @@ const SideBarFilterForm = (props) => {
 
       <EnhancedContainer
         classes={{ root: classes.container }}
-        dataCy='checkbox-foil'
+        dataTest='checkbox-foil'
       >
         <FormControlLabel
           classes={{ root: classes.formControlLabel }}
@@ -80,6 +80,7 @@ const SideBarFilterForm = (props) => {
       {/* SET NAME */}
 
       <EnhancedAutocomplete
+        dataTest='autocomplete-set-name'
         onChange={(e) => console.log(e.target.textContent)}
         label='Set Name'
         options={collectionSetNames}
@@ -87,15 +88,11 @@ const SideBarFilterForm = (props) => {
 
       {/* CARD NAME */}
 
-      <EnhancedTextField
-        dataCy='textfield-card-name'
-        fullWidth
+      <EnhancedAutocomplete
+        dataTest='autocomplete-card-name'
+        onChange={(e) => console.log(e.target.textContent)}
         label='Card Name'
-        useAutocomplete
-        autocompleteOptions={collectionCardNames}
-        InputLabelProps={{
-          shrink: true,
-        }}
+        options={collectionCardNames}
       />
 
       {/* SPREAD */}
@@ -104,7 +101,7 @@ const SideBarFilterForm = (props) => {
         className={`${classes.container} ${classes.operandValue}`}
       >
         <EnhancedTextField
-          dataCy='textfield-operand-select'
+          dataTest='textfield-operand-select'
           select
           value={spreadOperator}
           onChange={(event) => setSpreadOperator(event.target.value)}
@@ -123,7 +120,7 @@ const SideBarFilterForm = (props) => {
           })}
         </EnhancedTextField>
         <EnhancedTextField
-          dataCy='textfield-spread'
+          dataTest='textfield-spread'
           className={classes.spreadInput}
           InputLabelProps={{
             shrink: true,
@@ -137,7 +134,7 @@ const SideBarFilterForm = (props) => {
         className={`${classes.container} ${classes.operandValue}`}
       >
         <EnhancedTextField
-          dataCy='textfield-operand-select'
+          dataTest='textfield-operand-select'
           select
           label='Gain / Loss'
           value={gainOperator}
@@ -156,7 +153,7 @@ const SideBarFilterForm = (props) => {
           })}
         </EnhancedTextField>
         <EnhancedTextField
-          dataCy='textfield-gain-loss'
+          dataTest='textfield-gain-loss'
           className={classes.spreadInput}
           InputLabelProps={{
             shrink: true,

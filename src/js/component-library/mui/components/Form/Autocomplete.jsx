@@ -28,9 +28,10 @@ const useStyles = makeStyles((theme) => ({
 
 const EnhancedAutocomplete = (props) => {
   const classes = useStyles();
-  const { id, options, onChange } = { ...props };
+  const { id, options, onChange, dataTest } = { ...props };
   return (
     <Autocomplete
+      data-test={dataTest}
       classes={{ root: classes.root, popper: classes.popper }}
       id={id}
       options={options}

@@ -33,10 +33,8 @@ export const setNamesSelector = createSelector(
     const setsArr = results.map((result) => {
       const card = { ...cards[result] };
 
-      return [card.set_name, card.card_name];
+      return card.set_name;
     });
-
-    console.log(setsArr);
 
     const sortedSets = setsArr.sort();
 

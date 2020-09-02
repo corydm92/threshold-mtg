@@ -30,7 +30,7 @@ const EnhancedTextField = (props) => {
     select,
     helperText,
     className,
-    dataCy,
+    dataTest,
     onChange,
     value,
     params,
@@ -49,7 +49,7 @@ const EnhancedTextField = (props) => {
       InputLabelProps={InputLabelProps}
       label={label}
       helperText={helperText}
-      data-cy={dataCy}
+      data-test={dataTest}
       value={value}
       onChange={onChange}
     >
