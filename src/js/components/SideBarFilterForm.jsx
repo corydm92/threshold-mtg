@@ -81,6 +81,7 @@ const SideBarFilterForm = (props) => {
       <EnhancedTextField
         dataCy='textfield-set-name'
         fullWidth
+        onChange={(e) => console.log(e.target.value)}
         label='Set Name'
         useAutocomplete
         autocompleteOptions={collectionSetNames}

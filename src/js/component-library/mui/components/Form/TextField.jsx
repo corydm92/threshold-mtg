@@ -1,7 +1,6 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
-import EnhancedAutocomplete from './Autocomplete';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,40 +35,29 @@ const EnhancedTextField = (props) => {
     dataCy,
     onChange,
     value,
+    params,
   } = {
     ...props,
   };
 
-  const EnhancedTextField = (params) => {
-    return (
-      <TextField
-        select={select}
-        {...params}
-        className={`${classes.root} ${className}`}
-        required={required}
-        fullWidth={fullWidth}
-        id={id}
-        InputLabelProps={InputLabelProps}
-        label={label}
-        helperText={helperText}
-        data-cy={dataCy}
-        value={value}
-        onChange={onChange}
-      >
-        {props.children}
-      </TextField>
-    );
-  };
-  if (useAutocomplete) {
-    return (
-      <EnhancedAutocomplete
-        options={autocompleteOptions}
-        renderInput={(params) => <EnhancedTextField {...params} />}
-      />
-    );
-  }
-
-  return EnhancedTextField();
+  return (
+    <TextField
+      select={select}
+      {...params}
+      className={`${classes.root} ${className}`}
+      required={required}
+      fullWidth={fullWidth}
+      id={id}
+      InputLabelProps={InputLabelProps}
+      label={label}
+      helperText={helperText}
+      data-cy={dataCy}
+      value={value}
+      onChange={onChange}
+    >
+      {props.children}
+    </TextField>
+  );
 };
 
 export default EnhancedTextField;
