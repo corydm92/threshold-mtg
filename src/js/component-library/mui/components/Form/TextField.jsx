@@ -26,7 +26,7 @@ const EnhancedTextField = (props) => {
     required,
     label,
     fullWidth = false,
-    id = '',
+    id,
     useAutocomplete,
     autocompleteOptions,
     InputLabelProps,
