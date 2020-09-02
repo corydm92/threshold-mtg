@@ -37,7 +37,6 @@ const EnhancedAutocomplete = (props) => {
   const { id, options, onChange, dataTest, label } = { ...props };
   return (
     <Autocomplete
-      debug
       data-test={dataTest}
       classes={{ root: classes.root, popper: classes.popper }}
       id={id}

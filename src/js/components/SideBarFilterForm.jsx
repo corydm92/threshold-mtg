@@ -141,11 +141,7 @@ const SideBarFilterForm = (props) => {
   };
 
   return (
-    <form
-      className={classes.form}
-      onSubmit={() => console.log('submitted')}
-      data-test='side-bar-filter-form'
-    >
+    <form className={classes.form} data-test='side-bar-filter-form'>
       {/* CHECKBOX FOIL */}
 
       <EnhancedContainer
