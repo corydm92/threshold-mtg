@@ -46,6 +46,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SideBarFilterForm = (props) => {
+  const [isFoil, setIsFoil] = useState(false);
+
   const classes = useStyles();
   const { collectionCardNames, collectionSetNames } = { ...props };
 
@@ -59,7 +61,12 @@ const SideBarFilterForm = (props) => {
       >
         <FormControlLabel
           classes={{ root: classes.formControlLabel }}
-          control={<EnhancedCheckbox />}
+          control={
+            <EnhancedCheckbox
+              checked={isFoil}
+              onChange={() => setIsFoil(!isFoil)}
+            />
+          }
           labelPlacement='start'
           label='Is Foil?'
         />
