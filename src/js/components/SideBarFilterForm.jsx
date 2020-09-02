@@ -55,17 +55,35 @@ const SideBarFilterForm = (props) => {
   const [dateFrom, setDateFrom] = useState('');
   const [dateTo, setDateTo] = useState('');
 
-  console.log('isFoil: ', isFoil);
-  console.log('spreadOperator: ', spreadOperator);
-  console.log('spreadValue: ', spreadValue);
-  console.log('gainOperator: ', gainOperator);
-  console.log('gainValue: ', gainValue);
+  // console.log('isFoil: ', isFoil);
+  // console.log('spreadOperator: ', spreadOperator);
+  // console.log('spreadValue: ', spreadValue);
+  // console.log('gainOperator: ', gainOperator);
+  // console.log('gainValue: ', gainValue);
+
+  const handleSubmit = () => {
+    const state = {
+      isFoil,
+      spreadOperator,
+      spreadValue,
+      gainOperator,
+      gainValue,
+      dateFrom,
+      dateTo,
+    };
+
+    console.log(state);
+  };
 
   const classes = useStyles();
   const { collectionCardNames, collectionSetNames } = { ...props };
 
   return (
-    <form className={classes.form} data-test='side-bar-filter-form'>
+    <form
+      className={classes.form}
+      onSubmit={() => console.log('submitted')}
+      data-test='side-bar-filter-form'
+    >
       {/* CHECKBOX FOIL */}
 
       <EnhancedContainer
@@ -175,13 +193,25 @@ const SideBarFilterForm = (props) => {
 
       {/* DATE FROM */}
 
-      <EnhancedDatepicker label='Date From' />
+      <EnhancedDatepicker
+        label='Date From'
+        value={dateFrom}
+        onChange={(event) => setDateFrom(event.target.value)}
+      />
 
       {/* DATE TO */}
 
-      <EnhancedDatepicker label='Date To' />
+      <EnhancedDatepicker
+        label='Date To'
+        value={dateTo}
+        onChange={(event) => setDateTo(event.target.value)}
+      />
 
-      <EnhancedButton className={classes.button} buttonText='Submit' />
+      <EnhancedButton
+        className={classes.button}
+        buttonText='Submit'
+        onClick={handleSubmit}
+      />
     </form>
   );
 };

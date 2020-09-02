@@ -8,6 +8,7 @@ const EnhancedButton = (props) => {
     variant = 'contained',
     classes,
     className,
+    onClick,
   } = { ...props };
   return (
     <Button
@@ -15,6 +16,7 @@ const EnhancedButton = (props) => {
       color={color}
       classes={classes}
       className={className}
+      onClick={onClick}
     >
       {buttonText}
     </Button>

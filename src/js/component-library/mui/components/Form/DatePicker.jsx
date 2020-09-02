@@ -20,13 +20,14 @@ const useStyles = makeStyles((theme) => ({
 const EnhancedDatePicker = (props) => {
   const classes = useStyles();
 
-  const { label } = { ...props };
+  const { label, value, onChange } = { ...props };
 
   return (
     <TextField
       label={label}
       type='date'
-      defaultValue=''
+      value={value}
+      onChange={onChange}
       className={classes.textField}
       InputLabelProps={{
         shrink: true,

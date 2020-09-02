@@ -43,6 +43,19 @@ export const setNamesSelector = createSelector(
   }
 );
 
+export const cardNameAndSet = createSelector(
+  [getCards, getCardsResults],
+  (cards, results) => {
+    const outArr = results.map((result) => {
+      const card = { ...cards[result] };
+
+      return { name: card.card_name, set: card.set_name };
+    });
+
+    return outArr;
+  }
+);
+
 export const cardsSelector = createSelector(
   [getCards, getCardsResults, getTcgPriceCategory],
   (cards, results, priceCategory) => {
