@@ -47,6 +47,10 @@ const useStyles = makeStyles((theme) => ({
 
 const SideBarFilterForm = (props) => {
   const [isFoil, setIsFoil] = useState(false);
+  const [spreadOperator, setSpreadOperator] = useState('');
+  const [spreadValue, setSpreadValue] = useState('');
+  const [gainOperator, setGainOperator] = useState('');
+  const [gainValue, setGainValue] = useState('');
 
   const classes = useStyles();
   const { collectionCardNames, collectionSetNames } = { ...props };
@@ -106,6 +110,8 @@ const SideBarFilterForm = (props) => {
         <EnhancedTextField
           dataCy='textfield-operand-select'
           select
+          value={spreadOperator}
+          onChange={(event) => setSpreadOperator(event.target.value)}
           label='Spread'
           className={classes.priceOperand}
           InputLabelProps={{
@@ -138,6 +144,8 @@ const SideBarFilterForm = (props) => {
           dataCy='textfield-operand-select'
           select
           label='Gain / Loss'
+          value={gainOperator}
+          onChange={(event) => setGainOperator(event.target.value)}
           className={classes.priceOperand}
           InputLabelProps={{
             shrink: true,

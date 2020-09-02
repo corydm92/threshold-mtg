@@ -53,6 +53,8 @@ const EnhancedTextField = (props) => {
         label={label}
         helperText={helperText}
         data-cy={dataCy}
+        value={value}
+        onChange={onChange}
       >
         {props.children}
       </TextField>
