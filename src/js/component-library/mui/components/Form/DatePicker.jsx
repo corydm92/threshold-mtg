@@ -24,7 +24,6 @@ const EnhancedDatePicker = (props) => {
 
   return (
     <TextField
-      id='date'
       label={label}
       type='date'
       defaultValue=''
