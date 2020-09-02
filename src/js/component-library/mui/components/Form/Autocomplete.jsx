@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 
 const EnhancedAutocomplete = (props) => {
   const classes = useStyles();
-  const { id, options, onChange, dataTest } = { ...props };
+  const { id, options, onChange, dataTest, label } = { ...props };
   return (
     <Autocomplete
       data-test={dataTest}
@@ -38,7 +38,7 @@ const EnhancedAutocomplete = (props) => {
       renderInput={(params) => (
         <TextField
           {...params}
-          label='Set Name'
+          label={label}
           InputLabelProps={{
             shrink: true,
           }}

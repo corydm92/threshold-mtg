@@ -52,6 +52,14 @@ const SideBarFilterForm = (props) => {
   const [spreadValue, setSpreadValue] = useState('');
   const [gainOperator, setGainOperator] = useState('');
   const [gainValue, setGainValue] = useState('');
+  const [dateFrom, setDateFrom] = useState('');
+  const [dateTo, setDateTo] = useState('');
+
+  console.log('isFoil: ', isFoil);
+  console.log('spreadOperator: ', spreadOperator);
+  console.log('spreadValue: ', spreadValue);
+  console.log('gainOperator: ', gainOperator);
+  console.log('gainValue: ', gainValue);
 
   const classes = useStyles();
   const { collectionCardNames, collectionSetNames } = { ...props };
@@ -122,6 +130,8 @@ const SideBarFilterForm = (props) => {
         <EnhancedTextField
           dataTest='textfield-spread'
           className={classes.spreadInput}
+          value={spreadValue}
+          onChange={(event) => setSpreadValue(event.target.value)}
           InputLabelProps={{
             shrink: true,
           }}
@@ -155,6 +165,8 @@ const SideBarFilterForm = (props) => {
         <EnhancedTextField
           dataTest='textfield-gain-loss'
           className={classes.spreadInput}
+          value={gainValue}
+          onChange={(event) => setGainValue(event.target.value)}
           InputLabelProps={{
             shrink: true,
           }}
