@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
   cardActions: {
     display: 'flex',
     justifyContent: 'center',
+    padding: 0,
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -50,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.primary,
     textAlign: 'center',
     fontSize: theme.typography.fontSize,
-    marginBottom: '16px',
+    marginBottom: theme.spacing(1),
     fontWeight: '700',
   },
   formControlLabel: {
@@ -76,6 +77,7 @@ const useStyles = makeStyles((theme) => ({
   cardContent: {
     display: 'flex',
     justifyContent: 'center',
+    paddingBottom: 0,
   },
   filterCardContent: {
     paddingTop: 0,
