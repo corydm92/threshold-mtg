@@ -57,23 +57,41 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const initState = {
+  isFoil: false,
+  setName: '',
+  cardName: '',
+  spreadOperator: '',
+  spreadValue: '',
+  gainOperator: '',
+  gainValue: '',
+  tcgPriceOperator: '',
+  tcgPriceValue: '',
+  dateFrom: '',
+  dateTo: '',
+};
+
 const SideBarFilterForm = (props) => {
   const classes = useStyles();
   const { cardNamesAndSets, priceCategory } = {
     ...props,
   };
 
-  const [isFoil, setIsFoil] = useState(false);
-  const [setName, setSetName] = useState('');
-  const [cardName, setCardName] = useState('');
-  const [spreadOperator, setSpreadOperator] = useState('');
-  const [spreadValue, setSpreadValue] = useState('');
-  const [gainOperator, setGainOperator] = useState('');
-  const [gainValue, setGainValue] = useState('');
-  const [tcgPriceOperator, setTcgPriceOperator] = useState('');
-  const [tcgPriceValue, setTcgPriceValue] = useState('');
-  const [dateFrom, setDateFrom] = useState('');
-  const [dateTo, setDateTo] = useState('');
+  const [isFoil, setIsFoil] = useState(initState.isFoil);
+  const [setName, setSetName] = useState(initState.setName);
+  const [cardName, setCardName] = useState(initState.cardName);
+  const [spreadOperator, setSpreadOperator] = useState(
+    initState.spreadOperator
+  );
+  const [spreadValue, setSpreadValue] = useState(initState.spreadValue);
+  const [gainOperator, setGainOperator] = useState(initState.gainOperator);
+  const [gainValue, setGainValue] = useState(initState.gainValue);
+  const [tcgPriceOperator, setTcgPriceOperator] = useState(
+    initState.tcgPriceOperator
+  );
+  const [tcgPriceValue, setTcgPriceValue] = useState(initState.tcgPriceValue);
+  const [dateFrom, setDateFrom] = useState(initState.dateFrom);
+  const [dateTo, setDateTo] = useState(initState.dateTo);
 
   // Not sent to filter reducer, just for filtering select options
   const [cardNameOptions, setCardNameOptions] = useState([]);
@@ -137,6 +155,8 @@ const SideBarFilterForm = (props) => {
       spreadValue,
       gainOperator,
       gainValue,
+      tcgPriceOperator,
+      tcgPriceValue,
       dateFrom,
       dateTo,
     };
