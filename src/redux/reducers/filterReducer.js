@@ -1,15 +1,28 @@
+import { SET_FILTER_OPTIONS, CLEAR_FILTER_OPTIONS } from '../actionTypes';
+
 const initState = {
-  cardName: '',
+  isFoil: false,
   setName: '',
-  spread: null,
-  gainLoss: null,
-  dateTo: null,
-  dateFrom: null,
+  cardName: '',
+  spreadOperator: '',
+  spreadValue: '',
+  gainOperator: '',
+  gainValue: '',
+  tcgPriceOperator: '',
+  tcgPriceValue: '',
+  dateFrom: '',
+  dateTo: '',
 };
 
-const filterReducer = (state = {}, action) => {
+const filterReducer = (state = initState, action) => {
   switch (action.type) {
+    case SET_FILTER_OPTIONS:
+      return action.payload;
+    case CLEAR_FILTER_OPTIONS:
+      return initState;
     default:
       return state;
   }
 };
+
+export default filterReducer;
