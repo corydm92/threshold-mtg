@@ -10,6 +10,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Operands from '../constants/operands';
 import MenuItem from '@material-ui/core/MenuItem';
 import { uniq } from 'lodash';
+import { getPriceCategory } from '../../utils';
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -21,7 +22,8 @@ const useStyles = makeStyles((theme) => ({
       width: '100%',
     },
     '& .MuiInputLabel-root': {
-      minWidth: '100px',
+      // Applies to rows with two elements, needed to span one label for both inputs.
+      minWidth: '200px',
     },
   },
   container: {
@@ -40,6 +42,8 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     marginTop: theme.spacing(2),
+    fontSize: theme.typography.fontSize,
+    width: '100%',
   },
   priceOperand: {
     width: theme.spacing(10),
@@ -55,25 +59,54 @@ const useStyles = makeStyles((theme) => ({
 
 const SideBarFilterForm = (props) => {
   const classes = useStyles();
-  const { cardNamesAndSets } = {
-    ...props,
-  };
+  const {
+    // STORE
+    priceCategory,
+    cardNamesAndSets,
+    filterValues,
 
-  const [isFoil, setIsFoil] = useState(false);
-  const [setName, setSetName] = useState('');
-  const [cardName, setCardName] = useState('');
-  const [spreadOperator, setSpreadOperator] = useState('');
-  const [spreadValue, setSpreadValue] = useState('');
-  const [gainOperator, setGainOperator] = useState('');
-  const [gainValue, setGainValue] = useState('');
-  const [tcgPriceOperator, setTcgPriceOperator] = useState('');
-  const [tcgPriceValue, setTcgPriceValue] = useState('');
-  const [dateFrom, setDateFrom] = useState('');
-  const [dateTo, setDateTo] = useState('');
+    // ACTIONS
+    setFilterOptions,
+    clearFilterOptions,
+  } = { ...props };
+
+  const [isFoil, setIsFoil] = useState(filterValues.isFoil);
+  const [setName, setSetName] = useState(filterValues.setName);
+  const [cardName, setCardName] = useState(filterValues.cardName);
+  const [spreadOperator, setSpreadOperator] = useState(
+    filterValues.spreadOperator
+  );
+  const [spreadValue, setSpreadValue] = useState(filterValues.spreadValue);
+  const [gainOperator, setGainOperator] = useState(filterValues.gainOperator);
+  const [gainValue, setGainValue] = useState(filterValues.gainValue);
+  const [tcgPriceOperator, setTcgPriceOperator] = useState(
+    filterValues.tcgPriceOperator
+  );
+  const [tcgPriceValue, setTcgPriceValue] = useState(
+    filterValues.tcgPriceValue
+  );
+  const [dateFrom, setDateFrom] = useState(filterValues.dateFrom);
+  const [dateTo, setDateTo] = useState(filterValues.dateTo);
 
   // Not sent to filter reducer, just for filtering select options
   const [cardNameOptions, setCardNameOptions] = useState([]);
   const [setNameOptions, setSetNameOptions] = useState([]);
+
+  useEffect(() => {
+    // Setting an initial state, as well as updating component state when redux store is cleared
+
+    setIsFoil(filterValues.isFoil);
+    setSetName(filterValues.setName);
+    setCardName(filterValues.cardName);
+    setSpreadOperator(filterValues.spreadOperator);
+    setSpreadValue(filterValues.spreadValue);
+    setGainOperator(filterValues.gainOperator);
+    setGainValue(filterValues.gainValue);
+    setTcgPriceOperator(filterValues.tcgPriceOperator);
+    setTcgPriceValue(filterValues.tcgPriceValue);
+    setDateFrom(filterValues.dateFrom);
+    setDateTo(filterValues.dateTo);
+  }, [filterValues]);
 
   useEffect(() => {
     // Sets and filters set and card drop down options
@@ -133,11 +166,17 @@ const SideBarFilterForm = (props) => {
       spreadValue,
       gainOperator,
       gainValue,
+      tcgPriceOperator,
+      tcgPriceValue,
       dateFrom,
       dateTo,
     };
 
-    console.log(state);
+    setFilterOptions(state);
+  };
+
+  const handleClearAll = () => {
+    clearFilterOptions();
   };
 
   return (
@@ -267,7 +306,7 @@ const SideBarFilterForm = (props) => {
         <EnhancedTextField
           dataTest='tcg-price-operand-select'
           select
-          label='TCG Price'
+          label={getPriceCategory(priceCategory)}
           value={tcgPriceOperator}
           onChange={(event) => setTcgPriceOperator(event.target.value)}
           className={classes.priceOperand}
@@ -314,11 +353,20 @@ const SideBarFilterForm = (props) => {
         onChange={(event) => setDateTo(event.target.value)}
       />
 
-      <EnhancedButton
-        className={classes.button}
-        buttonText='Submit'
-        onClick={handleSubmit}
-      />
+      <EnhancedContainer disableGutters>
+        <EnhancedButton
+          className={classes.button}
+          buttonText='Submit'
+          onClick={handleSubmit}
+        />
+
+        <EnhancedButton
+          className={classes.button}
+          tertiary
+          buttonText='Clear All'
+          onClick={handleClearAll}
+        />
+      </EnhancedContainer>
     </form>
   );
 };

@@ -5,18 +5,20 @@ import {
   FETCH_CARD_DATA_FAILED,
   SET_CARD_DATA_SUCCESSFUL,
   SET_CARD_DATA_FAILED,
+  SET_FILTER_OPTIONS,
+  CLEAR_FILTER_OPTIONS,
   IS_LOADING_CARDS_TRUE,
   IS_LOADING_CARDS_FALSE,
   IS_LOADING_CARD_TRUE,
   IS_LOADING_CARD_FALSE,
   SET_SPEC_PRICES_SUCCESSFUL,
+  // SET_SPEC_PRICES_FAILED,
   SET_TCG_PRICES_SUCCESSFUL,
+  // SET_TCG_PRICES_FAILED,
   SET_PRICE_CATEGORY_LOW,
   SET_PRICE_CATEGORY_MID,
   SET_PRICE_CATEGORY_HIGH,
   SET_PRICE_CATEGORY_MARKET,
-  // SET_SPEC_PRICES_FAILED,
-  // SET_TCG_PRICES_FAILED,
 } from './actionTypes';
 
 import { axiosGET } from '../axios';
@@ -26,21 +28,7 @@ import { isEmpty } from 'lodash';
 import cardsNormalizr from '../normalizr/cardsNormalizr';
 import cardNormalizr from '../normalizr/cardNormalizr';
 
-export const isLoadingCardsTrue = () => {
-  return { type: IS_LOADING_CARDS_TRUE };
-};
-
-export const isLoadingCardsFalse = () => {
-  return { type: IS_LOADING_CARDS_FALSE };
-};
-
-export const isLoadingCardTrue = () => {
-  return { type: IS_LOADING_CARD_TRUE };
-};
-
-export const isLoadingCardFalse = () => {
-  return { type: IS_LOADING_CARD_FALSE };
-};
+/*** CARD(S) ***/
 
 // Intermediary action creator
 export const fetchCards = (params) => (dispatch) => {
@@ -67,6 +55,8 @@ export const fetchCardsData = (params) => (dispatch) => {
     });
 };
 
+/*** CARD ***/
+
 // Intermediary action creator
 export const fetchSingleCard = (id) => (dispatch, getState) => {
   const { entities } = getState().cardsReducer;
@@ -83,7 +73,6 @@ export const fetchSingleCard = (id) => (dispatch, getState) => {
   }
 };
 
-// Providing default ID, remove once component is built for displaying a single card.
 export const fetchSingleCardData = (id) => (dispatch) => {
   return axiosGET('/' + id + '/')
     .then((res) => {
@@ -125,13 +114,57 @@ export const setSingleCard = (singleId) => (dispatch, getState) => {
   }
 };
 
+/*** FILTER ***/
+
+export const setFilterOptions = (payload) => {
+  return { type: SET_FILTER_OPTIONS, payload };
+};
+
+export const clearFilterOptions = () => {
+  return { type: CLEAR_FILTER_OPTIONS };
+};
+
+/*** STATE MANAGEMENT ***/
+
+export const isLoadingCardsTrue = () => {
+  return { type: IS_LOADING_CARDS_TRUE };
+};
+
+export const isLoadingCardsFalse = () => {
+  return { type: IS_LOADING_CARDS_FALSE };
+};
+
+export const isLoadingCardTrue = () => {
+  return { type: IS_LOADING_CARD_TRUE };
+};
+
+export const isLoadingCardFalse = () => {
+  return { type: IS_LOADING_CARD_FALSE };
+};
+
+/*** SPEC PRICES ***/
+
 export const setSpecPricesSuccessful = (specPrices) => {
   return { type: SET_SPEC_PRICES_SUCCESSFUL, payload: specPrices };
 };
 
+// Might be useful in the future
+// export const setSpecPricesFailed = () => {
+//   return { type: SET_SPEC_PRICES_FAILED };
+// };
+
+/*** TCG PRICES ***/
+
 export const setTcgPricesSuccessful = (tcgPrices) => {
   return { type: SET_TCG_PRICES_SUCCESSFUL, payload: tcgPrices };
 };
+
+// Might be useful in the future
+// export const setTcgPricesFailed = () => {
+//   return { type: SET_TCG_PRICES_FAILED };
+// };
+
+/*** TCG CATEGORIES***/
 
 export const setPriceCategoryLow = () => {
   return { type: SET_PRICE_CATEGORY_LOW };
@@ -148,13 +181,3 @@ export const setPriceCategoryHigh = () => {
 export const setPriceCategoryMarket = () => {
   return { type: SET_PRICE_CATEGORY_MARKET };
 };
-
-// Might be useful in the future
-// export const setSpecPricesFailed = () => {
-//   return { type: SET_SPEC_PRICES_FAILED };
-// };
-
-// Might be useful in the future
-// export const setTcgPricesFailed = () => {
-//   return { type: SET_TCG_PRICES_FAILED };
-// };

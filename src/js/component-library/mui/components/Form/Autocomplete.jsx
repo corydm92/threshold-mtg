@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 
 const EnhancedAutocomplete = (props) => {
   const classes = useStyles();
-  const { id, options, onChange, dataTest, label } = { ...props };
+  const { id, value, options, onChange, dataTest, label } = { ...props };
   return (
     <Autocomplete
       data-test={dataTest}
@@ -51,6 +51,7 @@ const EnhancedAutocomplete = (props) => {
         />
       )}
       onChange={onChange}
+      value={value}
     />
   );
 };

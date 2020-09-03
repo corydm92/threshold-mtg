@@ -6,6 +6,8 @@ import {
   setPriceCategoryMid,
   setPriceCategoryHigh,
   setPriceCategoryMarket,
+  setFilterOptions,
+  clearFilterOptions,
 } from '../../redux/actions';
 import { cardsSelector, cardNamesAndSets } from '../../selectors/cardsSelector';
 
@@ -15,6 +17,7 @@ const mapStateToProps = (state) => {
     cardNamesAndSets: cardNamesAndSets(state), // Array of objects, each card name and set
     isLoadingCards: state.isLoadingReducer.cards,
     priceCategory: state.tcgPriceCategory,
+    filterValues: state.filterReducer,
   };
 };
 
@@ -25,6 +28,8 @@ const mapDispatchToProps = (dispatch) => {
     setPriceCategoryMid: () => dispatch(setPriceCategoryMid()),
     setPriceCategoryHigh: () => dispatch(setPriceCategoryHigh()),
     setPriceCategoryMarket: () => dispatch(setPriceCategoryMarket()),
+    setFilterOptions: (payload) => dispatch(setFilterOptions(payload)),
+    clearFilterOptions: () => dispatch(clearFilterOptions()),
   };
 };
 
