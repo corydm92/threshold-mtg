@@ -57,45 +57,56 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const initState = {
-  isFoil: false,
-  setName: '',
-  cardName: '',
-  spreadOperator: '',
-  spreadValue: '',
-  gainOperator: '',
-  gainValue: '',
-  tcgPriceOperator: '',
-  tcgPriceValue: '',
-  dateFrom: '',
-  dateTo: '',
-};
-
 const SideBarFilterForm = (props) => {
   const classes = useStyles();
-  const { cardNamesAndSets, priceCategory } = {
-    ...props,
-  };
+  const {
+    // STORE
+    priceCategory,
+    cardNamesAndSets,
+    filterValues,
 
-  const [isFoil, setIsFoil] = useState(initState.isFoil);
-  const [setName, setSetName] = useState(initState.setName);
-  const [cardName, setCardName] = useState(initState.cardName);
+    // ACTIONS
+    setFilterOptions,
+    clearFilterOptions,
+  } = { ...props };
+
+  const [isFoil, setIsFoil] = useState(filterValues.isFoil);
+  const [setName, setSetName] = useState(filterValues.setName);
+  const [cardName, setCardName] = useState(filterValues.cardName);
   const [spreadOperator, setSpreadOperator] = useState(
-    initState.spreadOperator
+    filterValues.spreadOperator
   );
-  const [spreadValue, setSpreadValue] = useState(initState.spreadValue);
-  const [gainOperator, setGainOperator] = useState(initState.gainOperator);
-  const [gainValue, setGainValue] = useState(initState.gainValue);
+  const [spreadValue, setSpreadValue] = useState(filterValues.spreadValue);
+  const [gainOperator, setGainOperator] = useState(filterValues.gainOperator);
+  const [gainValue, setGainValue] = useState(filterValues.gainValue);
   const [tcgPriceOperator, setTcgPriceOperator] = useState(
-    initState.tcgPriceOperator
+    filterValues.tcgPriceOperator
   );
-  const [tcgPriceValue, setTcgPriceValue] = useState(initState.tcgPriceValue);
-  const [dateFrom, setDateFrom] = useState(initState.dateFrom);
-  const [dateTo, setDateTo] = useState(initState.dateTo);
+  const [tcgPriceValue, setTcgPriceValue] = useState(
+    filterValues.tcgPriceValue
+  );
+  const [dateFrom, setDateFrom] = useState(filterValues.dateFrom);
+  const [dateTo, setDateTo] = useState(filterValues.dateTo);
 
   // Not sent to filter reducer, just for filtering select options
   const [cardNameOptions, setCardNameOptions] = useState([]);
   const [setNameOptions, setSetNameOptions] = useState([]);
+
+  useEffect(() => {
+    // Setting an initial state, as well as updating component state when redux store is cleared
+
+    setIsFoil(filterValues.isFoil);
+    setSetName(filterValues.setName);
+    setCardName(filterValues.cardName);
+    setSpreadOperator(filterValues.spreadOperator);
+    setSpreadValue(filterValues.spreadValue);
+    setGainOperator(filterValues.gainOperator);
+    setGainValue(filterValues.gainValue);
+    setTcgPriceOperator(filterValues.tcgPriceOperator);
+    setTcgPriceValue(filterValues.tcgPriceValue);
+    setDateFrom(filterValues.dateFrom);
+    setDateTo(filterValues.dateTo);
+  }, [filterValues]);
 
   useEffect(() => {
     // Sets and filters set and card drop down options
@@ -161,7 +172,11 @@ const SideBarFilterForm = (props) => {
       dateTo,
     };
 
-    console.log(state);
+    setFilterOptions(state);
+  };
+
+  const handleClearAll = () => {
+    clearFilterOptions();
   };
 
   return (
@@ -349,7 +364,7 @@ const SideBarFilterForm = (props) => {
           className={classes.button}
           tertiary
           buttonText='Clear All'
-          onClick={handleSubmit}
+          onClick={handleClearAll}
         />
       </EnhancedContainer>
     </form>

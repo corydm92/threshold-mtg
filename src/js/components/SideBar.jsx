@@ -99,17 +99,19 @@ const useStyles = makeStyles((theme) => {
 });
 
 const SideBar = (props) => {
-  // STORE
-  const { priceCategory, cardNamesAndSets } = {
-    ...props,
-  };
-
-  // ACTIONS
   const {
+    // STORE
+    priceCategory,
+    cardNamesAndSets,
+    filterValues,
+
+    // ACTIONS
     setPriceCategoryLow,
     setPriceCategoryMid,
     setPriceCategoryHigh,
     setPriceCategoryMarket,
+    setFilterOptions,
+    clearFilterOptions,
   } = { ...props };
 
   const [expanded, setExpanded] = React.useState(false);
@@ -262,6 +264,9 @@ const SideBar = (props) => {
             <SideBarFilterForm
               cardNamesAndSets={cardNamesAndSets}
               priceCategory={priceCategory}
+              setFilterOptions={setFilterOptions}
+              clearFilterOptions={clearFilterOptions}
+              filterValues={filterValues}
             />
           </CardContent>
         </Collapse>

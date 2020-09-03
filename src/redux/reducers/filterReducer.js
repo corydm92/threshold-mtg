@@ -2,8 +2,8 @@ import { SET_FILTER_OPTIONS, CLEAR_FILTER_OPTIONS } from '../actionTypes';
 
 const initState = {
   isFoil: false,
-  setName: '',
-  cardName: '',
+  setName: null, // Must be null for autocomplete (console warnings)
+  cardName: null, // Must be null for autocomplete (console warnings)
   spreadOperator: '',
   spreadValue: '',
   gainOperator: '',

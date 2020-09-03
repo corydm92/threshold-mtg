@@ -14,6 +14,7 @@ const CardsView = (props) => {
     priceCategory,
     isLoadingCards,
     cardNamesAndSets,
+    filterValues,
 
     // ACTIONS
     isLoadingCardsFalse,
@@ -21,6 +22,8 @@ const CardsView = (props) => {
     setPriceCategoryMid,
     setPriceCategoryHigh,
     setPriceCategoryMarket,
+    setFilterOptions,
+    clearFilterOptions,
   } = {
     ...props,
   };
@@ -61,6 +64,9 @@ const CardsView = (props) => {
             setPriceCategoryHigh={setPriceCategoryHigh}
             setPriceCategoryMarket={setPriceCategoryMarket}
             cardNamesAndSets={cardNamesAndSets}
+            setFilterOptions={setFilterOptions}
+            clearFilterOptions={clearFilterOptions}
+            filterValues={filterValues}
           />
         </Grid>
         <Grid item xs={10}>
