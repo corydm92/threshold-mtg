@@ -10,6 +10,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Operands from '../constants/operands';
 import MenuItem from '@material-ui/core/MenuItem';
 import { uniq } from 'lodash';
+import { getPriceCategory } from '../../utils';
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -21,7 +22,8 @@ const useStyles = makeStyles((theme) => ({
       width: '100%',
     },
     '& .MuiInputLabel-root': {
-      minWidth: '100px',
+      // Applies to rows with two elements, needed to span one label for both inputs.
+      minWidth: '200px',
     },
   },
   container: {
@@ -55,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
 
 const SideBarFilterForm = (props) => {
   const classes = useStyles();
-  const { cardNamesAndSets } = {
+  const { cardNamesAndSets, priceCategory } = {
     ...props,
   };
 
@@ -267,7 +269,7 @@ const SideBarFilterForm = (props) => {
         <EnhancedTextField
           dataTest='tcg-price-operand-select'
           select
-          label='TCG Price'
+          label={getPriceCategory(priceCategory)}
           value={tcgPriceOperator}
           onChange={(event) => setTcgPriceOperator(event.target.value)}
           className={classes.priceOperand}

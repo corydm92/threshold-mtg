@@ -239,7 +239,10 @@ const SideBar = (props) => {
         </CardActions>
         <Collapse in={expanded} timeout='auto' unmountOnExit>
           <CardContent className={classes.filterCardContent}>
-            <SideBarFilterForm cardNamesAndSets={cardNamesAndSets} />
+            <SideBarFilterForm
+              cardNamesAndSets={cardNamesAndSets}
+              priceCategory={priceCategory}
+            />
           </CardContent>
         </Collapse>
       </Card>
