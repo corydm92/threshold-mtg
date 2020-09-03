@@ -46,6 +46,9 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     color: theme.palette.text.primary,
     width: '100%',
+    '& .MuiFormLabel-root.Mui-focused': {
+      color: theme.palette.text.primary,
+    },
   },
   formLabel: {
     color: theme.palette.text.primary,
@@ -53,6 +56,9 @@ const useStyles = makeStyles((theme) => ({
     fontSize: theme.typography.fontSize,
     marginBottom: theme.spacing(1),
     fontWeight: '700',
+    '& .Mui-focused': {
+      display: 'none',
+    },
   },
   formControlLabel: {
     display: 'flex',

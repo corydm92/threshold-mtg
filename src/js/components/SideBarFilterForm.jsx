@@ -42,6 +42,8 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     marginTop: theme.spacing(2),
+    fontSize: theme.typography.fontSize,
+    width: '100%',
   },
   priceOperand: {
     width: theme.spacing(10),
@@ -316,11 +318,20 @@ const SideBarFilterForm = (props) => {
         onChange={(event) => setDateTo(event.target.value)}
       />
 
-      <EnhancedButton
-        className={classes.button}
-        buttonText='Submit'
-        onClick={handleSubmit}
-      />
+      <EnhancedContainer disableGutters>
+        <EnhancedButton
+          className={classes.button}
+          buttonText='Submit'
+          onClick={handleSubmit}
+        />
+
+        <EnhancedButton
+          className={classes.button}
+          tertiary
+          buttonText='Clear All'
+          onClick={handleSubmit}
+        />
+      </EnhancedContainer>
     </form>
   );
 };
