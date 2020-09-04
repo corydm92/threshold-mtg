@@ -155,5 +155,65 @@ export const filterByReducer = (filterReducer, card) => {
     return false;
   }
 
+  if (cardName && card.cardName !== cardName) {
+    return false;
+  }
+
+  if (spreadOperator && spreadValue) {
+    switch (spreadOperator) {
+      case '>':
+        if (card.spread > spreadValue) {
+          break;
+        } else {
+          return false;
+        }
+      case '>=':
+        if (card.spread >= spreadValue) {
+          break;
+        } else {
+          return false;
+        }
+      case '=':
+        if (card.spread === spreadValue) {
+          break;
+        } else {
+          return false;
+        }
+      case '<=':
+        if (card.spread <= spreadValue) {
+          break;
+        } else {
+          return false;
+        }
+      case '<':
+        if (card.spread < spreadValue) {
+          break;
+        } else {
+          return false;
+        }
+      default:
+        break;
+    }
+  }
+
+  // if (spreadOperator && spreadValue) {
+  //   switch (spreadOperator) {
+  //     case '>':
+  //       break;
+  //     case '>=':
+  //       break;
+  //     case '=':
+  //       break;
+  //     case '<=':
+  //       break;
+  //     case '<':
+  //       break;
+  //     default:
+  //       console.log('spreadOperator', spreadOperator);
+  //       console.log('spreadValue', spreadValue);
+  //       break;
+  //   }
+  // }
+
   return true;
 };
