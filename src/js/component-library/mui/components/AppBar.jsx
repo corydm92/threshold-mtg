@@ -1,12 +1,10 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
+
 import Container from './Container';
-import MobileMenu from '../../../components/MobileMenu';
-import TabLinks from './TabLinks';
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -15,33 +13,19 @@ const useStyles = makeStyles((theme) => {
       backgroundColor: theme.palette.primary.main,
       padding: '0px 8px',
     },
-    title: {
-      flexGrow: 1,
-    },
   };
 });
 
 const MuiAppBar = (props) => {
   const classes = useStyles();
-  const location = useLocation();
 
-  const { title } = props;
+  const { className } = { ...props };
 
   return (
     <div className={classes.root}>
-      <AppBar position='fixed' className={classes.root} data-test='appbar'>
+      <AppBar position='fixed' className={className} data-test='appbar'>
         <Container>
-          <Toolbar disableGutters={true}>
-            <Typography
-              data-test='appbar-title'
-              variant='h5'
-              className={classes.title}
-            >
-              {title}
-            </Typography>
-            <MobileMenu />
-            <TabLinks location={location} />
-          </Toolbar>
+          <Toolbar disableGutters={true}>{props.children}</Toolbar>
         </Container>
       </AppBar>
     </div>

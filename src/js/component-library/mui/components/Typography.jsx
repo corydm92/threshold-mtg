@@ -22,8 +22,11 @@ const useStyles = makeStyles((theme) => {
 
 const EnhancedTypography = (props) => {
   const classes = useStyles(props);
+  const { className } = { ...props };
   return (
-    <Typography className={classes.typography}>{props.children}</Typography>
+    <Typography className={className} classes={{ root: classes.typography }}>
+      {props.children}
+    </Typography>
   );
 };
 

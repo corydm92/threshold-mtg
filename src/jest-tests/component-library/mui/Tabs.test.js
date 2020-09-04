@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import { findByTestAttr } from '../../../utils/testUtils';
 import TabLinks, {
   getCurrentPath,
-} from '../../../js/component-library/mui/components/TabLinks';
+} from '../../../js/component-library/mui/components/Tabs';
 
 describe('TabLinks tests', () => {
   let wrapper;
