@@ -196,24 +196,81 @@ export const filterByReducer = (filterReducer, card) => {
     }
   }
 
-  // if (spreadOperator && spreadValue) {
-  //   switch (spreadOperator) {
-  //     case '>':
-  //       break;
-  //     case '>=':
-  //       break;
-  //     case '=':
-  //       break;
-  //     case '<=':
-  //       break;
-  //     case '<':
-  //       break;
-  //     default:
-  //       console.log('spreadOperator', spreadOperator);
-  //       console.log('spreadValue', spreadValue);
-  //       break;
-  //   }
-  // }
+  if (gainOperator && gainValue) {
+    switch (gainOperator) {
+      case '>':
+        if (card.gainLoss > gainValue) {
+          break;
+        } else {
+          return false;
+        }
+      case '>=':
+        if (card.gainLoss >= gainValue) {
+          break;
+        } else {
+          return false;
+        }
+      case '=':
+        if (card.gainLoss === gainValue) {
+          break;
+        } else {
+          return false;
+        }
+      case '<=':
+        if (card.gainLoss <= gainValue) {
+          break;
+        } else {
+          return false;
+        }
+      case '<':
+        if (card.gainLoss < gainValue) {
+          break;
+        } else {
+          return false;
+        }
+      default:
+        break;
+    }
+  }
+
+  if (tcgPriceOperator && tcgPriceValue) {
+    switch (tcgPriceOperator) {
+      case '>':
+        if (card.tcgPrice > tcgPriceValue) {
+          break;
+        } else {
+          return false;
+        }
+      case '>=':
+        if (card.tcgPrice >= tcgPriceValue) {
+          break;
+        } else {
+          return false;
+        }
+      case '=':
+        if (card.tcgPrice === tcgPriceValue) {
+          break;
+        } else {
+          return false;
+        }
+      case '<=':
+        if (card.tcgPrice <= tcgPriceValue) {
+          break;
+        } else {
+          return false;
+        }
+      case '<':
+        if (card.tcgPrice < tcgPriceValue) {
+          break;
+        } else {
+          return false;
+        }
+      default:
+        break;
+    }
+  }
+
+  // Date From + Date To
 
   return true;
 };
