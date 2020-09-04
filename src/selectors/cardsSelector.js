@@ -15,8 +15,8 @@ const getTcgPriceCategory = (state) => state.tcgPriceCategory;
 const getFilterCategories = (state) => state.filterReducer;
 
 export const cardsSelector = createSelector(
-  [getCards, getCardsResults, getTcgPriceCategory],
-  (cards, results, priceCategory) => {
+  [getCards, getCardsResults, getTcgPriceCategory, getFilterCategories],
+  (cards, results, priceCategory, filterCategories) => {
     return results.reduce((res, result) => {
       const card = { ...cards[result] };
 
@@ -52,7 +52,9 @@ export const cardsSelector = createSelector(
         gainLoss,
       };
 
-      res.push(outObj);
+      if (filterByReducer(filterCategories, outObj)) {
+        res.push(outObj);
+      }
 
       return res;
     }, []);
@@ -64,5 +66,3 @@ export const cardNamesAndSets = createSelector([cardsSelector], (cards) => {
     return { name: card.cardName, set: card.setName };
   });
 });
-
-// {name: card.card_name, set: card.set_name }

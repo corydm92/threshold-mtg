@@ -147,7 +147,8 @@ export const filterByReducer = (filterReducer, card) => {
     dateTo,
   } = { ...filterReducer };
 
-  if (isFoil) {
+  if (isFoil && !card.foil) {
+    return false;
   }
   return true;
 };
