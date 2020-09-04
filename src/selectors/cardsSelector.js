@@ -64,13 +64,10 @@ export const cardsSelector = createSelector(
 
 export const cardNamesAndSets = createSelector(
   [getCards, getCardsResults],
-  (cards, results) => {
-    const outArr = results.map((result) => {
+  (cards, results) =>
+    results.map((result) => {
       const card = { ...cards[result] };
 
       return { name: card.card_name, set: card.set_name };
-    });
-
-    return outArr;
-  }
+    })
 );
