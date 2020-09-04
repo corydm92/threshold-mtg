@@ -14,32 +14,18 @@ const getCardsResults = (state) => state.cardsReducer.result;
 const getTcgPriceCategory = (state) => state.tcgPriceCategory;
 const getFilterCategories = (state) => state.filterReducer;
 
-export const cardNamesAndSets = createSelector(
-  [getCards, getCardsResults, getFilterCategories],
-  (cards, cardsResults, filterCategories) => {
-    const outArr = cardsResults.reduce((result, cardsResult) => {
-      const card = { ...cards[cardsResult] };
-
-      if (filterByReducer(filterCategories, card))
-        result.push({ name: card.card_name, set: card.set_name });
-      return result;
-    }, []);
-
-    return outArr;
-  }
-);
-
 export const cardsSelector = createSelector(
   [getCards, getCardsResults, getTcgPriceCategory],
   (cards, results, priceCategory) => {
-    return results.map((result) => {
+    return results.reduce((res, result) => {
       const card = { ...cards[result] };
 
       const isValid = cardIsValid(card);
 
       if (!isValid) {
         console.log(card);
-        return {};
+        // Reduce allows us to filter invalid cards by returning our current res
+        return res;
       }
 
       const tcgSellerDashboardUrl = `https://store.tcgplayer.com/admin/product/manage/${card.tcg_productId}`;
@@ -66,13 +52,17 @@ export const cardsSelector = createSelector(
         gainLoss,
       };
 
-      // console.log(outObj);
+      res.push(outObj);
 
-      return outObj;
-    });
+      return res;
+    }, []);
   }
 );
 
-const test = createSelector([cardsSelector], (card) => {
-  console.log(card);
+export const cardNamesAndSets = createSelector([cardsSelector], (cards) => {
+  return cards.map((card) => {
+    return { name: card.cardName, set: card.setName };
+  });
 });
+
+// {name: card.card_name, set: card.set_name }
