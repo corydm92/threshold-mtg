@@ -8,9 +8,21 @@ import { useLocation } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => {
+  console.log(theme);
   return {
+    appBar: {
+      '& .MuiToolbar-root': {
+        display: 'flex',
+        justifyContent: 'space-between',
+      },
+      '& .MuiTab-textColorInherit': {
+        // Sets opacity for visited links to 1
+        opacity: 1,
+      },
+    },
     title: {
       flexGrow: 1,
+      fontSize: theme.typography.h5.fontSize,
     },
   };
 });
@@ -22,12 +34,8 @@ const HeaderNavigation = (props) => {
   const { title } = { ...props };
 
   return (
-    <AppBar title={title}>
-      <EnhancedTypography
-        data-test='appbar-title'
-        variant='h5'
-        className={classes.title}
-      >
+    <AppBar className={classes.appBar} title={title}>
+      <EnhancedTypography dataTest='appbar-title' className={classes.title}>
         {title}
       </EnhancedTypography>
 

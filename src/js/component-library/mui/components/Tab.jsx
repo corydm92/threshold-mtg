@@ -2,9 +2,12 @@ import React from 'react';
 import { Tab } from '@material-ui/core';
 
 const EnhancedTab = (props) => {
-  const { label, component, to, dataTest, onChange, value } = { ...props };
+  const { label, component, to, dataTest, onChange, value, className } = {
+    ...props,
+  };
   return (
     <Tab
+      className={className}
       label={label}
       component={component}
       to={to}

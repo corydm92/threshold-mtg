@@ -19,9 +19,11 @@ const useStyles = makeStyles((theme) => {
 const MuiAppBar = (props) => {
   const classes = useStyles();
 
+  const { className } = { ...props };
+
   return (
     <div className={classes.root}>
-      <AppBar position='fixed' className={classes.root} data-test='appbar'>
+      <AppBar position='fixed' className={className} data-test='appbar'>
         <Container>
           <Toolbar disableGutters={true}>{props.children}</Toolbar>
         </Container>

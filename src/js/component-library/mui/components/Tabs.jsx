@@ -1,8 +1,6 @@
 import React from 'react';
-import { Tabs, Tab } from '@material-ui/core';
+import { Tabs } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import RouteMapper from '../../../routes/RouteMapper';
-import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -22,25 +20,6 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-export const getCurrentPath = (location) => {
-  const pathMap = {
-    inventory: {
-      path: '/inventory',
-      value: 0,
-    },
-    home: {
-      path: '/',
-      value: 1,
-    },
-  };
-
-  if (location.pathname.startsWith('/inventory')) {
-    return pathMap.inventory.value;
-  } else {
-    return pathMap.home.value;
-  }
-};
-
 const EnhancedTabs = (props) => {
   const { initialValue } = { ...props };
   const classes = useStyles();
@@ -48,7 +27,6 @@ const EnhancedTabs = (props) => {
   const [value, setValue] = React.useState(initialValue);
 
   const handleChange = (event, newValue) => {
-    console.log(newValue);
     setValue(newValue);
   };
 
