@@ -41,39 +41,23 @@ export const getCurrentPath = (location) => {
   }
 };
 
-const TabLinks = ({ location, ...props }) => {
+const EnhancedTabs = (props) => {
+  const { initialValue, onChange, value } = { ...props };
   const classes = useStyles();
-
-  const [value, setValue] = React.useState(getCurrentPath(location));
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
 
   return (
     <div className={classes.root} data-test='tab-links'>
       <Tabs
         value={value}
-        onChange={handleChange}
+        onChange={onChange}
         aria-label='mui tabs'
         classes={{ indicator: classes.indicator }}
         data-test='tabs-wrapper'
       >
-        <Tab
-          label={RouteMapper.inventory.label}
-          component={Link}
-          to={RouteMapper.inventory.cards.path}
-          data-test='inventory-link'
-        />
-        <Tab
-          label={RouteMapper.home.label}
-          component={Link}
-          to={RouteMapper.home.path}
-          data-test='home-link'
-        />
+        {props.children}
       </Tabs>
     </div>
   );
 };
 
-export default TabLinks;
+export default EnhancedTabs;

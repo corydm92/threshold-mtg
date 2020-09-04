@@ -110,3 +110,24 @@ export const formatEdhrecLink = (cardName) => {
 
   return outStr;
 };
+
+// Used in determining which HeaderNavigation link is active on Comp Did Mount
+// Takes in the useLocation() hook from react router dom
+export const getTabLinksPath = (location) => {
+  const pathMap = {
+    inventory: {
+      path: '/inventory',
+      value: 0,
+    },
+    home: {
+      path: '/',
+      value: 1,
+    },
+  };
+
+  if (location.pathname.startsWith('/inventory')) {
+    return pathMap.inventory.value;
+  } else {
+    return pathMap.home.value;
+  }
+};
