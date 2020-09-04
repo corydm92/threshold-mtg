@@ -6,20 +6,24 @@ import {
   getPriceSpread,
   roundTwoDecimals,
   cardIsValid,
+  filterByReducer,
 } from '../utils';
 
 const getCards = (state) => state.cardsReducer.entities.cards;
 const getCardsResults = (state) => state.cardsReducer.result;
 const getTcgPriceCategory = (state) => state.tcgPriceCategory;
+const getFilterCategories = (state) => state.filterReducer;
 
 export const cardNamesAndSets = createSelector(
-  [getCards, getCardsResults],
-  (cards, results) => {
-    const outArr = results.map((result) => {
-      const card = { ...cards[result] };
+  [getCards, getCardsResults, getFilterCategories],
+  (cards, cardsResults, filterCategories) => {
+    const outArr = cardsResults.reduce((result, cardsResult) => {
+      const card = { ...cards[cardsResult] };
 
-      return { name: card.card_name, set: card.set_name };
-    });
+      if (filterByReducer(filterCategories, card))
+        result.push({ name: card.card_name, set: card.set_name });
+      return result;
+    }, []);
 
     return outArr;
   }
@@ -47,7 +51,7 @@ export const cardsSelector = createSelector(
       const gainLoss = gainLossCalc(tcgPrice, avgPurchasePrice);
       const spread = getPriceSpread(tcgPrice, avgPurchasePrice);
 
-      return {
+      const outObj = {
         cardName: card.card_name,
         foil: card.foil,
         language: card.language,
@@ -61,6 +65,14 @@ export const cardsSelector = createSelector(
         tcgPrice,
         gainLoss,
       };
+
+      // console.log(outObj);
+
+      return outObj;
     });
   }
 );
+
+const test = createSelector([cardsSelector], (card) => {
+  console.log(card);
+});

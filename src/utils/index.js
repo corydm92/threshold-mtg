@@ -131,3 +131,23 @@ export const getTabLinksPath = (location) => {
     return pathMap.home.value;
   }
 };
+
+export const filterByReducer = (filterReducer, card) => {
+  const {
+    isFoil,
+    setName,
+    cardName,
+    spreadOperator,
+    spreadValue,
+    gainOperator,
+    gainValue,
+    tcgPriceOperator,
+    tcgPriceValue,
+    dateFrom,
+    dateTo,
+  } = { ...filterReducer };
+
+  if (isFoil) {
+  }
+  return true;
+};
