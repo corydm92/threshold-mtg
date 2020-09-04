@@ -150,5 +150,10 @@ export const filterByReducer = (filterReducer, card) => {
   if (isFoil && !card.foil) {
     return false;
   }
+
+  if (setName && card.setName !== setName) {
+    return false;
+  }
+
   return true;
 };
