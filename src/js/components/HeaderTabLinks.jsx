@@ -11,9 +11,6 @@ const useStyles = makeStyles((theme) => {
   return {
     root: {
       color: theme.palette.text.secondary,
-      '&:visited': {
-        display: 'none',
-      },
     },
   };
 });

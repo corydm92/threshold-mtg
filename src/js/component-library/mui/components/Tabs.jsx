@@ -5,7 +5,6 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => {
   return {
     root: {
-      // backgroundColor: theme.palette.background.paper,
       [theme.breakpoints.down('md')]: {
         display: 'none',
       },
