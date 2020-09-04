@@ -131,3 +131,146 @@ export const getTabLinksPath = (location) => {
     return pathMap.home.value;
   }
 };
+
+export const filterByReducer = (filterReducer, card) => {
+  const {
+    isFoil,
+    setName,
+    cardName,
+    spreadOperator,
+    spreadValue,
+    gainOperator,
+    gainValue,
+    tcgPriceOperator,
+    tcgPriceValue,
+    dateFrom,
+    dateTo,
+  } = { ...filterReducer };
+
+  if (isFoil && !card.foil) {
+    return false;
+  }
+
+  if (setName && card.setName !== setName) {
+    return false;
+  }
+
+  if (cardName && card.cardName !== cardName) {
+    return false;
+  }
+
+  if (spreadOperator && spreadValue) {
+    switch (spreadOperator) {
+      case '>':
+        if (card.spread > spreadValue) {
+          break;
+        } else {
+          return false;
+        }
+      case '>=':
+        if (card.spread >= spreadValue) {
+          break;
+        } else {
+          return false;
+        }
+      case '=':
+        if (card.spread === spreadValue) {
+          break;
+        } else {
+          return false;
+        }
+      case '<=':
+        if (card.spread <= spreadValue) {
+          break;
+        } else {
+          return false;
+        }
+      case '<':
+        if (card.spread < spreadValue) {
+          break;
+        } else {
+          return false;
+        }
+      default:
+        break;
+    }
+  }
+
+  if (gainOperator && gainValue) {
+    switch (gainOperator) {
+      case '>':
+        if (card.gainLoss > gainValue) {
+          break;
+        } else {
+          return false;
+        }
+      case '>=':
+        if (card.gainLoss >= gainValue) {
+          break;
+        } else {
+          return false;
+        }
+      case '=':
+        if (card.gainLoss === gainValue) {
+          break;
+        } else {
+          return false;
+        }
+      case '<=':
+        if (card.gainLoss <= gainValue) {
+          break;
+        } else {
+          return false;
+        }
+      case '<':
+        if (card.gainLoss < gainValue) {
+          break;
+        } else {
+          return false;
+        }
+      default:
+        break;
+    }
+  }
+
+  if (tcgPriceOperator && tcgPriceValue) {
+    switch (tcgPriceOperator) {
+      case '>':
+        if (card.tcgPrice > tcgPriceValue) {
+          break;
+        } else {
+          return false;
+        }
+      case '>=':
+        if (card.tcgPrice >= tcgPriceValue) {
+          break;
+        } else {
+          return false;
+        }
+      case '=':
+        if (card.tcgPrice === tcgPriceValue) {
+          break;
+        } else {
+          return false;
+        }
+      case '<=':
+        if (card.tcgPrice <= tcgPriceValue) {
+          break;
+        } else {
+          return false;
+        }
+      case '<':
+        if (card.tcgPrice < tcgPriceValue) {
+          break;
+        } else {
+          return false;
+        }
+      default:
+        break;
+    }
+  }
+
+  // Date From + Date To
+
+  return true;
+};

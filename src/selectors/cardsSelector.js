@@ -6,36 +6,27 @@ import {
   getPriceSpread,
   roundTwoDecimals,
   cardIsValid,
+  filterByReducer,
 } from '../utils';
 
 const getCards = (state) => state.cardsReducer.entities.cards;
 const getCardsResults = (state) => state.cardsReducer.result;
 const getTcgPriceCategory = (state) => state.tcgPriceCategory;
-
-export const cardNamesAndSets = createSelector(
-  [getCards, getCardsResults],
-  (cards, results) => {
-    const outArr = results.map((result) => {
-      const card = { ...cards[result] };
-
-      return { name: card.card_name, set: card.set_name };
-    });
-
-    return outArr;
-  }
-);
+const getFilterCategories = (state) => state.filterReducer;
 
 export const cardsSelector = createSelector(
-  [getCards, getCardsResults, getTcgPriceCategory],
-  (cards, results, priceCategory) => {
-    return results.map((result) => {
+  [getCards, getCardsResults, getTcgPriceCategory, getFilterCategories],
+  (cards, results, priceCategory, filterCategories) => {
+    return results.reduce((res, result) => {
       const card = { ...cards[result] };
 
       const isValid = cardIsValid(card);
 
       if (!isValid) {
         console.log(card);
-        return {};
+        // Reduce allows us to filter invalid cards by returning our current res
+        // This will be refactored to happen in the action, allowing us to display incomplete data
+        return res;
       }
 
       const tcgSellerDashboardUrl = `https://store.tcgplayer.com/admin/product/manage/${card.tcg_productId}`;
@@ -47,7 +38,7 @@ export const cardsSelector = createSelector(
       const gainLoss = gainLossCalc(tcgPrice, avgPurchasePrice);
       const spread = getPriceSpread(tcgPrice, avgPurchasePrice);
 
-      return {
+      const outObj = {
         cardName: card.card_name,
         foil: card.foil,
         language: card.language,
@@ -61,6 +52,22 @@ export const cardsSelector = createSelector(
         tcgPrice,
         gainLoss,
       };
-    });
+
+      if (filterByReducer(filterCategories, outObj)) {
+        res.push(outObj);
+      }
+
+      return res;
+    }, []);
   }
+);
+
+export const cardNamesAndSets = createSelector(
+  [getCards, getCardsResults],
+  (cards, results) =>
+    results.map((result) => {
+      const card = { ...cards[result] };
+
+      return { name: card.card_name, set: card.set_name };
+    })
 );
