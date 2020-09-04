@@ -42,14 +42,21 @@ export const getCurrentPath = (location) => {
 };
 
 const EnhancedTabs = (props) => {
-  const { initialValue, onChange, value } = { ...props };
+  const { initialValue } = { ...props };
   const classes = useStyles();
+
+  const [value, setValue] = React.useState(initialValue);
+
+  const handleChange = (event, newValue) => {
+    console.log(newValue);
+    setValue(newValue);
+  };
 
   return (
     <div className={classes.root} data-test='tab-links'>
       <Tabs
         value={value}
-        onChange={onChange}
+        onChange={handleChange}
         aria-label='mui tabs'
         classes={{ indicator: classes.indicator }}
         data-test='tabs-wrapper'

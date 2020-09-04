@@ -4,19 +4,13 @@ import { Link } from 'react-router-dom';
 import EnhancedTabs from '../component-library/mui/components/Tabs';
 import EnhancedTab from '../component-library/mui/components/Tab';
 import RouteMapper from '../routes/RouteMapper';
+import { getTabLinksPath } from '../../utils';
 
 const HeaderTabLinks = () => {
   const location = useLocation();
 
-  const [value, setValue] = React.useState(1);
-
-  const handleChange = (event, newValue) => {
-    console.log('newValue');
-    setValue(newValue);
-  };
-
   return (
-    <EnhancedTabs value={value} onChange={() => handleChange()}>
+    <EnhancedTabs initialValue={getTabLinksPath(location)}>
       <EnhancedTab
         label={RouteMapper.inventory.label}
         component={Link}
