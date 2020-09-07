@@ -1,17 +1,22 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { findByTestAttr } from '../../../../utils/testUtils';
-import Autocomplete from '../../../../js/component-library/mui/components/Form/Autocomplete';
+import EnhancedAutocomplete from '../../../../js/component-library/mui/components/Form/Autocomplete';
 
-describe('Autocomplete Component', () => {
+describe('EnhancedAutocomplete Component', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(<Autocomplete dataTest='data-test-autocomplete' />);
+    wrapper = shallow(
+      <EnhancedAutocomplete dataTest='data-test-enhanced-autocomplete' />
+    );
   });
 
   it('Renders Autocomplete without errors', () => {
-    const autoComplete = findByTestAttr(wrapper, 'data-test-autocomplete');
+    const autoComplete = findByTestAttr(
+      wrapper,
+      'data-test-enhanced-autocomplete'
+    );
     expect(autoComplete).toHaveLength(1); // Tests for existance
   });
 });
