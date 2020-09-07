@@ -5,7 +5,7 @@ import { findByTestAttr } from '../../utils/testUtils';
 import { fullState } from '../test-mocks/reduxStoreMock';
 import { cardsSelector } from '../../selectors/cardsSelector';
 import { ThemeProvider } from '@material-ui/core/styles';
-import theme from '../../js//component-library/mui/mui-theme';
+import theme from '../../js/component-library/mui/mui-theme';
 
 describe('CardsView tests', () => {
   let wrapper;
