@@ -8,7 +8,6 @@ import { useLocation } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => {
-  console.log(theme);
   return {
     appBar: {
       '& .MuiToolbar-root': {
@@ -34,7 +33,11 @@ const HeaderNavigation = (props) => {
   const { title } = { ...props };
 
   return (
-    <AppBar className={classes.appBar} title={title}>
+    <AppBar
+      className={classes.appBar}
+      title={title}
+      dataTest={'HeaderNavigation'}
+    >
       <EnhancedTypography dataTest='appbar-title' className={classes.title}>
         {title}
       </EnhancedTypography>

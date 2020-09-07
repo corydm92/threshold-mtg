@@ -14,7 +14,7 @@ describe('App Bar Component', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(<AppBar />);
+    wrapper = shallow(<AppBar dataTest='appbar' />);
   });
 
   it('Renders AppBar without errors', () => {
