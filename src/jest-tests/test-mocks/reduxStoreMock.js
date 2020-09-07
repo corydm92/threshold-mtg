@@ -11,6 +11,19 @@ export const initState = {
   },
   specPricesReducer: {},
   tcgPricesReducer: {},
+  filterReducer: {
+    isFoil: false,
+    setName: null, // Must be null for autocomplete (console warnings)
+    cardName: null, // Must be null for autocomplete (console warnings)
+    spreadOperator: '',
+    spreadValue: '',
+    gainOperator: '',
+    gainValue: '',
+    tcgPriceOperator: '',
+    tcgPriceValue: '',
+    dateFrom: '',
+    dateTo: '',
+  },
 };
 
 export const fullState = {
@@ -18,7 +31,7 @@ export const fullState = {
   cardsReducer: {
     entities: {
       cards: {
-        '1679': {
+        1679: {
           id: 1679,
           card_name: 'Linden, the Steadfast Queen',
           set_name: 'Throne of Eldraine',
@@ -183,7 +196,7 @@ export const fullState = {
             },
           ],
         },
-        '1680': {
+        1680: {
           id: 1680,
           card_name: 'Syr Konrad, the Grim',
           set_name: 'Throne of Eldraine',
@@ -394,7 +407,7 @@ export const fullState = {
             },
           ],
         },
-        '1681': {
+        1681: {
           id: 1681,
           card_name: 'Nylea, Keen-Eyed (Showcase)',
           set_name: 'Theros Beyond Death',
@@ -490,7 +503,7 @@ export const fullState = {
             },
           ],
         },
-        '1682': {
+        1682: {
           id: 1682,
           card_name: 'Aethersphere Harvester',
           set_name: 'Aether Revolt',
@@ -563,7 +576,7 @@ export const fullState = {
             },
           ],
         },
-        '1683': {
+        1683: {
           id: 1683,
           card_name: 'Cavalier of Dawn',
           set_name: 'Core Set 2020',
@@ -797,7 +810,7 @@ export const fullState = {
             },
           ],
         },
-        '1912': {
+        1912: {
           id: 1912,
           card_name: 'Obosh, the Preypiercer (Extended Art)',
           set_name: 'Ikoria: Lair of Behemoths',
@@ -847,7 +860,7 @@ export const fullState = {
             },
           ],
         },
-        '1913': {
+        1913: {
           id: 1913,
           card_name: "Offspring's Revenge (Extended Art)",
           set_name: 'Ikoria: Lair of Behemoths',
@@ -897,7 +910,7 @@ export const fullState = {
             },
           ],
         },
-        '1914': {
+        1914: {
           id: 1914,
           card_name: 'Kogla, the Titan Ape (Extended Art)',
           set_name: 'Ikoria: Lair of Behemoths',
@@ -947,7 +960,7 @@ export const fullState = {
             },
           ],
         },
-        '1915': {
+        1915: {
           id: 1915,
           card_name: 'Whirlwind of Thought (Extended Art)',
           set_name: 'Ikoria: Lair of Behemoths',
@@ -997,7 +1010,7 @@ export const fullState = {
             },
           ],
         },
-        '1916': {
+        1916: {
           id: 1916,
           card_name: 'Gyruda, Doom of Depths (Extended Art)',
           set_name: 'Ikoria: Lair of Behemoths',
@@ -1071,7 +1084,7 @@ export const fullState = {
     card: false,
   },
   specPricesReducer: {
-    '4226': {
+    4226: {
       id: 4226,
       price_percentages: {
         foil_low: -30.95,
@@ -1094,7 +1107,7 @@ export const fullState = {
       notes: 'Game Heroes',
       card: 1679,
     },
-    '4227': {
+    4227: {
       id: 4227,
       price_percentages: {
         foil_low: -29.27,
@@ -1117,7 +1130,7 @@ export const fullState = {
       notes: 'MMX Gaming',
       card: 1679,
     },
-    '4228': {
+    4228: {
       id: 4228,
       price_percentages: {
         foil_low: -23.68,
@@ -1140,7 +1153,7 @@ export const fullState = {
       notes: 'Slick Deals',
       card: 1679,
     },
-    '4229': {
+    4229: {
       id: 4229,
       price_percentages: {
         foil_low: -12.12,
@@ -1163,7 +1176,7 @@ export const fullState = {
       notes: 'gacollectables',
       card: 1679,
     },
-    '4230': {
+    4230: {
       id: 4230,
       price_percentages: {
         foil_low: -12.12,
@@ -1186,7 +1199,7 @@ export const fullState = {
       notes: 'jtsquared',
       card: 1679,
     },
-    '4231': {
+    4231: {
       id: 4231,
       price_percentages: {
         foil_low: -3.33,
@@ -1211,7 +1224,7 @@ export const fullState = {
     },
   },
   tcgPricesReducer: {
-    '5406': {
+    5406: {
       id: 5406,
       date: '2020-08-04',
       product_id: 199209,
@@ -1223,5 +1236,18 @@ export const fullState = {
       sub_type_name: 'Normal',
       card: 1679,
     },
+  },
+  filterReducer: {
+    isFoil: false,
+    setName: null, // Must be null for autocomplete (console warnings)
+    cardName: null, // Must be null for autocomplete (console warnings)
+    spreadOperator: '',
+    spreadValue: '',
+    gainOperator: '',
+    gainValue: '',
+    tcgPriceOperator: '',
+    tcgPriceValue: '',
+    dateFrom: '',
+    dateTo: '',
   },
 };

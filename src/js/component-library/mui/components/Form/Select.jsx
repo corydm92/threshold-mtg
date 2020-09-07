@@ -6,8 +6,9 @@ const useStyles = makeStyles((theme) => ({
   root: {},
 }));
 
-const EnhancedSelect = () => {
-  return <Select></Select>;
+const EnhancedSelect = (props) => {
+  const { dataTest } = { ...props };
+  return <Select data-test={dataTest} />;
 };
 
 export default EnhancedSelect;

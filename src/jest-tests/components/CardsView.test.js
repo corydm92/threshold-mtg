@@ -5,30 +5,43 @@ import { findByTestAttr } from '../../utils/testUtils';
 import { fullState } from '../test-mocks/reduxStoreMock';
 import { cardsSelector } from '../../selectors/cardsSelector';
 import { ThemeProvider } from '@material-ui/core/styles';
-import theme from '../../js//component-library/mui/mui-theme';
+import theme from '../../js/component-library/mui/mui-theme';
 
 describe('CardsView tests', () => {
   let wrapper;
-  let fetchCards = jest.fn();
+
+  // STORE
+  const priceCategory = fullState.tcgPriceCategory;
+  const cardNamesAndSets = [];
+  const filterValues = fullState.filterReducer;
+
+  // ACTIONS
   let isLoadingCardsFalse = jest.fn();
   let setPriceCategoryLow = jest.fn();
   let setPriceCategoryMid = jest.fn();
   let setPriceCategoryHigh = jest.fn();
   let setPriceCategoryMarket = jest.fn();
-  const priceCategory = 'market_price';
+  let setFilterOptions = jest.fn();
+  let clearFilterOptions = jest.fn();
 
   describe('Init State / No Data', () => {
     beforeEach(() => {
       const props = {
-        fetchCards,
+        // STORE
+        priceCategory,
+        cards: [],
+        isLoadingCards: fullState.isLoadingReducer.cards,
+        cardNamesAndSets,
+        filterValues,
+
+        // ACTIONS
         isLoadingCardsFalse,
         setPriceCategoryLow,
         setPriceCategoryMid,
         setPriceCategoryHigh,
         setPriceCategoryMarket,
-        priceCategory,
-        cards: [],
-        isLoadingCards: fullState.isLoadingReducer.cards,
+        setFilterOptions,
+        clearFilterOptions,
       };
 
       wrapper = mount(
@@ -47,14 +60,20 @@ describe('CardsView tests', () => {
   describe('With Data', () => {
     beforeEach(() => {
       const props = {
-        fetchCards,
+        // STORE
+        cards: cardsSelector(fullState),
+        isLoadingCards: true, // Force true to test isLoadingCardsFalse method
+        cardNamesAndSets,
+        filterValues,
+
+        // ACTIONS
         isLoadingCardsFalse,
         setPriceCategoryLow,
         setPriceCategoryMid,
         setPriceCategoryHigh,
         setPriceCategoryMarket,
-        cards: cardsSelector(fullState),
-        isLoadingCards: true, // Force true to test isLoadingCardsFalse method
+        setFilterOptions,
+        clearFilterOptions,
       };
 
       wrapper = mount(

@@ -1,15 +1,18 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { findByTestAttr } from '../../../utils/testUtils';
-import TabLinks, {
-  getCurrentPath,
-} from '../../../js/component-library/mui/components/Tabs';
+import TabLinks from '../../../js/component-library/mui/components/Tabs';
+import { getTabLinksPath } from '../../../utils';
 
 describe('TabLinks tests', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(<TabLinks location={{ pathname: '/inventory' }} />);
+    wrapper = shallow(
+      <TabLinks
+        initialValue={getTabLinksPath({ pathname: '/inventory/cards' })}
+      />
+    );
   });
 
   it('Renders component', () => {
@@ -22,10 +25,10 @@ describe('TabLinks tests', () => {
   });
 
   it('leverages getCurrentPath for home', () => {
-    expect(getCurrentPath({ pathname: '/' })).toEqual(1);
+    expect(getTabLinksPath({ pathname: '/' })).toEqual(1);
   });
 
   it('leverages getCurrentPath for inventory', () => {
-    expect(getCurrentPath({ pathname: '/inventory' })).toEqual(0);
+    expect(getTabLinksPath({ pathname: '/inventory' })).toEqual(0);
   });
 });

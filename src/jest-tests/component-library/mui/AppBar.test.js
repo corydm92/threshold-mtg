@@ -14,14 +14,12 @@ describe('App Bar Component', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(<AppBar title={'test title'} />);
+    wrapper = shallow(<AppBar dataTest='appbar' />);
   });
 
   it('Renders AppBar without errors', () => {
     const appbar = findByTestAttr(wrapper, 'appbar');
-    const title = findByTestAttr(wrapper, 'appbar-title');
 
     expect(appbar).toHaveLength(1); // Tests for existance
-    expect(title.text().includes('test title')).toBe(true); // Tests for value
   });
 });
