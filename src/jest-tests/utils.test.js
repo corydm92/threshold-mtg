@@ -1,5 +1,6 @@
 import * as utils from '../utils';
 import { fullState } from './test-mocks/reduxStoreMock';
+import singleCardSelectorObj from './test-mocks/singleCardSelectorObj';
 
 describe('Utils tests', () => {
   let singleCard;
@@ -51,6 +52,44 @@ describe('Utils tests', () => {
       const negNum = -100;
 
       expect(utils.isPositive(negNum)).toBe(false);
+    });
+  });
+
+  describe('filterByReducer', () => {
+    let filterReducer;
+    let singleCardObj;
+
+    beforeEach(() => {
+      filterReducer = fullState.filterReducer;
+      singleCardObj = singleCardSelectorObj;
+    });
+
+    describe('isFoil', () => {
+      it('Returns correct value if active', () => {
+        filterReducer.isFoil = true;
+        singleCardObj.foil = 1;
+        let filterResult = utils.filterByReducer(filterReducer, singleCardObj);
+
+        expect(filterResult).toBe(true);
+
+        singleCardObj.foil = 0;
+        filterResult = utils.filterByReducer(filterReducer, singleCardObj);
+
+        expect(filterResult).toBe(false);
+      });
+
+      it('Returns correct value if inactive', () => {
+        filterReducer.isFoil = false;
+        singleCardObj.foil = 1;
+        let filterResult = utils.filterByReducer(filterReducer, singleCardObj);
+
+        expect(filterResult).toBe(true);
+
+        singleCardObj.foil = 0;
+        filterResult = utils.filterByReducer(filterReducer, singleCardObj);
+
+        expect(filterResult).toBe(true);
+      });
     });
   });
 });
