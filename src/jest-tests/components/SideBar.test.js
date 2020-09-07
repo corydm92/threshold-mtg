@@ -8,19 +8,34 @@ import theme from '../../js//component-library/mui/mui-theme';
 
 describe('Sidebar tests', () => {
   let wrapper;
+  // STORE
+  const priceCategory = fullState.tcgPriceCategory;
+  const cardNamesAndSets = [];
+  const filterValues = fullState.filterReducer;
+
+  // ACTIONS
   let setPriceCategoryLow = jest.fn();
   let setPriceCategoryMid = jest.fn();
   let setPriceCategoryHigh = jest.fn();
   let setPriceCategoryMarket = jest.fn();
+  let setFilterOptions = jest.fn();
+  let clearFilterOptions = jest.fn();
 
   describe('Whole Component', () => {
     beforeEach(() => {
       const props = {
-        priceCategory: fullState.tcgPriceCategory,
+        // STORE
+        priceCategory,
+        cardNamesAndSets,
+        filterValues,
+
+        // ACTIONS
         setPriceCategoryLow,
         setPriceCategoryMid,
         setPriceCategoryHigh,
         setPriceCategoryMarket,
+        setFilterOptions,
+        clearFilterOptions,
       };
 
       wrapper = mount(

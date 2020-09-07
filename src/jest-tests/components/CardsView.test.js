@@ -11,7 +11,7 @@ describe('CardsView tests', () => {
   let wrapper;
 
   // STORE
-  const priceCategory = 'market_price';
+  const priceCategory = fullState.tcgPriceCategory;
   const cardNamesAndSets = [];
   const filterValues = fullState.filterReducer;
 
