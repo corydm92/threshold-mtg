@@ -30,7 +30,7 @@ const EnhancedTabs = (props) => {
   };
 
   return (
-    <div className={classes.root} data-test='tab-links'>
+    <div className={classes.root}>
       <Tabs
         value={value}
         onChange={handleChange}
