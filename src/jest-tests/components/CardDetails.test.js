@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import CardDetails from '../../js/components/CardDetails';
 import { findByTestAttr } from '../../utils/testUtils';
 import { fullState } from '../test-mocks/reduxStoreMock';
