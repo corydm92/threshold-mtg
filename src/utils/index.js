@@ -162,6 +162,7 @@ export const filterByReducer = (filterReducer, card) => {
   if (spreadOperator && spreadValue) {
     switch (spreadOperator) {
       case '>':
+        console.log('here');
         if (card.spread > spreadValue) {
           break;
         } else {

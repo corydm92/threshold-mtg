@@ -1,6 +1,7 @@
 import * as utils from '../utils';
 import { fullState } from './test-mocks/reduxStoreMock';
 import singleCardSelectorObj from './test-mocks/singleCardSelectorObj';
+import { filter } from 'lodash';
 
 describe('Utils tests', () => {
   let singleCard;
@@ -145,6 +146,74 @@ describe('Utils tests', () => {
         filterResult = utils.filterByReducer(filterReducer, singleCardObj);
 
         expect(filterResult).toBe(true);
+      });
+    });
+
+    describe('spread', () => {
+      it('Returns correct value if both spreadOperator and spreadValue are active', () => {
+        singleCardObj.spread = 1;
+
+        function getFilterResult(operator, value) {
+          filterReducer.spreadOperator = operator;
+          filterReducer.spreadValue = value;
+          return utils.filterByReducer(filterReducer, singleCardObj);
+        }
+
+        let gtResult = getFilterResult('>', 1);
+        let gteqResult = getFilterResult('>=', 1);
+        let eqResult = getFilterResult('=', 1);
+        let lteqResult = getFilterResult('<=', 1);
+        let ltResult = getFilterResult('<', 1);
+
+        expect(gtResult).toBe(false);
+        expect(gteqResult).toBe(true);
+        expect(eqResult).toBe(true);
+        expect(lteqResult).toBe(true);
+        expect(ltResult).toBe(false);
+      });
+
+      it('Returns correct value if spreadOperator is inactive', () => {
+        singleCardObj.spread = 1;
+
+        function getFilterResult(operator, value) {
+          filterReducer.spreadOperator = '';
+          filterReducer.spreadValue = value;
+          return utils.filterByReducer(filterReducer, singleCardObj);
+        }
+
+        let gtResult = getFilterResult('>', 1);
+        let gteqResult = getFilterResult('>=', 1);
+        let eqResult = getFilterResult('=', 1);
+        let lteqResult = getFilterResult('<=', 1);
+        let ltResult = getFilterResult('<', 1);
+
+        expect(gtResult).toBe(true);
+        expect(gteqResult).toBe(true);
+        expect(eqResult).toBe(true);
+        expect(lteqResult).toBe(true);
+        expect(ltResult).toBe(true);
+      });
+
+      it('Returns correct value if spreadValue is inactive', () => {
+        singleCardObj.spread = 1;
+
+        function getFilterResult(operator, value) {
+          filterReducer.spreadOperator = operator;
+          filterReducer.spreadValue = null;
+          return utils.filterByReducer(filterReducer, singleCardObj);
+        }
+
+        let gtResult = getFilterResult('>', 1);
+        let gteqResult = getFilterResult('>=', 1);
+        let eqResult = getFilterResult('=', 1);
+        let lteqResult = getFilterResult('<=', 1);
+        let ltResult = getFilterResult('<', 1);
+
+        expect(gtResult).toBe(true);
+        expect(gteqResult).toBe(true);
+        expect(eqResult).toBe(true);
+        expect(lteqResult).toBe(true);
+        expect(ltResult).toBe(true);
       });
     });
   });
