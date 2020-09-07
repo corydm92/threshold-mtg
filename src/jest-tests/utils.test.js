@@ -91,5 +91,61 @@ describe('Utils tests', () => {
         expect(filterResult).toBe(true);
       });
     });
+
+    describe('setName', () => {
+      it('Returns correct value if active', () => {
+        filterReducer.setName = 'test set';
+        singleCardObj.setName = 'test set';
+        let filterResult = utils.filterByReducer(filterReducer, singleCardObj);
+
+        expect(filterResult).toBe(true);
+
+        singleCardObj.setName = 'different set';
+        filterResult = utils.filterByReducer(filterReducer, singleCardObj);
+
+        expect(filterResult).toBe(false);
+      });
+
+      it('Returns correct value if inactive', () => {
+        filterReducer.setName = '';
+        singleCardObj.setName = 'test set';
+        let filterResult = utils.filterByReducer(filterReducer, singleCardObj);
+
+        expect(filterResult).toBe(true);
+
+        singleCardObj.setName = 'different set';
+        filterResult = utils.filterByReducer(filterReducer, singleCardObj);
+
+        expect(filterResult).toBe(true);
+      });
+    });
+
+    describe('cardName', () => {
+      it('Returns correct value if active', () => {
+        filterReducer.cardName = 'test card';
+        singleCardObj.cardName = 'test card';
+        let filterResult = utils.filterByReducer(filterReducer, singleCardObj);
+
+        expect(filterResult).toBe(true);
+
+        singleCardObj.cardName = 'different card';
+        filterResult = utils.filterByReducer(filterReducer, singleCardObj);
+
+        expect(filterResult).toBe(false);
+      });
+
+      it('Returns correct value if inactive', () => {
+        filterReducer.cardName = '';
+        singleCardObj.cardName = 'test card';
+        let filterResult = utils.filterByReducer(filterReducer, singleCardObj);
+
+        expect(filterResult).toBe(true);
+
+        singleCardObj.cardName = 'different card';
+        filterResult = utils.filterByReducer(filterReducer, singleCardObj);
+
+        expect(filterResult).toBe(true);
+      });
+    });
   });
 });
