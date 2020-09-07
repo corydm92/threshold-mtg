@@ -64,7 +64,7 @@ export const gainLossCalc = (currentPrice, purchasePrice) => {
 };
 
 export const isPositive = (num) => {
-  if (num >= 0) {
+  if (num > 0) {
     return true;
   }
   return false;
