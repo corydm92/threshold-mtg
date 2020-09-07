@@ -284,5 +284,73 @@ describe('Utils tests', () => {
         expect(ltResult).toBe(true);
       });
     });
+
+    describe('tcgPrice', () => {
+      it('Returns correct value if both tcgPriceOperator and tcgPriceValue are active', () => {
+        singleCardObj.tcgPrice = 1;
+
+        function getFilterResult(operator, value) {
+          filterReducer.tcgPriceOperator = operator;
+          filterReducer.tcgPriceValue = value;
+          return utils.filterByReducer(filterReducer, singleCardObj);
+        }
+
+        let gtResult = getFilterResult('>', 1);
+        let gteqResult = getFilterResult('>=', 1);
+        let eqResult = getFilterResult('=', 1);
+        let lteqResult = getFilterResult('<=', 1);
+        let ltResult = getFilterResult('<', 1);
+
+        expect(gtResult).toBe(false);
+        expect(gteqResult).toBe(true);
+        expect(eqResult).toBe(true);
+        expect(lteqResult).toBe(true);
+        expect(ltResult).toBe(false);
+      });
+
+      it('Returns correct value if tcgPriceOperator is inactive', () => {
+        singleCardObj.tcgPrice = 1;
+
+        function getFilterResult(operator, value) {
+          filterReducer.tcgPriceOperator = '';
+          filterReducer.tcgPriceValue = value;
+          return utils.filterByReducer(filterReducer, singleCardObj);
+        }
+
+        let gtResult = getFilterResult('>', 1);
+        let gteqResult = getFilterResult('>=', 1);
+        let eqResult = getFilterResult('=', 1);
+        let lteqResult = getFilterResult('<=', 1);
+        let ltResult = getFilterResult('<', 1);
+
+        expect(gtResult).toBe(true);
+        expect(gteqResult).toBe(true);
+        expect(eqResult).toBe(true);
+        expect(lteqResult).toBe(true);
+        expect(ltResult).toBe(true);
+      });
+
+      it('Returns correct value if tcgPriceValue is inactive', () => {
+        singleCardObj.tcgPrice = 1;
+
+        function getFilterResult(operator, value) {
+          filterReducer.tcgPriceOperator = operator;
+          filterReducer.tcgPriceValue = null;
+          return utils.filterByReducer(filterReducer, singleCardObj);
+        }
+
+        let gtResult = getFilterResult('>', 1);
+        let gteqResult = getFilterResult('>=', 1);
+        let eqResult = getFilterResult('=', 1);
+        let lteqResult = getFilterResult('<=', 1);
+        let ltResult = getFilterResult('<', 1);
+
+        expect(gtResult).toBe(true);
+        expect(gteqResult).toBe(true);
+        expect(eqResult).toBe(true);
+        expect(lteqResult).toBe(true);
+        expect(ltResult).toBe(true);
+      });
+    });
   });
 });
