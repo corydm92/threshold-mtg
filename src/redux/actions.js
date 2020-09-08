@@ -117,10 +117,10 @@ export const setSingleCard = (singleId) => (dispatch, getState) => {
 
 /*** FILTER ***/
 
-export const setFilterOptions = (payload) => (dispatch) => {
-  dispatch(isLoadingCardsTrue());
-  dispatch({ type: SET_FILTER_OPTIONS, payload });
-  // dispatch(isLoadingCardsFalse());
+export const setFilterOptions = (payload) => async (dispatch) => {
+  await dispatch(isLoadingCardsTrue());
+  await dispatch({ type: SET_FILTER_OPTIONS, payload });
+  dispatch(isLoadingCardsFalse());
 };
 
 export const clearFilterOptions = () => {
