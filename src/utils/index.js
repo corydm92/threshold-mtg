@@ -302,5 +302,9 @@ export const formatDateString = (date, type = 'USA') => {
   const month = splitArray[1];
   const day = splitArray[2];
 
-  return `${month}/${day}/${year}`;
+  switch (type) {
+    default:
+      // USA
+      return `${month}/${day}/${year}`;
+  }
 };

@@ -185,6 +185,12 @@ const MuiTable = (props) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [data, setData] = useState(cards);
 
+  console.log(isLoadingCards);
+
+  useEffect(() => {
+    setCurrentPage(0);
+  }, [cards]);
+
   const handleRequestSort = (event, property) => {
     const isDesc = orderBy === property && order === 'desc';
     setOrder(isDesc ? 'asc' : 'desc');

@@ -17,7 +17,6 @@ const CardsView = (props) => {
     filterValues,
 
     // ACTIONS
-    isLoadingCardsFalse,
     setPriceCategoryLow,
     setPriceCategoryMid,
     setPriceCategoryHigh,
@@ -29,12 +28,6 @@ const CardsView = (props) => {
   };
 
   const [activeDisplay, setActiveDisplay] = useState(listDisplay);
-
-  useEffect(() => {
-    if (!isEmpty(cards) && isLoadingCards) {
-      isLoadingCardsFalse();
-    }
-  }, [cards, isLoadingCards, isLoadingCardsFalse]);
 
   const handleDisplayChange = (display) => {
     setActiveDisplay(display);
@@ -75,6 +68,9 @@ const CardsView = (props) => {
             isLoadingCards={isLoadingCards}
             priceCategory={priceCategory}
             activeDisplay={activeDisplay}
+            filterValues={filterValues}
+            setFilterOptions={setFilterOptions}
+            clearFilterOptions={clearFilterOptions}
           />
         </Grid>
       </Grid>
