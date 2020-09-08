@@ -1,6 +1,5 @@
 import React from 'react';
 import { imageDisplay, listDisplay } from '../constants/tableDisplayIcons';
-import Container from '../component-library/mui/components/Container';
 import EnhancedTypography from '../component-library/mui/components/Typography';
 import IconHolder from './IconHolder';
 import CardImage from './CardImage';

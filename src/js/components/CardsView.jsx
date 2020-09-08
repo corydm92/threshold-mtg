@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { isEmpty } from 'lodash';
+import React, { useState } from 'react';
 import CardsTable from './CardsTable';
 import SideBar from './SideBar';
 import Grid from '@material-ui/core/Grid';
