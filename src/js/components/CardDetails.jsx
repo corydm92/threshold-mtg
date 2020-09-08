@@ -24,6 +24,9 @@ const useStyles = makeStyles((theme) => {
     gridItem: {
       display: 'flex',
     },
+    fullWidth: {
+      width: '100%',
+    },
   };
 });
 
@@ -61,7 +64,7 @@ const ListView = (props) => {
         xs={8}
         data-test='list-view-grid-item'
       >
-        <div className='top-display'>
+        <div className={classes.fullWidth} data-test='top-display'>
           <IconHolder
             scaleSize={0.8}
             foil={foil}
@@ -77,7 +80,7 @@ const ListView = (props) => {
           <EnhancedTypography>{setName}</EnhancedTypography>
         </div>
 
-        <div className='bottom-display'>
+        <div className={classes.fullWidth} data-test='bottom-display'>
           <EnhancedTypography>
             {dateFrom !== dateTo ? `${dateFrom} - ${dateTo}` : dateFrom}
           </EnhancedTypography>
