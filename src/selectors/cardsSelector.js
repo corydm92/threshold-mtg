@@ -38,12 +38,13 @@ export const cardsSelector = createSelector(
       const gainLoss = gainLossCalc(tcgPrice, avgPurchasePrice);
       const spread = getPriceSpread(tcgPrice, avgPurchasePrice);
 
-      const dateRange = card.spec_prices.reduce((acc, price) => {
-        acc.push(price.date_purchased);
-        return acc;
-      }, []);
+      const dateRange = card.spec_prices
+        .reduce((acc, price) => {
+          acc.push(price.date_purchased);
+          return acc;
+        }, [])
+        .sort();
 
-      console.log(dateRange);
       const outObj = {
         cardName: card.card_name,
         foil: card.foil,
@@ -57,6 +58,8 @@ export const cardsSelector = createSelector(
         avgPurchasePrice,
         tcgPrice,
         gainLoss,
+        dateFrom: dateRange[0],
+        dateTo: dateRange[dateRange.length - 1],
       };
 
       if (filterByReducer(filterCategories, outObj)) {
