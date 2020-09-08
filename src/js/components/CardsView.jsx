@@ -8,10 +8,14 @@ import { listDisplay } from '../constants/tableDisplayIcons';
 import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles((theme) => {
+  // Below is HeightOfToolbar * 2 (two toolbars, the header and the table toolbar) + 8 (8px margin at top of page)
+  const scrollSpace =
+    theme.mixins.toolbar['@media (min-width:600px)'].minHeight * 2 + 8;
+
   return {
     root: {},
     listView: {
-      maxHeight: 'calc(100vh - 123px)',
+      maxHeight: `calc(100vh - ${scrollSpace}px)`,
       overflow: 'scroll',
       '&::-webkit-scrollbar': {
         display: 'none',
