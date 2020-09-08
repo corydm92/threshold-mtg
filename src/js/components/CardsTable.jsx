@@ -122,6 +122,8 @@ const MuiTableBody = (props) => {
                     tcgSellerDashboardUrl={card.tcgSellerDashboardUrl}
                     foil={card.foil}
                     language={card.language}
+                    dateFrom={card.dateFrom}
+                    dateTo={card.dateTo}
                     activeDisplay={activeDisplay}
                   />
                 </EnhancedTableCell>

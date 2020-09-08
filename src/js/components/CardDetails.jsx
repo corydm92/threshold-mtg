@@ -35,6 +35,8 @@ const ListView = (props) => {
     foil,
     tcgImageUrl,
     language,
+    dateFrom,
+    dateTo,
   } = { ...props };
   return (
     <Container disableGutters dataTest='ListView'>
@@ -67,6 +69,9 @@ const ListView = (props) => {
               {cardName}
             </EnhancedTypography>
             <EnhancedTypography>{setName}</EnhancedTypography>
+            <EnhancedTypography>
+              {dateFrom !== dateTo ? `${dateFrom} - ${dateTo}` : dateFrom}
+            </EnhancedTypography>
           </Container>
         </Grid>
       </Grid>
