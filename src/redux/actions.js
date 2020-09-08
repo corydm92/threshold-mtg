@@ -48,6 +48,7 @@ export const fetchCardsData = (params) => (dispatch) => {
         type: FETCH_CARDS_DATA_SUCCESSFUL,
         payload: normalizedResponse,
       });
+      dispatch(isLoadingCardsFalse());
     })
     .catch((err) => {
       dispatch({ type: FETCH_CARDS_DATA_FAILED, payload: err });
@@ -116,8 +117,10 @@ export const setSingleCard = (singleId) => (dispatch, getState) => {
 
 /*** FILTER ***/
 
-export const setFilterOptions = (payload) => {
-  return { type: SET_FILTER_OPTIONS, payload };
+export const setFilterOptions = (payload) => async (dispatch) => {
+  await dispatch(isLoadingCardsTrue());
+  await dispatch({ type: SET_FILTER_OPTIONS, payload });
+  dispatch(isLoadingCardsFalse());
 };
 
 export const clearFilterOptions = () => {

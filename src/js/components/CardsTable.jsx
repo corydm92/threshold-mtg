@@ -75,6 +75,13 @@ const MuiTableHeaders = (props) => {
     },
   ];
 
+  const isCardName = (header) => {
+    if (header.id === 'cardName') {
+      return 'asc';
+    }
+    return 'desc';
+  };
+
   return (
     <EnhancedTableHead>
       <EnhancedTableRow className={classes.root}>
@@ -88,7 +95,9 @@ const MuiTableHeaders = (props) => {
                 >
                   <EnhancedTableSortLabel
                     active={orderBy === header.id}
-                    direction={orderBy === header.id ? order : 'desc'}
+                    direction={
+                      orderBy === header.id ? order : isCardName(header)
+                    }
                     onClick={createSortHandler(header.id)}
                   >
                     <EnhancedTypography bold>{header.label}</EnhancedTypography>
@@ -122,6 +131,8 @@ const MuiTableBody = (props) => {
                     tcgSellerDashboardUrl={card.tcgSellerDashboardUrl}
                     foil={card.foil}
                     language={card.language}
+                    dateFrom={card.dateFrom}
+                    dateTo={card.dateTo}
                     activeDisplay={activeDisplay}
                   />
                 </EnhancedTableCell>
@@ -183,7 +194,18 @@ const MuiTable = (props) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [data, setData] = useState(cards);
 
+  useEffect(() => {
+    setCurrentPage(0);
+  }, [isLoadingCards]);
+
   const handleRequestSort = (event, property) => {
+    if (property === 'cardName') {
+      // Reverse logic for cardName column sorting
+      const isAsc = orderBy === property && order === 'asc';
+      setOrder(isAsc ? 'desc' : 'asc');
+      return setOrderBy(property);
+    }
+
     const isDesc = orderBy === property && order === 'desc';
     setOrder(isDesc ? 'asc' : 'desc');
     setOrderBy(property);
