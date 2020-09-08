@@ -272,5 +272,18 @@ export const filterByReducer = (filterReducer, card) => {
 
   // Date From + Date To
 
+  if (dateFrom) {
+    if (card.dateFrom < dateFrom) {
+      console.log(card.dateFrom);
+      return false;
+    }
+  }
+
+  if (dateTo) {
+    if (card.dateTo > dateTo) {
+      return false;
+    }
+  }
+
   return true;
 };
