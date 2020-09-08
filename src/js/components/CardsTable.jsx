@@ -75,6 +75,13 @@ const MuiTableHeaders = (props) => {
     },
   ];
 
+  const isCardName = (header) => {
+    if (header.id === 'cardName') {
+      return 'asc';
+    }
+    return 'desc';
+  };
+
   return (
     <EnhancedTableHead>
       <EnhancedTableRow className={classes.root}>
@@ -88,7 +95,9 @@ const MuiTableHeaders = (props) => {
                 >
                   <EnhancedTableSortLabel
                     active={orderBy === header.id}
-                    direction={orderBy === header.id ? order : 'desc'}
+                    direction={
+                      orderBy === header.id ? order : isCardName(header)
+                    }
                     onClick={createSortHandler(header.id)}
                   >
                     <EnhancedTypography bold>{header.label}</EnhancedTypography>
