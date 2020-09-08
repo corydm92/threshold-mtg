@@ -287,3 +287,13 @@ export const filterByReducer = (filterReducer, card) => {
 
   return true;
 };
+
+export const formatDateString = (date, type = 'USA') => {
+  const splitArray = date.split('-');
+
+  const year = splitArray[0];
+  const month = splitArray[1];
+  const day = splitArray[2];
+
+  return `${month}/${day}/${year}`;
+};

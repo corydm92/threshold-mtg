@@ -6,6 +6,7 @@ import IconHolder from './IconHolder';
 import CardImage from './CardImage';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/styles';
+import { formatDateString } from '../../utils';
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -18,6 +19,8 @@ const useStyles = makeStyles((theme) => {
     },
     textContainer: {
       paddingLeft: theme.spacing(2),
+      display: 'flex',
+      flexWrap: 'wrap',
     },
     gridItem: {
       display: 'flex',
@@ -27,7 +30,7 @@ const useStyles = makeStyles((theme) => {
 
 const ListView = (props) => {
   const classes = useStyles();
-  const {
+  let {
     cardName,
     setName,
     tcgUrl,
@@ -38,23 +41,28 @@ const ListView = (props) => {
     dateFrom,
     dateTo,
   } = { ...props };
+
+  // Sets date to xx/xx/xxxx format
+  dateFrom = formatDateString(dateFrom);
+  dateTo = formatDateString(dateTo);
+
   return (
-    <Container disableGutters dataTest='ListView'>
-      <Grid container data-test='list-view-grid-container'>
-        <Grid
-          item
-          className={classes.gridItem}
-          xs={4}
-          data-test='list-view-grid-item'
-        >
-          <CardImage imageUrl={tcgImageUrl} foil={foil} />
-        </Grid>
-        <Grid
-          className={classes.textContainer}
-          item
-          xs={8}
-          data-test='list-view-grid-item'
-        >
+    <Grid container data-test='list-view-grid-container'>
+      <Grid
+        item
+        className={classes.gridItem}
+        xs={4}
+        data-test='list-view-grid-item'
+      >
+        <CardImage imageUrl={tcgImageUrl} foil={foil} />
+      </Grid>
+      <Grid
+        className={classes.textContainer}
+        item
+        xs={8}
+        data-test='list-view-grid-item'
+      >
+        <div className='top-display'>
           <IconHolder
             scaleSize={0.8}
             foil={foil}
@@ -64,18 +72,19 @@ const ListView = (props) => {
             cardName={cardName}
             language={language}
           />
-          <Container disableGutters>
-            <EnhancedTypography largeText bold>
-              {cardName}
-            </EnhancedTypography>
-            <EnhancedTypography>{setName}</EnhancedTypography>
-            <EnhancedTypography>
-              {dateFrom !== dateTo ? `${dateFrom} - ${dateTo}` : dateFrom}
-            </EnhancedTypography>
-          </Container>
-        </Grid>
+          <EnhancedTypography largeText bold>
+            {cardName}
+          </EnhancedTypography>
+          <EnhancedTypography>{setName}</EnhancedTypography>
+        </div>
+
+        <div className='bottom-display'>
+          <EnhancedTypography>
+            {dateFrom !== dateTo ? `${dateFrom} - ${dateTo}` : dateFrom}
+          </EnhancedTypography>
+        </div>
       </Grid>
-    </Container>
+    </Grid>
   );
 };
 
