@@ -199,6 +199,13 @@ const MuiTable = (props) => {
   }, [isLoadingCards]);
 
   const handleRequestSort = (event, property) => {
+    if (property === 'cardName') {
+      // Reverse logic for cardName column sorting
+      const isAsc = orderBy === property && order === 'asc';
+      setOrder(isAsc ? 'desc' : 'asc');
+      return setOrderBy(property);
+    }
+
     const isDesc = orderBy === property && order === 'desc';
     setOrder(isDesc ? 'asc' : 'desc');
     setOrderBy(property);
