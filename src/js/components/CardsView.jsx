@@ -5,8 +5,24 @@ import Grid from '@material-ui/core/Grid';
 import EnhancedToolbar from '../component-library/mui/components/Toolbar';
 import TableDisplayIcons from './TableDisplayIcons';
 import { listDisplay } from '../constants/tableDisplayIcons';
+import { makeStyles } from '@material-ui/styles';
+
+const useStyles = makeStyles((theme) => {
+  return {
+    root: {},
+    listView: {
+      maxHeight: 'calc(100vh - 123px)',
+      overflow: 'scroll',
+      '&::-webkit-scrollbar': {
+        display: 'none',
+      },
+    },
+  };
+});
 
 const CardsView = (props) => {
+  const classes = useStyles();
+
   const {
     // STORE
     cards,
@@ -61,7 +77,7 @@ const CardsView = (props) => {
             filterValues={filterValues}
           />
         </Grid>
-        <Grid item xs={10}>
+        <Grid className={classes.listView} item xs={10}>
           <CardsTable
             cards={cards}
             isLoadingCards={isLoadingCards}
