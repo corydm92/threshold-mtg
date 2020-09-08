@@ -270,17 +270,24 @@ export const filterByReducer = (filterReducer, card) => {
     }
   }
 
-  // Date From + Date To
-
   if (dateFrom) {
-    if (card.dateFrom < dateFrom) {
-      console.log(card.dateFrom);
+    // ex: original purchase dates = [8/1, 8/15]
+    // I want to find all cards I purchased after 8/10
+    // if (8/1 < 8/10 && 8/15 < 8/10)
+    // This will return true because we purchased a card after 8/10
+
+    if (card.dateFrom < dateFrom && card.dateTo < dateFrom) {
       return false;
     }
   }
 
   if (dateTo) {
-    if (card.dateTo > dateTo) {
+    // ex: original purchase dates = [8/1, 8/15]
+    // I want to check for all cards I purchased before 8/10
+    // if (8/15 > 8/10 && 8/1 > 8/10)
+    // This will return true because we purchased a card before 8/10
+
+    if (card.dateTo > dateTo && card.dateFrom > dateTo) {
       return false;
     }
   }
