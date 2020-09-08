@@ -5,8 +5,6 @@ import { makeStyles } from '@material-ui/core/styles';
 const useToolbarStyles = makeStyles((theme) => ({
   root: {
     padding: 0,
-    minHeight: 0,
-    height: '50px', // Overwriting minHeight and setting height here allows height customization
   },
   title: {
     flex: '1 1 100%',
