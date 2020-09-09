@@ -41,17 +41,42 @@ function stableSort(array, comparator) {
 }
 
 const useStyles = makeStyles((theme) => {
+  // Below is HeightOfToolbar * 2 (two toolbars, the header and the table toolbar) + theme.spacing (Associated margins)
+  const scrollSpace =
+    theme.mixins.toolbar['@media (min-width:600px)'].minHeight * 2 +
+    theme.spacing(3);
+
   return {
     root: {
-      position: 'relative', // Positioning to fix table headers and side nav (nav has border of 1px)
-      bottom: '1px',
-
       '& .MuiGrid-item': {
         display: 'flex',
       },
     },
     gridContainer: {
       padding: `${theme.spacing(1)}px 0px`,
+    },
+    stickyContainer: {
+      position: 'sticky',
+      top: 0,
+      zIndex: 1,
+      backgroundColor: theme.palette.primary.contrastText,
+      borderBottom: `1px solid ${theme.palette.custom.lightGray}`,
+    },
+    tableContainer: {
+      // Positioning to fix table headers and side nav (nav has border of 1px)
+      position: 'relative',
+      bottom: '1px',
+      maxHeight: `calc(100vh - ${scrollSpace}px)`,
+      overflow: 'scroll',
+      '&::-webkit-scrollbar': {
+        display: 'none',
+      },
+    },
+    noBorder: {
+      border: 0,
+    },
+    spinner: {
+      marginTop: theme.spacing(2),
     },
   };
 });
@@ -93,8 +118,11 @@ const MuiTableHeaders = (props) => {
 
   return (
     <EnhancedTableHead>
-      <EnhancedTableRow>
-        <Grid container className={classes.gridContainer}>
+      <EnhancedTableRow className={classes.noBorder}>
+        <Grid
+          container
+          className={`${classes.gridContainer} ${classes.stickyContainer}`}
+        >
           {tableHeaders.map((header, index) => {
             return (
               <Grid item xs={header.colSpan} key={index}>
@@ -197,7 +225,7 @@ const MuiTableBody = (props) => {
 };
 
 const MuiTable = (props) => {
-  const { cards, isLoadingCards, priceCategory, activeDisplay } = { ...props };
+  let { cards, isLoadingCards, priceCategory, activeDisplay } = { ...props };
 
   const [order, setOrder] = useState('desc');
   const [orderBy, setOrderBy] = useState('spread');
@@ -246,8 +274,11 @@ const MuiTable = (props) => {
 
   return (
     <React.Fragment>
-      <EnhancedTableContainer data-test='CardsTable'>
-        <EnhancedTable stickyHeader={true} className={classes.root}>
+      <EnhancedTableContainer
+        className={classes.tableContainer}
+        dataTest='CardsTable'
+      >
+        <EnhancedTable className={classes.root}>
           <MuiTableHeaders
             order={order}
             orderBy={orderBy}
@@ -260,16 +291,7 @@ const MuiTable = (props) => {
         </EnhancedTable>
 
         {isLoadingCards ? (
-          // Must render as full table to center with no scroll bar
-          <EnhancedTable>
-            <EnhancedTableBody>
-              <EnhancedTableRow>
-                <EnhancedTableCell padding noBorder colSpan={5}>
-                  <Spinner />
-                </EnhancedTableCell>
-              </EnhancedTableRow>
-            </EnhancedTableBody>
-          </EnhancedTable>
+          <Spinner className={classes.spinner} />
         ) : (
           <EnhancedTablePagination
             rowsPerPageOptions={[5, 10, 25]}
