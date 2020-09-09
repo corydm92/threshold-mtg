@@ -9,9 +9,9 @@ const useStyles = makeStyles((theme) => {
       display: 'flex',
       justifyContent: 'flex-end',
       padding: (props) => (props.padding ? theme.spacing(8) : 0),
-      margin: '8px 0',
+      // margin: '8px 0',
       alignItems: 'center',
-      height: '100%',
+      // height: '100%',
       border: (props) => props.noBorder && '0px',
     },
   };

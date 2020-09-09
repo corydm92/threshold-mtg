@@ -41,10 +41,10 @@ function stableSort(array, comparator) {
 }
 
 const useStyles = makeStyles((theme) => {
-  // Below is HeightOfToolbar * 2 (two toolbars, the header and the table toolbar) + theme.spacing (Associated margins)
+  // Below is HeightOfToolbar * 2 (two toolbars, the header and the table toolbar) + theme.spacing (Associated margins + Pagination)
   const scrollSpace =
     theme.mixins.toolbar['@media (min-width:600px)'].minHeight * 2 +
-    theme.spacing(3);
+    theme.spacing(10);
 
   return {
     root: {
@@ -297,21 +297,20 @@ const MuiTable = (props) => {
             <MuiTableBody data={data} activeDisplay={activeDisplay} />
           )}
         </EnhancedTable>
-
-        {isLoadingCards ? (
-          <Spinner className={classes.spinner} />
-        ) : (
-          <EnhancedTablePagination
-            rowsPerPageOptions={[5, 10, 25]}
-            count={cards.length}
-            rowsPerPage={rowPerPage}
-            noBorder
-            page={currentPage}
-            onChangePage={handleChangePage}
-            onChangeRowsPerPage={handleChangeRowsPerPage}
-          />
-        )}
       </EnhancedTableContainer>
+      {isLoadingCards ? (
+        <Spinner className={classes.spinner} />
+      ) : (
+        <EnhancedTablePagination
+          rowsPerPageOptions={[5, 10, 25]}
+          count={cards.length}
+          rowsPerPage={rowPerPage}
+          noBorder
+          page={currentPage}
+          onChangePage={handleChangePage}
+          onChangeRowsPerPage={handleChangeRowsPerPage}
+        />
+      )}
     </React.Fragment>
   );
 };
