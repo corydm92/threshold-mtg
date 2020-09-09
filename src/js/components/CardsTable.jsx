@@ -247,7 +247,7 @@ const MuiTable = (props) => {
   return (
     <React.Fragment>
       <EnhancedTableContainer data-test='CardsTable'>
-        <EnhancedTable stickyHeader className={classes.root}>
+        <EnhancedTable stickyHeader={true} className={classes.root}>
           <MuiTableHeaders
             order={order}
             orderBy={orderBy}

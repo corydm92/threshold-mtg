@@ -5,9 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => {
   return {
     root: {
-      // display: 'none',
       borderBottom: `1px solid ${theme.palette.custom.lightGray}`,
-      margin: theme.spacing(1),
     },
   };
 });
