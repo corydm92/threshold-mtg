@@ -40,17 +40,23 @@ function stableSort(array, comparator) {
   return stabilizedThis.map((el) => el[0]);
 }
 
-const muiTableHeaderStyles = makeStyles((theme) => {
+const useStyles = makeStyles((theme) => {
   return {
     root: {
-      display: 'flex',
+      '& .MuiGrid-item': {
+        display: 'flex',
+      },
+    },
+    gridContainer: {
+      padding: `${theme.spacing(1)}px 0px`,
     },
   };
 });
 
 const MuiTableHeaders = (props) => {
   const { order, orderBy, onRequestSort, priceCategory } = { ...props };
-  const classes = muiTableHeaderStyles();
+
+  const classes = useStyles();
 
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
@@ -84,8 +90,8 @@ const MuiTableHeaders = (props) => {
 
   return (
     <EnhancedTableHead>
-      <EnhancedTableRow className={classes.root}>
-        <Grid container>
+      <EnhancedTableRow>
+        <Grid container className={classes.gridContainer}>
           {tableHeaders.map((header, index) => {
             return (
               <Grid item xs={header.colSpan} key={index}>
@@ -115,12 +121,14 @@ const MuiTableHeaders = (props) => {
 const MuiTableBody = (props) => {
   const { data, activeDisplay } = { ...props };
 
+  const classes = useStyles();
+
   return (
     <EnhancedTableBody>
       {data.map((card, index) => {
         return (
           <EnhancedTableRow key={index}>
-            <Grid container>
+            <Grid container className={classes.gridContainer}>
               <Grid item xs={4}>
                 <EnhancedTableCell data-cy='card-details'>
                   <CardDetails
@@ -194,6 +202,8 @@ const MuiTable = (props) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [data, setData] = useState(cards);
 
+  const classes = useStyles();
+
   useEffect(() => {
     setCurrentPage(0);
   }, [isLoadingCards]);
@@ -234,7 +244,7 @@ const MuiTable = (props) => {
   return (
     <React.Fragment>
       <EnhancedTableContainer data-test='CardsTable'>
-        <EnhancedTable stickyHeader>
+        <EnhancedTable stickyHeader className={classes.root}>
           <MuiTableHeaders
             order={order}
             orderBy={orderBy}

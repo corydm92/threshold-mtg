@@ -6,6 +6,7 @@ const useStyles = makeStyles((theme) => {
   return {
     root: {},
     typography: {
+      lineHeight: 1,
       fontSize: (props) =>
         props.largeText
           ? theme.typography.htmlFontSize
