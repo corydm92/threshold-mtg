@@ -52,6 +52,9 @@ const useStyles = makeStyles((theme) => {
         display: 'flex',
       },
     },
+    centerGridItem: {
+      justifyContent: 'center',
+    },
     gridContainer: {
       padding: `${theme.spacing(1)}px 0px`,
     },
@@ -125,7 +128,12 @@ const MuiTableHeaders = (props) => {
         >
           {tableHeaders.map((header, index) => {
             return (
-              <Grid item xs={header.colSpan} key={index}>
+              <Grid
+                item
+                className={classes.centerGridItem}
+                xs={header.colSpan}
+                key={index}
+              >
                 <EnhancedTableCell
                   sortDirection={orderBy === header.id ? order : false}
                   centerText={header.centerText}
@@ -176,7 +184,7 @@ const MuiTableBody = (props) => {
                   />
                 </EnhancedTableCell>
               </Grid>
-              <Grid item xs={1}>
+              <Grid item className={classes.centerGridItem} xs={1}>
                 <EnhancedTableCell
                   useColor
                   bold
@@ -188,7 +196,7 @@ const MuiTableBody = (props) => {
                   {'%'}
                 </EnhancedTableCell>
               </Grid>
-              <Grid item xs={2}>
+              <Grid item className={classes.centerGridItem} xs={2}>
                 <EnhancedTableCell
                   useColor
                   bold
@@ -199,18 +207,18 @@ const MuiTableBody = (props) => {
                   {addZeroes(card.gainLoss)}
                 </EnhancedTableCell>
               </Grid>
-              <Grid item xs={1}>
+              <Grid item className={classes.centerGridItem} xs={1}>
                 <EnhancedTableCell centerText data-cy='card-quantity'>
                   {card.quantity}
                 </EnhancedTableCell>
               </Grid>
-              <Grid item xs={2}>
+              <Grid item className={classes.centerGridItem} xs={2}>
                 <EnhancedTableCell centerText data-cy='card-avg-purchase-price'>
                   {'$'}
                   {addZeroes(card.avgPurchasePrice)}
                 </EnhancedTableCell>
               </Grid>
-              <Grid item xs={2}>
+              <Grid item className={classes.centerGridItem} xs={2}>
                 <EnhancedTableCell centerText data-cy='card-tcg-price'>
                   {'$'}
                   {addZeroes(card.tcgPrice)}
