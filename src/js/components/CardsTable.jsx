@@ -6,7 +6,7 @@ import EnhancedTableBody from '../component-library/mui/components/Table/Enhance
 import EnhancedTableRow from '../component-library/mui/components/Table/EnhancedTableRow';
 import EnhancedTableCell from '../component-library/mui/components/Table/EnhancedTableCell';
 import EnhancedTablePagination from '../component-library/mui/components/Table/EnhancedTablePagination';
-import Spinner from '../component-library/mui/components/Spinner';
+import EnhancedSpinner from '../component-library/mui/components/Spinner';
 import EnhancedTableSortLabel from '../component-library/mui/components/Table/EnhancedTableSortLabel';
 import Grid from '@material-ui/core/Grid';
 import { getPriceCategory, isPositive, addZeroes } from '../../utils';
@@ -40,38 +40,73 @@ function stableSort(array, comparator) {
   return stabilizedThis.map((el) => el[0]);
 }
 
-const muiTableHeaderStyles = makeStyles((theme) => {
+const useStyles = makeStyles((theme) => {
+  // Below is HeightOfToolbar * 2 (two toolbars, the header and the table toolbar) + theme.spacing (Associated margins + Pagination)
+  const scrollSpace =
+    theme.mixins.toolbar['@media (min-width:600px)'].minHeight * 2 +
+    theme.spacing(10);
+
   return {
     root: {
-      display: 'flex',
+      '& .MuiGrid-item': {
+        display: 'flex',
+      },
+    },
+    centerGridItem: {
+      justifyContent: 'center',
+    },
+    gridContainer: {
+      padding: `${theme.spacing(1)}px 0px`,
+    },
+    stickyContainer: {
+      position: 'sticky',
+      top: 0,
+      zIndex: 1,
+      backgroundColor: theme.palette.primary.contrastText,
+      borderBottom: `1px solid ${theme.palette.custom.lightGray}`,
+    },
+    tableContainer: {
+      // Positioning to fix table headers and side nav (nav has border of 1px)
+      position: 'relative',
+      bottom: '1px',
+      maxHeight: `calc(100vh - ${scrollSpace}px)`,
+      overflow: 'scroll',
+      '&::-webkit-scrollbar': {
+        display: 'none',
+      },
+    },
+    noBorder: {
+      border: 0,
+    },
+    spinner: {
+      marginTop: theme.spacing(12),
     },
   };
 });
 
 const MuiTableHeaders = (props) => {
   const { order, orderBy, onRequestSort, priceCategory } = { ...props };
-  const classes = muiTableHeaderStyles();
+
+  const classes = useStyles();
 
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
   };
 
   const tableHeaders = [
-    { id: 'cardName', label: 'Card', colSpan: 4, centerText: false },
-    { id: 'spread', label: 'Spread', colSpan: 1, centerText: true },
-    { id: 'gainLoss', label: 'Gain / Loss', colSpan: 2, centerText: true },
-    { id: 'quantity', label: 'Quantity', colSpan: 1, centerText: true },
+    { id: 'cardName', label: 'Card', colSpan: 4 },
+    { id: 'spread', label: 'Spread', colSpan: 1 },
+    { id: 'gainLoss', label: 'Gain / Loss', colSpan: 2 },
+    { id: 'quantity', label: 'Quantity', colSpan: 1 },
     {
       id: 'avgPurchasePrice',
       label: 'Avg Purchase Price',
       colSpan: 2,
-      centerText: true,
     },
     {
       id: 'tcgPrice',
       label: getPriceCategory(priceCategory),
       colSpan: 2,
-      centerText: true,
     },
   ];
 
@@ -84,14 +119,21 @@ const MuiTableHeaders = (props) => {
 
   return (
     <EnhancedTableHead>
-      <EnhancedTableRow className={classes.root}>
-        <Grid container>
+      <EnhancedTableRow className={classes.noBorder}>
+        <Grid
+          container
+          className={`${classes.gridContainer} ${classes.stickyContainer}`}
+        >
           {tableHeaders.map((header, index) => {
             return (
-              <Grid item xs={header.colSpan} key={index}>
+              <Grid
+                item
+                className={classes.centerGridItem}
+                xs={header.colSpan}
+                key={index}
+              >
                 <EnhancedTableCell
                   sortDirection={orderBy === header.id ? order : false}
-                  centerText={header.centerText}
                 >
                   <EnhancedTableSortLabel
                     active={orderBy === header.id}
@@ -115,12 +157,14 @@ const MuiTableHeaders = (props) => {
 const MuiTableBody = (props) => {
   const { data, activeDisplay } = { ...props };
 
+  const classes = useStyles();
+
   return (
     <EnhancedTableBody>
       {data.map((card, index) => {
         return (
           <EnhancedTableRow key={index}>
-            <Grid container>
+            <Grid container className={classes.gridContainer}>
               <Grid item xs={4}>
                 <EnhancedTableCell data-cy='card-details'>
                   <CardDetails
@@ -137,7 +181,7 @@ const MuiTableBody = (props) => {
                   />
                 </EnhancedTableCell>
               </Grid>
-              <Grid item xs={1}>
+              <Grid item className={classes.centerGridItem} xs={1}>
                 <EnhancedTableCell
                   useColor
                   bold
@@ -149,7 +193,7 @@ const MuiTableBody = (props) => {
                   {'%'}
                 </EnhancedTableCell>
               </Grid>
-              <Grid item xs={2}>
+              <Grid item className={classes.centerGridItem} xs={2}>
                 <EnhancedTableCell
                   useColor
                   bold
@@ -160,18 +204,18 @@ const MuiTableBody = (props) => {
                   {addZeroes(card.gainLoss)}
                 </EnhancedTableCell>
               </Grid>
-              <Grid item xs={1}>
+              <Grid item className={classes.centerGridItem} xs={1}>
                 <EnhancedTableCell centerText data-cy='card-quantity'>
                   {card.quantity}
                 </EnhancedTableCell>
               </Grid>
-              <Grid item xs={2}>
+              <Grid item className={classes.centerGridItem} xs={2}>
                 <EnhancedTableCell centerText data-cy='card-avg-purchase-price'>
                   {'$'}
                   {addZeroes(card.avgPurchasePrice)}
                 </EnhancedTableCell>
               </Grid>
-              <Grid item xs={2}>
+              <Grid item className={classes.centerGridItem} xs={2}>
                 <EnhancedTableCell centerText data-cy='card-tcg-price'>
                   {'$'}
                   {addZeroes(card.tcgPrice)}
@@ -193,6 +237,8 @@ const MuiTable = (props) => {
   const [rowPerPage, setRowPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(0);
   const [data, setData] = useState(cards);
+
+  const classes = useStyles();
 
   useEffect(() => {
     setCurrentPage(0);
@@ -233,8 +279,11 @@ const MuiTable = (props) => {
 
   return (
     <React.Fragment>
-      <EnhancedTableContainer data-test='CardsTable'>
-        <EnhancedTable stickyHeader>
+      <EnhancedTableContainer
+        className={classes.tableContainer}
+        dataTest='CardsTable'
+      >
+        <EnhancedTable className={classes.root}>
           <MuiTableHeaders
             order={order}
             orderBy={orderBy}
@@ -245,30 +294,20 @@ const MuiTable = (props) => {
             <MuiTableBody data={data} activeDisplay={activeDisplay} />
           )}
         </EnhancedTable>
-
-        {isLoadingCards ? (
-          // Must render as full table to center with no scroll bar
-          <EnhancedTable>
-            <EnhancedTableBody>
-              <EnhancedTableRow>
-                <EnhancedTableCell padding noBorder colSpan={5}>
-                  <Spinner />
-                </EnhancedTableCell>
-              </EnhancedTableRow>
-            </EnhancedTableBody>
-          </EnhancedTable>
-        ) : (
-          <EnhancedTablePagination
-            rowsPerPageOptions={[5, 10, 25]}
-            count={cards.length}
-            rowsPerPage={rowPerPage}
-            noBorder
-            page={currentPage}
-            onChangePage={handleChangePage}
-            onChangeRowsPerPage={handleChangeRowsPerPage}
-          />
-        )}
       </EnhancedTableContainer>
+      {isLoadingCards ? (
+        <EnhancedSpinner className={classes.spinner} />
+      ) : (
+        <EnhancedTablePagination
+          rowsPerPageOptions={[5, 10, 25]}
+          count={cards.length}
+          rowsPerPage={rowPerPage}
+          noBorder
+          page={currentPage}
+          onChangePage={handleChangePage}
+          onChangeRowsPerPage={handleChangeRowsPerPage}
+        />
+      )}
     </React.Fragment>
   );
 };

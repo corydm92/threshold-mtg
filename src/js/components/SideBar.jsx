@@ -57,7 +57,9 @@ const useStyles = makeStyles((theme) => {
       color: theme.palette.text.primary,
       textAlign: 'center',
       fontSize: theme.typography.fontSize,
-      margin: theme.spacing(2),
+      margin: `${theme.spacing(1)}px ${theme.spacing(1)}px ${theme.spacing(
+        2
+      )}px `,
       fontWeight: '700',
       '& .Mui-focused': {
         display: 'none',
