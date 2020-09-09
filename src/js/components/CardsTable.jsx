@@ -136,7 +136,6 @@ const MuiTableHeaders = (props) => {
               >
                 <EnhancedTableCell
                   sortDirection={orderBy === header.id ? order : false}
-                  centerText={header.centerText}
                 >
                   <EnhancedTableSortLabel
                     active={orderBy === header.id}

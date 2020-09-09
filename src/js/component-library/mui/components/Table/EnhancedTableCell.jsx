@@ -8,7 +8,6 @@ const useStyles = makeStyles((theme) => {
       display: 'flex',
       padding: (props) => (props.padding ? theme.spacing(8) : 0),
       alignItems: 'center',
-      justifyContent: (props) => props.centerText && 'center',
       borderBottom: '0px',
       color: (props) => {
         if (props.useColor) {
