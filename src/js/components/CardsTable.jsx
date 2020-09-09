@@ -43,6 +43,9 @@ function stableSort(array, comparator) {
 const useStyles = makeStyles((theme) => {
   return {
     root: {
+      position: 'relative', // Positioning to fix table headers and side nav (nav has border of 1px)
+      bottom: '1px',
+
       '& .MuiGrid-item': {
         display: 'flex',
       },
