@@ -230,7 +230,7 @@ const MuiTableBody = (props) => {
 };
 
 const MuiTable = (props) => {
-  let { cards, isLoadingCards, priceCategory, activeDisplay } = { ...props };
+  const { cards, isLoadingCards, priceCategory, activeDisplay } = { ...props };
 
   const [order, setOrder] = useState('desc');
   const [orderBy, setOrderBy] = useState('spread');
@@ -243,8 +243,6 @@ const MuiTable = (props) => {
   useEffect(() => {
     setCurrentPage(0);
   }, [isLoadingCards]);
-
-  isLoadingCards = true;
 
   const handleRequestSort = (event, property) => {
     if (property === 'cardName') {
