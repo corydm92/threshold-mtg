@@ -6,7 +6,7 @@ import EnhancedTableBody from '../component-library/mui/components/Table/Enhance
 import EnhancedTableRow from '../component-library/mui/components/Table/EnhancedTableRow';
 import EnhancedTableCell from '../component-library/mui/components/Table/EnhancedTableCell';
 import EnhancedTablePagination from '../component-library/mui/components/Table/EnhancedTablePagination';
-import Spinner from '../component-library/mui/components/Spinner';
+import EnhancedSpinner from '../component-library/mui/components/Spinner';
 import EnhancedTableSortLabel from '../component-library/mui/components/Table/EnhancedTableSortLabel';
 import Grid from '@material-ui/core/Grid';
 import { getPriceCategory, isPositive, addZeroes } from '../../utils';
@@ -79,7 +79,7 @@ const useStyles = makeStyles((theme) => {
       border: 0,
     },
     spinner: {
-      marginTop: theme.spacing(2),
+      marginTop: theme.spacing(12),
     },
   };
 });
@@ -94,21 +94,19 @@ const MuiTableHeaders = (props) => {
   };
 
   const tableHeaders = [
-    { id: 'cardName', label: 'Card', colSpan: 4, centerText: false },
-    { id: 'spread', label: 'Spread', colSpan: 1, centerText: true },
-    { id: 'gainLoss', label: 'Gain / Loss', colSpan: 2, centerText: true },
-    { id: 'quantity', label: 'Quantity', colSpan: 1, centerText: true },
+    { id: 'cardName', label: 'Card', colSpan: 4 },
+    { id: 'spread', label: 'Spread', colSpan: 1 },
+    { id: 'gainLoss', label: 'Gain / Loss', colSpan: 2 },
+    { id: 'quantity', label: 'Quantity', colSpan: 1 },
     {
       id: 'avgPurchasePrice',
       label: 'Avg Purchase Price',
       colSpan: 2,
-      centerText: true,
     },
     {
       id: 'tcgPrice',
       label: getPriceCategory(priceCategory),
       colSpan: 2,
-      centerText: true,
     },
   ];
 
@@ -246,6 +244,8 @@ const MuiTable = (props) => {
     setCurrentPage(0);
   }, [isLoadingCards]);
 
+  isLoadingCards = true;
+
   const handleRequestSort = (event, property) => {
     if (property === 'cardName') {
       // Reverse logic for cardName column sorting
@@ -298,7 +298,7 @@ const MuiTable = (props) => {
         </EnhancedTable>
       </EnhancedTableContainer>
       {isLoadingCards ? (
-        <Spinner className={classes.spinner} />
+        <EnhancedSpinner className={classes.spinner} />
       ) : (
         <EnhancedTablePagination
           rowsPerPageOptions={[5, 10, 25]}
