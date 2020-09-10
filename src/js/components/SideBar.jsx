@@ -2,19 +2,14 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
-import Radio from '@material-ui/core/Radio';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
-
 import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
 import SideBarFilterForm from './SideBarFilterForm';
+import SideBarPriceRadios from './SideBarPriceRadios';
 
 import {
   tcgLow,
@@ -46,13 +41,6 @@ const useStyles = makeStyles((theme) => {
     expandOpen: {
       transform: 'rotate(180deg)',
     },
-    formControl: {
-      color: theme.palette.text.primary,
-      width: '100%',
-      '& .MuiFormLabel-root.Mui-focused': {
-        color: theme.palette.text.primary,
-      },
-    },
     formLabel: {
       color: theme.palette.text.primary,
       textAlign: 'center',
@@ -65,19 +53,6 @@ const useStyles = makeStyles((theme) => {
         display: 'none',
       },
     },
-    formControlLabel: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      fontSize: theme.typography.fontSize,
-      marginLeft: '0',
-    },
-    radio: {
-      color: theme.palette.custom.darkGray,
-      '&$checked': {
-        color: theme.palette.primary.light,
-      },
-    },
-    checked: {},
     body1Text: {
       fontSize: theme.typography.fontSize,
     },
@@ -160,88 +135,10 @@ const SideBar = (props) => {
               root: classes.cardContent,
             }}
           >
-            <FormControl className={classes.formControl} component='fieldset'>
-              <RadioGroup
-                aria-label='tcgPriceCategories'
-                name='tcgPriceCategories'
-                value={priceCategory}
-                onChange={(event) => handleChange(event)}
-                data-test='radio-group'
-              >
-                <FormControlLabel
-                  value={tcgMarket}
-                  classes={{
-                    label: classes.formControlLabel,
-                    root: classes.formControlLabel,
-                  }}
-                  control={
-                    <Radio
-                      classes={{
-                        root: classes.radio,
-                        checked: classes.checked,
-                      }}
-                      data-test='tcg-market-radio'
-                    />
-                  }
-                  label='TCG Market'
-                  labelPlacement='start'
-                />
-                <FormControlLabel
-                  value={tcgLow}
-                  classes={{
-                    label: classes.formControlLabel,
-                    root: classes.formControlLabel,
-                  }}
-                  control={
-                    <Radio
-                      classes={{
-                        root: classes.radio,
-                        checked: classes.checked,
-                      }}
-                      data-test='tcg-low-radio'
-                    />
-                  }
-                  label='TCG Low'
-                  labelPlacement='start'
-                />
-                <FormControlLabel
-                  value={tcgMid}
-                  classes={{
-                    label: classes.formControlLabel,
-                    root: classes.formControlLabel,
-                  }}
-                  control={
-                    <Radio
-                      classes={{
-                        root: classes.radio,
-                        checked: classes.checked,
-                      }}
-                      data-test='tcg-mid-radio'
-                    />
-                  }
-                  label='TCG Mid'
-                  labelPlacement='start'
-                />
-                <FormControlLabel
-                  value={tcgHigh}
-                  classes={{
-                    label: classes.formControlLabel,
-                    root: classes.formControlLabel,
-                  }}
-                  control={
-                    <Radio
-                      classes={{
-                        root: classes.radio,
-                        checked: classes.checked,
-                      }}
-                      data-test='tcg-high-radio'
-                    />
-                  }
-                  label='TCG High'
-                  labelPlacement='start'
-                />
-              </RadioGroup>
-            </FormControl>
+            <SideBarPriceRadios
+              priceCategory={priceCategory}
+              handleChange={handleChange}
+            />
           </CardContent>
         </Collapse>
         <CardActions
