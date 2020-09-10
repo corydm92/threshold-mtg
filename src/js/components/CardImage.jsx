@@ -42,7 +42,6 @@ const Image = (props) => {
   const classes = useStyles();
 
   const dataTest = foil ? 'foil-image-wrapper' : 'image-wrapper';
-  console.log(foil);
   return (
     <Link to={{ pathname: tcgImageUrl }} target='_blank'>
       <EnhancedContainer
