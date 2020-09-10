@@ -1,14 +1,14 @@
-import React from 'react';
-import TableCell from '@material-ui/core/TableCell';
-import { makeStyles } from '@material-ui/core/styles';
+import React from "react";
+import TableCell from "@material-ui/core/TableCell";
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => {
   return {
     root: {
-      display: 'flex',
+      display: "flex",
       padding: (props) => (props.padding ? theme.spacing(8) : 0),
-      alignItems: 'center',
-      borderBottom: '0px',
+      alignItems: "center",
+      borderBottom: "0px",
       color: (props) => {
         if (props.useColor) {
           return props.isPositive
@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => {
       },
       fontWeight: (props) => {
         if (props.bold) {
-          return 'bold';
+          return "bold";
         }
       },
     },
@@ -27,9 +27,14 @@ const useStyles = makeStyles((theme) => {
 
 const EnhancedTableCell = (props) => {
   const classes = useStyles(props);
-  const { colSpan } = { ...props };
+  const { colSpan, dataTest } = { ...props };
   return (
-    <TableCell className={classes.root} colSpan={colSpan} component='div'>
+    <TableCell
+      className={classes.root}
+      data-test={dataTest}
+      colSpan={colSpan}
+      component='div'
+    >
       {props.children}
     </TableCell>
   );
