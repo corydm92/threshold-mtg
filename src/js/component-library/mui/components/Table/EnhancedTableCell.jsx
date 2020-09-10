@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme) => {
     root: {
       display: 'flex',
       padding: (props) => (props.padding ? theme.spacing(8) : 0),
-      alignItems: 'center',
+      alignItems: (props) => (props.alignTop ? 'flex-start' : 'center'),
       borderBottom: '0px',
       color: (props) => {
         if (props.useColor) {
@@ -27,9 +27,14 @@ const useStyles = makeStyles((theme) => {
 
 const EnhancedTableCell = (props) => {
   const classes = useStyles(props);
-  const { colSpan } = { ...props };
+  const { colSpan, dataTest } = { ...props };
   return (
-    <TableCell className={classes.root} colSpan={colSpan} component='div'>
+    <TableCell
+      className={classes.root}
+      data-test={dataTest}
+      colSpan={colSpan}
+      component='div'
+    >
       {props.children}
     </TableCell>
   );

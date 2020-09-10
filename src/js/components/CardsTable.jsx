@@ -12,6 +12,7 @@ import Grid from '@material-ui/core/Grid';
 import { getPriceCategory, isPositive, addZeroes } from '../../utils';
 import { makeStyles } from '@material-ui/core/styles';
 import CardDetails from './CardDetails';
+import CardImage from './CardImage';
 import EnhancedTypography from '../component-library/mui/components/Typography';
 
 function descendingComparator(a, b, orderBy) {
@@ -94,7 +95,8 @@ const MuiTableHeaders = (props) => {
   };
 
   const tableHeaders = [
-    { id: 'cardName', label: 'Card', colSpan: 4 },
+    { id: 'cardName', label: 'Card', colSpan: 1 },
+    { id: 'dateTo', label: 'Date', colSpan: 3 },
     { id: 'spread', label: 'Spread', colSpan: 1 },
     { id: 'gainLoss', label: 'Gain / Loss', colSpan: 2 },
     { id: 'quantity', label: 'Quantity', colSpan: 1 },
@@ -165,13 +167,17 @@ const MuiTableBody = (props) => {
         return (
           <EnhancedTableRow key={index}>
             <Grid container className={classes.gridContainer}>
-              <Grid item xs={4}>
-                <EnhancedTableCell data-cy='card-details'>
+              <Grid item xs={1}>
+                <EnhancedTableCell dataTest='card-name'>
+                  <CardImage tcgImageUrl={card.tcgImageUrl} foil={card.foil} />
+                </EnhancedTableCell>
+              </Grid>
+              <Grid item xs={3}>
+                <EnhancedTableCell alignTop dataTest='card-date'>
                   <CardDetails
                     cardName={card.cardName}
                     setName={card.setName}
                     tcgUrl={card.tcgUrl}
-                    tcgImageUrl={card.tcgImageUrl}
                     tcgSellerDashboardUrl={card.tcgSellerDashboardUrl}
                     foil={card.foil}
                     language={card.language}
@@ -187,7 +193,7 @@ const MuiTableBody = (props) => {
                   bold
                   isPositive={isPositive(card.spread)}
                   centerText
-                  data-cy='card-spread'
+                  dataTest='card-spread'
                 >
                   {addZeroes(card.spread)}
                   {'%'}
@@ -199,24 +205,27 @@ const MuiTableBody = (props) => {
                   bold
                   isPositive={isPositive(card.gainLoss)}
                   centerText
-                  data-cy='card-gain-loss'
+                  dataTest='card-gain-loss'
                 >
                   {addZeroes(card.gainLoss)}
                 </EnhancedTableCell>
               </Grid>
               <Grid item className={classes.centerGridItem} xs={1}>
-                <EnhancedTableCell centerText data-cy='card-quantity'>
+                <EnhancedTableCell centerText dataTest='card-quantity'>
                   {card.quantity}
                 </EnhancedTableCell>
               </Grid>
               <Grid item className={classes.centerGridItem} xs={2}>
-                <EnhancedTableCell centerText data-cy='card-avg-purchase-price'>
+                <EnhancedTableCell
+                  centerText
+                  dataTest='card-avg-purchase-price'
+                >
                   {'$'}
                   {addZeroes(card.avgPurchasePrice)}
                 </EnhancedTableCell>
               </Grid>
               <Grid item className={classes.centerGridItem} xs={2}>
-                <EnhancedTableCell centerText data-cy='card-tcg-price'>
+                <EnhancedTableCell centerText dataTest='card-tcg-price'>
                   {'$'}
                   {addZeroes(card.tcgPrice)}
                 </EnhancedTableCell>
