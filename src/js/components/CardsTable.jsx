@@ -96,7 +96,7 @@ const MuiTableHeaders = (props) => {
 
   const tableHeaders = [
     { id: 'cardName', label: 'Card', colSpan: 1 },
-    { id: 'dateFrom', label: 'Date', colSpan: 3 },
+    { id: 'dateTo', label: 'Date', colSpan: 3 },
     { id: 'spread', label: 'Spread', colSpan: 1 },
     { id: 'gainLoss', label: 'Gain / Loss', colSpan: 2 },
     { id: 'quantity', label: 'Quantity', colSpan: 1 },
@@ -169,16 +169,15 @@ const MuiTableBody = (props) => {
             <Grid container className={classes.gridContainer}>
               <Grid item xs={1}>
                 <EnhancedTableCell dataTest='card-name'>
-                  <CardImage imageUrl={card.tcgImageUrl} foil={card.foil} />
+                  <CardImage tcgImageUrl={card.tcgImageUrl} foil={card.foil} />
                 </EnhancedTableCell>
               </Grid>
               <Grid item xs={3}>
-                <EnhancedTableCell dataTest='card-date'>
+                <EnhancedTableCell alignTop dataTest='card-date'>
                   <CardDetails
                     cardName={card.cardName}
                     setName={card.setName}
                     tcgUrl={card.tcgUrl}
-                    tcgImageUrl={card.tcgImageUrl}
                     tcgSellerDashboardUrl={card.tcgSellerDashboardUrl}
                     foil={card.foil}
                     language={card.language}

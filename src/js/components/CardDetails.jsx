@@ -3,8 +3,6 @@ import { imageDisplay, listDisplay } from '../constants/tableDisplayIcons';
 import EnhancedTypography from '../component-library/mui/components/Typography';
 import EnhancedContainer from '../component-library/mui/components/Container';
 import IconHolder from './IconHolder';
-import CardImage from './CardImage';
-import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/styles';
 import { formatDateString } from '../../utils';
 
@@ -18,6 +16,7 @@ const useStyles = makeStyles((theme) => {
       },
     },
     textContainer: {
+      height: '100%',
       paddingLeft: theme.spacing(2),
       display: 'flex',
       flexWrap: 'wrap',
@@ -39,7 +38,6 @@ const ListView = (props) => {
     tcgUrl,
     tcgSellerDashboardUrl,
     foil,
-    tcgImageUrl,
     language,
     dateFrom,
     dateTo,
@@ -50,21 +48,6 @@ const ListView = (props) => {
   dateTo = formatDateString(dateTo);
 
   return (
-    // <Grid container data-test='list-view-grid-container'>
-    //   <Grid
-    //     item
-    //     className={classes.gridItem}
-    //     xs={4}
-    //     data-test='list-view-grid-item'
-    //   >
-    //     <CardImage imageUrl={tcgImageUrl} foil={foil} />
-    //   </Grid>
-    //   <Grid
-    //     className={classes.textContainer}
-    //     item
-    //     xs={8}
-    //     data-test='list-view-grid-item'
-    //   >
     <EnhancedContainer className={classes.textContainer} disableGutters>
       <div className={classes.fullWidth} data-test='top-display'>
         <IconHolder
@@ -88,8 +71,6 @@ const ListView = (props) => {
         </EnhancedTypography>
       </div>
     </EnhancedContainer>
-    //   </Grid>
-    // </Grid>
   );
 };
 

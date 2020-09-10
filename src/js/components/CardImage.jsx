@@ -38,19 +38,19 @@ const useStyles = makeStyles((theme) => {
 });
 
 const Image = (props) => {
-  const { imageUrl, foil } = { ...props };
+  const { tcgImageUrl, foil } = { ...props };
   const classes = useStyles();
 
   const dataTest = foil ? 'foil-image-wrapper' : 'image-wrapper';
   console.log(foil);
   return (
-    <Link to={{ pathname: imageUrl }} target='_blank'>
+    <Link to={{ pathname: tcgImageUrl }} target='_blank'>
       <EnhancedContainer
         className={foil ? classes.foilCard : classes.card}
         dataTest={dataTest}
         disableGutters
       >
-        <img src={imageUrl} alt='mtg-img' />
+        <img src={tcgImageUrl} alt='mtg-img' />
       </EnhancedContainer>
     </Link>
   );
@@ -58,14 +58,14 @@ const Image = (props) => {
 
 const CardImage = (props) => {
   const classes = useStyles();
-  const { imageUrl, foil } = { ...props };
+  const { tcgImageUrl, foil } = { ...props };
   return (
     <EnhancedContainer
       dataTest='CardImage'
       classes={{ root: classes.root }}
       disableGutters
     >
-      <Image imageUrl={imageUrl} foil={foil} />
+      <Image tcgImageUrl={tcgImageUrl} foil={foil} />
     </EnhancedContainer>
   );
 };

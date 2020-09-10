@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme) => {
     root: {
       display: 'flex',
       padding: (props) => (props.padding ? theme.spacing(8) : 0),
-      alignItems: 'center',
+      alignItems: (props) => (props.alignTop ? 'flex-start' : 'center'),
       borderBottom: '0px',
       color: (props) => {
         if (props.useColor) {
