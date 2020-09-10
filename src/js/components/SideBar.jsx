@@ -10,6 +10,7 @@ import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import SideBarFilterForm from './SideBarFilterForm';
 import SideBarPriceRadios from './SideBarPriceRadios';
+import SideBarQuickCalculation from './SideBarQuickCalculation';
 
 import {
   tcgLow,
@@ -48,7 +49,10 @@ const useStyles = makeStyles((theme) => {
       margin: `${theme.spacing(1)}px ${theme.spacing(1)}px ${theme.spacing(
         2
       )}px `,
-      fontWeight: '700',
+      '&:nth-child(2)': {
+        marginTop: theme.spacing(2),
+      },
+      fontWeight: theme.typography.fontWeightBold,
       '& .Mui-focused': {
         display: 'none',
       },
@@ -63,6 +67,7 @@ const useStyles = makeStyles((theme) => {
     cardContent: {
       display: 'flex',
       justifyContent: 'center',
+      flexWrap: 'wrap',
       paddingTop: 0,
       paddingBottom: 0,
       '&:last-child': {
@@ -130,15 +135,15 @@ const SideBar = (props) => {
           {getLabel()}
         </FormLabel>
         <Collapse in={!expanded} timeout='auto'>
-          <CardContent
-            classes={{
-              root: classes.cardContent,
-            }}
-          >
+          <CardContent className={classes.cardContent}>
             <SideBarPriceRadios
               priceCategory={priceCategory}
               handleChange={handleChange}
             />
+            <FormLabel className={classes.formLabel} component='legend'>
+              Quick Calculation
+            </FormLabel>
+            <SideBarQuickCalculation />
           </CardContent>
         </Collapse>
         <CardActions
