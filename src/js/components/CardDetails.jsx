@@ -1,6 +1,7 @@
 import React from 'react';
 import { imageDisplay, listDisplay } from '../constants/tableDisplayIcons';
 import EnhancedTypography from '../component-library/mui/components/Typography';
+import EnhancedContainer from '../component-library/mui/components/Container';
 import IconHolder from './IconHolder';
 import CardImage from './CardImage';
 import Grid from '@material-ui/core/Grid';
@@ -49,44 +50,46 @@ const ListView = (props) => {
   dateTo = formatDateString(dateTo);
 
   return (
-    <Grid container data-test='list-view-grid-container'>
-      <Grid
-        item
-        className={classes.gridItem}
-        xs={4}
-        data-test='list-view-grid-item'
-      >
-        <CardImage imageUrl={tcgImageUrl} foil={foil} />
-      </Grid>
-      <Grid
-        className={classes.textContainer}
-        item
-        xs={8}
-        data-test='list-view-grid-item'
-      >
-        <div className={classes.fullWidth} data-test='top-display'>
-          <IconHolder
-            scaleSize={0.8}
-            foil={foil}
-            setName={setName}
-            tcgUrl={tcgUrl}
-            tcgSellerDashboardUrl={tcgSellerDashboardUrl}
-            cardName={cardName}
-            language={language}
-          />
-          <EnhancedTypography largeText bold>
-            {cardName}
-          </EnhancedTypography>
-          <EnhancedTypography>{setName}</EnhancedTypography>
-        </div>
+    // <Grid container data-test='list-view-grid-container'>
+    //   <Grid
+    //     item
+    //     className={classes.gridItem}
+    //     xs={4}
+    //     data-test='list-view-grid-item'
+    //   >
+    //     <CardImage imageUrl={tcgImageUrl} foil={foil} />
+    //   </Grid>
+    //   <Grid
+    //     className={classes.textContainer}
+    //     item
+    //     xs={8}
+    //     data-test='list-view-grid-item'
+    //   >
+    <EnhancedContainer className={classes.textContainer} disableGutters>
+      <div className={classes.fullWidth} data-test='top-display'>
+        <IconHolder
+          scaleSize={0.8}
+          foil={foil}
+          setName={setName}
+          tcgUrl={tcgUrl}
+          tcgSellerDashboardUrl={tcgSellerDashboardUrl}
+          cardName={cardName}
+          language={language}
+        />
+        <EnhancedTypography largeText bold>
+          {cardName}
+        </EnhancedTypography>
+        <EnhancedTypography>{setName}</EnhancedTypography>
+      </div>
 
-        <div className={classes.fullWidth} data-test='bottom-display'>
-          <EnhancedTypography>
-            {dateFrom !== dateTo ? `${dateFrom} - ${dateTo}` : dateFrom}
-          </EnhancedTypography>
-        </div>
-      </Grid>
-    </Grid>
+      <div className={classes.fullWidth} data-test='bottom-display'>
+        <EnhancedTypography>
+          {dateFrom !== dateTo ? `${dateFrom} - ${dateTo}` : dateFrom}
+        </EnhancedTypography>
+      </div>
+    </EnhancedContainer>
+    //   </Grid>
+    // </Grid>
   );
 };
 

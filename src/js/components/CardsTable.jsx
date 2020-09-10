@@ -12,6 +12,7 @@ import Grid from '@material-ui/core/Grid';
 import { getPriceCategory, isPositive, addZeroes } from '../../utils';
 import { makeStyles } from '@material-ui/core/styles';
 import CardDetails from './CardDetails';
+import CardImage from './CardImage';
 import EnhancedTypography from '../component-library/mui/components/Typography';
 
 function descendingComparator(a, b, orderBy) {
@@ -166,8 +167,13 @@ const MuiTableBody = (props) => {
         return (
           <EnhancedTableRow key={index}>
             <Grid container className={classes.gridContainer}>
-              <Grid item xs={4}>
-                <EnhancedTableCell dataTest='card-details'>
+              <Grid item xs={1}>
+                <EnhancedTableCell dataTest='card-name'>
+                  <CardImage imageUrl={card.tcgImageUrl} foil={card.foil} />
+                </EnhancedTableCell>
+              </Grid>
+              <Grid item xs={3}>
+                <EnhancedTableCell dataTest='card-date'>
                   <CardDetails
                     cardName={card.cardName}
                     setName={card.setName}
