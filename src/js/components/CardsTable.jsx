@@ -14,7 +14,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import CardDetails from './CardDetails';
 import CardImage from './CardImage';
 import EnhancedTypography from '../component-library/mui/components/Typography';
-import { setPriceCalc } from '../../redux/actions';
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] <= a[orderBy]) {
