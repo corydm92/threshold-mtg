@@ -55,8 +55,6 @@ const SideBarQuickCalculation = (props) => {
     setTcgValue(updatedValue);
     if (purchaseValue) {
       setGainValue(updatedValue - purchaseValue || '');
-      console.log(((updatedValue - purchaseValue) / purchaseValue) * 100);
-
       setSpreadValue(getPriceSpread(updatedValue, purchaseValue) || '');
     }
   };
@@ -92,7 +90,6 @@ const SideBarQuickCalculation = (props) => {
         parseFloat(purchaseValue) +
           parseFloat(purchaseValue) * parseFloat(updatedValue / 100)
       );
-
       setTcgValue(newTcgValue || '');
       setGainValue(
         roundTwoDecimals(newTcgValue - parseFloat(purchaseValue)) || ''

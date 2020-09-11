@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { formatCardKingdomBuylistLink, formatEdhrecLink } from '../../utils';
 import ReactCountryFlag from 'react-country-flag';
 import countryCodes from '../constants/countryCodes';
+import ExposureSharpIcon from '@material-ui/icons/ExposureSharp';
 
 function getPadding(foil, language, scaleSize) {
   if (foil) {
@@ -58,6 +59,12 @@ const useStyles = makeStyles((theme) => {
       width: (props) => `${59 * props.scaleSize}px`,
       height: (props) => `${22 * props.scaleSize}px`,
       paddingLeft: (props) => `${8 * props.scaleSize}px`,
+    },
+    calc: {
+      paddingLeft: (props) => `${8 * props.scaleSize}px`,
+      '&:hover': {
+        cursor: 'pointer',
+      },
     },
     container: {
       display: 'flex',
@@ -249,6 +256,18 @@ l-75 39 -5 640 c-6 722 -4 794 14 794 8 0 67 -28 132 -62z m-1276 -1162 c14
             </svg>
           </SvgIcon>
         </Link>
+      </EnhancedTooltip>
+
+      {/* CALC ICON */}
+
+      <EnhancedTooltip title={'Price Calc'}>
+        <SvgIcon
+          component='div'
+          className={`${classes.root} ${classes.flag}`}
+          data-test='calc-icon'
+        >
+          <ExposureSharpIcon className={`${classes.root} ${classes.calc}`} />
+        </SvgIcon>
       </EnhancedTooltip>
     </Container>
   );
