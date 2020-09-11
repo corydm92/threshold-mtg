@@ -7,12 +7,13 @@ import { Link } from 'react-router-dom';
 import { formatCardKingdomBuylistLink, formatEdhrecLink } from '../../utils';
 import ReactCountryFlag from 'react-country-flag';
 import countryCodes from '../constants/countryCodes';
+import ExposureSharpIcon from '@material-ui/icons/ExposureSharp';
 
 function getPadding(foil, language, scaleSize) {
   if (foil) {
     return 5 * scaleSize;
   } else if (!foil && countryCodes[language]) {
-    return 8 * scaleSize;
+    return 14 * scaleSize;
   } else {
     return 0;
   }
@@ -30,34 +31,45 @@ const useStyles = makeStyles((theme) => {
       '& img': {
         width: (props) => `${29 * props.scaleSize}px !important`,
         height: (props) => `${29 * props.scaleSize}px !important`,
+        position: 'relative',
+        bottom: '1px', // Correct without bottom, but needs to be pushed up for more visual apeal
+        left: '2px',
       },
     },
     star: {
       width: (props) => `${29 * props.scaleSize}px`,
       height: (props) => `${29 * props.scaleSize}px`,
       fill: theme.palette.custom.gold,
-      paddingLeft: (props) => `${countryCodes[props.language] ? 4 : 0}px`,
+      paddingLeft: (props) => `${countryCodes[props.language] ? 8 : 0}px`,
     },
     tcgListing: {
       width: (props) => `${19 * props.scaleSize}px`,
-      height: (props) => `${19 * props.scaleSize}px`,
+      height: (props) => `${21 * props.scaleSize}px`,
       paddingLeft: (props) =>
         `${getPadding(props.foil, props.language, props.scaleSize)}px`,
     },
     cardKingdom: {
       width: (props) => `${25 * props.scaleSize}px`,
-      height: (props) => `${25 * props.scaleSize}px`,
+      height: (props) => `${27 * props.scaleSize}px`,
       paddingLeft: (props) => `${10 * props.scaleSize}px`,
     },
     edhRec: {
       width: (props) => `${29 * props.scaleSize}px`,
-      height: (props) => `${29 * props.scaleSize}px`,
+      height: (props) => `${31 * props.scaleSize}px`,
       paddingLeft: (props) => `${10 * props.scaleSize}px`,
     },
     tcgStore: {
-      width: (props) => `${59 * props.scaleSize}px`,
-      height: (props) => `${22 * props.scaleSize}px`,
+      width: (props) => `${60 * props.scaleSize}px`,
+      height: (props) => `${23 * props.scaleSize}px`,
       paddingLeft: (props) => `${8 * props.scaleSize}px`,
+    },
+    calc: {
+      width: (props) => `${29 * props.scaleSize}px`,
+      height: (props) => `${29 * props.scaleSize}px`,
+      paddingLeft: (props) => `${8 * props.scaleSize}px`,
+      '&:hover': {
+        cursor: 'pointer',
+      },
     },
     container: {
       display: 'flex',
@@ -71,7 +83,14 @@ const useStyles = makeStyles((theme) => {
 
 const IconHolder = (props) => {
   const classes = useStyles(props);
-  const { foil, cardName, tcgUrl, tcgSellerDashboardUrl, language } = {
+  const {
+    foil,
+    cardName,
+    tcgUrl,
+    tcgSellerDashboardUrl,
+    language,
+    handlePriceCalc,
+  } = {
     ...props,
   };
 
@@ -249,6 +268,21 @@ l-75 39 -5 640 c-6 722 -4 794 14 794 8 0 67 -28 132 -62z m-1276 -1162 c14
             </svg>
           </SvgIcon>
         </Link>
+      </EnhancedTooltip>
+
+      {/* CALC ICON */}
+
+      <EnhancedTooltip title={'Price Calc'}>
+        <SvgIcon
+          component='div'
+          className={`${classes.root} ${classes.flag}`}
+          data-test='calc-icon'
+        >
+          <ExposureSharpIcon
+            onClick={handlePriceCalc}
+            className={`${classes.root} ${classes.calc}`}
+          />
+        </SvgIcon>
       </EnhancedTooltip>
     </Container>
   );

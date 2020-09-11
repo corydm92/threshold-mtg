@@ -62,8 +62,6 @@ export const cardsSelector = createSelector(
         dateTo: dateRange[dateRange.length - 1],
       };
 
-      // console.log(outObj.dateFrom);
-
       if (filterByReducer(filterCategories, outObj)) {
         res.push(outObj);
       }

@@ -41,6 +41,7 @@ const ListView = (props) => {
     language,
     dateFrom,
     dateTo,
+    handlePriceCalc,
   } = { ...props };
 
   // Sets date to xx/xx/xxxx format
@@ -51,13 +52,14 @@ const ListView = (props) => {
     <EnhancedContainer className={classes.textContainer} disableGutters>
       <div className={classes.fullWidth} data-test='top-display'>
         <IconHolder
-          scaleSize={0.8}
+          scaleSize={1}
           foil={foil}
           setName={setName}
           tcgUrl={tcgUrl}
           tcgSellerDashboardUrl={tcgSellerDashboardUrl}
           cardName={cardName}
           language={language}
+          handlePriceCalc={handlePriceCalc}
         />
         <EnhancedTypography largeText bold>
           {cardName}

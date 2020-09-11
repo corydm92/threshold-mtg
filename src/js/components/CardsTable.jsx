@@ -52,6 +52,9 @@ const useStyles = makeStyles((theme) => {
       '& .MuiGrid-item': {
         display: 'flex',
       },
+      '& .MuiTableRow-root:last-child': {
+        borderBottom: 0,
+      },
     },
     centerGridItem: {
       justifyContent: 'center',
@@ -81,6 +84,9 @@ const useStyles = makeStyles((theme) => {
     },
     spinner: {
       marginTop: theme.spacing(12),
+    },
+    pagination: {
+      borderTop: `1px solid ${theme.palette.custom.lightGray}`,
     },
   };
 });
@@ -157,9 +163,19 @@ const MuiTableHeaders = (props) => {
 };
 
 const MuiTableBody = (props) => {
-  const { data, activeDisplay } = { ...props };
+  const { data, activeDisplay, setPriceCalc } = { ...props };
 
   const classes = useStyles();
+
+  const handlePriceCalc = (tcgPrice, purchasePrice, gain, spread, cardName) => {
+    setPriceCalc({
+      tcgPrice,
+      purchasePrice,
+      gain,
+      spread,
+      cardName,
+    });
+  };
 
   return (
     <EnhancedTableBody>
@@ -184,6 +200,15 @@ const MuiTableBody = (props) => {
                     dateFrom={card.dateFrom}
                     dateTo={card.dateTo}
                     activeDisplay={activeDisplay}
+                    handlePriceCalc={() =>
+                      handlePriceCalc(
+                        card.tcgPrice,
+                        card.avgPurchasePrice,
+                        card.gainLoss,
+                        card.spread,
+                        card.cardName
+                      )
+                    }
                   />
                 </EnhancedTableCell>
               </Grid>
@@ -239,7 +264,13 @@ const MuiTableBody = (props) => {
 };
 
 const MuiTable = (props) => {
-  const { cards, isLoadingCards, priceCategory, activeDisplay } = { ...props };
+  const {
+    cards,
+    isLoadingCards,
+    priceCategory,
+    activeDisplay,
+    setPriceCalc,
+  } = { ...props };
 
   const [order, setOrder] = useState('desc');
   const [orderBy, setOrderBy] = useState('spread');
@@ -300,7 +331,11 @@ const MuiTable = (props) => {
             onRequestSort={handleRequestSort}
           />
           {!isLoadingCards && (
-            <MuiTableBody data={data} activeDisplay={activeDisplay} />
+            <MuiTableBody
+              data={data}
+              setPriceCalc={setPriceCalc}
+              activeDisplay={activeDisplay}
+            />
           )}
         </EnhancedTable>
       </EnhancedTableContainer>
@@ -312,6 +347,7 @@ const MuiTable = (props) => {
           count={cards.length}
           rowsPerPage={rowPerPage}
           noBorder
+          className={classes.pagination}
           page={currentPage}
           onChangePage={handleChangePage}
           onChangeRowsPerPage={handleChangeRowsPerPage}
