@@ -13,7 +13,7 @@ function getPadding(foil, language, scaleSize) {
   if (foil) {
     return 5 * scaleSize;
   } else if (!foil && countryCodes[language]) {
-    return 8 * scaleSize;
+    return 14 * scaleSize;
   } else {
     return 0;
   }
@@ -31,36 +31,41 @@ const useStyles = makeStyles((theme) => {
       '& img': {
         width: (props) => `${29 * props.scaleSize}px !important`,
         height: (props) => `${29 * props.scaleSize}px !important`,
+        position: 'relative',
+        bottom: '1px', // Correct without bottom, but needs to be pushed up for more visual apeal
+        left: '2px',
       },
     },
     star: {
       width: (props) => `${29 * props.scaleSize}px`,
       height: (props) => `${29 * props.scaleSize}px`,
       fill: theme.palette.custom.gold,
-      paddingLeft: (props) => `${countryCodes[props.language] ? 4 : 0}px`,
+      paddingLeft: (props) => `${countryCodes[props.language] ? 8 : 0}px`,
     },
     tcgListing: {
       width: (props) => `${19 * props.scaleSize}px`,
-      height: (props) => `${19 * props.scaleSize}px`,
+      height: (props) => `${21 * props.scaleSize}px`,
       paddingLeft: (props) =>
         `${getPadding(props.foil, props.language, props.scaleSize)}px`,
     },
     cardKingdom: {
       width: (props) => `${25 * props.scaleSize}px`,
-      height: (props) => `${25 * props.scaleSize}px`,
+      height: (props) => `${27 * props.scaleSize}px`,
       paddingLeft: (props) => `${10 * props.scaleSize}px`,
     },
     edhRec: {
       width: (props) => `${29 * props.scaleSize}px`,
-      height: (props) => `${29 * props.scaleSize}px`,
+      height: (props) => `${31 * props.scaleSize}px`,
       paddingLeft: (props) => `${10 * props.scaleSize}px`,
     },
     tcgStore: {
-      width: (props) => `${59 * props.scaleSize}px`,
-      height: (props) => `${22 * props.scaleSize}px`,
+      width: (props) => `${60 * props.scaleSize}px`,
+      height: (props) => `${23 * props.scaleSize}px`,
       paddingLeft: (props) => `${8 * props.scaleSize}px`,
     },
     calc: {
+      width: (props) => `${29 * props.scaleSize}px`,
+      height: (props) => `${29 * props.scaleSize}px`,
       paddingLeft: (props) => `${8 * props.scaleSize}px`,
       '&:hover': {
         cursor: 'pointer',
