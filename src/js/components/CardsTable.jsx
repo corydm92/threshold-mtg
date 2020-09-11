@@ -52,6 +52,9 @@ const useStyles = makeStyles((theme) => {
       '& .MuiGrid-item': {
         display: 'flex',
       },
+      '& .MuiTableRow-root:last-child': {
+        borderBottom: 0,
+      },
     },
     centerGridItem: {
       justifyContent: 'center',
@@ -81,6 +84,9 @@ const useStyles = makeStyles((theme) => {
     },
     spinner: {
       marginTop: theme.spacing(12),
+    },
+    pagination: {
+      borderTop: `1px solid ${theme.palette.custom.lightGray}`,
     },
   };
 });
@@ -341,6 +347,7 @@ const MuiTable = (props) => {
           count={cards.length}
           rowsPerPage={rowPerPage}
           noBorder
+          className={classes.pagination}
           page={currentPage}
           onChangePage={handleChangePage}
           onChangeRowsPerPage={handleChangeRowsPerPage}
