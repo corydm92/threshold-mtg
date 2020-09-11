@@ -37,6 +37,7 @@ const EnhancedTextField = (props) => {
     onChange,
     value,
     params,
+    type,
   } = {
     ...props,
   };
@@ -55,6 +56,7 @@ const EnhancedTextField = (props) => {
       data-test={dataTest}
       value={value}
       onChange={onChange}
+      type={type}
     >
       {props.children}
     </TextField>
