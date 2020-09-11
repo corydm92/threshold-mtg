@@ -7,6 +7,7 @@ import {
   SET_CARD_DATA_FAILED,
   SET_FILTER_OPTIONS,
   CLEAR_FILTER_OPTIONS,
+  SET_PRICE_CALC,
   IS_LOADING_CARDS_TRUE,
   IS_LOADING_CARDS_FALSE,
   IS_LOADING_CARD_TRUE,
@@ -125,6 +126,12 @@ export const setFilterOptions = (payload) => async (dispatch) => {
 
 export const clearFilterOptions = () => {
   return { type: CLEAR_FILTER_OPTIONS };
+};
+
+/*** PRICE CALC ***/
+
+export const setPriceCalc = (payload) => {
+  return { type: SET_PRICE_CALC, payload };
 };
 
 /*** STATE MANAGEMENT ***/
