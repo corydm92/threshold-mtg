@@ -5,6 +5,7 @@ const initState = {
   purchasePrice: '',
   gain: '',
   spread: '',
+  cardName: '',
 };
 
 const priceCalcReducer = (state = initState, action) => {

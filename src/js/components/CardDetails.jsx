@@ -41,6 +41,7 @@ const ListView = (props) => {
     language,
     dateFrom,
     dateTo,
+    handlePriceCalc,
   } = { ...props };
 
   // Sets date to xx/xx/xxxx format
@@ -58,6 +59,7 @@ const ListView = (props) => {
           tcgSellerDashboardUrl={tcgSellerDashboardUrl}
           cardName={cardName}
           language={language}
+          handlePriceCalc={handlePriceCalc}
         />
         <EnhancedTypography largeText bold>
           {cardName}

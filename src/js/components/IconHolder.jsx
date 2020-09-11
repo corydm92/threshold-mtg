@@ -78,7 +78,14 @@ const useStyles = makeStyles((theme) => {
 
 const IconHolder = (props) => {
   const classes = useStyles(props);
-  const { foil, cardName, tcgUrl, tcgSellerDashboardUrl, language } = {
+  const {
+    foil,
+    cardName,
+    tcgUrl,
+    tcgSellerDashboardUrl,
+    language,
+    handlePriceCalc,
+  } = {
     ...props,
   };
 
@@ -266,7 +273,10 @@ l-75 39 -5 640 c-6 722 -4 794 14 794 8 0 67 -28 132 -62z m-1276 -1162 c14
           className={`${classes.root} ${classes.flag}`}
           data-test='calc-icon'
         >
-          <ExposureSharpIcon className={`${classes.root} ${classes.calc}`} />
+          <ExposureSharpIcon
+            onClick={handlePriceCalc}
+            className={`${classes.root} ${classes.calc}`}
+          />
         </SvgIcon>
       </EnhancedTooltip>
     </Container>

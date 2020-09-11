@@ -87,6 +87,7 @@ const SideBar = (props) => {
     priceCategory,
     cardNamesAndSets,
     filterValues,
+    priceCalc,
 
     // ACTIONS
     setPriceCategoryLow,
@@ -150,7 +151,7 @@ const SideBar = (props) => {
                 Quick Calculation
               </FormLabel>
             </EnhancedTooltip>
-            <SideBarQuickCalculation />
+            <SideBarQuickCalculation priceCalc={priceCalc} />
           </CardContent>
         </Collapse>
         <CardActions

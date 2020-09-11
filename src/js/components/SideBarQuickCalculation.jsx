@@ -33,6 +33,14 @@ const useStyles = makeStyles((theme) => {
     typography: {
       maxWidth: '40%',
     },
+    cardName: {
+      width: '100%',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      textAlign: 'center',
+      paddingTop: theme.spacing(2),
+    },
     adornment: {
       '& .MuiTypography-root': {
         color: theme.palette.text.primary,
@@ -43,12 +51,23 @@ const useStyles = makeStyles((theme) => {
 
 const SideBarQuickCalculation = (props) => {
   const classes = useStyles();
-  const { tcgPrice, purchasePrice, gain, spread } = { ...props };
+  const { tcgPrice, purchasePrice, gain, spread, cardName } = {
+    ...props.priceCalc,
+  };
 
-  const [tcgValue, setTcgValue] = useState(tcgPrice || ''); // Fixes switching between controlled / uncontrolled
-  const [purchaseValue, setPurchaseValue] = useState(purchasePrice || '');
-  const [gainValue, setGainValue] = useState(gain || '');
-  const [spreadValue, setSpreadValue] = useState(spread || '');
+  const [tcgValue, setTcgValue] = useState(tcgPrice); // Fixes switching between controlled / uncontrolled
+  const [purchaseValue, setPurchaseValue] = useState(purchasePrice);
+  const [gainValue, setGainValue] = useState(gain);
+  const [spreadValue, setSpreadValue] = useState(spread);
+  const [cardNameValue, setCardNameValue] = useState(cardName);
+
+  useEffect(() => {
+    setTcgValue(tcgPrice);
+    setPurchaseValue(purchasePrice);
+    setGainValue(gain);
+    setSpreadValue(spread);
+    setCardNameValue(cardName);
+  }, [tcgPrice, purchasePrice, gain, spread, cardName]);
 
   const handleTcgChange = (event) => {
     const updatedValue = event.target.value;
@@ -178,6 +197,9 @@ const SideBarQuickCalculation = (props) => {
           onChange={handleSpreadChange}
           className={classes.textField}
         />
+      </div>
+      <div className={classes.cardName}>
+        <EnhancedTypography>{cardNameValue}</EnhancedTypography>
       </div>
     </EnhancedContainer>
   );
