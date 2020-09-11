@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import EnhancedTextfield from '../component-library/mui/components/Form/TextField';
 import EnhancedContainer from '../component-library/mui/components/Container';
 
@@ -24,7 +24,7 @@ const SideBarQuickCalculation = (props) => {
 
   return (
     <EnhancedContainer className={classes.container} disableGutters>
-      {/* TCG Price - Purchase Price = Gain {'>'} Spread */}
+      TCG Price - Purchase Price = Gain {'>'} Spread
       <EnhancedTextfield className={classes.textField} /> -{' '}
       <EnhancedTextfield className={classes.textField} /> ={' '}
       <EnhancedTextfield className={classes.textField} /> /{' '}

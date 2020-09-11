@@ -11,6 +11,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import SideBarFilterForm from './SideBarFilterForm';
 import SideBarPriceRadios from './SideBarPriceRadios';
 import SideBarQuickCalculation from './SideBarQuickCalculation';
+import EnhancedTooltip from '../component-library/mui/components/Tooltip';
 
 import {
   tcgLow,
@@ -140,9 +141,15 @@ const SideBar = (props) => {
               priceCategory={priceCategory}
               handleChange={handleChange}
             />
-            <FormLabel className={classes.formLabel} component='legend'>
-              Quick Calculation
-            </FormLabel>
+            <EnhancedTooltip
+              title='TCG Price - Purchase Price = Gain / Spread'
+              placement='bottom'
+              arrow
+            >
+              <FormLabel className={classes.formLabel} component='legend'>
+                Quick Calculation
+              </FormLabel>
+            </EnhancedTooltip>
             <SideBarQuickCalculation />
           </CardContent>
         </Collapse>
