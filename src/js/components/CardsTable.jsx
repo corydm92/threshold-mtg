@@ -88,6 +88,9 @@ const useStyles = makeStyles((theme) => {
     pagination: {
       borderTop: `1px solid ${theme.palette.custom.lightGray}`,
     },
+    tableHeader: {
+      paddingTop: '16px', // Table Row has 8px padding, adding another 8px to make even with side bar header
+    },
   };
 });
 
@@ -130,7 +133,7 @@ const MuiTableHeaders = (props) => {
       <EnhancedTableRow className={classes.noBorder}>
         <Grid
           container
-          className={`${classes.gridContainer} ${classes.stickyContainer}`}
+          className={`${classes.gridContainer} ${classes.stickyContainer} ${classes.tableHeader}`}
         >
           {tableHeaders.map((header, index) => {
             return (

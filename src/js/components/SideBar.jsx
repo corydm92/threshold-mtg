@@ -47,9 +47,7 @@ const useStyles = makeStyles((theme) => {
       color: theme.palette.text.primary,
       textAlign: 'center',
       fontSize: theme.typography.fontSize,
-      margin: `${theme.spacing(1)}px ${theme.spacing(1)}px ${theme.spacing(
-        2
-      )}px `,
+      margin: `${theme.spacing(2)}px ${theme.spacing(1)}px`,
       '&:nth-child(2)': {
         marginTop: theme.spacing(2),
       },
