@@ -199,7 +199,7 @@ const SideBarQuickCalculation = (props) => {
         />
       </div>
       <div className={classes.cardName}>
-        <EnhancedTypography>{cardNameValue}</EnhancedTypography>
+        <EnhancedTypography bold>{cardNameValue}</EnhancedTypography>
       </div>
     </EnhancedContainer>
   );
