@@ -5,13 +5,13 @@ import EnhancedTextField from '../component-library/mui/components/Form/TextFiel
 import EnhancedContainer from '../component-library/mui/components/Container';
 import EnhancedAutocomplete from '../component-library/mui/components/Form/Autocomplete';
 import EnhancedDatepicker from '../component-library/mui/components/Form/DatePicker';
+import EnhancedInputAdornment from '../component-library/mui/components/Form/InputAdornment';
 import { makeStyles } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Operands from '../constants/operands';
 import MenuItem from '@material-ui/core/MenuItem';
 import { uniq } from 'lodash';
 import { getPriceCategory } from '../../utils';
-import InputAdornment from '@material-ui/core/InputAdornment';
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -259,9 +259,9 @@ const SideBarFilterForm = (props) => {
           }}
           InputProps={{
             startAdornment: (
-              <InputAdornment className={classes.adornment} position='start'>
+              <EnhancedInputAdornment position='start'>
                 {'$'}
-              </InputAdornment>
+              </EnhancedInputAdornment>
             ),
           }}
         />
@@ -305,9 +305,9 @@ const SideBarFilterForm = (props) => {
           }}
           InputProps={{
             startAdornment: (
-              <InputAdornment className={classes.adornment} position='start'>
+              <EnhancedInputAdornment position='start'>
                 {'$'}
-              </InputAdornment>
+              </EnhancedInputAdornment>
             ),
           }}
         />
@@ -351,9 +351,9 @@ const SideBarFilterForm = (props) => {
           }}
           InputProps={{
             startAdornment: (
-              <InputAdornment className={classes.adornment} position='start'>
+              <EnhancedInputAdornment position='start'>
                 {'$'}
-              </InputAdornment>
+              </EnhancedInputAdornment>
             ),
           }}
         />
