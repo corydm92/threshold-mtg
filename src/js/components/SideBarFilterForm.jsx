@@ -11,6 +11,7 @@ import Operands from '../constants/operands';
 import MenuItem from '@material-ui/core/MenuItem';
 import { uniq } from 'lodash';
 import { getPriceCategory } from '../../utils';
+import InputAdornment from '@material-ui/core/InputAdornment';
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -256,6 +257,13 @@ const SideBarFilterForm = (props) => {
           InputLabelProps={{
             shrink: true,
           }}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment className={classes.adornment} position='start'>
+                {'$'}
+              </InputAdornment>
+            ),
+          }}
         />
       </EnhancedContainer>
 
@@ -295,6 +303,13 @@ const SideBarFilterForm = (props) => {
           InputLabelProps={{
             shrink: true,
           }}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment className={classes.adornment} position='start'>
+                {'$'}
+              </InputAdornment>
+            ),
+          }}
         />
       </EnhancedContainer>
 
@@ -333,6 +348,13 @@ const SideBarFilterForm = (props) => {
           onChange={(event) => setTcgPriceValue(event.target.value)}
           InputLabelProps={{
             shrink: true,
+          }}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment className={classes.adornment} position='start'>
+                {'$'}
+              </InputAdornment>
+            ),
           }}
         />
       </EnhancedContainer>

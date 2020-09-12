@@ -4,7 +4,7 @@ import EnhancedContainer from '../component-library/mui/components/Container';
 import EnhancedTypography from '../component-library/mui/components/Typography';
 import { getPriceSpread, roundTwoDecimals } from '../../utils';
 import { makeStyles } from '@material-ui/styles';
-import InputAdornment from '@material-ui/core/InputAdornment';
+import EnhancedInputAdornment from '../component-library/mui/components/Form/InputAdornment';
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -40,11 +40,6 @@ const useStyles = makeStyles((theme) => {
       alignItems: 'center',
       textAlign: 'center',
       paddingTop: theme.spacing(2),
-    },
-    adornment: {
-      '& .MuiTypography-root': {
-        color: theme.palette.text.primary,
-      },
     },
   };
 });
@@ -128,9 +123,12 @@ const SideBarQuickCalculation = (props) => {
           value={tcgValue}
           InputProps={{
             startAdornment: (
-              <InputAdornment className={classes.adornment} position='start'>
+              <EnhancedInputAdornment
+                className={classes.adornment}
+                position='start'
+              >
                 {'$'}
-              </InputAdornment>
+              </EnhancedInputAdornment>
             ),
           }}
           onChange={handleTcgChange}
@@ -148,9 +146,12 @@ const SideBarQuickCalculation = (props) => {
           value={purchaseValue}
           InputProps={{
             startAdornment: (
-              <InputAdornment className={classes.adornment} position='start'>
+              <EnhancedInputAdornment
+                className={classes.adornment}
+                position='start'
+              >
                 {'$'}
-              </InputAdornment>
+              </EnhancedInputAdornment>
             ),
           }}
           onChange={handlePurchaseChange}
@@ -168,9 +169,12 @@ const SideBarQuickCalculation = (props) => {
           value={gainValue}
           InputProps={{
             startAdornment: (
-              <InputAdornment className={classes.adornment} position='start'>
+              <EnhancedInputAdornment
+                className={classes.adornment}
+                position='start'
+              >
                 {'$'}
-              </InputAdornment>
+              </EnhancedInputAdornment>
             ),
           }}
           onChange={handleGainChange}
@@ -189,9 +193,12 @@ const SideBarQuickCalculation = (props) => {
           value={spreadValue}
           InputProps={{
             startAdornment: (
-              <InputAdornment className={classes.adornment} position='start'>
+              <EnhancedInputAdornment
+                className={classes.adornment}
+                position='start'
+              >
                 {'%'}
-              </InputAdornment>
+              </EnhancedInputAdornment>
             ),
           }}
           onChange={handleSpreadChange}
