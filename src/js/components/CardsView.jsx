@@ -120,7 +120,6 @@ const CardsView = (props) => {
           priceCalc={priceCalc}
           cards={cards}
           isLoadingCards={isLoadingCards}
-          activeDisplay={activeDisplay}
           setPriceCalc={setPriceCalc}
         />
       )}

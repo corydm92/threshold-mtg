@@ -167,7 +167,7 @@ const MuiTableHeaders = (props) => {
 };
 
 const MuiTableBody = React.forwardRef((props, ref) => {
-  const { data, activeDisplay, setPriceCalc } = { ...props };
+  const { data, setPriceCalc } = { ...props };
 
   const classes = useStyles();
 
@@ -207,7 +207,6 @@ const MuiTableBody = React.forwardRef((props, ref) => {
                     language={card.language}
                     dateFrom={card.dateFrom}
                     dateTo={card.dateTo}
-                    activeDisplay={activeDisplay}
                     handlePriceCalc={() =>
                       handlePriceCalc(
                         card.tcgPrice,
@@ -272,13 +271,7 @@ const MuiTableBody = React.forwardRef((props, ref) => {
 });
 
 const MuiTable = (props) => {
-  const {
-    cards,
-    isLoadingCards,
-    priceCategory,
-    activeDisplay,
-    setPriceCalc,
-  } = { ...props };
+  const { cards, isLoadingCards, priceCategory, setPriceCalc } = { ...props };
 
   const [order, setOrder] = useState('desc');
   const [orderBy, setOrderBy] = useState('spread');
@@ -350,7 +343,6 @@ const MuiTable = (props) => {
             <MuiTableBody
               data={data}
               setPriceCalc={setPriceCalc}
-              activeDisplay={activeDisplay}
               ref={firstRowRef}
             />
           )}

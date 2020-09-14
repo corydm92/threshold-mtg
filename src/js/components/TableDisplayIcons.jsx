@@ -3,19 +3,19 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '../component-library/mui/components/Container';
 import ViewListIcon from '@material-ui/icons/ViewList';
-import ViewComfyIcon from '@material-ui/icons/ViewComfy';
+// import ViewComfyIcon from '@material-ui/icons/ViewComfy';
 import IconButton from '@material-ui/core/IconButton';
 import EnhancedTooltip from '../component-library/mui/components/Tooltip';
 
-import { listDisplay, imageDisplay } from '../constants/tableDisplayIcons';
+import {
+  listDisplay,
+  // imageDisplay
+} from '../constants/tableDisplayIcons';
 
 const useStyles = makeStyles((theme) => {
   return {
     root: {},
     icon: {
-      color: theme.palette.primary.light,
-    },
-    iconActive: {
       color: theme.palette.primary.main,
     },
     container: {
@@ -30,19 +30,12 @@ const useStyles = makeStyles((theme) => {
 const TableDisplayIcons = (props) => {
   const classes = useStyles();
 
-  const { activeDisplay, onClick } = { ...props };
-
-  const getClasses = (display) => {
-    if (display === activeDisplay) {
-      return classes.iconActive;
-    } else {
-      return classes.icon;
-    }
-  };
+  const { onClick } = { ...props };
 
   return (
     <Container className={classes.container} dataTest={'TableDisplayIcons'}>
-      <EnhancedTooltip title='Image View'>
+      {/* Legacy Image View Icon */}
+      {/* <EnhancedTooltip title='Image View'>
         <IconButton
           data-test={imageDisplay}
           className={getClasses(imageDisplay)}
@@ -50,11 +43,11 @@ const TableDisplayIcons = (props) => {
         >
           <ViewComfyIcon fontSize='large' />
         </IconButton>
-      </EnhancedTooltip>
+      </EnhancedTooltip> */}
       <EnhancedTooltip title='List View'>
         <IconButton
           data-test={listDisplay}
-          className={getClasses(listDisplay)}
+          className={classes.icon}
           onClick={() => onClick(listDisplay)}
         >
           <ViewListIcon fontSize='large' />

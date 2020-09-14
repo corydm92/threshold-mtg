@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-const ListView = (props) => {
+const CardDetails = (props) => {
   const classes = useStyles();
   let {
     cardName,
@@ -74,26 +74,6 @@ const ListView = (props) => {
       </div>
     </EnhancedContainer>
   );
-};
-
-const ImageView = (props) => {
-  const { cardName, setName, tcgUrl, tcgImageUrl, tcgSellerDashboardUrl } = {
-    ...props,
-  };
-  return <div data-test='ImageView'></div>;
-};
-
-const CardDetails = (props) => {
-  const { activeDisplay } = { ...props };
-
-  switch (activeDisplay) {
-    case imageDisplay:
-      return <ImageView {...props} />;
-    case listDisplay:
-      return <ListView {...props} />;
-    default:
-      break;
-  }
 };
 
 export default CardDetails;
