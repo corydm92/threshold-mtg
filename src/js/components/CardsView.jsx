@@ -3,10 +3,11 @@ import CardsTable from './CardsTable';
 import SideBar from './SideBar';
 import Grid from '@material-ui/core/Grid';
 import CardsTableToolbar from './CardsTableToolbar';
-import { listDisplay } from '../constants/tableDisplayIcons';
+import CardsTableToolbarMobile from './CardsTableToolbarMobile';
 import { makeStyles } from '@material-ui/styles';
 import EnhancedContainer from '../component-library/mui/components/Container';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { listDisplay } from '../constants/tableDisplayIcons';
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -17,8 +18,18 @@ const useStyles = makeStyles((theme) => {
 });
 
 const MobileTable = (props) => {
+  const [activeDisplay, setActiveDisplay] = useState(listDisplay);
+
+  const handleDisplayChange = (display) => {
+    setActiveDisplay(display);
+  };
+
   return (
     <EnhancedContainer disableGutters dataTest='mobile-table-container'>
+      <CardsTableToolbarMobile
+        onClick={handleDisplayChange}
+        activeDisplay={activeDisplay}
+      />
       Mobile Table
     </EnhancedContainer>
   );

@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import TableDisplayIcons from './TableDisplayIcons';
 
 const CardsTableToolbar = (props) => {
-  const { onClick } = { ...props };
+  const { onClick, activeDisplay } = { ...props };
 
   return (
     <EnhancedToolbar>
@@ -13,7 +13,7 @@ const CardsTableToolbar = (props) => {
           {/* Left Aligned Items Here */}
         </Grid>
         <Grid item xs={2}>
-          <TableDisplayIcons onClick={onClick} />
+          <TableDisplayIcons onClick={onClick} activeDisplay={activeDisplay} />
         </Grid>
       </Grid>
     </EnhancedToolbar>

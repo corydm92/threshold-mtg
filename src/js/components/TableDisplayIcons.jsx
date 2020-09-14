@@ -13,6 +13,9 @@ const useStyles = makeStyles((theme) => {
   return {
     root: {},
     icon: {
+      color: theme.palette.primary.light,
+    },
+    iconActive: {
       color: theme.palette.primary.main,
     },
     container: {
@@ -27,15 +30,22 @@ const useStyles = makeStyles((theme) => {
 const TableDisplayIcons = (props) => {
   const classes = useStyles();
 
-  const { onClick } = { ...props };
+  const { activeDisplay, onClick } = { ...props };
+
+  const getClasses = (display) => {
+    if (display === activeDisplay) {
+      return classes.iconActive;
+    } else {
+      return classes.icon;
+    }
+  };
 
   return (
     <Container className={classes.container} dataTest={'TableDisplayIcons'}>
-      {/* Legacy Image View Icon */}
       <EnhancedTooltip title='Image View'>
         <IconButton
           data-test={imageDisplay}
-          className={classes.icon}
+          className={getClasses(imageDisplay)}
           onClick={() => onClick(imageDisplay)}
         >
           <ViewComfyIcon fontSize='large' />
@@ -44,7 +54,7 @@ const TableDisplayIcons = (props) => {
       <EnhancedTooltip title='List View'>
         <IconButton
           data-test={listDisplay}
-          className={classes.icon}
+          className={getClasses(listDisplay)}
           onClick={() => onClick(listDisplay)}
         >
           <ViewListIcon fontSize='large' />
