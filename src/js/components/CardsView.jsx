@@ -5,6 +5,15 @@ import Grid from '@material-ui/core/Grid';
 import EnhancedToolbar from '../component-library/mui/components/Toolbar';
 import TableDisplayIcons from './TableDisplayIcons';
 import { listDisplay } from '../constants/tableDisplayIcons';
+import { makeStyles } from '@material-ui/styles';
+
+const useStyles = makeStyles((theme) => {
+  return {
+    grid: {
+      flexWrap: 'nowrap',
+    },
+  };
+});
 
 const CardsView = (props) => {
   const {
@@ -28,6 +37,8 @@ const CardsView = (props) => {
     ...props,
   };
 
+  const classes = useStyles();
+
   const [activeDisplay, setActiveDisplay] = useState(listDisplay);
 
   const handleDisplayChange = (display) => {
@@ -49,7 +60,7 @@ const CardsView = (props) => {
           </Grid>
         </Grid>
       </EnhancedToolbar>
-      <Grid spacing={2} container>
+      <Grid container className={classes.grid}>
         <Grid item xs={2}>
           <SideBar
             priceCategory={priceCategory}
