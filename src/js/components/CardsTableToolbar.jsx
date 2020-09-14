@@ -5,6 +5,7 @@ import TableDisplayIcons from './TableDisplayIcons';
 
 const CardsTableToolbar = (props) => {
   const { handleDisplayChange, activeDisplay } = { ...props };
+
   return (
     <EnhancedToolbar>
       <Grid container>
