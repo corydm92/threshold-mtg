@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => {
   // Below is HeightOfToolbar * 2 (two toolbars, the header and the table toolbar) + theme.spacing (Associated margins + Pagination) - 3px (Other)
   const scrollSpace =
     theme.mixins.toolbar['@media (min-width:600px)'].minHeight * 2 +
-    theme.spacing(8) -
+    theme.spacing(7) -
     3;
 
   return {

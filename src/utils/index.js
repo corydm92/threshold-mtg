@@ -161,12 +161,6 @@ export const filterByReducer = (filterReducer, card) => {
 
   if (spreadOperator && spreadValue) {
     switch (spreadOperator) {
-      case '>':
-        if (card.spread > spreadValue) {
-          break;
-        } else {
-          return false;
-        }
       case '>=':
         if (card.spread >= spreadValue) {
           break;
@@ -185,12 +179,6 @@ export const filterByReducer = (filterReducer, card) => {
         } else {
           return false;
         }
-      case '<':
-        if (card.spread < spreadValue) {
-          break;
-        } else {
-          return false;
-        }
       default:
         break;
     }
@@ -198,12 +186,6 @@ export const filterByReducer = (filterReducer, card) => {
 
   if (gainOperator && gainValue) {
     switch (gainOperator) {
-      case '>':
-        if (card.gainLoss > gainValue) {
-          break;
-        } else {
-          return false;
-        }
       case '>=':
         if (card.gainLoss >= gainValue) {
           break;
@@ -222,12 +204,6 @@ export const filterByReducer = (filterReducer, card) => {
         } else {
           return false;
         }
-      case '<':
-        if (card.gainLoss < gainValue) {
-          break;
-        } else {
-          return false;
-        }
       default:
         break;
     }
@@ -235,12 +211,6 @@ export const filterByReducer = (filterReducer, card) => {
 
   if (tcgPriceOperator && tcgPriceValue) {
     switch (tcgPriceOperator) {
-      case '>':
-        if (card.tcgPrice > tcgPriceValue) {
-          break;
-        } else {
-          return false;
-        }
       case '>=':
         if (card.tcgPrice >= tcgPriceValue) {
           break;
@@ -255,12 +225,6 @@ export const filterByReducer = (filterReducer, card) => {
         }
       case '<=':
         if (card.tcgPrice <= tcgPriceValue) {
-          break;
-        } else {
-          return false;
-        }
-      case '<':
-        if (card.tcgPrice < tcgPriceValue) {
           break;
         } else {
           return false;

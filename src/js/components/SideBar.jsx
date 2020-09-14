@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme) => {
   return {
     root: {
       maxWidth: 345,
+      marginRight: theme.spacing(2),
     },
     cardActions: {
       display: 'flex',

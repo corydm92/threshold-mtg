@@ -159,17 +159,13 @@ describe('Utils tests', () => {
           return utils.filterByReducer(filterReducer, singleCardObj);
         }
 
-        let gtResult = getFilterResult('>', 1);
         let gteqResult = getFilterResult('>=', 1);
         let eqResult = getFilterResult('=', 1);
         let lteqResult = getFilterResult('<=', 1);
-        let ltResult = getFilterResult('<', 1);
 
-        expect(gtResult).toBe(false);
         expect(gteqResult).toBe(true);
         expect(eqResult).toBe(true);
         expect(lteqResult).toBe(true);
-        expect(ltResult).toBe(false);
       });
 
       it('Returns correct value if spreadOperator is inactive', () => {
@@ -181,17 +177,13 @@ describe('Utils tests', () => {
           return utils.filterByReducer(filterReducer, singleCardObj);
         }
 
-        let gtResult = getFilterResult('>', 1);
         let gteqResult = getFilterResult('>=', 1);
         let eqResult = getFilterResult('=', 1);
         let lteqResult = getFilterResult('<=', 1);
-        let ltResult = getFilterResult('<', 1);
 
-        expect(gtResult).toBe(true);
         expect(gteqResult).toBe(true);
         expect(eqResult).toBe(true);
         expect(lteqResult).toBe(true);
-        expect(ltResult).toBe(true);
       });
 
       it('Returns correct value if spreadValue is inactive', () => {
@@ -203,17 +195,13 @@ describe('Utils tests', () => {
           return utils.filterByReducer(filterReducer, singleCardObj);
         }
 
-        let gtResult = getFilterResult('>', 1);
         let gteqResult = getFilterResult('>=', 1);
         let eqResult = getFilterResult('=', 1);
         let lteqResult = getFilterResult('<=', 1);
-        let ltResult = getFilterResult('<', 1);
 
-        expect(gtResult).toBe(true);
         expect(gteqResult).toBe(true);
         expect(eqResult).toBe(true);
         expect(lteqResult).toBe(true);
-        expect(ltResult).toBe(true);
       });
     });
 
@@ -227,17 +215,13 @@ describe('Utils tests', () => {
           return utils.filterByReducer(filterReducer, singleCardObj);
         }
 
-        let gtResult = getFilterResult('>', 1);
         let gteqResult = getFilterResult('>=', 1);
         let eqResult = getFilterResult('=', 1);
         let lteqResult = getFilterResult('<=', 1);
-        let ltResult = getFilterResult('<', 1);
 
-        expect(gtResult).toBe(false);
         expect(gteqResult).toBe(true);
         expect(eqResult).toBe(true);
         expect(lteqResult).toBe(true);
-        expect(ltResult).toBe(false);
       });
 
       it('Returns correct value if gainOperator is inactive', () => {
@@ -249,17 +233,13 @@ describe('Utils tests', () => {
           return utils.filterByReducer(filterReducer, singleCardObj);
         }
 
-        let gtResult = getFilterResult('>', 1);
         let gteqResult = getFilterResult('>=', 1);
         let eqResult = getFilterResult('=', 1);
         let lteqResult = getFilterResult('<=', 1);
-        let ltResult = getFilterResult('<', 1);
 
-        expect(gtResult).toBe(true);
         expect(gteqResult).toBe(true);
         expect(eqResult).toBe(true);
         expect(lteqResult).toBe(true);
-        expect(ltResult).toBe(true);
       });
 
       it('Returns correct value if gainValue is inactive', () => {
@@ -271,17 +251,13 @@ describe('Utils tests', () => {
           return utils.filterByReducer(filterReducer, singleCardObj);
         }
 
-        let gtResult = getFilterResult('>', 1);
         let gteqResult = getFilterResult('>=', 1);
         let eqResult = getFilterResult('=', 1);
         let lteqResult = getFilterResult('<=', 1);
-        let ltResult = getFilterResult('<', 1);
 
-        expect(gtResult).toBe(true);
         expect(gteqResult).toBe(true);
         expect(eqResult).toBe(true);
         expect(lteqResult).toBe(true);
-        expect(ltResult).toBe(true);
       });
     });
 
@@ -295,17 +271,13 @@ describe('Utils tests', () => {
           return utils.filterByReducer(filterReducer, singleCardObj);
         }
 
-        let gtResult = getFilterResult('>', 1);
         let gteqResult = getFilterResult('>=', 1);
         let eqResult = getFilterResult('=', 1);
         let lteqResult = getFilterResult('<=', 1);
-        let ltResult = getFilterResult('<', 1);
 
-        expect(gtResult).toBe(false);
         expect(gteqResult).toBe(true);
         expect(eqResult).toBe(true);
         expect(lteqResult).toBe(true);
-        expect(ltResult).toBe(false);
       });
 
       it('Returns correct value if tcgPriceOperator is inactive', () => {
@@ -317,17 +289,13 @@ describe('Utils tests', () => {
           return utils.filterByReducer(filterReducer, singleCardObj);
         }
 
-        let gtResult = getFilterResult('>', 1);
         let gteqResult = getFilterResult('>=', 1);
         let eqResult = getFilterResult('=', 1);
         let lteqResult = getFilterResult('<=', 1);
-        let ltResult = getFilterResult('<', 1);
 
-        expect(gtResult).toBe(true);
         expect(gteqResult).toBe(true);
         expect(eqResult).toBe(true);
         expect(lteqResult).toBe(true);
-        expect(ltResult).toBe(true);
       });
 
       it('Returns correct value if tcgPriceValue is inactive', () => {
@@ -339,17 +307,13 @@ describe('Utils tests', () => {
           return utils.filterByReducer(filterReducer, singleCardObj);
         }
 
-        let gtResult = getFilterResult('>', 1);
         let gteqResult = getFilterResult('>=', 1);
         let eqResult = getFilterResult('=', 1);
         let lteqResult = getFilterResult('<=', 1);
-        let ltResult = getFilterResult('<', 1);
 
-        expect(gtResult).toBe(true);
         expect(gteqResult).toBe(true);
         expect(eqResult).toBe(true);
         expect(lteqResult).toBe(true);
-        expect(ltResult).toBe(true);
       });
     });
   });
