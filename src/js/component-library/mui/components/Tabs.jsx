@@ -4,15 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => {
   return {
-    root: {
-      [theme.breakpoints.down('md')]: {
-        display: 'none',
-      },
-      // down() works as a "greater than"
-      [theme.breakpoints.up('md')]: {
-        display: 'block',
-      },
-    },
+    root: {},
     indicator: {
       backgroundColor: theme.palette.text.secondary,
     },
@@ -20,7 +12,7 @@ const useStyles = makeStyles((theme) => {
 });
 
 const EnhancedTabs = (props) => {
-  const { initialValue } = { ...props };
+  const { initialValue, className } = { ...props };
   const classes = useStyles();
 
   const [value, setValue] = React.useState(initialValue);
@@ -30,7 +22,7 @@ const EnhancedTabs = (props) => {
   };
 
   return (
-    <div className={classes.root}>
+    <div className={className}>
       <Tabs
         value={value}
         onChange={handleChange}

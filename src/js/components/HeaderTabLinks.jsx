@@ -12,6 +12,15 @@ const useStyles = makeStyles((theme) => {
     root: {
       color: theme.palette.text.secondary,
     },
+    tabs: {
+      [theme.breakpoints.down('md')]: {
+        display: 'none',
+      },
+      // down() works as a "greater than"
+      [theme.breakpoints.up('md')]: {
+        display: 'block',
+      },
+    },
   };
 });
 
@@ -20,7 +29,10 @@ const HeaderTabLinks = () => {
   const location = useLocation();
 
   return (
-    <EnhancedTabs initialValue={getTabLinksPath(location)}>
+    <EnhancedTabs
+      className={classes.tabs}
+      initialValue={getTabLinksPath(location)}
+    >
       <EnhancedTab
         className={classes.root}
         label={RouteMapper.inventory.label}

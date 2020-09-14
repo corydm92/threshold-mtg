@@ -12,6 +12,24 @@ const useStyles = makeStyles((theme) => {
     grid: {
       flexWrap: 'nowrap',
     },
+    mobileTable: {
+      [theme.breakpoints.down('md')]: {
+        display: 'block',
+      },
+      // down() works as a "greater than"
+      [theme.breakpoints.up('md')]: {
+        display: 'none',
+      },
+    },
+    desktopTable: {
+      [theme.breakpoints.down('md')]: {
+        display: 'none',
+      },
+      // down() works as a "greater than"
+      [theme.breakpoints.up('md')]: {
+        display: 'block',
+      },
+    },
   };
 });
 
@@ -49,13 +67,21 @@ const CardsView = (props) => {
     <div data-test='cardsView'>
       {/* MOBILE TABLE */}
 
-      <EnhancedContainer disableGutters dataTest='mobile-table-container'>
+      <EnhancedContainer
+        className={classes.mobileTable}
+        disableGutters
+        dataTest='mobile-table-container'
+      >
         Mobile Table
       </EnhancedContainer>
 
       {/* DESKTOP TABLE */}
 
-      <EnhancedContainer disableGutters dataTest='desktop-table-container'>
+      <EnhancedContainer
+        className={classes.desktopTable}
+        disableGutters
+        dataTest='desktop-table-container'
+      >
         <CardsTableToolbar
           handleDisplayChange={handleDisplayChange}
           activeDisplay={activeDisplay}
