@@ -284,7 +284,7 @@ const MuiTable = (props) => {
   const [orderBy, setOrderBy] = useState('spread');
   const [rowPerPage, setRowPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(0);
-  const [data, setData] = useState(cards);
+  const [data, setData] = useState([]);
 
   // Use for scroll into view
   const firstRowRef = useRef();
