@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import CardsTable from './CardsTable';
+import CardsTableMobile from './CardsTableMobile';
 import SideBar from './SideBar';
 import Grid from '@material-ui/core/Grid';
 import CardsTableToolbar from './CardsTableToolbar';
@@ -7,7 +8,7 @@ import CardsTableToolbarMobile from './CardsTableToolbarMobile';
 import { makeStyles } from '@material-ui/styles';
 import EnhancedContainer from '../component-library/mui/components/Container';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { listDisplay } from '../constants/tableDisplayIcons';
+import { cardDisplay } from '../constants/tableDisplayIcons';
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -18,7 +19,23 @@ const useStyles = makeStyles((theme) => {
 });
 
 const MobileTable = (props) => {
-  const [activeDisplay, setActiveDisplay] = useState(listDisplay);
+  const [activeDisplay, setActiveDisplay] = useState(cardDisplay);
+
+  const {
+    priceCategory,
+    setPriceCategoryLow,
+    setPriceCategoryMid,
+    setPriceCategoryHigh,
+    setPriceCategoryMarket,
+    cardNamesAndSets,
+    setFilterOptions,
+    clearFilterOptions,
+    filterValues,
+    priceCalc,
+    cards,
+    isLoadingCards,
+    setPriceCalc,
+  } = { ...props };
 
   const handleDisplayChange = (display) => {
     setActiveDisplay(display);
@@ -30,7 +47,22 @@ const MobileTable = (props) => {
         onClick={handleDisplayChange}
         activeDisplay={activeDisplay}
       />
-      Mobile Table
+      {activeDisplay === cardDisplay ? (
+        <CardsTableMobile />
+      ) : (
+        <SideBar
+          priceCategory={priceCategory}
+          setPriceCategoryLow={setPriceCategoryLow}
+          setPriceCategoryMid={setPriceCategoryMid}
+          setPriceCategoryHigh={setPriceCategoryHigh}
+          setPriceCategoryMarket={setPriceCategoryMarket}
+          cardNamesAndSets={cardNamesAndSets}
+          setFilterOptions={setFilterOptions}
+          clearFilterOptions={clearFilterOptions}
+          filterValues={filterValues}
+          priceCalc={priceCalc}
+        />
+      )}
     </EnhancedContainer>
   );
 };
@@ -116,7 +148,18 @@ const CardsView = (props) => {
   return (
     <div data-test='cardsView'>
       {!matches ? (
-        <MobileTable />
+        <MobileTable
+          priceCategory={priceCategory}
+          setPriceCategoryLow={setPriceCategoryLow}
+          setPriceCategoryMid={setPriceCategoryMid}
+          setPriceCategoryHigh={setPriceCategoryHigh}
+          setPriceCategoryMarket={setPriceCategoryMarket}
+          cardNamesAndSets={cardNamesAndSets}
+          setFilterOptions={setFilterOptions}
+          clearFilterOptions={clearFilterOptions}
+          filterValues={filterValues}
+          priceCalc={priceCalc}
+        />
       ) : (
         <DesktopTable
           priceCategory={priceCategory}
