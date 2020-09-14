@@ -96,6 +96,8 @@ const SideBar = (props) => {
     clearFilterOptions,
   } = { ...props };
 
+  console.log(priceCategory);
+
   const [expanded, setExpanded] = React.useState(false);
   const classes = useStyles({ expanded });
 
@@ -149,7 +151,10 @@ const SideBar = (props) => {
                 Quick Calculation
               </FormLabel>
             </EnhancedTooltip>
-            <SideBarQuickCalculation priceCalc={priceCalc} />
+            <SideBarQuickCalculation
+              priceCategory={priceCategory}
+              priceCalc={priceCalc}
+            />
           </CardContent>
         </Collapse>
         <CardActions

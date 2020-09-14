@@ -5,11 +5,11 @@ import EnhancedTypography from '../component-library/mui/components/Typography';
 import { getPriceSpread, roundTwoDecimals } from '../../utils';
 import { makeStyles } from '@material-ui/styles';
 import EnhancedInputAdornment from '../component-library/mui/components/Form/InputAdornment';
+import { getPriceCategory } from '../../utils';
 
 const useStyles = makeStyles((theme) => {
   return {
     textField: {
-      // maxWidth: '50%',
       '& .MuiInputBase-input': {
         // These both hide the up/down arrows in the input
         '&::-webkit-outer-spin-button': {
@@ -46,18 +46,16 @@ const useStyles = makeStyles((theme) => {
       textAlign: 'center',
       paddingTop: theme.spacing(2),
     },
-    underline: {
-      '&:hover': {
-        borderBottom: '1px solid #5dc2a6',
-      },
-    },
   };
 });
 
 const SideBarQuickCalculation = (props) => {
   const classes = useStyles();
-  const { tcgPrice, purchasePrice, gain, spread, cardName } = {
-    ...props.priceCalc,
+  const {
+    priceCategory,
+    priceCalc: { tcgPrice, purchasePrice, gain, spread, cardName },
+  } = {
+    ...props,
   };
 
   const [tcgValue, setTcgValue] = useState(tcgPrice); // Fixes switching between controlled / uncontrolled
@@ -128,17 +126,14 @@ const SideBarQuickCalculation = (props) => {
           dataTest='quick-calc-tcg'
           type='number'
           value={tcgValue}
-          label={'TCG Price'}
+          label={getPriceCategory(priceCategory)}
           fullWidth
           InputLabelProps={{
             shrink: true,
           }}
           InputProps={{
             startAdornment: (
-              <EnhancedInputAdornment
-                className={classes.adornment}
-                position='start'
-              >
+              <EnhancedInputAdornment position='start'>
                 {'$'}
               </EnhancedInputAdornment>
             ),
@@ -160,10 +155,7 @@ const SideBarQuickCalculation = (props) => {
           }}
           InputProps={{
             startAdornment: (
-              <EnhancedInputAdornment
-                className={classes.adornment}
-                position='start'
-              >
+              <EnhancedInputAdornment position='start'>
                 {'$'}
               </EnhancedInputAdornment>
             ),
@@ -178,17 +170,14 @@ const SideBarQuickCalculation = (props) => {
           dataTest='quick-calc-gain'
           type='number'
           value={gainValue}
-          label={'Gain'}
+          label={'Gain / Loss'}
           fullWidth
           InputLabelProps={{
             shrink: true,
           }}
           InputProps={{
             startAdornment: (
-              <EnhancedInputAdornment
-                className={classes.adornment}
-                position='start'
-              >
+              <EnhancedInputAdornment position='start'>
                 {'$'}
               </EnhancedInputAdornment>
             ),
@@ -210,10 +199,7 @@ const SideBarQuickCalculation = (props) => {
           }}
           InputProps={{
             startAdornment: (
-              <EnhancedInputAdornment
-                className={classes.adornment}
-                position='start'
-              >
+              <EnhancedInputAdornment position='start'>
                 {'%'}
               </EnhancedInputAdornment>
             ),

@@ -260,7 +260,7 @@ const SideBarFilterForm = (props) => {
           InputProps={{
             startAdornment: (
               <EnhancedInputAdornment position='start'>
-                {'$'}
+                {'%'}
               </EnhancedInputAdornment>
             ),
           }}
