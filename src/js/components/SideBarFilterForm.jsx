@@ -221,17 +221,17 @@ const SideBarFilterForm = (props) => {
         options={cardNameOptions}
       />
 
-      {/* SPREAD */}
+      {/* TCG PRICE */}
 
       <EnhancedContainer
         className={`${classes.container} ${classes.operandValue}`}
       >
         <EnhancedTextField
-          dataTest='textfield-operand-select'
+          dataTest='tcg-price-operand-select'
           select
-          value={spreadOperator}
-          onChange={(event) => setSpreadOperator(event.target.value)}
-          label='Spread'
+          label={getPriceCategory(priceCategory)}
+          value={tcgPriceOperator}
+          onChange={(event) => setTcgPriceOperator(event.target.value)}
           className={classes.priceOperand}
           InputLabelProps={{
             shrink: true,
@@ -250,17 +250,17 @@ const SideBarFilterForm = (props) => {
           })}
         </EnhancedTextField>
         <EnhancedTextField
-          dataTest='textfield-spread'
+          dataTest='tcg-price-gain-loss'
           className={classes.spreadInput}
-          value={spreadValue}
-          onChange={(event) => setSpreadValue(event.target.value)}
+          value={tcgPriceValue}
+          onChange={(event) => setTcgPriceValue(event.target.value)}
           InputLabelProps={{
             shrink: true,
           }}
           InputProps={{
             startAdornment: (
               <EnhancedInputAdornment position='start'>
-                {'%'}
+                {'$'}
               </EnhancedInputAdornment>
             ),
           }}
@@ -313,17 +313,17 @@ const SideBarFilterForm = (props) => {
         />
       </EnhancedContainer>
 
-      {/* TCG PRICE */}
+      {/* SPREAD */}
 
       <EnhancedContainer
         className={`${classes.container} ${classes.operandValue}`}
       >
         <EnhancedTextField
-          dataTest='tcg-price-operand-select'
+          dataTest='textfield-operand-select'
           select
-          label={getPriceCategory(priceCategory)}
-          value={tcgPriceOperator}
-          onChange={(event) => setTcgPriceOperator(event.target.value)}
+          value={spreadOperator}
+          onChange={(event) => setSpreadOperator(event.target.value)}
+          label='Spread'
           className={classes.priceOperand}
           InputLabelProps={{
             shrink: true,
@@ -342,17 +342,17 @@ const SideBarFilterForm = (props) => {
           })}
         </EnhancedTextField>
         <EnhancedTextField
-          dataTest='tcg-price-gain-loss'
+          dataTest='textfield-spread'
           className={classes.spreadInput}
-          value={tcgPriceValue}
-          onChange={(event) => setTcgPriceValue(event.target.value)}
+          value={spreadValue}
+          onChange={(event) => setSpreadValue(event.target.value)}
           InputLabelProps={{
             shrink: true,
           }}
           InputProps={{
             startAdornment: (
               <EnhancedInputAdornment position='start'>
-                {'$'}
+                {'%'}
               </EnhancedInputAdornment>
             ),
           }}

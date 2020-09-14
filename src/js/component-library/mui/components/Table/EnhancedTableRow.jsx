@@ -10,12 +10,15 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-const EnhancedTableRow = (props) => {
+const EnhancedTableRow = React.forwardRef((props, ref) => {
   const classes = useStyles();
 
-  const { className } = { ...props };
+  const { className, id } = { ...props };
+
   return (
     <TableRow
+      id={id}
+      ref={ref}
       classes={{ root: classes.root }}
       className={className}
       data-test={'cards-table-row'}
@@ -24,6 +27,6 @@ const EnhancedTableRow = (props) => {
       {props.children}
     </TableRow>
   );
-};
+});
 
 export default EnhancedTableRow;

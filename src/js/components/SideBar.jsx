@@ -96,8 +96,6 @@ const SideBar = (props) => {
     clearFilterOptions,
   } = { ...props };
 
-  console.log(priceCategory);
-
   const [expanded, setExpanded] = React.useState(false);
   const classes = useStyles({ expanded });
 
