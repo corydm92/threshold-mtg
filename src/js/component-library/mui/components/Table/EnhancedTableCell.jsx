@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => {
   return {
     root: {
+      maxWidth: '100%',
       display: 'flex',
       padding: (props) => (props.padding ? theme.spacing(8) : 0),
       alignItems: (props) => (props.alignTop ? 'flex-start' : 'center'),

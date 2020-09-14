@@ -38,6 +38,18 @@ const theme = createMuiTheme({
     fontSize: 14,
     fontFamily: ['Raleway, sans-serif', 'Roboto, sans-serif'],
   },
+  overrides: {
+    MuiInput: {
+      underline: {
+        '&:hover:not($disabled):not($active):before': {
+          borderColor: 'rgba(127, 24, 127, 1)',
+        },
+        '&:hover:not($disabled):not($active):after': {
+          borderColor: 'rgba(127, 24, 127, 1)',
+        },
+      },
+    },
+  },
 });
 
 export default theme;

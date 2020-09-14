@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     },
     // Targets the form label and border color after focus
     '& .Mui-focused': {
-      color: theme.palette.primary.main,
+      color: theme.palette.text.primary,
     },
     '& .MuiFormHelperText-root': {
       color: theme.palette.text.primary,

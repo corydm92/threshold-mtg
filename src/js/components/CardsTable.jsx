@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import EnhancedTableContainer from '../component-library/mui/components/Table/EnhancedTableContainer';
 import EnhancedTable from '../component-library/mui/components/Table/EnhancedTable';
 import EnhancedTableHead from '../component-library/mui/components/Table/EnhancedTableHead';
@@ -42,10 +42,11 @@ function stableSort(array, comparator) {
 }
 
 const useStyles = makeStyles((theme) => {
-  // Below is HeightOfToolbar * 2 (two toolbars, the header and the table toolbar) + theme.spacing (Associated margins + Pagination)
+  // Below is HeightOfToolbar * 2 (two toolbars, the header and the table toolbar) + theme.spacing (Associated margins + Pagination) - 3px (Other)
   const scrollSpace =
     theme.mixins.toolbar['@media (min-width:600px)'].minHeight * 2 +
-    theme.spacing(10);
+    theme.spacing(8) -
+    3;
 
   return {
     root: {
@@ -87,6 +88,9 @@ const useStyles = makeStyles((theme) => {
     },
     pagination: {
       borderTop: `1px solid ${theme.palette.custom.lightGray}`,
+    },
+    tableHeader: {
+      paddingTop: '16px', // Table Row has 8px padding, adding another 8px to make even with side bar header
     },
   };
 });
@@ -130,7 +134,7 @@ const MuiTableHeaders = (props) => {
       <EnhancedTableRow className={classes.noBorder}>
         <Grid
           container
-          className={`${classes.gridContainer} ${classes.stickyContainer}`}
+          className={`${classes.gridContainer} ${classes.stickyContainer} ${classes.tableHeader}`}
         >
           {tableHeaders.map((header, index) => {
             return (
@@ -162,7 +166,7 @@ const MuiTableHeaders = (props) => {
   );
 };
 
-const MuiTableBody = (props) => {
+const MuiTableBody = React.forwardRef((props, ref) => {
   const { data, activeDisplay, setPriceCalc } = { ...props };
 
   const classes = useStyles();
@@ -181,7 +185,11 @@ const MuiTableBody = (props) => {
     <EnhancedTableBody>
       {data.map((card, index) => {
         return (
-          <EnhancedTableRow key={index}>
+          <EnhancedTableRow
+            id={`table-row-${index}`}
+            key={index}
+            ref={index === 0 ? ref : null}
+          >
             <Grid container className={classes.gridContainer}>
               <Grid item xs={1}>
                 <EnhancedTableCell dataTest='card-name'>
@@ -261,7 +269,7 @@ const MuiTableBody = (props) => {
       })}
     </EnhancedTableBody>
   );
-};
+});
 
 const MuiTable = (props) => {
   const {
@@ -278,7 +286,12 @@ const MuiTable = (props) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [data, setData] = useState(cards);
 
+  // Use for scroll into view
+  const firstRowRef = useRef();
+
   const classes = useStyles();
+
+  // LIFECYCLE METHODS //
 
   useEffect(() => {
     setCurrentPage(0);
@@ -308,8 +321,11 @@ const MuiTable = (props) => {
     setData(data);
   }, [cards, rowPerPage, currentPage, order, orderBy]);
 
+  // HELPER METHODS //
+
   const handleChangePage = (event, page) => {
     setCurrentPage(page);
+    firstRowRef.current.scrollIntoView(false);
   };
 
   const handleChangeRowsPerPage = (event) => {
@@ -335,6 +351,7 @@ const MuiTable = (props) => {
               data={data}
               setPriceCalc={setPriceCalc}
               activeDisplay={activeDisplay}
+              ref={firstRowRef}
             />
           )}
         </EnhancedTable>
