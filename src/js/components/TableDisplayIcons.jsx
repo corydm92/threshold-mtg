@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '../component-library/mui/components/Container';
 import ViewListIcon from '@material-ui/icons/ViewList';
 import ViewComfyIcon from '@material-ui/icons/ViewComfy';
-import IconButton from '@material-ui/core/IconButton';
+import EnhancedIconButton from '../component-library/mui/components/IconButton';
 import EnhancedTooltip from '../component-library/mui/components/Tooltip';
 
 import { cardDisplay, filterDisplay } from '../constants/tableDisplayIcons';
@@ -43,22 +43,22 @@ const TableDisplayIcons = (props) => {
   return (
     <Container className={classes.container} dataTest={'TableDisplayIcons'}>
       <EnhancedTooltip title='Card View'>
-        <IconButton
+        <EnhancedIconButton
           data-test='CardDisplayIcon'
           className={getClasses(cardDisplay)}
           onClick={() => onClick(cardDisplay)}
         >
           <ViewComfyIcon fontSize='large' />
-        </IconButton>
+        </EnhancedIconButton>
       </EnhancedTooltip>
       <EnhancedTooltip title='Filter View'>
-        <IconButton
+        <EnhancedIconButton
           data-test='FilterDisplayIcon'
           className={getClasses(filterDisplay)}
           onClick={() => onClick(filterDisplay)}
         >
           <ViewListIcon fontSize='large' />
-        </IconButton>
+        </EnhancedIconButton>
       </EnhancedTooltip>
     </Container>
   );

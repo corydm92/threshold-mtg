@@ -11,18 +11,9 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { cardDisplay } from '../constants/tableDisplayIcons';
 
 const useStyles = makeStyles((theme) => {
-  const scrollSpace = theme.mixins.toolbar.minHeight * 2 + 3;
-
   return {
     grid: {
       flexWrap: 'nowrap',
-    },
-    mobileContainer: {
-      maxHeight: `calc(100vh - ${scrollSpace}px)`,
-      overflow: 'scroll',
-      '&::-webkit-scrollbar': {
-        display: 'none',
-      },
     },
     desktopSidebar: {
       marginRight: theme.spacing(2),
