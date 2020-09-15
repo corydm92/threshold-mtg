@@ -53,7 +53,7 @@ const Image = (props) => {
       target='_blank'
     >
       <EnhancedContainer
-        className={foil ? classes.foilCard : classes.card}
+        classes={foil ? { root: classes.foilCard } : { root: classes.card }}
         dataTest={dataTest}
         disableGutters
       >

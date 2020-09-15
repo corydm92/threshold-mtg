@@ -60,7 +60,15 @@ const MobileTable = (props) => {
         dataTest='mobile-body-container'
       >
         {activeDisplay === cardDisplay ? (
-          <CardsTableMobile />
+          <CardsTableMobile
+            cards={cards}
+            isLoadingCards={isLoadingCards}
+            priceCategory={priceCategory}
+            filterValues={filterValues}
+            setFilterOptions={setFilterOptions}
+            clearFilterOptions={clearFilterOptions}
+            setPriceCalc={setPriceCalc}
+          />
         ) : (
           <SideBar
             priceCategory={priceCategory}
@@ -166,16 +174,19 @@ const CardsView = (props) => {
     <div data-test='cardsView'>
       {!matches ? (
         <MobileTable
+          cards={cards}
           priceCategory={priceCategory}
+          isLoadingCards={isLoadingCards}
+          cardNamesAndSets={cardNamesAndSets}
+          filterValues={filterValues}
+          priceCalc={priceCalc}
           setPriceCategoryLow={setPriceCategoryLow}
           setPriceCategoryMid={setPriceCategoryMid}
           setPriceCategoryHigh={setPriceCategoryHigh}
           setPriceCategoryMarket={setPriceCategoryMarket}
-          cardNamesAndSets={cardNamesAndSets}
           setFilterOptions={setFilterOptions}
           clearFilterOptions={clearFilterOptions}
-          filterValues={filterValues}
-          priceCalc={priceCalc}
+          setPriceCalc={setPriceCalc}
         />
       ) : (
         <DesktopTable
