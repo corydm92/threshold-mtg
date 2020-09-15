@@ -23,7 +23,9 @@ import {
 const useStyles = makeStyles((theme) => {
   return {
     root: {
-      maxWidth: 345,
+      display: 'flex',
+      justifyContent: 'center',
+      marginBottom: theme.spacing(4),
     },
     cardActions: {
       display: 'flex',
@@ -60,6 +62,7 @@ const useStyles = makeStyles((theme) => {
       fontSize: theme.typography.fontSize,
     },
     card: {
+      maxWidth: 345,
       boxShadow: 'none',
       border: '1px solid rgba(224, 224, 224, 1)',
     },
