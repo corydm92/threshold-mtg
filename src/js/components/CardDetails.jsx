@@ -35,13 +35,9 @@ const CardDetails = (props) => {
   let {
     cardName,
     setName,
-    tcgUrl,
-    tcgSellerDashboardUrl,
-    foil,
-    language,
+
     dateFrom,
     dateTo,
-    handlePriceCalc,
   } = { ...props };
 
   // Sets date to xx/xx/xxxx format
@@ -51,16 +47,7 @@ const CardDetails = (props) => {
   return (
     <EnhancedContainer className={classes.textContainer} disableGutters>
       <div className={classes.fullWidth} data-test='top-display'>
-        <IconHolder
-          scaleSize={1}
-          foil={foil}
-          setName={setName}
-          tcgUrl={tcgUrl}
-          tcgSellerDashboardUrl={tcgSellerDashboardUrl}
-          cardName={cardName}
-          language={language}
-          handlePriceCalc={handlePriceCalc}
-        />
+        {props.children}
         <EnhancedTypography largeText bold>
           {cardName}
         </EnhancedTypography>

@@ -14,6 +14,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import CardDetails from './CardDetails';
 import CardImage from './CardImage';
 import EnhancedTypography from '../component-library/mui/components/Typography';
+import IconHolder from './IconHolder';
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] <= a[orderBy]) {
@@ -201,22 +202,28 @@ const MuiTableBody = React.forwardRef((props, ref) => {
                   <CardDetails
                     cardName={card.cardName}
                     setName={card.setName}
-                    tcgUrl={card.tcgUrl}
-                    tcgSellerDashboardUrl={card.tcgSellerDashboardUrl}
-                    foil={card.foil}
-                    language={card.language}
                     dateFrom={card.dateFrom}
                     dateTo={card.dateTo}
-                    handlePriceCalc={() =>
-                      handlePriceCalc(
-                        card.tcgPrice,
-                        card.avgPurchasePrice,
-                        card.gainLoss,
-                        card.spread,
-                        card.cardName
-                      )
-                    }
-                  />
+                  >
+                    <IconHolder
+                      scaleSize={1}
+                      foil={card.foil}
+                      setName={card.setName}
+                      tcgUrl={card.tcgUrl}
+                      tcgSellerDashboardUrl={card.tcgSellerDashboardUrl}
+                      cardName={card.cardName}
+                      language={card.language}
+                      handlePriceCalc={() =>
+                        handlePriceCalc(
+                          card.tcgPrice,
+                          card.avgPurchasePrice,
+                          card.gainLoss,
+                          card.spread,
+                          card.cardName
+                        )
+                      }
+                    />
+                  </CardDetails>
                 </EnhancedTableCell>
               </Grid>
               <Grid item className={classes.centerGridItem} xs={1}>
