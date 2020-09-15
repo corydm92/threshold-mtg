@@ -10,7 +10,6 @@ const useStyles = makeStyles((theme) => ({
   textField: {
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
-    width: 200,
     '& .MuiFormLabel-root': {
       color: theme.palette.text.primary,
     },
@@ -23,10 +22,11 @@ const useStyles = makeStyles((theme) => ({
 const EnhancedDatePicker = (props) => {
   const classes = useStyles();
 
-  const { label, value, onChange } = { ...props };
+  const { label, value, onChange, fullWidth } = { ...props };
 
   return (
     <TextField
+      fullWidth
       label={label}
       type='date'
       value={value}
