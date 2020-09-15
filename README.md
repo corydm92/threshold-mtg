@@ -8,4 +8,5 @@ The work tracking for this project is done using GitHub Projects [here](https://
 
 ## Work In Progress
 
-![Work In Progress](/progress-pictures/threshold-mtg-9-2-2020.PNG)
+![Work In Progress](</progress-pictures/threshold-mtg-9-15-2020-(1).PNG>)
+![Work In Progress](</progress-pictures/threshold-mtg-9-15-2020-(2).PNG>)
