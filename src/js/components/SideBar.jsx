@@ -6,7 +6,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
 import FormLabel from '@material-ui/core/FormLabel';
-import IconButton from '@material-ui/core/IconButton';
+import EnhancedIconButton from '../component-library/mui/components/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import SideBarFilterForm from './SideBarFilterForm';
 import SideBarPriceRadios from './SideBarPriceRadios';
@@ -24,7 +24,6 @@ const useStyles = makeStyles((theme) => {
   return {
     root: {
       maxWidth: 345,
-      marginRight: theme.spacing(2),
     },
     cardActions: {
       display: 'flex',
@@ -95,6 +94,9 @@ const SideBar = (props) => {
     setPriceCategoryMarket,
     setFilterOptions,
     clearFilterOptions,
+
+    // PROPS
+    className,
   } = { ...props };
 
   const [expanded, setExpanded] = React.useState(false);
@@ -124,10 +126,10 @@ const SideBar = (props) => {
   };
 
   return (
-    <div data-test='SideBar'>
+    <div data-test='SideBar' className={classes.root}>
       <Card
         name='sideNav'
-        className={classes.root}
+        className={className}
         classes={{
           root: classes.card,
         }}
@@ -162,7 +164,7 @@ const SideBar = (props) => {
           }}
           disableSpacing
         >
-          <IconButton
+          <EnhancedIconButton
             className={clsx(classes.expand, {
               [classes.expandOpen]: expanded,
             })}
@@ -171,7 +173,7 @@ const SideBar = (props) => {
             aria-label='show more'
           >
             <ExpandMoreIcon />
-          </IconButton>
+          </EnhancedIconButton>
         </CardActions>
         <Collapse in={expanded}>
           <CardContent className={classes.filterCardContent}>

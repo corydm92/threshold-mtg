@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { IconButton, Menu, MenuItem } from '@material-ui/core/';
+import { Menu, MenuItem } from '@material-ui/core/';
+import EnhancedIconButton from '../component-library/mui/components/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Link } from 'react-router-dom';
 import RouteMapper from '../routes/RouteMapper';
@@ -37,7 +38,7 @@ const MuiMenuIcon = () => {
 
   return (
     <div data-test='mobile-menu' className={classes.root}>
-      <IconButton
+      <EnhancedIconButton
         edge={false}
         color='inherit'
         aria-label='menu'
@@ -45,7 +46,7 @@ const MuiMenuIcon = () => {
         data-test='mobile-menu-icon-button'
       >
         <MenuIcon fontSize='large' data-test='mobile-menu-icon' />
-      </IconButton>
+      </EnhancedIconButton>
 
       <Menu
         data-test='mui-menu'

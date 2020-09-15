@@ -10,6 +10,7 @@ const theme = createMuiTheme({
       xl: 1920,
     },
   },
+
   palette: {
     primary: {
       main: 'rgba(82, 33, 110, 1)',

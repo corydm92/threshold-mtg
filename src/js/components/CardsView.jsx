@@ -11,29 +11,46 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { cardDisplay } from '../constants/tableDisplayIcons';
 
 const useStyles = makeStyles((theme) => {
+  const scrollSpace = theme.mixins.toolbar.minHeight * 2 + 3;
+
   return {
     grid: {
       flexWrap: 'nowrap',
+    },
+    mobileContainer: {
+      maxHeight: `calc(100vh - ${scrollSpace}px)`,
+      overflow: 'scroll',
+      '&::-webkit-scrollbar': {
+        display: 'none',
+      },
+    },
+    desktopSidebar: {
+      marginRight: theme.spacing(2),
     },
   };
 });
 
 const MobileTable = (props) => {
+  const classes = useStyles();
+
   const [activeDisplay, setActiveDisplay] = useState(cardDisplay);
 
   const {
+    // STORE
+    cards,
     priceCategory,
+    isLoadingCards,
+    cardNamesAndSets,
+    filterValues,
+    priceCalc,
+
+    // ACTIONS
     setPriceCategoryLow,
     setPriceCategoryMid,
     setPriceCategoryHigh,
     setPriceCategoryMarket,
-    cardNamesAndSets,
     setFilterOptions,
     clearFilterOptions,
-    filterValues,
-    priceCalc,
-    cards,
-    isLoadingCards,
     setPriceCalc,
   } = { ...props };
 
@@ -47,22 +64,27 @@ const MobileTable = (props) => {
         onClick={handleDisplayChange}
         activeDisplay={activeDisplay}
       />
-      {activeDisplay === cardDisplay ? (
-        <CardsTableMobile />
-      ) : (
-        <SideBar
-          priceCategory={priceCategory}
-          setPriceCategoryLow={setPriceCategoryLow}
-          setPriceCategoryMid={setPriceCategoryMid}
-          setPriceCategoryHigh={setPriceCategoryHigh}
-          setPriceCategoryMarket={setPriceCategoryMarket}
-          cardNamesAndSets={cardNamesAndSets}
-          setFilterOptions={setFilterOptions}
-          clearFilterOptions={clearFilterOptions}
-          filterValues={filterValues}
-          priceCalc={priceCalc}
-        />
-      )}
+      <EnhancedContainer
+        className={classes.mobileContainer}
+        dataTest='mobile-body-container'
+      >
+        {activeDisplay === cardDisplay ? (
+          <CardsTableMobile />
+        ) : (
+          <SideBar
+            priceCategory={priceCategory}
+            setPriceCategoryLow={setPriceCategoryLow}
+            setPriceCategoryMid={setPriceCategoryMid}
+            setPriceCategoryHigh={setPriceCategoryHigh}
+            setPriceCategoryMarket={setPriceCategoryMarket}
+            cardNamesAndSets={cardNamesAndSets}
+            setFilterOptions={setFilterOptions}
+            clearFilterOptions={clearFilterOptions}
+            filterValues={filterValues}
+            priceCalc={priceCalc}
+          />
+        )}
+      </EnhancedContainer>
     </EnhancedContainer>
   );
 };
@@ -71,18 +93,21 @@ const DesktopTable = (props) => {
   const classes = useStyles();
 
   const {
+    // STORE
+    cards,
     priceCategory,
+    isLoadingCards,
+    cardNamesAndSets,
+    filterValues,
+    priceCalc,
+
+    // ACTIONS
     setPriceCategoryLow,
     setPriceCategoryMid,
     setPriceCategoryHigh,
     setPriceCategoryMarket,
-    cardNamesAndSets,
     setFilterOptions,
     clearFilterOptions,
-    filterValues,
-    priceCalc,
-    cards,
-    isLoadingCards,
     setPriceCalc,
   } = { ...props };
 
@@ -92,6 +117,7 @@ const DesktopTable = (props) => {
       <Grid container className={classes.grid}>
         <Grid item xs={2}>
           <SideBar
+            className={classes.desktopSidebar}
             priceCategory={priceCategory}
             setPriceCategoryLow={setPriceCategoryLow}
             setPriceCategoryMid={setPriceCategoryMid}
