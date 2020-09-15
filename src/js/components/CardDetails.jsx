@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => {
     },
     textContainer: {
       height: '100%',
-      paddingLeft: theme.spacing(2),
+      // paddingLeft: theme.spacing(2),
       display: 'flex',
       flexWrap: 'wrap',
     },
@@ -32,20 +32,18 @@ const useStyles = makeStyles((theme) => {
 
 const CardDetails = (props) => {
   const classes = useStyles();
-  let {
-    cardName,
-    setName,
-
-    dateFrom,
-    dateTo,
-  } = { ...props };
+  let { cardName, setName, dateFrom, dateTo, className } = { ...props };
 
   // Sets date to xx/xx/xxxx format
   dateFrom = formatDateString(dateFrom);
   dateTo = formatDateString(dateTo);
 
   return (
-    <EnhancedContainer className={classes.textContainer} disableGutters>
+    <EnhancedContainer
+      classes={{ root: classes.textContainer }}
+      className={className}
+      disableGutters
+    >
       <div className={classes.fullWidth} data-test='top-display'>
         {props.children}
         <EnhancedTypography largeText bold>

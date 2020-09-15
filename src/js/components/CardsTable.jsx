@@ -93,6 +93,9 @@ const useStyles = makeStyles((theme) => {
     tableHeader: {
       paddingTop: '16px', // Table Row has 8px padding, adding another 8px to make even with side bar header
     },
+    cardDetails: {
+      paddingLeft: theme.spacing(2),
+    },
   };
 });
 
@@ -200,6 +203,7 @@ const MuiTableBody = React.forwardRef((props, ref) => {
               <Grid item xs={3}>
                 <EnhancedTableCell alignTop dataTest='card-date'>
                   <CardDetails
+                    className={classes.cardDetails}
                     cardName={card.cardName}
                     setName={card.setName}
                     dateFrom={card.dateFrom}

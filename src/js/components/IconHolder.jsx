@@ -74,10 +74,9 @@ const useStyles = makeStyles((theme) => {
     container: {
       display: 'flex',
       alignItems: 'center',
-    },
-    iconHolder: {
       paddingBottom: theme.spacing(1),
     },
+    iconHolder: {},
   };
 });
 
@@ -90,6 +89,7 @@ const IconHolder = (props) => {
     tcgSellerDashboardUrl,
     language,
     handlePriceCalc,
+    className,
   } = {
     ...props,
   };
@@ -97,7 +97,7 @@ const IconHolder = (props) => {
   return (
     <Container
       classes={{ root: classes.container }}
-      className={classes.iconHolder}
+      className={className}
       disableGutters
       dataTest='IconHolder'
     >

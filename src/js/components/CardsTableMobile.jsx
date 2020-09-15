@@ -14,6 +14,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import CardDetails from './CardDetails';
 import CardImage from './CardImage';
 import EnhancedTypography from '../component-library/mui/components/Typography';
+import IconHolder from './IconHolder';
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] <= a[orderBy]) {
@@ -42,12 +43,6 @@ function stableSort(array, comparator) {
 }
 
 const useStyles = makeStyles((theme) => {
-  // Below is HeightOfToolbar * 2 (two toolbars, the header and the table toolbar) + theme.spacing (Associated margins + Pagination) - 3px (Other)
-  const scrollSpace =
-    theme.mixins.toolbar['@media (min-width:600px)'].minHeight * 2 +
-    theme.spacing(7) -
-    3;
-
   return {
     root: {
       '& .MuiGrid-item': {
@@ -95,12 +90,31 @@ const useStyles = makeStyles((theme) => {
       justifyContent: 'space-between',
     },
     mobileImageGridItem: {
-      justifyContent: 'center',
+      justifyContent: 'left',
     },
-    mobileGridContainer: {
+    mobileMaxWidth: {
       maxWidth: '400px',
       marginLeft: 'auto',
       marginRight: 'auto',
+    },
+    cardDetails: {
+      '& p': {
+        textAlign: 'center',
+        display: 'block',
+      },
+    },
+    iconHolder: {
+      width: 'auto',
+      paddingBottom: theme.spacing(1),
+    },
+    tableBody: {
+      '& .MuiTableCell-root': {
+        paddingBottom: theme.spacing(1),
+      },
+      '& .MuiTableRow-root': {
+        display: 'block',
+        marginBottom: theme.spacing(2),
+      },
     },
   };
 });
@@ -121,7 +135,7 @@ const MuiTableBody = React.forwardRef((props, ref) => {
   };
 
   return (
-    <EnhancedTableBody>
+    <EnhancedTableBody className={classes.tableBody}>
       {data.map((card, index) => {
         return (
           <EnhancedTableRow
@@ -130,32 +144,20 @@ const MuiTableBody = React.forwardRef((props, ref) => {
             ref={index === 0 ? ref : null}
           >
             <EnhancedTableCell
-              className={classes.mobileGridContainer}
+              className={classes.mobileMaxWidth}
               alignTop
-              dataTest='card-date'
+              dataTest='mobile-card-details'
             >
               <CardDetails
+                className={classes.cardDetails}
                 cardName={card.cardName}
                 setName={card.setName}
-                tcgUrl={card.tcgUrl}
-                tcgSellerDashboardUrl={card.tcgSellerDashboardUrl}
-                foil={card.foil}
-                language={card.language}
                 dateFrom={card.dateFrom}
                 dateTo={card.dateTo}
-                handlePriceCalc={() =>
-                  handlePriceCalc(
-                    card.tcgPrice,
-                    card.avgPurchasePrice,
-                    card.gainLoss,
-                    card.spread,
-                    card.cardName
-                  )
-                }
               />
             </EnhancedTableCell>
 
-            <Grid container className={classes.mobileGridContainer}>
+            <Grid container className={classes.mobileMaxWidth}>
               <Grid className={classes.mobileImageGridItem} item xs={6}>
                 <EnhancedTableCell dataTest='card-name'>
                   <CardImage tcgImageUrl={card.tcgImageUrl} foil={card.foil} />
@@ -227,6 +229,32 @@ const MuiTableBody = React.forwardRef((props, ref) => {
                 </EnhancedTableCell>
               </Grid>
             </Grid>
+
+            <EnhancedTableCell
+              className={classes.mobileMaxWidth}
+              alignTop
+              dataTest='mobile-icon-holder'
+            >
+              <IconHolder
+                className={classes.iconHolder}
+                scaleSize={1}
+                foil={card.foil}
+                setName={card.setName}
+                tcgUrl={card.tcgUrl}
+                tcgSellerDashboardUrl={card.tcgSellerDashboardUrl}
+                cardName={card.cardName}
+                language={card.language}
+                handlePriceCalc={() =>
+                  handlePriceCalc(
+                    card.tcgPrice,
+                    card.avgPurchasePrice,
+                    card.gainLoss,
+                    card.spread,
+                    card.cardName
+                  )
+                }
+              />
+            </EnhancedTableCell>
           </EnhancedTableRow>
         );
       })}
