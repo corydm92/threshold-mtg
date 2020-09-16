@@ -56,6 +56,7 @@ const MobileTable = (props) => {
         activeDisplay={activeDisplay}
       />
       <EnhancedContainer
+        disableGutters
         className={classes.mobileContainer}
         dataTest='mobile-body-container'
       >

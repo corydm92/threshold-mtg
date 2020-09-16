@@ -69,7 +69,6 @@ const useStyles = makeStyles((theme) => {
       backgroundColor: theme.palette.primary.contrastText,
       borderBottom: `1px solid ${theme.palette.custom.lightGray}`,
     },
-
     noBorder: {
       border: 0,
     },
@@ -78,6 +77,10 @@ const useStyles = makeStyles((theme) => {
     },
     pagination: {
       borderTop: `1px solid ${theme.palette.custom.lightGray}`,
+      justifyContent: 'center',
+      '& .MuiToolbar-root': {
+        padding: `0 0 ${theme.spacing(2)}px`,
+      },
     },
     tableHeader: {
       paddingTop: '16px', // Table Row has 8px padding, adding another 8px to make even with side bar header
@@ -117,7 +120,7 @@ const useStyles = makeStyles((theme) => {
       },
     },
     dataSection: {
-      padding: `${theme.spacing(2)}px 0`,
+      padding: `${theme.spacing(2)}px ${theme.spacing(1)}px`,
     },
   };
 });
@@ -353,6 +356,7 @@ const MuiTable = (props) => {
         <EnhancedTablePagination
           rowsPerPageOptions={[5, 10, 25]}
           count={cards.length}
+          labelRowsPerPage=''
           rowsPerPage={rowPerPage}
           noBorder
           className={classes.pagination}
