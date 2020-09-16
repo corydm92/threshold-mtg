@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-const EnhancedIconButton = (props) => {
+const EnhancedIconButton = React.forwardRef((props, ref) => {
   // Returns true if viewport width >= 600px
   const matches = useMediaQuery('(min-width:600px)');
 
@@ -38,10 +38,11 @@ const EnhancedIconButton = (props) => {
       data-test={dataTest}
       className={className}
       aria-expanded={ariaExpanded}
+      ref={ref}
     >
       {props.children}
     </IconButton>
   );
-};
+});
 
 export default EnhancedIconButton;

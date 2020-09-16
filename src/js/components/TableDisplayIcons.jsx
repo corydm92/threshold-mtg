@@ -7,6 +7,8 @@ import ViewComfyIcon from '@material-ui/icons/ViewComfy';
 import EnhancedIconButton from '../component-library/mui/components/IconButton';
 import EnhancedTooltip from '../component-library/mui/components/Tooltip';
 
+import IconButton from '@material-ui/core/IconButton';
+
 import { cardDisplay, filterDisplay } from '../constants/tableDisplayIcons';
 
 const useStyles = makeStyles((theme) => {

@@ -1,13 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import EnhancedTableContainer from '../component-library/mui/components/Table/EnhancedTableContainer';
 import EnhancedTable from '../component-library/mui/components/Table/EnhancedTable';
-import EnhancedTableHead from '../component-library/mui/components/Table/EnhancedTableHead';
 import EnhancedTableBody from '../component-library/mui/components/Table/EnhancedTableBody';
 import EnhancedTableRow from '../component-library/mui/components/Table/EnhancedTableRow';
 import EnhancedTableCell from '../component-library/mui/components/Table/EnhancedTableCell';
 import EnhancedTablePagination from '../component-library/mui/components/Table/EnhancedTablePagination';
 import EnhancedSpinner from '../component-library/mui/components/Spinner';
-import EnhancedTableSortLabel from '../component-library/mui/components/Table/EnhancedTableSortLabel';
 import Grid from '@material-ui/core/Grid';
 import { getPriceCategory, isPositive, addZeroes } from '../../utils';
 import { makeStyles } from '@material-ui/core/styles';
@@ -53,37 +51,12 @@ const useStyles = makeStyles((theme) => {
         borderBottom: 0,
       },
     },
-    gridItem: {
-      display: 'block',
-    },
-    centerGridItem: {
-      justifyContent: 'center',
-    },
-    gridContainer: {
-      padding: `${theme.spacing(1)}px 0px`,
-    },
-    stickyContainer: {
-      position: 'sticky',
-      top: 0,
-      zIndex: 1,
-      backgroundColor: theme.palette.primary.contrastText,
-      borderBottom: `1px solid ${theme.palette.custom.lightGray}`,
-    },
-    noBorder: {
-      border: 0,
-    },
-    spinner: {
-      marginTop: theme.spacing(12),
-    },
     pagination: {
       borderTop: `1px solid ${theme.palette.custom.lightGray}`,
       justifyContent: 'center',
       '& .MuiToolbar-root': {
         padding: `0 0 ${theme.spacing(2)}px`,
       },
-    },
-    tableHeader: {
-      paddingTop: '16px', // Table Row has 8px padding, adding another 8px to make even with side bar header
     },
     typography: {
       display: 'inline',
