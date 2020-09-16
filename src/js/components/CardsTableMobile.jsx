@@ -116,6 +116,9 @@ const useStyles = makeStyles((theme) => {
         marginBottom: theme.spacing(2),
       },
     },
+    dataSection: {
+      padding: `${theme.spacing(2)}px 0`,
+    },
   };
 });
 
@@ -157,7 +160,10 @@ const MuiTableBody = React.forwardRef((props, ref) => {
               />
             </EnhancedTableCell>
 
-            <Grid container className={classes.mobileMaxWidth}>
+            <Grid
+              container
+              className={`${classes.mobileMaxWidth} ${classes.dataSection}`}
+            >
               <Grid className={classes.mobileImageGridItem} item xs={6}>
                 <EnhancedTableCell dataTest='card-name'>
                   <CardImage tcgImageUrl={card.tcgImageUrl} foil={card.foil} />
