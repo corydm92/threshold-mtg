@@ -25,6 +25,15 @@ const MobileTable = (props) => {
   const classes = useStyles();
 
   const [activeDisplay, setActiveDisplay] = useState(cardDisplay);
+  const [mobileSortValues, setMobileSortValues] = useState({
+    label: 'Spread - Descending',
+    id: 'spread',
+    direction: 'desc',
+  });
+
+  const sortHandler = (sort) => {
+    setMobileSortValues(sort);
+  };
 
   const {
     // STORE
@@ -54,6 +63,8 @@ const MobileTable = (props) => {
       <CardsTableToolbarMobile
         onClick={handleDisplayChange}
         activeDisplay={activeDisplay}
+        sortHandler={sortHandler}
+        mobileSortValues={mobileSortValues}
       />
       <EnhancedContainer
         disableGutters
@@ -69,6 +80,7 @@ const MobileTable = (props) => {
             setFilterOptions={setFilterOptions}
             clearFilterOptions={clearFilterOptions}
             setPriceCalc={setPriceCalc}
+            mobileSortValues={mobileSortValues}
           />
         ) : (
           <SideBar

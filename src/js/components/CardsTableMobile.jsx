@@ -58,6 +58,9 @@ const useStyles = makeStyles((theme) => {
         padding: `0 0 ${theme.spacing(2)}px`,
       },
     },
+    spinner: {
+      marginTop: theme.spacing(12),
+    },
     typography: {
       display: 'inline',
     },
@@ -245,10 +248,18 @@ const MuiTableBody = React.forwardRef((props, ref) => {
 });
 
 const MuiTable = (props) => {
-  const { cards, isLoadingCards, priceCategory, setPriceCalc } = { ...props };
+  const {
+    cards,
+    isLoadingCards,
+    priceCategory,
+    setPriceCalc,
+    mobileSortValues,
+  } = {
+    ...props,
+  };
 
-  const [order, setOrder] = useState('desc');
-  const [orderBy, setOrderBy] = useState('spread');
+  const [order, setOrder] = useState(mobileSortValues.direction);
+  const [orderBy, setOrderBy] = useState(mobileSortValues.id);
   const [rowPerPage, setRowPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(0);
   const [data, setData] = useState([]);
@@ -264,18 +275,10 @@ const MuiTable = (props) => {
     setCurrentPage(0);
   }, [isLoadingCards]);
 
-  const handleRequestSort = (event, property) => {
-    if (property === 'cardName') {
-      // Reverse logic for cardName column sorting
-      const isAsc = orderBy === property && order === 'asc';
-      setOrder(isAsc ? 'desc' : 'asc');
-      return setOrderBy(property);
-    }
-
-    const isDesc = orderBy === property && order === 'desc';
-    setOrder(isDesc ? 'asc' : 'desc');
-    setOrderBy(property);
-  };
+  useEffect(() => {
+    setOrder(mobileSortValues.direction);
+    setOrderBy(mobileSortValues.id);
+  }, [mobileSortValues]);
 
   useEffect(() => {
     const startingIndex = rowPerPage * (currentPage + 1) - rowPerPage;
