@@ -21,7 +21,10 @@ const useStyles = makeStyles((theme) => {
       marginRight: theme.spacing(1),
     },
     toolbar: {
-      paddingBottom: theme.spacing(1),
+      position: 'fixed',
+      width: `calc(100% - ${theme.spacing(4)}px)`,
+      background: theme.palette.primary.contrastText,
+      zIndex: 1,
     },
   };
 });

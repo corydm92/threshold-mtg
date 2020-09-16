@@ -1,8 +1,6 @@
 import React from 'react';
-import { imageDisplay, listDisplay } from '../constants/tableDisplayIcons';
 import EnhancedTypography from '../component-library/mui/components/Typography';
 import EnhancedContainer from '../component-library/mui/components/Container';
-import IconHolder from './IconHolder';
 import { makeStyles } from '@material-ui/styles';
 import { formatDateString } from '../../utils';
 

@@ -9,6 +9,7 @@ import { makeStyles } from '@material-ui/styles';
 import EnhancedContainer from '../component-library/mui/components/Container';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { cardDisplay } from '../constants/tableDisplayIcons';
+import ToolbarMixin from '../component-library/mui/components/ToolbarMixin';
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -17,6 +18,9 @@ const useStyles = makeStyles((theme) => {
     },
     desktopSidebar: {
       marginRight: theme.spacing(2),
+    },
+    mixin: {
+      marginBottom: theme.spacing(1),
     },
   };
 });
@@ -71,31 +75,33 @@ const MobileTable = (props) => {
         className={classes.mobileContainer}
         dataTest='mobile-body-container'
       >
-        {activeDisplay === cardDisplay ? (
-          <CardsTableMobile
-            cards={cards}
-            isLoadingCards={isLoadingCards}
-            priceCategory={priceCategory}
-            filterValues={filterValues}
-            setFilterOptions={setFilterOptions}
-            clearFilterOptions={clearFilterOptions}
-            setPriceCalc={setPriceCalc}
-            mobileSortValues={mobileSortValues}
-          />
-        ) : (
-          <SideBar
-            priceCategory={priceCategory}
-            setPriceCategoryLow={setPriceCategoryLow}
-            setPriceCategoryMid={setPriceCategoryMid}
-            setPriceCategoryHigh={setPriceCategoryHigh}
-            setPriceCategoryMarket={setPriceCategoryMarket}
-            cardNamesAndSets={cardNamesAndSets}
-            setFilterOptions={setFilterOptions}
-            clearFilterOptions={clearFilterOptions}
-            filterValues={filterValues}
-            priceCalc={priceCalc}
-          />
-        )}
+        <ToolbarMixin className={classes.mixin}>
+          {activeDisplay === cardDisplay ? (
+            <CardsTableMobile
+              cards={cards}
+              isLoadingCards={isLoadingCards}
+              priceCategory={priceCategory}
+              filterValues={filterValues}
+              setFilterOptions={setFilterOptions}
+              clearFilterOptions={clearFilterOptions}
+              setPriceCalc={setPriceCalc}
+              mobileSortValues={mobileSortValues}
+            />
+          ) : (
+            <SideBar
+              priceCategory={priceCategory}
+              setPriceCategoryLow={setPriceCategoryLow}
+              setPriceCategoryMid={setPriceCategoryMid}
+              setPriceCategoryHigh={setPriceCategoryHigh}
+              setPriceCategoryMarket={setPriceCategoryMarket}
+              cardNamesAndSets={cardNamesAndSets}
+              setFilterOptions={setFilterOptions}
+              clearFilterOptions={clearFilterOptions}
+              filterValues={filterValues}
+              priceCalc={priceCalc}
+            />
+          )}
+        </ToolbarMixin>
       </EnhancedContainer>
     </EnhancedContainer>
   );

@@ -23,7 +23,7 @@ export const cardsSelector = createSelector(
       const isValid = cardIsValid(card);
 
       if (!isValid) {
-        console.log(card);
+        console.error(card);
         // Reduce allows us to filter invalid cards by returning our current res
         // This will be refactored to happen in the action, allowing us to display incomplete data
         return res;

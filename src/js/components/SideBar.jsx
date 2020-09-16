@@ -137,7 +137,7 @@ const SideBar = (props) => {
           root: classes.card,
         }}
       >
-        <FormLabel className={classes.formLabel} component='legend'>
+        <FormLabel className={classes.formLabel} component='div'>
           {getLabel()}
         </FormLabel>
         <Collapse in={!expanded} timeout='auto'>
