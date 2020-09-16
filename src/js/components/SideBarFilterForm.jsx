@@ -376,6 +376,7 @@ const SideBarFilterForm = (props) => {
       <EnhancedDatepicker
         label='Date To'
         value={dateTo}
+        fullWidth
         onChange={(event) => setDateTo(event.target.value)}
       />
 

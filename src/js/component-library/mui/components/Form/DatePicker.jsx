@@ -26,7 +26,7 @@ const EnhancedDatePicker = (props) => {
 
   return (
     <TextField
-      fullWidth
+      fullWidth={fullWidth}
       label={label}
       type='date'
       value={value}
