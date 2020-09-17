@@ -53,7 +53,7 @@ const Image = (props) => {
       target='_blank'
     >
       <EnhancedContainer
-        classes={foil ? { root: classes.foilCard } : { root: classes.card }}
+        className={foil ? classes.foilCard : classes.card}
         dataTest={dataTest}
         disableGutters
       >
@@ -69,7 +69,7 @@ const CardImage = (props) => {
   return (
     <EnhancedContainer
       dataTest='CardImage'
-      classes={{ root: classes.root }}
+      className={classes.root}
       disableGutters
     >
       <Image tcgImageUrl={tcgImageUrl} foil={foil} />

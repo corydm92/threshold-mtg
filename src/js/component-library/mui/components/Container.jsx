@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container } from '@material-ui/core';
 
-const MuiContainer = (props) => {
+const EnhancedContainer = (props) => {
   const { className, classes, disableGutters = false, dataTest, style } = {
     ...props,
   };
@@ -18,4 +18,4 @@ const MuiContainer = (props) => {
   );
 };
 
-export default MuiContainer;
+export default EnhancedContainer;

@@ -15,7 +15,6 @@ const useStyles = makeStyles((theme) => {
     },
     textContainer: {
       height: '100%',
-      // paddingLeft: theme.spacing(2),
       display: 'flex',
       flexWrap: 'wrap',
     },
