@@ -4,14 +4,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '../component-library/mui/components/Container';
 import ViewListIcon from '@material-ui/icons/ViewList';
 import ViewComfyIcon from '@material-ui/icons/ViewComfy';
-import IconButton from '@material-ui/core/IconButton';
+import EnhancedIconButton from '../component-library/mui/components/IconButton';
 import EnhancedTooltip from '../component-library/mui/components/Tooltip';
 
-import { listDisplay, imageDisplay } from '../constants/tableDisplayIcons';
+import { cardDisplay, filterDisplay } from '../constants/tableDisplayIcons';
 
 const useStyles = makeStyles((theme) => {
   return {
-    root: {},
     icon: {
       color: theme.palette.primary.light,
     },
@@ -42,23 +41,23 @@ const TableDisplayIcons = (props) => {
 
   return (
     <Container className={classes.container} dataTest={'TableDisplayIcons'}>
-      <EnhancedTooltip title='Image View'>
-        <IconButton
-          data-test={imageDisplay}
-          className={getClasses(imageDisplay)}
-          onClick={() => onClick(imageDisplay)}
+      <EnhancedTooltip title='Card View'>
+        <EnhancedIconButton
+          data-test='CardDisplayIcon'
+          className={getClasses(cardDisplay)}
+          onClick={() => onClick(cardDisplay)}
         >
           <ViewComfyIcon fontSize='large' />
-        </IconButton>
+        </EnhancedIconButton>
       </EnhancedTooltip>
-      <EnhancedTooltip title='List View'>
-        <IconButton
-          data-test={listDisplay}
-          className={getClasses(listDisplay)}
-          onClick={() => onClick(listDisplay)}
+      <EnhancedTooltip title='Filter View'>
+        <EnhancedIconButton
+          data-test='FilterDisplayIcon'
+          className={getClasses(filterDisplay)}
+          onClick={() => onClick(filterDisplay)}
         >
           <ViewListIcon fontSize='large' />
-        </IconButton>
+        </EnhancedIconButton>
       </EnhancedTooltip>
     </Container>
   );

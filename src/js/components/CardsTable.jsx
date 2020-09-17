@@ -14,6 +14,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import CardDetails from './CardDetails';
 import CardImage from './CardImage';
 import EnhancedTypography from '../component-library/mui/components/Typography';
+import IconHolder from './IconHolder';
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] <= a[orderBy]) {
@@ -92,6 +93,9 @@ const useStyles = makeStyles((theme) => {
     tableHeader: {
       paddingTop: '16px', // Table Row has 8px padding, adding another 8px to make even with side bar header
     },
+    cardDetails: {
+      paddingLeft: theme.spacing(2),
+    },
   };
 });
 
@@ -167,7 +171,7 @@ const MuiTableHeaders = (props) => {
 };
 
 const MuiTableBody = React.forwardRef((props, ref) => {
-  const { data, activeDisplay, setPriceCalc } = { ...props };
+  const { data, setPriceCalc } = { ...props };
 
   const classes = useStyles();
 
@@ -199,25 +203,31 @@ const MuiTableBody = React.forwardRef((props, ref) => {
               <Grid item xs={3}>
                 <EnhancedTableCell alignTop dataTest='card-date'>
                   <CardDetails
+                    className={classes.cardDetails}
                     cardName={card.cardName}
                     setName={card.setName}
-                    tcgUrl={card.tcgUrl}
-                    tcgSellerDashboardUrl={card.tcgSellerDashboardUrl}
-                    foil={card.foil}
-                    language={card.language}
                     dateFrom={card.dateFrom}
                     dateTo={card.dateTo}
-                    activeDisplay={activeDisplay}
-                    handlePriceCalc={() =>
-                      handlePriceCalc(
-                        card.tcgPrice,
-                        card.avgPurchasePrice,
-                        card.gainLoss,
-                        card.spread,
-                        card.cardName
-                      )
-                    }
-                  />
+                  >
+                    <IconHolder
+                      scaleSize={1}
+                      foil={card.foil}
+                      setName={card.setName}
+                      tcgUrl={card.tcgUrl}
+                      tcgSellerDashboardUrl={card.tcgSellerDashboardUrl}
+                      cardName={card.cardName}
+                      language={card.language}
+                      handlePriceCalc={() =>
+                        handlePriceCalc(
+                          card.tcgPrice,
+                          card.avgPurchasePrice,
+                          card.gainLoss,
+                          card.spread,
+                          card.cardName
+                        )
+                      }
+                    />
+                  </CardDetails>
                 </EnhancedTableCell>
               </Grid>
               <Grid item className={classes.centerGridItem} xs={1}>
@@ -272,13 +282,7 @@ const MuiTableBody = React.forwardRef((props, ref) => {
 });
 
 const MuiTable = (props) => {
-  const {
-    cards,
-    isLoadingCards,
-    priceCategory,
-    activeDisplay,
-    setPriceCalc,
-  } = { ...props };
+  const { cards, isLoadingCards, priceCategory, setPriceCalc } = { ...props };
 
   const [order, setOrder] = useState('desc');
   const [orderBy, setOrderBy] = useState('spread');
@@ -350,7 +354,6 @@ const MuiTable = (props) => {
             <MuiTableBody
               data={data}
               setPriceCalc={setPriceCalc}
-              activeDisplay={activeDisplay}
               ref={firstRowRef}
             />
           )}

@@ -6,7 +6,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
 import FormLabel from '@material-ui/core/FormLabel';
-import IconButton from '@material-ui/core/IconButton';
+import EnhancedIconButton from '../component-library/mui/components/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import SideBarFilterForm from './SideBarFilterForm';
 import SideBarPriceRadios from './SideBarPriceRadios';
@@ -23,8 +23,9 @@ import {
 const useStyles = makeStyles((theme) => {
   return {
     root: {
-      maxWidth: 345,
-      marginRight: theme.spacing(2),
+      display: 'flex',
+      justifyContent: 'center',
+      marginBottom: theme.spacing(4),
     },
     cardActions: {
       display: 'flex',
@@ -61,6 +62,7 @@ const useStyles = makeStyles((theme) => {
       fontSize: theme.typography.fontSize,
     },
     card: {
+      maxWidth: 345,
       boxShadow: 'none',
       border: '1px solid rgba(224, 224, 224, 1)',
     },
@@ -95,6 +97,9 @@ const SideBar = (props) => {
     setPriceCategoryMarket,
     setFilterOptions,
     clearFilterOptions,
+
+    // PROPS
+    className,
   } = { ...props };
 
   const [expanded, setExpanded] = React.useState(false);
@@ -124,15 +129,15 @@ const SideBar = (props) => {
   };
 
   return (
-    <div data-test='SideBar'>
+    <div data-test='SideBar' className={classes.root}>
       <Card
         name='sideNav'
-        className={classes.root}
+        className={className}
         classes={{
           root: classes.card,
         }}
       >
-        <FormLabel className={classes.formLabel} component='legend'>
+        <FormLabel className={classes.formLabel} component='div'>
           {getLabel()}
         </FormLabel>
         <Collapse in={!expanded} timeout='auto'>
@@ -162,7 +167,7 @@ const SideBar = (props) => {
           }}
           disableSpacing
         >
-          <IconButton
+          <EnhancedIconButton
             className={clsx(classes.expand, {
               [classes.expandOpen]: expanded,
             })}
@@ -171,7 +176,7 @@ const SideBar = (props) => {
             aria-label='show more'
           >
             <ExpandMoreIcon />
-          </IconButton>
+          </EnhancedIconButton>
         </CardActions>
         <Collapse in={expanded}>
           <CardContent className={classes.filterCardContent}>

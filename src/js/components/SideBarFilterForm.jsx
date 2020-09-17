@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: theme.typography.fontSize,
     width: '100%',
   },
-  priceOperand: {
+  selectOperand: {
     width: theme.spacing(10),
     marginRight: theme.spacing(1),
   },
@@ -232,7 +232,7 @@ const SideBarFilterForm = (props) => {
           label={getPriceCategory(priceCategory)}
           value={tcgPriceOperator}
           onChange={(event) => setTcgPriceOperator(event.target.value)}
-          className={classes.priceOperand}
+          className={classes.selectOperand}
           InputLabelProps={{
             shrink: true,
           }}
@@ -253,6 +253,7 @@ const SideBarFilterForm = (props) => {
           dataTest='tcg-price-gain-loss'
           className={classes.spreadInput}
           value={tcgPriceValue}
+          fullWidth
           onChange={(event) => setTcgPriceValue(event.target.value)}
           InputLabelProps={{
             shrink: true,
@@ -278,7 +279,7 @@ const SideBarFilterForm = (props) => {
           label='Gain / Loss'
           value={gainOperator}
           onChange={(event) => setGainOperator(event.target.value)}
-          className={classes.priceOperand}
+          className={classes.selectOperand}
           InputLabelProps={{
             shrink: true,
           }}
@@ -299,6 +300,7 @@ const SideBarFilterForm = (props) => {
           dataTest='textfield-gain-loss'
           className={classes.spreadInput}
           value={gainValue}
+          fullWidth
           onChange={(event) => setGainValue(event.target.value)}
           InputLabelProps={{
             shrink: true,
@@ -324,7 +326,7 @@ const SideBarFilterForm = (props) => {
           value={spreadOperator}
           onChange={(event) => setSpreadOperator(event.target.value)}
           label='Spread'
-          className={classes.priceOperand}
+          className={classes.selectOperand}
           InputLabelProps={{
             shrink: true,
           }}
@@ -345,6 +347,7 @@ const SideBarFilterForm = (props) => {
           dataTest='textfield-spread'
           className={classes.spreadInput}
           value={spreadValue}
+          fullWidth
           onChange={(event) => setSpreadValue(event.target.value)}
           InputLabelProps={{
             shrink: true,
@@ -364,6 +367,7 @@ const SideBarFilterForm = (props) => {
       <EnhancedDatepicker
         label='Date From'
         value={dateFrom}
+        fullWidth
         onChange={(event) => setDateFrom(event.target.value)}
       />
 
@@ -372,6 +376,7 @@ const SideBarFilterForm = (props) => {
       <EnhancedDatepicker
         label='Date To'
         value={dateTo}
+        fullWidth
         onChange={(event) => setDateTo(event.target.value)}
       />
 

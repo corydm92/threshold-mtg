@@ -10,9 +10,10 @@ const useStyles = makeStyles((theme) => {
 // Gives spacing above the main body of our content, so AppBar does not cover our body
 const ToolbarMixin = (props) => {
   const classes = useStyles();
+  const { className } = { ...props };
   return (
     <div data-test='toolbarMixin'>
-      <div className={classes.offset} />
+      <div className={`${classes.offset} ${className}`} />
       {props.children}
     </div>
   );

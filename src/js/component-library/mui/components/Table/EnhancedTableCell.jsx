@@ -28,10 +28,11 @@ const useStyles = makeStyles((theme) => {
 
 const EnhancedTableCell = (props) => {
   const classes = useStyles(props);
-  const { colSpan, dataTest } = { ...props };
+  const { colSpan, dataTest, className } = { ...props };
   return (
     <TableCell
-      className={classes.root}
+      classes={{ root: classes.root }}
+      className={className}
       data-test={dataTest}
       colSpan={colSpan}
       component='div'

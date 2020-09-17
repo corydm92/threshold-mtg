@@ -69,7 +69,7 @@ const CardImage = (props) => {
   return (
     <EnhancedContainer
       dataTest='CardImage'
-      classes={{ root: classes.root }}
+      className={classes.root}
       disableGutters
     >
       <Image tcgImageUrl={tcgImageUrl} foil={foil} />

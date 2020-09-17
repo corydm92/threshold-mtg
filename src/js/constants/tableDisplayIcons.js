@@ -1,2 +1,2 @@
-export const imageDisplay = 'imageDisplay';
-export const listDisplay = 'listDisplay';
+export const filterDisplay = 'filterDisplay';
+export const cardDisplay = 'cardDisplay';
