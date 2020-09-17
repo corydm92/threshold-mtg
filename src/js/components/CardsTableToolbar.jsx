@@ -1,7 +1,6 @@
 import React from 'react';
 import EnhancedToolbar from '../component-library/mui/components/Toolbar';
 import Grid from '@material-ui/core/Grid';
-// import TableDisplayIcons from './TableDisplayIcons';
 import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles((theme) => {
@@ -11,8 +10,6 @@ const useStyles = makeStyles((theme) => {
 });
 
 const CardsTableToolbar = (props) => {
-  // const { onClick } = { ...props };
-
   const classes = useStyles();
 
   return (

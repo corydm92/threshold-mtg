@@ -310,12 +310,6 @@ const MuiTable = (props) => {
         dataTest='CardsTable'
       >
         <EnhancedTable className={classes.root}>
-          {/* <MuiTableHeaders
-            order={order}
-            orderBy={orderBy}
-            priceCategory={priceCategory}
-            onRequestSort={handleRequestSort}
-          /> */}
           {!isLoadingCards && (
             <MuiTableBody
               data={data}

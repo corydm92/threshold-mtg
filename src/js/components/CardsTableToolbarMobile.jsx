@@ -71,11 +71,7 @@ const SortOrderSelect = (props) => {
     >
       {sortOptions.map((option) => {
         return (
-          <MenuItem
-            className={classes.menuItem}
-            key={option.label}
-            value={option.label}
-          >
+          <MenuItem key={option.label} value={option.label}>
             {option.label}
           </MenuItem>
         );
@@ -84,7 +80,7 @@ const SortOrderSelect = (props) => {
   );
 };
 
-const CardsTableToolbar = (props) => {
+const CardsTableToolbarMobile = (props) => {
   const classes = useStyles();
   const { onClick, activeDisplay, sortHandler, mobileSortValues } = {
     ...props,
@@ -95,7 +91,7 @@ const CardsTableToolbar = (props) => {
       <Grid container>
         <Grid className={classes.selectContainer} item xs={7}>
           <EnhancedTypography className={classes.typography}>
-            Sort Order:
+            {'Sort Order:'}
           </EnhancedTypography>
           <SortOrderSelect
             mobileSortValues={mobileSortValues}
@@ -111,4 +107,4 @@ const CardsTableToolbar = (props) => {
   );
 };
 
-export default CardsTableToolbar;
+export default CardsTableToolbarMobile;
