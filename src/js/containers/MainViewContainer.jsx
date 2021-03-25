@@ -3,7 +3,7 @@ import MainView from '../components/MainView';
 import { fetchCards } from '../../redux/actions';
 
 const mapStateToProps = (state) => {
-  return {};
+  return { collectionPrice: state.collectionPriceReducer };
 };
 
 const mapDispatchToProps = (dispatch) => {
