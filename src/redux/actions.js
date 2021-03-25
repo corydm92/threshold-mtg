@@ -5,6 +5,7 @@ import {
   FETCH_CARD_DATA_FAILED,
   SET_CARD_DATA_SUCCESSFUL,
   SET_CARD_DATA_FAILED,
+  SET_COLLECTION_PRICE,
   SET_FILTER_OPTIONS,
   CLEAR_FILTER_OPTIONS,
   SET_PRICE_CALC,
@@ -43,6 +44,20 @@ export const fetchCardsData = (params) => (dispatch) => {
   return axiosGET(params)
     .then((res) => {
       // Input JSON (or plain JS object) data that needs normalization.
+
+      let collectionTotal = 0;
+      for (let card of res.data.results) {
+        if (card.spec_prices?.length && card.tcg_price?.market_price) {
+          collectionTotal +=
+            card.spec_prices?.length * parseFloat(card.tcg_price?.market_price);
+        }
+      }
+
+      dispatch({
+        type: SET_COLLECTION_PRICE,
+        payload: collectionTotal.toFixed(2),
+      });
+
       const normalizedResponse = cardsNormalizr(res.data.results);
 
       dispatch({

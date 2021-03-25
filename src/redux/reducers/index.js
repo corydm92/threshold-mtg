@@ -7,6 +7,7 @@ import tcgPricesReducer from './tcgPricesReducer';
 import tcgPriceCategory from './tcgPriceCategory';
 import filterReducer from './filterReducer';
 import priceCalcReducer from './priceCalcReducer';
+import collectionPriceReducer from './collectionPriceReducer';
 
 export default combineReducers({
   tcgPriceCategory,
@@ -17,4 +18,5 @@ export default combineReducers({
   tcgPricesReducer,
   filterReducer,
   priceCalcReducer,
+  collectionPriceReducer,
 });
