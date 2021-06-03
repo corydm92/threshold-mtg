@@ -40,7 +40,7 @@ export const fetchCards = (params) => (dispatch) => {
 };
 
 // Fetches all card data
-export const fetchCardsData = (params) => (dispatch, getState) => {
+export const fetchCardsData = (params) => (dispatch) => {
   return axiosGET(params)
     .then((res) => {
       // Input JSON (or plain JS object) data that needs normalization.
