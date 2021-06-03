@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.js": "/mtg-management-frontend/static/js/main.df9e9d10.chunk.js",
-    "main.js.map": "/mtg-management-frontend/static/js/main.df9e9d10.chunk.js.map",
-    "runtime-main.js": "/mtg-management-frontend/static/js/runtime-main.0e9e713b.js",
-    "runtime-main.js.map": "/mtg-management-frontend/static/js/runtime-main.0e9e713b.js.map",
-    "static/js/2.464a67c2.chunk.js": "/mtg-management-frontend/static/js/2.464a67c2.chunk.js",
-    "static/js/2.464a67c2.chunk.js.map": "/mtg-management-frontend/static/js/2.464a67c2.chunk.js.map",
-    "index.html": "/mtg-management-frontend/index.html",
-    "precache-manifest.82231bdd396ebcce923784bf811eed66.js": "/mtg-management-frontend/precache-manifest.82231bdd396ebcce923784bf811eed66.js",
-    "service-worker.js": "/mtg-management-frontend/service-worker.js",
-    "static/js/2.464a67c2.chunk.js.LICENSE.txt": "/mtg-management-frontend/static/js/2.464a67c2.chunk.js.LICENSE.txt"
+    "main.js": "/threshold-mtg/static/js/main.df9e9d10.chunk.js",
+    "main.js.map": "/threshold-mtg/static/js/main.df9e9d10.chunk.js.map",
+    "runtime-main.js": "/threshold-mtg/static/js/runtime-main.f3aed5ea.js",
+    "runtime-main.js.map": "/threshold-mtg/static/js/runtime-main.f3aed5ea.js.map",
+    "static/js/2.464a67c2.chunk.js": "/threshold-mtg/static/js/2.464a67c2.chunk.js",
+    "static/js/2.464a67c2.chunk.js.map": "/threshold-mtg/static/js/2.464a67c2.chunk.js.map",
+    "index.html": "/threshold-mtg/index.html",
+    "precache-manifest.ce3bbc0c0df10b123e4815cca77d0f3a.js": "/threshold-mtg/precache-manifest.ce3bbc0c0df10b123e4815cca77d0f3a.js",
+    "service-worker.js": "/threshold-mtg/service-worker.js",
+    "static/js/2.464a67c2.chunk.js.LICENSE.txt": "/threshold-mtg/static/js/2.464a67c2.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.0e9e713b.js",
+    "static/js/runtime-main.f3aed5ea.js",
     "static/js/2.464a67c2.chunk.js",
     "static/js/main.df9e9d10.chunk.js"
   ]
