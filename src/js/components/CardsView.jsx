@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import CardsTable from './CardsTable';
 import CardsTableMobile from './CardsTableMobile';
 import SideBar from './SideBar';

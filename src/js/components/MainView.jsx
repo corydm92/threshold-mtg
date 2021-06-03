@@ -16,7 +16,8 @@ const MainView = (props) => {
   const navTitle = 'Threshold MTG';
 
   const collectionPriceTitle =
-    collectionPrice && ` - ${collectionPrice[tcgPriceCategory]}`;
+    collectionPrice[tcgPriceCategory] &&
+    ` - ${collectionPrice[tcgPriceCategory]}`;
 
   return (
     <div data-test='mainView'>

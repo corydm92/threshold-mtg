@@ -8,7 +8,6 @@ import {
   setFilterOptions,
   clearFilterOptions,
   setPriceCalc,
-  setCollectionPrice,
 } from '../../redux/actions';
 import { cardsSelector, cardNamesAndSets } from '../../selectors/cardsSelector';
 
