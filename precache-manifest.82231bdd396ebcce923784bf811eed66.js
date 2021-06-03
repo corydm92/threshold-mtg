@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f9552af639b04899f98f0e8bd76983bf",
+    "revision": "0fc53c18780ab5f94f304e9a4f6bf1bd",
     "url": "/mtg-management-frontend/index.html"
   },
   {
