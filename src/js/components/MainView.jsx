@@ -9,8 +9,8 @@ const MainView = (props) => {
   const { fetchCards, collectionPrice } = { ...props };
 
   useEffect(() => {
-    // fetchCards('/?limit=20');
-    fetchCards();
+    fetchCards('/?limit=400');
+    // fetchCards();
   }, [fetchCards]);
 
   const navTitle = 'Threshold MTG';
