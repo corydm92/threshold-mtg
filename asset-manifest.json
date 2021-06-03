@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.js": "/mtg-management-frontend/static/js/main.a8a0e2c4.chunk.js",
+    "main.js.map": "/mtg-management-frontend/static/js/main.a8a0e2c4.chunk.js.map",
+    "runtime-main.js": "/mtg-management-frontend/static/js/runtime-main.0e9e713b.js",
+    "runtime-main.js.map": "/mtg-management-frontend/static/js/runtime-main.0e9e713b.js.map",
+    "static/js/2.32b25df4.chunk.js": "/mtg-management-frontend/static/js/2.32b25df4.chunk.js",
+    "static/js/2.32b25df4.chunk.js.map": "/mtg-management-frontend/static/js/2.32b25df4.chunk.js.map",
+    "index.html": "/mtg-management-frontend/index.html",
+    "precache-manifest.f908d36cca370d7634e44d6ec560bfc4.js": "/mtg-management-frontend/precache-manifest.f908d36cca370d7634e44d6ec560bfc4.js",
+    "service-worker.js": "/mtg-management-frontend/service-worker.js",
+    "static/js/2.32b25df4.chunk.js.LICENSE.txt": "/mtg-management-frontend/static/js/2.32b25df4.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0e9e713b.js",
+    "static/js/2.32b25df4.chunk.js",
+    "static/js/main.a8a0e2c4.chunk.js"
+  ]
+}
