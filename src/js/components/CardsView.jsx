@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CardsTable from './CardsTable';
 import CardsTableMobile from './CardsTableMobile';
 import SideBar from './SideBar';
@@ -182,9 +182,14 @@ const CardsView = (props) => {
     setFilterOptions,
     clearFilterOptions,
     setPriceCalc,
+    setCollectionPrice,
   } = {
     ...props,
   };
+
+  useEffect(() => {
+    setCollectionPrice();
+  }, [priceCategory, setCollectionPrice]);
 
   // Returns true if viewport >= 960px
   const matches = useMediaQuery('(min-width:960px)');

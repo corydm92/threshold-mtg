@@ -45,29 +45,20 @@ export const fetchCardsData = (params) => (dispatch) => {
     .then((res) => {
       // Input JSON (or plain JS object) data that needs normalization.
 
-      let collectionTotal = 0;
-      for (let card of res.data.results) {
-        if (card.spec_prices?.length && card.tcg_price?.market_price) {
-          collectionTotal +=
-            card.spec_prices?.length * parseFloat(card.tcg_price?.market_price);
-        }
-      }
-
-      dispatch({
-        type: SET_COLLECTION_PRICE,
-        payload: collectionTotal.toFixed(2),
-      });
-
       const normalizedResponse = cardsNormalizr(res.data.results);
 
       dispatch({
         type: FETCH_CARDS_DATA_SUCCESSFUL,
         payload: normalizedResponse,
       });
+
+      dispatch(setCollectionPrice());
+
       dispatch(isLoadingCardsFalse());
     })
     .catch((err) => {
       dispatch({ type: FETCH_CARDS_DATA_FAILED, payload: err });
+      console.error(err);
       dispatch(isLoadingCardsFalse());
     });
 };
@@ -205,4 +196,41 @@ export const setPriceCategoryHigh = () => {
 
 export const setPriceCategoryMarket = () => {
   return { type: SET_PRICE_CATEGORY_MARKET };
+};
+
+export const setCollectionPrice = () => (dispatch, getState) => {
+  const cardEntities = getState().cardsReducer.entities.cards; // obj of obj
+  const cardResults = getState().cardsReducer.result; // array of id
+  const priceCategory = getState().tcgPriceCategory;
+
+  try {
+    let collectionTotal = 0;
+
+    for (let card of cardResults) {
+      if (
+        cardEntities[card].spec_prices?.length &&
+        cardEntities[card].tcg_price?.[priceCategory]
+      ) {
+        collectionTotal +=
+          cardEntities[card].spec_prices?.length *
+          parseFloat(cardEntities[card].tcg_price?.[priceCategory]);
+      }
+    }
+
+    let formatter = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+
+      // These options are needed to round to whole numbers if that's what you want.
+      //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+      //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+    });
+
+    dispatch({
+      type: SET_COLLECTION_PRICE,
+      payload: formatter.format(collectionTotal.toFixed(2)),
+    });
+  } catch (error) {
+    console.error(error);
+  }
 };
