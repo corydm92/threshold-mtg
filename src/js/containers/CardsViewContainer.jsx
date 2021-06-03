@@ -32,7 +32,6 @@ const mapDispatchToProps = (dispatch) => {
     setFilterOptions: (payload) => dispatch(setFilterOptions(payload)),
     clearFilterOptions: () => dispatch(clearFilterOptions()),
     setPriceCalc: (payload) => dispatch(setPriceCalc(payload)),
-    setCollectionPrice: () => dispatch(setCollectionPrice()),
   };
 };
 

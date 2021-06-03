@@ -182,14 +182,9 @@ const CardsView = (props) => {
     setFilterOptions,
     clearFilterOptions,
     setPriceCalc,
-    setCollectionPrice,
   } = {
     ...props,
   };
-
-  useEffect(() => {
-    setCollectionPrice();
-  }, [priceCategory, setCollectionPrice]);
 
   // Returns true if viewport >= 960px
   const matches = useMediaQuery('(min-width:960px)');

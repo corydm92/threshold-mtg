@@ -30,6 +30,13 @@ import { isEmpty } from 'lodash';
 import cardsNormalizr from '../normalizr/cardsNormalizr';
 import cardNormalizr from '../normalizr/cardNormalizr';
 
+import {
+  tcgLow,
+  tcgMid,
+  tcgHigh,
+  tcgMarket,
+} from '../js/constants/tcgPriceCategories';
+
 /*** CARD(S) ***/
 
 // Intermediary action creator
@@ -201,19 +208,30 @@ export const setPriceCategoryMarket = () => {
 export const setCollectionPrice = () => (dispatch, getState) => {
   const cardEntities = getState().cardsReducer.entities.cards; // obj of obj
   const cardResults = getState().cardsReducer.result; // array of id
-  const priceCategory = getState().tcgPriceCategory;
 
   try {
-    let collectionTotal = 0;
+    let low = 0;
+    let mid = 0;
+    let high = 0;
+    let market = 0;
 
     for (let card of cardResults) {
       if (
-        cardEntities[card].spec_prices?.length &&
-        cardEntities[card].tcg_price?.[priceCategory]
+        cardEntities[card].spec_prices.length &&
+        cardEntities[card].tcg_price
       ) {
-        collectionTotal +=
-          cardEntities[card].spec_prices?.length *
-          parseFloat(cardEntities[card].tcg_price?.[priceCategory]);
+        let quantity = 0;
+
+        cardEntities[card].spec_prices.forEach(
+          (spec) => (quantity += spec.quantity)
+        );
+
+        low += quantity * parseFloat(cardEntities[card].tcg_price[tcgLow]) || 0;
+        mid += quantity * parseFloat(cardEntities[card].tcg_price[tcgMid]) || 0;
+        high +=
+          quantity * parseFloat(cardEntities[card].tcg_price[tcgHigh]) || 0;
+        market +=
+          quantity * parseFloat(cardEntities[card].tcg_price[tcgMarket]) || 0;
       }
     }
 
@@ -226,9 +244,16 @@ export const setCollectionPrice = () => (dispatch, getState) => {
       //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
     });
 
+    const payload = {
+      [tcgLow]: formatter.format(low.toFixed(2)),
+      [tcgMid]: formatter.format(mid.toFixed(2)),
+      [tcgHigh]: formatter.format(high.toFixed(2)),
+      [tcgMarket]: formatter.format(market.toFixed(2)),
+    };
+
     dispatch({
       type: SET_COLLECTION_PRICE,
-      payload: formatter.format(collectionTotal.toFixed(2)),
+      payload,
     });
   } catch (error) {
     console.error(error);
