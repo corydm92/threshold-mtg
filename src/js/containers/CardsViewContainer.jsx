@@ -8,7 +8,6 @@ import {
   setFilterOptions,
   clearFilterOptions,
   setPriceCalc,
-  setCollectionPrice,
 } from '../../redux/actions';
 import { cardsSelector, cardNamesAndSets } from '../../selectors/cardsSelector';
 
@@ -32,7 +31,6 @@ const mapDispatchToProps = (dispatch) => {
     setFilterOptions: (payload) => dispatch(setFilterOptions(payload)),
     clearFilterOptions: () => dispatch(clearFilterOptions()),
     setPriceCalc: (payload) => dispatch(setPriceCalc(payload)),
-    setCollectionPrice: () => dispatch(setCollectionPrice()),
   };
 };
 

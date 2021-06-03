@@ -6,7 +6,7 @@ import Container from '../component-library/mui/components/Container';
 import Routes from '../routes/Routes';
 
 const MainView = (props) => {
-  const { fetchCards, collectionPrice } = { ...props };
+  const { fetchCards, collectionPrice, tcgPriceCategory } = { ...props };
 
   useEffect(() => {
     fetchCards('/?limit=400');
@@ -15,7 +15,9 @@ const MainView = (props) => {
 
   const navTitle = 'Threshold MTG';
 
-  const collectionPriceTitle = collectionPrice && ` - ${collectionPrice}`;
+  const collectionPriceTitle =
+    collectionPrice[tcgPriceCategory] &&
+    ` - ${collectionPrice[tcgPriceCategory]}`;
 
   return (
     <div data-test='mainView'>
