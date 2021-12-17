@@ -9,7 +9,7 @@ const MainView = (props) => {
   const { fetchCards, collectionPrice, tcgPriceCategory } = { ...props };
 
   useEffect(() => {
-    fetchCards('/?limit=400');
+    fetchCards('/?limit=800');
     // fetchCards();
   }, [fetchCards]);
 
