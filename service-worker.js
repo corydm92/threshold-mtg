@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/threshold-mtg/precache-manifest.ce3bbc0c0df10b123e4815cca77d0f3a.js"
+  "/threshold-mtg/precache-manifest.a732e6e5e09d78f8aa93db14fa4450d3.js"
 );
 
 self.addEventListener('message', (event) => {

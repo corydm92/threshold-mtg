@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "81df77327e49e34c44ffad31e1838d09",
+    "revision": "30dd37c2ebaa3eccf76c68f2451039be",
     "url": "/threshold-mtg/index.html"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/threshold-mtg/static/js/2.464a67c2.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "b5a9fb48b74e1bcd3dcd",
-    "url": "/threshold-mtg/static/js/main.df9e9d10.chunk.js"
+    "revision": "f5be9078fa69a39c82e8",
+    "url": "/threshold-mtg/static/js/main.9010941d.chunk.js"
   },
   {
     "revision": "daeea1a097243441742d",
