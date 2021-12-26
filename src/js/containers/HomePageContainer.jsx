@@ -2,8 +2,10 @@ import { connect } from 'react-redux';
 import HomePage from '../components/HomePage';
 
 const mapStateToProps = (state) => {
-  console.log(state);
-  return {};
+  return {
+    ckExport: state.cardsReducer.ckExport,
+    rawExport: state.cardsReducer.rawExport,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {

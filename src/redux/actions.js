@@ -54,13 +54,113 @@ export const fetchCardsData = (params) => (dispatch) => {
 
       const normalizedResponse = cardsNormalizr(res.data.results);
 
-      // Creating raw with quantity here, but should be done in schema/api
-      const raw = res.data.results.reduce((acc, current) => {
+      const rawExport = res.data.results.reduce((acc, current) => {
         let quantity = 0;
 
         if (current.spec_prices.length) {
           current.spec_prices.forEach((spec) => (quantity += spec.quantity));
-          return [...acc, { ...current, quantity }];
+
+          return [
+            ...acc,
+            {
+              card_name: current.card_name,
+              set_name: current.set_name,
+              foil: current.foil,
+              language: current.language,
+              quantity,
+              low_price: current.tcg_price.low_price,
+              market_price: current.tcg_price.market_price,
+            },
+          ];
+        } else {
+          return acc;
+        }
+      }, []);
+
+      // Creating raw with quantity here, but should be done in schema/api
+      const ckExport = res.data.results.reduce((acc, current) => {
+        let quantity = 0;
+
+        if (!current.language && current.spec_prices.length) {
+          current.spec_prices.forEach((spec) => (quantity += spec.quantity));
+
+          function checkName(card_name) {
+            const variants = [
+              ' (Extended Art)',
+              ' (Alternate Art)',
+              ' (Borderless)',
+              ' (Showcase)',
+              ' (Retro Frame)',
+              ' (Stained Glass)',
+            ];
+
+            let outName;
+
+            variants.some((variant) =>
+              card_name.includes(variant)
+                ? (outName = card_name.replace(variant, ''))
+                : null
+            );
+
+            return outName;
+          }
+
+          const checkNameResult = checkName(current.card_name);
+
+          function cleanSetName(set_name) {
+            if (set_name === 'Double Masters' && checkNameResult) {
+              return 'Double Masters Box Toppers';
+            }
+
+            if (set_name === 'Commander: Adventures In The Forgotten Realms') {
+              return 'Adventures In The Forgotten Realms Commander Decks';
+            }
+
+            if (set_name === 'Masterpiece Series Kaladesh Inventions') {
+              return 'Masterpiece Series: Inventions';
+            }
+
+            if (set_name === 'Secret Lair Drop Series') {
+              return 'Secret Lair';
+            }
+
+            if (set_name === 'Time Spiral: Remastered') {
+              return 'Time Spiral Remastered';
+            }
+
+            return set_name;
+          }
+
+          const cleanSetNameResult = cleanSetName(current.set_name);
+
+          const checkSetName = (set_name) => {
+            if (set_name === 'Modern Horizons') {
+              return current.set_name + ' - Retro Frames';
+            }
+
+            return current.set_name + ' Variants';
+          };
+
+          // Clean data for CK
+          if (checkNameResult) {
+            current.card_name = checkNameResult;
+            current.set_name =
+              current.set_name === cleanSetNameResult
+                ? checkSetName(current.set_name)
+                : cleanSetNameResult;
+          } else {
+            current.set_name = cleanSetNameResult;
+          }
+
+          return [
+            ...acc,
+            {
+              card_name: current.card_name,
+              set_name: current.set_name,
+              foil: current.foil,
+              quantity,
+            },
+          ];
         } else {
           return acc;
         }
@@ -68,7 +168,7 @@ export const fetchCardsData = (params) => (dispatch) => {
 
       dispatch({
         type: FETCH_CARDS_DATA_SUCCESSFUL,
-        payload: { normalized: normalizedResponse, raw },
+        payload: { normalized: normalizedResponse, ckExport, rawExport },
       });
 
       dispatch(setCollectionPrice());
