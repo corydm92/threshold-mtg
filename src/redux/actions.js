@@ -54,9 +54,21 @@ export const fetchCardsData = (params) => (dispatch) => {
 
       const normalizedResponse = cardsNormalizr(res.data.results);
 
+      // Creating raw with quantity here, but should be done in schema/api
+      const raw = res.data.results.reduce((acc, current) => {
+        let quantity = 0;
+
+        if (current.spec_prices.length) {
+          current.spec_prices.forEach((spec) => (quantity += spec.quantity));
+          return [...acc, { ...current, quantity }];
+        } else {
+          return acc;
+        }
+      }, []);
+
       dispatch({
         type: FETCH_CARDS_DATA_SUCCESSFUL,
-        payload: normalizedResponse,
+        payload: { normalized: normalizedResponse, raw },
       });
 
       dispatch(setCollectionPrice());

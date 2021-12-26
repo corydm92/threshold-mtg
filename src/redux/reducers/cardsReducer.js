@@ -12,7 +12,8 @@ export const initState = {
 const cardsReducer = (state = initState, action) => {
   switch (action.type) {
     case FETCH_CARDS_DATA_SUCCESSFUL: {
-      return action.payload;
+      const { normalized, raw } = action.payload;
+      return { ...normalized, raw };
     }
     case FETCH_CARDS_DATA_FAILED:
       return initState;

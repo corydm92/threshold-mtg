@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import HomePage from '../components/HomePage';
 
 const mapStateToProps = (state) => {
+  console.log(state);
   return {};
 };
 
